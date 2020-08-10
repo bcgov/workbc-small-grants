@@ -1,2 +1,2 @@
-# workbc-small-grants
+# WorkBC small grants.
 WorkBC form for small grants applications.
