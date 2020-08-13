@@ -12,6 +12,7 @@ function Home() {
                         <li>Aliquam tincidunt mauris eu risus.</li>
                         <li>Vestibulum auctor dapibus neque.</li>
                     </ul>
+
          
                     
                 </div>
