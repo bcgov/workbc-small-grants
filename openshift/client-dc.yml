@@ -2,18 +2,10 @@ apiVersion: v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: workbc-small-grants-client
+  name: workbc-small-grants
 labels:
-  template: workbc-small-grants-client
+  template: workbc-small-grants
 objects:
-- apiVersion: v1
-  kind: ImageStream
-  metadata:
-    creationTimestamp: null
-    name: ${NAME}-static
-  spec:
-    lookupPolicy:
-      local: false
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -36,8 +28,8 @@ objects:
           deploymentconfig: ${NAME}-static${SUFFIX}
       spec:
         containers:
-        - image: ${NAME}-static:${VERSION}
-          name: workbc-small-grants-client
+        - image: ${NAME}-static:${TAG}
+          name: workbc-small-grants
           args:
           - /tmp/scripts/run
           ports:
@@ -64,10 +56,11 @@ objects:
     - imageChangeParams:
         automatic: true
         containerNames:
-        - workbc-small-grants-client
+        - workbc-small-grants
         from:
           kind: ImageStreamTag
-          name: ${NAME}-static:${VERSION}
+          name: '${NAME}-static:${TAG}'
+          namespace: ${IMAGE_NAMESPACE}
       type: ImageChange
 - apiVersion: v1
   data:
@@ -86,7 +79,7 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: workbc-small-grants-client-caddy
+    name: workbc-small-grants-caddy
     labels:
       app: workbc-small-grants
   type: Opaque
@@ -125,15 +118,15 @@ parameters:
   displayName: Name
   name: NAME
   required: true
-  value: workbc-small-grants-client
+  value: workbc-small-grants
 - description: A name suffix used for all objects
   displayName: Suffix
   name: SUFFIX
   required: false
-  value: -dev
+  value: ''
 - description: Tag used for the image tags
   displayName: tag
-  name: tag
+  name: TAG
   required: true
   value: latest 
 - description: A name used for routes/services and deployment configs
@@ -146,3 +139,8 @@ parameters:
   name: VOLUME_NAME
   required: false
   value: web-caddy-config
+- description: The namespace of the OS project containing the imagestreams
+  displayName: Image Namespace
+  name: IMAGE_NAMESPACE
+  required: true
+  value: myproject-tools

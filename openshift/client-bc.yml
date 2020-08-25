@@ -117,10 +117,10 @@ parameters:
   displayName: Suffix
   name: SUFFIX
   required: false
-  value: -dev
+  value: ''
 - description: Tag used for the image tags
   displayName: tag
-  name: tag
+  name: TAG
   required: true
   value: latest
 - description: NODE_JS_VERSION
