@@ -3,10 +3,19 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 class Form extends Component {
-    state={
-        startDate: new Date(),
-        endDate: new Date()
-    };
+    constructor(){
+        super()
+        this.state={
+            startDate: new Date(),
+            endDate: new Date()
+        }
+        this.handleStartChange = this.handleStartChange.bind(this)
+        this.handleEndChange = this.handleStartChange.bind(this)
+        this.reset = this.reset.bind(this)
+        this.display = this.display.bind(this)
+        this.error = this.error.bind(this)
+    }
+
     handleStartChange = date => {
         this.setState({
             startDate: date
@@ -17,19 +26,19 @@ class Form extends Component {
             endDate: date
         });
     };
-    reset = (event) => {
+    reset = () => {
         var SEForm = document.getElementById("socialEnterpriseForm");
         var message = document.getElementById("errorMessage");
         SEForm.style.display ="none";
         message.style.display="none";
     }
-    display = (event) => {
+    display = () => {
         var SEForm = document.getElementById("socialEnterpriseForm");
         var message = document.getElementById("errorMessage");
         message.style.display="none";
         SEForm.style.display ="block";
     }
-    error = (event) => {
+    error = () => {
         var SEForm = document.getElementById("socialEnterpriseForm");
         var message = document.getElementById("errorMessage");
         SEForm.style.display ="none";
