@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
-import Form from './Form'
+//import Form from './Form'
 
 function Main() {
     return (
@@ -10,7 +10,7 @@ function Main() {
                 <Switch>
 
                     <Route path="/form">
-                        <Form />
+                        
                     </Route>
                     <Route path="/">
                         <Home />
