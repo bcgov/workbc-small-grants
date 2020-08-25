@@ -117,7 +117,7 @@ class Form extends Component {
                                 <label className="col-form-label control-label" for="socialEnterprise">Is your organization registered as a:</label>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="socialEnterprise" value="C3"/>
-                                    <label className="form-check-label" for="socialEnterpriseC3">Communit Contribution Copmany (C3)</label>
+                                    <label className="form-check-label" for="socialEnterpriseC3">Community Contribution Company (C3)</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="socialEnterprise" value="BenefitCompany"/>
@@ -128,8 +128,8 @@ class Form extends Component {
                                     <label className="form-check-label" for="socialEnterpriseOther">Other</label>
                                 </div>
                             </div>
-                            <div className="form-group col-md-4">
-                                    <label className="col-form-label control-label" for="applicants">How many applicants are you applying for funding for? <span
+                            <div className="form-group col-md-12">
+                                    <label className="col-form-label control-label" for="applicants">How many applicants are you applying for? <span
                                         style={{ color: "red" }}>*</span></label>
                                     <select className="form-control" id="applicants" name="applicants">
                                         <option>1</option>
@@ -149,13 +149,13 @@ class Form extends Component {
                                 <input type="checkbox" className="form-check-input" id="responsible" name="responsible" value="responsible"/>
                                 <label className="form-check-label control-label" for="responsible"><span
                                         style={{ color: "red" }}>*</span>
-                                        Elibigble organizations must be based in or operating in British Columbia<br/><br/>
-                                        An applicant must ensure the have <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
-                                        WorkSafe BC insurance coverage</a> adequate to the needs of the placement.<br/><br/>
+                                        Eligible organizations must be based in or operating in British Columbia<br/><br/>
+                                        An applicant must ensure they have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
+                                        WorkSafe BC insurance coverage</a>  to meet the needs of the placement.<br/><br/>
                                         Applicants must commit to:<br/>
                                         <ul>
-                                            <li>Monitor and supoort the participant for the duration of the project;and</li>
-                                            <li>Ensure that safe physical distancing practices and WorkSafe BC reqirements are adhered to.</li>
+                                            <li>Monitor and support the participant for the duration of the project; and</li>
+                                            <li>Ensure that safe physical distancing practices and WorkSafe BC requirements are adhered to.</li>
                                         </ul>
                                         </label>
                                 </div>
@@ -193,7 +193,7 @@ class Form extends Component {
                                                 <li>Receiving disability assistance</li>
                                                 <li>Receiving income assistance under the Person with Persistent Multiple Barriers(PPMB) category</li>
                                             </ul>
-                                            Participants must allso be legally eligible to work in British Columbia.<br/>
+                                            Participants must also be legally eligible to work in British Columbia.<br/>
                                             The placement <b>must be</b> 12 weeks.
                                         </label>`
                                 </div>
