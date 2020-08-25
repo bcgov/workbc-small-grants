@@ -41,9 +41,9 @@ class Form extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <form method="post" action="/" onsubmit="submitEmployer.disabled = true; return true;">
+                        <form method="post" action="/">
                             <div className="form-group">
-                                <label className="col-form-label control-label" for="employer">Employer Name <span
+                                <label className="col-form-label control-label" htmlFor="employer">Organiazation Name <span
                                     style={{ color: "red" }}>*</span></label>
                                 <input type="text" className="form-control" id="employer" name="employer" />
                             </div>
@@ -54,82 +54,82 @@ class Form extends Component {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="firstname">First Name <span
+                                    <label className="col-form-label control-label" htmlFor="firstname">First Name <span
                                         style={{ color: "red" }}>*</span></label>
                                     <input type="text" className="form-control" id="firstname" name="firstname" />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="lastname">Last Name <span
+                                    <label className="col-form-label control-label" htmlFor="lastname">Last Name <span
                                         style={{ color: "red" }}>*</span></label>
                                     <input type="text" className="form-control" id="lastname" name="lasttname" />
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="email">Email Address<span
+                                    <label className="col-form-label control-label" htmlFor="email">Email Address<span
                                         style={{ color: "red" }}>*</span></label>
-                                        <small class="text-muted" id="email">  someone@example.com</small>
+                                        <small className="text-muted" id="email">  someone@example.com</small>
                                     <input type="text" className="form-control" id="email" name="email" />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="phone">Phone Number<span
+                                    <label className="col-form-label control-label" htmlFor="phone">Phone Number<span
                                         style={{ color: "red" }}>*</span></label>
-                                        <small class="text-muted" id="email">  250-555-5555</small>
+                                        <small className="text-muted" id="email">  250-555-5555</small>
                                     <input type="text" className="form-control" id="phone" name="phone"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label className="col-form-label control-label" for="address">Street Address <span
+                                <label className="col-form-label control-label" htmlFor="address">Street Address <span
                                     style={{ color: "red" }}>*  </span></label>
-                                    <small class="text-muted" id="email">  1234 Main St</small>
+                                    <small className="text-muted" id="email">  1234 Main St</small>
                                 <input type="text" className="form-control" id="address" name="address" />
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="city">City <span
+                                    <label className="col-form-label control-label" htmlFor="city">City <span
                                         style={{ color: "red" }}>*</span></label>
                                     <input type="text" className="form-control" id="city" name="city" />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label className="col-form-label control-label" for="postal">Postal Code <span
+                                    <label className="col-form-label control-label" htmlFor="postal">Postal Code <span
                                         style={{ color: "red" }}>*  </span></label>
-                                        <small class="text-muted" id="email">  V0R2V5</small>
+                                        <small className="text-muted" id="email">  V0R2V5</small>
                                     <input type="text" className="form-control" id="postal" name="postal" />
                                 </div>
                             </div>
-                            <div className="form-group col-md-12">
-                                <label className="col-form-label control-label" for="organization">Is your organization a non-profit or a social enterprise?</label>
+                            <div className="form-group">
+                                <label className="col-form-label control-label" htmlFor="organization">Is your organization a non-profit or a social enterprise?</label>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="organization" value="Non-Profit" onChange={this.reset}/>
-                                    <label className="form-check-label" for="organizationNonProfit">Non-Profit</label>
+                                    <label className="form-check-label" htmlFor="organizationNonProfit">Non-Profit</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="organization" value="socialEnterprise" onChange={this.display}/>
-                                    <label className="form-check-label" for="organizationSocialEnterprise">Social Enterprise</label>
+                                    <label className="form-check-label" htmlFor="organizationSocialEnterprise">Social Enterprise</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="organization" value="neither" onChange={this.error}/>
-                                    <label className="form-check-label" for="organizationneither">Neither</label>
+                                    <label className="form-check-label" htmlFor="organizationneither">Neither</label>
                                 </div>
                                 <div className="invalid-feedback" id="errorMessage" style={{display:"none"}}> More evaluation is needed, please submit the form and we will be in contact.</div>
                             </div>
                             <div className="form-group col-md-12" id="socialEnterpriseForm" style={{display:"none"}}>
-                                <label className="col-form-label control-label" for="socialEnterprise">Is your organization registered as a:</label>
+                                <label className="col-form-label control-label" htmlFor="socialEnterprise">Is your organization registered as a:</label>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="socialEnterprise" value="C3"/>
-                                    <label className="form-check-label" for="socialEnterpriseC3">Community Contribution Company (C3)</label>
+                                    <label className="form-check-label" htmlFor="socialEnterpriseC3">Community Contribution Company (C3)</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="socialEnterprise" value="BenefitCompany"/>
-                                    <label className="form-check-label" for="socialEnterpriseBenefitCompany">Benefit Company</label>
+                                    <label className="form-check-label" htmlFor="socialEnterpriseBenefitCompany">Benefit Company</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="socialEnterprise" value="Other"/>
-                                    <label className="form-check-label" for="socialEnterpriseOther">Other</label>
+                                    <label className="form-check-label" htmlFor="socialEnterpriseOther">Other</label>
                                 </div>
                             </div>
-                            <div className="form-group col-md-12">
-                                    <label className="col-form-label control-label" for="applicants">How many applicants are you applying for? <span
+                            <div className="form-group">
+                                    <label className="col-form-label control-label" htmlFor="applicants">How many applicants are you applying for? <span
                                         style={{ color: "red" }}>*</span></label>
                                     <select className="form-control" id="applicants" name="applicants">
                                         <option>1</option>
@@ -144,10 +144,10 @@ class Form extends Component {
                                         <option>10</option>  
                                     </select>
                                 </div>
-                            <div className="form-group col-md-12">
+                            <div className="form-group">
                             <div className="form-check">
                                 <input type="checkbox" className="form-check-input" id="responsible" name="responsible" value="responsible"/>
-                                <label className="form-check-label control-label" for="responsible"><span
+                                <label className="form-check-label" htmlFor="responsible"><span
                                         style={{ color: "red" }}>*</span>
                                         Eligible organizations must be based in or operating in British Columbia<br/><br/>
                                         An applicant must ensure they have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
@@ -183,10 +183,10 @@ class Form extends Component {
                                 </div>
                             </div>
                             <br/>
-                            <div className="form-group col-md-12">
+                            <div className="form-group">
                                 <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="qualify" name="qualify" value="qualify"/>
-                                    <label className="form-check-label control-label" for="qualify"><span
+                                    <label className="form-check-label" htmlFor="qualify"><span
                                             style={{ color: "red" }}>*</span>
                                             Applicants must be:<br/>
                                             <ul>
@@ -200,10 +200,10 @@ class Form extends Component {
                             </div>
                             <br/>
                             <br/>
-                            <div className="form-actions">
+                            {/*<div className="form-actions">
                                 <button className="btn btn-primary" id="submitWorkBCWageSubsidy" type="submit">Submit
                                 </button>
-                            </div>
+                               </div>*/}
                         </form>
                     </div>
                 </div>
