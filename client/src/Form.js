@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css";
 
 class Form extends Component {
     constructor(){
@@ -52,7 +50,7 @@ class Form extends Component {
                     <div className="col-md-12">
                         <form method="post" action="/">
                             <div className="form-group">
-                                <label className="col-form-label control-label" htmlFor="employer">Organiazation Name <span
+                                <label className="col-form-label control-label" htmlFor="employer">Organization Name <span
                                     style={{ color: "red" }}>*</span></label>
                                 <input type="text" className="form-control" id="employer" name="employer" />
                             </div>
@@ -70,7 +68,7 @@ class Form extends Component {
                                 <div className="form-group col-md-6">
                                     <label className="col-form-label control-label" htmlFor="lastname">Last Name <span
                                         style={{ color: "red" }}>*</span></label>
-                                    <input type="text" className="form-control" id="lastname" name="lasttname" />
+                                    <input type="text" className="form-control" id="lastname" name="lastname" />
                                 </div>
                             </div>
                             <div className="form-row">
@@ -167,28 +165,6 @@ class Form extends Component {
                                             <li>Ensure that safe physical distancing practices and WorkSafe BC requirements are adhered to.</li>
                                         </ul>
                                         </label>
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-4">       
-                                    <h3 id="forms">Start Date:</h3>
-                                </div>
-                                <div className="form-group col-md-4">       
-                                    <h3 id="forms">End Date:</h3>
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-4">
-                                    <DatePicker 
-                                    selected={this.state.startDate}
-                                    onChange={this.handleStartChange}
-                                    />
-                                </div>
-                                <div className="form-group col-md-4">
-                                    <DatePicker 
-                                    selected={this.state.endDate}
-                                    onChange={this.handleEndChange}
-                                    />
                                 </div>
                             </div>
                             <br/>
