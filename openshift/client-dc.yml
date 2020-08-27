@@ -5,6 +5,7 @@ metadata:
   name: workbc-small-grants
 labels:
   template: workbc-small-grants
+  app: workbc-small-grants
 objects:
 - apiVersion: v1
   kind: DeploymentConfig
@@ -30,10 +31,8 @@ objects:
         containers:
         - image: ${NAME}-static:${TAG}
           name: workbc-small-grants
-          args:
-          - /tmp/scripts/run
           ports:
-          - containerPort: 2015
+          - containerPort: 8080
             protocol: TCP
           resources:
             requests:
@@ -42,14 +41,14 @@ objects:
               cpu: '150m'
           volumeMounts:
           - name: ${VOLUME_NAME}
-            mountPath: /etc/Caddyfile
+            mountPath: /etc/nginx/conf.d/default.conf
             readOnly: true
-            subPath: Caddyfile
+            subPath: default.conf
         volumes:
         - name: ${VOLUME_NAME}
           configMap:
             defaultMode: 420
-            name: ${NAME}-caddy
+            name: ${NAME}-nginx
     test: false
     triggers:
     - type: ConfigChange
@@ -64,22 +63,18 @@ objects:
       type: ImageChange
 - apiVersion: v1
   data:
-    Caddyfile: |
-      0.0.0.0:2015
-      root /var/www/html/build
-      log stdout
-      errors stdout
-      rewrite {
-        if  {path} not_match ^\/0.0.0.0
-        to  {path} {path}/ /?_url={uri}
-      }
-      templates {
-        ext  .js
+    default.conf: |
+      server {
+        listen 8080;
+        root /var/www/html/build/;
+        location / {
+          try_files $uri /index.html;
+        }
       }
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: workbc-small-grants-caddy
+    name: workbc-small-grants-nginx
     labels:
       app: workbc-small-grants
   type: Opaque
@@ -91,9 +86,9 @@ objects:
   spec:
     ports:
     - name: web
-      port: 2015
+      port: 8080
       protocol: TCP
-      targetPort: 2015
+      targetPort: 8080
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
 - apiVersion: route.openshift.io/v1
@@ -134,11 +129,11 @@ parameters:
   name: HOST_VALUE
   required: false
   value: ''
-- description: A volume used for the caddy from config map
+- description: A volume used for the nginx from config map
   displayName: volume name
   name: VOLUME_NAME
   required: false
-  value: web-caddy-config
+  value: nginx-config
 - description: The namespace of the OS project containing the imagestreams
   displayName: Image Namespace
   name: IMAGE_NAMESPACE
