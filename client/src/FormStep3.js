@@ -150,6 +150,16 @@ class FormStep3 extends Component {
                         </label>
                     </div>
                 </div>
+                <div className="form-group">
+                    <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="consent"
+                        name="consent" value="consent" />
+                    <label className="form-check-label" htmlFor="consent"><span style={{color:"red"}}>*</span> I acknowledge and
+                        understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that
+                        by doing so, I am providing the same consent as I would by manually signing a physical copy of this
+                        form.</label>
+                    </div>
+                </div>
                 <button className="btn btn-success btn-block" type="submit" style={{marginBottom: "2rem"}}>Submit</button>
             </div>
 

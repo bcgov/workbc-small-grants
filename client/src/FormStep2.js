@@ -27,14 +27,19 @@ class FormStep2 extends Component {
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="stipend">What stipend amount are you providing to the individual?</label>
-                    <input 
-                        type="text" 
-                        className="form-control"
-                        id="stipend"
-                        name="stipend"
-                        onChange={this.props.handleChange}
-                        value={this.props.stipend}
-                    />
+                    <div className="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input 
+                            type="text" 
+                            className="form-control"
+                            id="stipend"
+                            name="stipend"
+                            onChange={this.props.handleChange}
+                            value={this.props.stipend}
+                        />
+                    </div>
                 </div>
             </div>
         )

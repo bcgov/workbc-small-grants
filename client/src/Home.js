@@ -39,7 +39,7 @@ function Home() {
                     <li className="small">Using my personal information to contact me to discuss other services for which I may be eligible.</li>
                     </ul>
                     <p className="small">
-                    I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.
+                    <b>I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.</b>
                     </p>
                 </div>
             </div>
