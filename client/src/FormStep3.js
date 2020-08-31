@@ -150,6 +150,7 @@ class FormStep3 extends Component {
                         </label>
                     </div>
                 </div>
+                <button className="btn btn-success btn-block" type="submit" style={{marginBottom: "2rem"}}>Submit</button>
             </div>
 
 

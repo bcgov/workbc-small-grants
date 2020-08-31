@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
+
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
+import ProgressTracker from './ProgressTracker'
 
 class Form extends Component {
     constructor(){
@@ -56,6 +59,11 @@ class Form extends Component {
         });
     };
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.history.push('/thankyou')
+    }
+
     _next() {
         this.setState( prevState => {
             return {
@@ -105,7 +113,8 @@ class Form extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <form method="post" action="/">
+                        <ProgressTracker currentStep={this.state.currentStep}/>
+                        <form onSubmit={this.handleSubmit}>
                             <FormStep1 
                                 currentStep={this.state.currentStep}
                                 handleChange={this.handleChange}
@@ -137,4 +146,4 @@ class Form extends Component {
             )
         }
 }
-export default Form;
+export default withRouter(Form);
