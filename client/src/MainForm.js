@@ -6,7 +6,7 @@ import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
 import ProgressTracker from './ProgressTracker'
 
-class Form extends Component {
+class MainForm extends Component {
     constructor(){
         super()
         this.state={
@@ -24,6 +24,13 @@ class Form extends Component {
             sectorInformation: '',
             organizationType: '',
             socialEnterpriseType: '',
+            existingSupplierNumber: '',
+            supplierNumber: '',
+            legalName: '',
+            dba: '',
+            businessClassification: '',
+            taxNumber: '',
+            
             //step 2
             workExperience: '',
             stipend: '',
@@ -146,4 +153,4 @@ class Form extends Component {
             )
         }
 }
-export default withRouter(Form);
+export default withRouter(MainForm);

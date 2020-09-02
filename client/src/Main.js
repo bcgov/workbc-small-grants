@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
-import Form from './Form'
+import MainForm from './MainForm'
 import Thankyou from './Thankyou'
 
 function Main() {
@@ -10,7 +10,7 @@ function Main() {
             <Router>
                 <Switch>
                     <Route path="/form">
-                        <Form />
+                        <MainForm />
                     </Route>
                     <Route path="/thankyou">
                         <Thankyou />
