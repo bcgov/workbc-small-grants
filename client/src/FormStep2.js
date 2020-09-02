@@ -28,8 +28,8 @@ class FormStep2 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="stipend">What stipend amount are you providing to the individual?</label>
                     <div className="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">$</span>
                         </div>
                         <input 
                             type="text" 

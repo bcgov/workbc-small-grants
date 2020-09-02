@@ -10,6 +10,7 @@ class Form extends Component {
     constructor(){
         super()
         this.state={
+            _csrf: '',
             currentStep: 1,
             //step 1
             firstName: '',
@@ -37,6 +38,25 @@ class Form extends Component {
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
     }
+    
+    componentDidMount(){
+        fetch("http://localhost:8000/form",{
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result.csrfToken)
+                    this.setState({
+                        _csrf: result.csrfToken
+                    })
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+    
 
     handleChange = (event) => {
         const target = event.target
@@ -61,7 +81,23 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.history.push('/thankyou')
+        let fields = this.state
+        fetch("http://localhost:8000/form", {
+            method: "POST",
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(fields),
+        })
+        .then(res => res.json())
+        .then(
+            (resp) => {
+                console.log(resp)
+            }
+        )
+        //this.props.history.push('/thankyou')
     }
 
     _next() {

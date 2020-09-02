@@ -80,6 +80,7 @@ class FormStep1 extends Component {
         //Else return step 1
         return (
             <div>
+                <input type="hidden" name="_csrf" value={this.props._csrf}></input>
                 <div className="form-group">
                     <h2 id="forms">Organization Contact</h2>
                 </div>
