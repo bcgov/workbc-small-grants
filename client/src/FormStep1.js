@@ -87,17 +87,10 @@ class FormStep1 extends Component {
             return (
                 <div>
                     <p>These fields are required to allow the Provincial Government to release the Grant payment.</p>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label className="col-form-label control-label" htmlFor="legalName">Legal Name <span
-                                style={{ color: "red" }}>*</span></label>
-                            <input type="text" className="form-control" id="legalName" name="legalName" value={this.props.legalName} onChange={this.props.handleChange} />
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label className="col-form-label control-label" htmlFor="dba">Doing Business As <span
-                                style={{ color: "red" }}>*</span></label>
-                            <input type="text" className="form-control" id="dba" name="dba" value={this.props.dba} onChange={this.props.handleChange} />
-                        </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="dba">Doing Business As <span
+                            style={{ color: "red" }}>*</span></label>
+                        <input type="text" className="form-control" id="dba" name="dba" value={this.props.dba} onChange={this.props.handleChange} />
                     </div>
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="businessClassification">Classification<span
@@ -121,12 +114,13 @@ class FormStep1 extends Component {
                             style={{ color: "red" }}>*  </span></label>
                         <input type="text" className="form-control" id="taxNumber" name="taxNumber" value={this.props.taxNumber} onChange={this.props.handleChange} />
                     </div>
+                    { /*
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="businessAddress">Business Address <span
                             style={{ color: "red" }}>*  </span></label>
                         <small className="text-muted" id="businessAddress"> This is the mailing address where the cheque will be sent.</small>
                         <input type="text" className="form-control" id="businessAddress" name="businessAddress" value={this.props.businessAddress} onChange={this.props.handleChange} />
-                    </div>
+                    </div> */ }
                 </div>
             )
         }
@@ -172,7 +166,7 @@ class FormStep1 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="address">Street Address <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="address">  1234 Main St</small>
+                    <small className="text-muted" id="address">  This is the mailing address where the cheque will be sent.</small>
                     <input type="text" className="form-control" id="address" name="address" value={this.props.address} onChange={this.props.handleChange} />
                 </div>
                 <div className="form-row">
