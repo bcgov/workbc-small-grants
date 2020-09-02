@@ -57,11 +57,6 @@ class FormStep3 extends Component {
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
                     </select>
                 </div>
                 {console.log(this.props.applicants)}
@@ -117,7 +112,7 @@ class FormStep3 extends Component {
                         I commit to:
                         <ul>
                             <li>Monitor and support the participant for the duration of the project; and</li>
-                            <li>Ensure that safe physical distancing practices and WorkSafe BC requirements are adhered to.</li>
+                            <li>Ensure that safe physical distancing practices and WorkSafeBC requirements are adhered to.</li>
                         </ul>
                         </label>
                     </div>
@@ -133,7 +128,7 @@ class FormStep3 extends Component {
                         I confirm that applicants are:
                         <ul>
                             <li>Receiving disability assistance</li>
-                            <li>Receiving income assistance under the Person with Persistent Multiple Barriers(PPMB) category</li>
+                            <li>Receiving income assistance under the Persons with Persistent Multiple Barriers (PPMB) category</li>
                         </ul>
                         </label>
                     </div>
