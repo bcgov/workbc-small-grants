@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Field} from 'formik'
 
 class FormStep3 extends Component {
 
@@ -44,12 +45,11 @@ class FormStep3 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="applicants">How many applicants are you applying for? <span
                         style={{ color: "red" }}>*</span></label>
-                    <select 
+                    <Field
+                        as="select"
                         className="form-control" 
                         id="applicants" 
                         name="applicants" 
-                        value={this.props.applicants} 
-                        onChange={this.props.handleChange}
                     >
                         <option value="">Please select</option>
                         <option value="1">1</option>
@@ -57,7 +57,7 @@ class FormStep3 extends Component {
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>
+                    </Field>
                 </div>
                 {console.log(this.props.applicants)}
                 {this.generateParticipantsInfo()}

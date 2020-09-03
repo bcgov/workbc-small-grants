@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
+import {Formik, Form} from 'formik'
 
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
@@ -11,6 +12,7 @@ class MainForm extends Component {
         super()
         this.state={
             currentStep: 1,
+            /*
             //step 1
             firstName: '',
             lastName: '',
@@ -30,41 +32,18 @@ class MainForm extends Component {
             dba: '',
             businessClassification: '',
             taxNumber: '',
-            
+            website: '',
+            businessAddress: '',
             //step 2
             workExperience: '',
             stipend: '',
             //step 3
             applicants: ''
-
+            */
         }
-        this.handleStartChange = this.handleStartChange.bind(this)
-        this.handleEndChange = this.handleStartChange.bind(this)
-        this.handleChange = this.handleChange.bind(this)
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
     }
-
-    handleChange = (event) => {
-        const target = event.target
-        const value = target.type === 'checkbox' ? target.checked : target.value
-        const name = target.name
-
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleStartChange = date => {
-        this.setState({
-            startDate: date
-        });
-    };
-    handleEndChange = date => {
-        this.setState({
-            endDate: date
-        });
-    };
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -121,30 +100,65 @@ class MainForm extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <ProgressTracker currentStep={this.state.currentStep}/>
-                        <form onSubmit={this.handleSubmit}>
-                            <FormStep1 
-                                currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
-                                {...this.state}
-                            />
-                            <FormStep2
-                                currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
-                                {...this.state}
-                            />
-                            <FormStep3
-                                currentStep={this.state.currentStep}
-                                handleChange={this.handleChange}
-                                {...this.state}
-                            />
-                            {this.previousButton}
-                            {this.nextButton}
+                        <Formik
+                            initialValues= {{
+                                            //step 1
+                                            firstName: '',
+                                            lastName: '',
+                                            email: '',
+                                            phone: '',
+                                            address: '',
+                                            city: '',
+                                            postal: '',
+                                            organizationName: '',
+                                            businessNumber: '',
+                                            sectorInformation: '',
+                                            organizationType: '',
+                                            socialEnterpriseType: '',
+                                            existingSupplierNumber: '',
+                                            supplierNumber: '',
+                                            legalName: '',
+                                            dba: '',
+                                            businessClassification: '',
+                                            taxNumber: '',
+                                            website: '',
+                                            businessAddress: '',
+                                            //step 2
+                                            workExperience: '',
+                                            stipend: '',
+                                            //step 3
+                                            applicants: ''
+                            }}
+                            onSubmit={(values, actions) => {
+                                actions.setSubmitting(false);
+                                this.props.history.push('/thankyou')
+                            }}
+                        
+                        >
+                            {({values}) => (
+                                <Form>
+                                    <FormStep1 
+                                        currentStep={this.state.currentStep}
+                                        {...values}
+                                    />
+                                    <FormStep2
+                                        currentStep={this.state.currentStep}
+                                        {...values}
+                                    />
+                                    <FormStep3
+                                        currentStep={this.state.currentStep}
+                                        {...values}
+                                    />
+                                    {this.previousButton}
+                                    {this.nextButton}
 
-                            {/*<div className="form-actions">
-                                <button className="btn btn-primary" id="submitWorkBCWageSubsidy" type="submit">Submit
-                                </button>
-                               </div>*/}
-                        </form>
+                                    {/*<div className="form-actions">
+                                        <button className="btn btn-primary" id="submitWorkBCWageSubsidy" type="submit">Submit
+                                        </button>
+                                    </div>*/}
+                                </Form>
+                            )}
+                        </Formik>
                     </div>
                 </div>
             </div>

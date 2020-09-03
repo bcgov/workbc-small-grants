@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Field} from 'formik'
 
 class FormStep2 extends Component {
     render() {
@@ -16,28 +17,24 @@ class FormStep2 extends Component {
                         style={{color:"red"}}>*</span>
                     </label>
                     <small className="text-muted" id="locations">Please describe in 250 words your organization’s proposal and what tasks will these individuals be doing?</small>
-                    <textarea
+                    <Field
+                        as="textarea"
                         className="form-control"
                         id="workExperience" 
                         name="workExperience"
                         rows="5"
-                        onChange={this.props.handleChange}
-                        value={this.props.workExperience}
                     />
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="stipend">What stipend amount are you providing to the individual?</label>
                     <div className="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">$</span>
                         </div>
-                        <input 
-                            type="text" 
+                        <Field
                             className="form-control"
                             id="stipend"
                             name="stipend"
-                            onChange={this.props.handleChange}
-                            value={this.props.stipend}
                         />
                     </div>
                 </div>
