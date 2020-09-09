@@ -35,7 +35,7 @@ class ProgressTracker extends Component {
                     <div className="progress-marker"></div>
                     <div className="progress-text">
                         <h4 className="progress-title">Step 3</h4>
-                        Participant Details
+                        Final Details
                     </div>
                 </li>
             </ul>

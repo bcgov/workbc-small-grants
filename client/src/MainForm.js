@@ -82,6 +82,7 @@ class MainForm extends Component {
 
     get nextButton(){
         let currentStep = this.state.currentStep;
+
         if(currentStep < 3){
           return (
             <button 
@@ -103,17 +104,30 @@ class MainForm extends Component {
                         <Formik
                             initialValues= {{
                                             //step 1
+                                            positionTitle: '',
                                             firstName: '',
                                             lastName: '',
                                             email: '',
                                             phone: '',
+                                            firstNameAlternate: '',
+                                            lastNameAlternate: '',
+                                            emailAlternate: '',
+                                            phoneAlternate: '',
+                                            otherMailingAddress: false,
+                                            mailingAddress: '',
+                                            mailingCity: '',
+                                            mailingPostal: '',
                                             address: '',
                                             city: '',
                                             postal: '',
+                                            website: '',
                                             organizationName: '',
+                                            missionStatement: '',
                                             businessNumber: '',
                                             sectorInformation: '',
-                                            organizationType: '',
+                                            confirmOrganizationNonProfit: '',
+                                            nonProfitClassification: '',
+                                            nonProfitSubClassification: '',
                                             socialEnterpriseType: '',
                                             existingSupplierNumber: '',
                                             supplierNumber: '',
@@ -121,13 +135,25 @@ class MainForm extends Component {
                                             dba: '',
                                             businessClassification: '',
                                             taxNumber: '',
-                                            website: '',
                                             businessAddress: '',
                                             //step 2
                                             workExperience: '',
+                                            experiences: [],
                                             stipend: '',
                                             //step 3
-                                            applicants: ''
+                                            applicants: '',
+                                            signatory1: '',
+                                            signatory2: '',
+                                            signingAuthorityConfirm: false,
+                                            placementLength: false,
+                                            basedInBC: false,
+                                            insuranceCoverage: false,
+                                            monitorCommit: false,
+                                            applicantType: false,
+                                            eligibleToWork: false,
+                                            consent: false,
+
+
                             }}
                             onSubmit={(values, actions) => {
                                 actions.setSubmitting(false);
@@ -137,6 +163,7 @@ class MainForm extends Component {
                         >
                             {({values}) => (
                                 <Form>
+                                    {console.log(values)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...values}

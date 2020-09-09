@@ -22,11 +22,12 @@ class FormStep2 extends Component {
                         className="form-control"
                         id="workExperience" 
                         name="workExperience"
-                        rows="5"
+                        rows="4"
                     />
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="stipend">What stipend amount are you providing to the individual?</label>
+                    <label className="col-form-label control-label" htmlFor="stipend">Enter the total amount of stipend provided to the individual. </label>
+                    <small className="text-muted" id="stipend"> A minimum of $3600 required. For additional details see the <a href="#guidelines">application guidelines.</a></small>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text">$</span>
@@ -38,6 +39,66 @@ class FormStep2 extends Component {
                         />
                     </div>
                 </div>
+                <div className="form-group">
+                    <h2 id="forms">Work Experiences</h2>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option1" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox1">Experience 1</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option2" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox2">Experience 2</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option3" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox3">Experience 3</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option4" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox1">Experience 4</label>
+                        </div>                   
+                    </div>
+                    <div className="form-group col-md-4">
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option5" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox1">Experience 5</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option6" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox2">Experience 6</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option7" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox3">Experience 7</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option8" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox1">Experience 8</label>
+                        </div>                   
+                    </div>
+                    <div className="form-group col-md-4">
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option9" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox1">Experience 9</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option10" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox2">Experience 10</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option11" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox3">Experience 11</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="option12" />
+                            <label className="form-check-label" htmlFor="inlineCheckbox3">Experience 12</label>
+                        </div>                       
+                    </div>
+                </div>
+
             </div>
         )
     }

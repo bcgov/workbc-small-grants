@@ -1,34 +1,10 @@
 import React, { Component } from 'react'
 import {Field} from 'formik'
+import NonProfitClassification from './NonProfitClassifications'
 
 class FormStep1 extends Component {
-    constructor() {
-        super()
-        this.reset = this.reset.bind(this)
-        this.display = this.display.bind(this)
-        this.error = this.error.bind(this)
-    }
 
-    reset = () => {
-        var SEForm = document.getElementById("socialEnterpriseForm");
-        var message = document.getElementById("errorMessage");
-        SEForm.style.display = "none";
-        message.style.display = "none";
-    }
-    display = () => {
-        var SEForm = document.getElementById("socialEnterpriseForm");
-        var message = document.getElementById("errorMessage");
-        message.style.display = "none";
-        SEForm.style.display = "block";
-    }
-    error = () => {
-        var SEForm = document.getElementById("socialEnterpriseForm");
-        var message = document.getElementById("errorMessage");
-        SEForm.style.display = "none";
-        message.style.display = "block";
-
-    }
-
+    /*
     get socialEnterpriseForm() {
         let orgType = this.props.organizationType
         if (orgType === "socialEnterprise") {
@@ -67,59 +43,45 @@ class FormStep1 extends Component {
         }
         return null
     }
+    */
 
-    get supplierNumber() {
-        let suppNum = this.props.existingSupplierNumber
-        if (suppNum === "yes") {
-            return (
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="supplierNumber">Supplier Number <span
-                        style={{ color: "red" }}>*</span></label>
-                    <Field className="form-control" id="supplierNumber" name="supplierNumber"/>
-                </div>
-            )
-        } else if (suppNum === "no") {
+    get mailingAddressForm() {
+        if (this.props.otherMailingAddress){
             return (
                 <div>
-                    <p>These fields are required to allow the Provincial Government to release the Grant payment.</p>
                     <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="dba">Doing Business As <span
-                            style={{ color: "red" }}>*</span></label>
-                        <Field className="form-control" id="dba" name="dba"/>
+                        <legend>Organization Mailing Address</legend>
                     </div>
+                    <p className="text-danger">If your application is approved, funds will be issued via cheque to this address.</p>
                     <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="businessClassification">Classification<span
-                            style={{ color: "red" }}>*</span></label>
-                        <Field
-                            as="select" 
-                            className="form-control" 
-                            id="businessClassification" 
-                            name="businessClassification" 
-                        >
-                            <option value="">Please select</option>
-                            <option value="nonProfitAgency">Non-profit agency</option>
-                            <option value="corporationOrPrivateSectorAgency">Corporation/Private sector agency</option>
-                            <option value="publicSectorAgency">Public Sector agency</option>
-                            <option value="otherAgency">Other agency</option>
-                        </Field>
-                    </div>
-                    <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="taxNumber">Tax Number <span
+                        <label className="col-form-label control-label" htmlFor="mailingAddress">Street Address <span
                             style={{ color: "red" }}>*  </span></label>
-                        <Field className="form-control" id="taxNumber" name="taxNumber"/>
+                        <small className="text-muted" id="mailingAddress">  123 Main St.</small>
+                        <Field className="form-control" id="mailingAddress" name="mailingAddress" />
                     </div>
-                    { /*
-                    <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="businessAddress">Business Address <span
-                            style={{ color: "red" }}>*  </span></label>
-                        <small className="text-muted" id="businessAddress"> This is the mailing address where the cheque will be sent.</small>
-                        <input className="form-control" id="businessAddress" name="businessAddress" value={this.props.businessAddress} onChange={this.props.handleChange} />
-                    </div> */ }
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="mailingCity">City <span
+                                style={{ color: "red" }}>*</span></label>
+                            <Field className="form-control" id="mailingCity" name="mailingCity" />
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="mailingPostal">Postal Code <span
+                                style={{ color: "red" }}>*  </span></label>
+                            <small className="text-muted" id="mailingPostal">  V0R2V5</small>
+                            <Field className="form-control" id="mailingPostal" name="mailingPostal" />
+                        </div>
+                    </div>
                 </div>
             )
         }
         return null
     }
+
+
+
+
+
 
     render() {
         if (this.props.currentStep !== 1) {
@@ -129,15 +91,73 @@ class FormStep1 extends Component {
         return (
             <div>
                 <div className="form-group">
+                    <br /><h2 id="forms">Organization Information</h2>
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="organizationName">Organization Name <span
+                        style={{ color: "red" }}>*</span></label>
+                    <Field className="form-control" id="organizationName" name="organizationName" />
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="missionStatement">Mission Statement <span
+                        style={{ color: "red" }}>*  </span></label>
+                    <Field className="form-control" id="missionStatement" name="missionStatement" />
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="website">Website <span
+                        style={{ color: "red" }}>*  </span></label>
+                    <small className="text-muted" id="website"> https://somewebsite.ca</small>
+                    <Field className="form-control" id="website" name="website" />
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="businessNumber">Business Number<span
+                        style={{ color: "red" }}>*</span></label>
+                    <Field className="form-control" id="businessNumber" name="businessNumber" />
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Can you confirm that your organization is a non-profit?<span style={{ color: "red" }}>*</span></label>
+                    <div className="form-check">
+                        <Field
+                            className="form-check-input"
+                            type="radio"
+                            name="confirmOrganizationNonProfit"
+                            value="yes"
+                        />
+                        <label className="form-check-label" htmlFor="organizationNonProfit">Yes</label>
+                    </div>
+                    <div className="form-check">
+                        <Field
+                            className="form-check-input"
+                            type="radio"
+                            name="confirmOrganizationNonProfit"
+                            value="no"
+                        />
+                        <label className="form-check-label" htmlFor="organizationSocialEnterprise">No</label>
+                        {
+                            this.props.confirmOrganizationNonProfit === "no" &&
+                            <div className="small text-muted"> This grant is designed only for non-profit organizations.</div>
+                        }
+                    </div>
+                </div>
+                <NonProfitClassification confirmOrganizationNonProfit={this.props.confirmOrganizationNonProfit} nonProfitClassification={this.props.nonProfitClassification}/>
+                <div className="form-group">
                     <h2 id="forms">Organization Contact</h2>
                 </div>
+                <div className="form-group">
+                    <legend>Main Contact</legend>
+                </div>
                 <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-2">
+                        <label className="col-form-label control-label" htmlFor="positionTitle">Position Title<span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className="form-control" id="positionTitle" name="positionTitle" />
+                    </div>
+                    <div className="form-group col-md-5">
                         <label className="col-form-label control-label" htmlFor="firstName">First Name <span
                             style={{ color: "red" }}>*</span></label>
                         <Field className="form-control" id="firstName" name="firstName" />
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-5">
                         <label className="col-form-label control-label" htmlFor="lastName">Last Name <span
                             style={{ color: "red" }}>*</span></label>
                         <Field className="form-control" id="lastName" name="lastName" />
@@ -158,9 +178,61 @@ class FormStep1 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
+                    <legend>Alternate Contact</legend>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-2">
+                        <label className="col-form-label control-label" htmlFor="positionTitleAlternate">Position Title<span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className="form-control" id="positionTitleAlternate" name="positionTitleAlternate" />
+                    </div>
+                    <div className="form-group col-md-5">
+                        <label className="col-form-label control-label" htmlFor="firstNameAlternate">First Name <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className="form-control" id="firstNameAlternate" name="firstNameAlternate" />
+                    </div>
+                    <div className="form-group col-md-5">
+                        <label className="col-form-label control-label" htmlFor="lastNameAlternate">Last Name <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className="form-control" id="lastNameAlternate" name="lastNameAlternate" />
+                    </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label className="col-form-label control-label" htmlFor="emailAlternate">Email Address<span
+                            style={{ color: "red" }}>*</span></label>
+                        <small className="text-muted" id="emailAlternate">  someone@example.com</small>
+                        <Field className="form-control" id="emailAlternate" name="emailAlternate" />
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label className="col-form-label control-label" htmlFor="phoneAlternate">Phone Number<span
+                            style={{ color: "red" }}>*</span></label>
+                        <small className="text-muted" id="phoneAlternate">  250-555-5555</small>
+                        <Field className="form-control" id="phoneAlternate" name="phoneAlternate" />
+                    </div>
+                </div>
+                <div className="form-group">
+                    <legend>Organization Contact Address</legend>
+                </div>
+                {
+                    !this.props.otherMailingAddress &&
+                    <p className="text-danger">If your application is approved, funds will be issued via cheque to this address.</p>
+                }
+                <div className="form-group">
+                    <div className="form-check">
+                        <Field type="checkbox" className="form-check-input" id="otherMailingAddress" name="otherMailingAddress"/>
+                        <label 
+                            className="form-check-label" 
+                            htmlFor="otherMailingAddress"
+                        >
+                        My organization's contact address is different than the organization's mailing address.
+                        </label>
+                    </div>
+                </div>
+                <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="address">Street Address <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-danger" id="address">  If your application is approved, funds will be issued via cheque to this address.</small>
+                    <small className="text-muted" id="address">  123 Main St.</small>
                     <Field className="form-control" id="address" name="address" />
                 </div>
                 <div className="form-row">
@@ -176,77 +248,7 @@ class FormStep1 extends Component {
                         <Field className="form-control" id="postal" name="postal" />
                     </div>
                 </div>
-                <div className="form-group">
-                    <br /><h2 id="forms">Organization Information</h2>
-                </div>
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="organizationName">Organization Name <span
-                        style={{ color: "red" }}>*</span></label>
-                    <Field className="form-control" id="organizationName" name="organizationName" />
-                </div>
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="businessNumber">Business Number<span
-                        style={{ color: "red" }}>*</span></label>
-                    <Field className="form-control" id="businessNumber" name="businessNumber" />
-                </div>
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="organizationType">Is your organization a non-profit or a social enterprise?</label>
-                    <div className="form-check">
-                        <Field
-                            className="form-check-input"
-                            type="radio"
-                            name="organizationType"
-                            value="nonProfit"
-                        />
-                        <label className="form-check-label" htmlFor="organizationNonProfit">Non-Profit</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className="form-check-input"
-                            type="radio"
-                            name="organizationType"
-                            value="socialEnterprise"
-                        />
-                        <label className="form-check-label" htmlFor="organizationSocialEnterprise">Social Enterprise</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className="form-check-input"
-                            type="radio"
-                            name="organizationType"
-                            value="neither"
-                        />
-                        <label className="form-check-label" htmlFor="organizationNeither">Neither</label>
-                        {
-                            this.props.organizationType === "neither" &&
-                            <div className="small text-muted"> More evaluation is needed, please submit the form and we will be in contact.</div>
-                        }
-                    </div>
-                    {this.socialEnterpriseForm}
-                    <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="existingSupplierNumber">Does your organization have an existing supplier number? </label>
-                        <div className="form-check">
-                            <Field
-                                className="form-check-input"
-                                type="radio"
-                                name="existingSupplierNumber"
-                                value="yes"
-                            />
-                            <label className="form-check-label" htmlFor="existingSupplierYes">Yes</label>
-                        </div>
-                        <div className="form-check">
-                            <Field
-                                className="form-check-input"
-                                type="radio"
-                                name="existingSupplierNumber"
-                                value="no"
-                            />
-                            <label className="form-check-label" htmlFor="existingSupplierNo">No</label>
-                        </div>
-                    </div>
-                    {console.log(this.props)}
-                    {this.supplierNumber}
-                </div>
+                {this.mailingAddressForm}
             </div>
         )
     }
