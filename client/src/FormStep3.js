@@ -144,13 +144,13 @@ class FormStep3 extends Component {
                     <h2 id="forms">Organization Signatories</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="signatory1">Signing Authority 1 Full Name <span
+                    <label className="col-form-label control-label" htmlFor="signatory1">Signing Authority <span
                         style={{ color: "red" }}>*  </span></label>
                     <small className="text-muted" id="signatory1">Please enter the full name of the first organization signatory</small>
                     <Field className="form-control" id="signatory1" name="signatory1" />
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="signatory2">Signing Authority 2 Full Name <span
+                    <label className="col-form-label control-label" htmlFor="signatory2">Signing Authority <span
                         style={{ color: "red" }}>*  </span></label>
                     <small className="text-muted" id="signatory2">Please enter the full name of the second organization signatory</small>
                     <Field className="form-control" id="signatory2" name="signatory2" />

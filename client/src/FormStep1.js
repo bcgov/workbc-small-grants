@@ -50,7 +50,7 @@ class FormStep1 extends Component {
             return (
                 <div>
                     <div className="form-group">
-                        <legend>Organization Mailing Address</legend>
+                        <legend>Mailing Address</legend>
                     </div>
                     <p className="text-danger">If your application is approved, funds will be issued via cheque to this address.</p>
                     <div className="form-group">
@@ -135,7 +135,7 @@ class FormStep1 extends Component {
                         <label className="form-check-label" htmlFor="organizationSocialEnterprise">No</label>
                         {
                             this.props.confirmOrganizationNonProfit === "no" &&
-                            <div className="small text-muted"> This grant is designed only for non-profit organizations.</div>
+                            <div className="small text-muted">This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</div>
                         }
                     </div>
                 </div>
@@ -212,7 +212,7 @@ class FormStep1 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <legend>Organization Contact Address</legend>
+                    <legend>Contact Address</legend>
                 </div>
                 {
                     !this.props.otherMailingAddress &&
