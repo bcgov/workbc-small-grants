@@ -94,9 +94,14 @@ class FormStep1 extends Component {
                     <br /><h2 id="forms">Organization Information</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="organizationName">Organization Name <span
+                    <label className="col-form-label control-label" htmlFor="operatingName">Operating Name <span
                         style={{ color: "red" }}>*</span></label>
-                    <Field className="form-control" id="organizationName" name="organizationName" />
+                    <Field className="form-control" id="operatingName" name="operatingName" />
+                </div>
+                <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="legalName">Legal Name <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className="form-control" id="legalName" name="legalName"/>
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="missionStatement">Mission Statement <span
@@ -115,7 +120,7 @@ class FormStep1 extends Component {
                     <Field className="form-control" id="businessNumber" name="businessNumber" />
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Can you confirm that your organization is a non-profit?<span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization an incorporated non-profit (society) under the BC Societies Act?<span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className="form-check-input"
@@ -123,7 +128,7 @@ class FormStep1 extends Component {
                             name="confirmOrganizationNonProfit"
                             value="yes"
                         />
-                        <label className="form-check-label" htmlFor="organizationNonProfit">Yes</label>
+                        <label className="form-check-label" htmlFor="organizationNonProfitYes">Yes</label>
                     </div>
                     <div className="form-check">
                         <Field
@@ -132,14 +137,27 @@ class FormStep1 extends Component {
                             name="confirmOrganizationNonProfit"
                             value="no"
                         />
-                        <label className="form-check-label" htmlFor="organizationSocialEnterprise">No</label>
+                        <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
                         {
                             this.props.confirmOrganizationNonProfit === "no" &&
-                            <div className="small text-muted">This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</div>
+                            <small className="text-danger"> - This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</small>
                         }
                     </div>
+                    <small className="text-muted" id="confirmOrganizationNonProfit">  Registered non-profit organizations that own, operate or administer a social enterprise are also eligible to apply</small>
                 </div>
                 <NonProfitClassification confirmOrganizationNonProfit={this.props.confirmOrganizationNonProfit} nonProfitClassification={this.props.nonProfitClassification}/>
+                <div className="form-group">
+                    <div className="form-check">
+                        <Field type="checkbox" className="form-check-input" id="basedInBC" name="basedInBC"/>
+                        <label 
+                            className="form-check-label" 
+                            htmlFor="basedInBC"
+                        >
+                        <span style={{ color: "red" }}>*</span>
+                            I confirm that my organization is based in or operating in British Columbia.
+                        </label>
+                    </div>
+                </div>
                 <div className="form-group">
                     <h2 id="forms">Organization Contact</h2>
                 </div>

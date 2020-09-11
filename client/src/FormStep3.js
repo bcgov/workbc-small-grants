@@ -26,7 +26,6 @@ class FormStep3 extends Component {
                 )
             }
         }
-        console.log(applicantsInputs)
         return applicantsInputs
     }
 
@@ -44,11 +43,6 @@ class FormStep3 extends Component {
             return (
                 <div>
                     <p>These fields are required to allow the Provincial Government to release the Grant payment.</p>
-                    <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="dba">Doing Business As <span
-                            style={{ color: "red" }}>*</span></label>
-                        <Field className="form-control" id="dba" name="dba"/>
-                    </div>
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="businessClassification">Classification<span
                             style={{ color: "red" }}>*</span></label>
@@ -91,32 +85,26 @@ class FormStep3 extends Component {
         }
 
 
-        //Else return step 2
+        //Else return step 3
         return (
             <div>
-                <div className="form-group">
-                    <h2 id="forms">Participants Information</h2>
-                </div>
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="applicants">How many applicants are you applying for? <span
-                        style={{ color: "red" }}>*</span></label>
-                    <Field
-                        as="select"
-                        className="form-control" 
-                        id="applicants" 
-                        name="applicants" 
-                    >
-                        <option value="">Please select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </Field>
-                </div>
                 {/*this.generateParticipantsInfo()*/}
                 <div className="form-group">
                     <h2 id="forms">Financial Information</h2>
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="stipend">Enter the total amount of stipend provided to the individual. </label>
+                    <small className="text-muted" id="stipend"> A minimum of $3600 required. For additional details see the <a href="#guidelines">application guidelines.</a></small>
+                    <div className="input-group">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">$</span>
+                        </div>
+                        <Field
+                            className="form-control"
+                            id="stipend"
+                            name="stipend"
+                        />
+                    </div>
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="existingSupplierNumber">Does your organization have an existing supplier number? </label>
@@ -156,9 +144,6 @@ class FormStep3 extends Component {
                     <Field className="form-control" id="signatory2" name="signatory2" />
                 </div>
                 <div className="form-group">
-                    <h2 id="forms">Confirmations</h2>
-                </div>
-                <div className="form-group">
                     <div className="form-check">
                         <Field type="checkbox" className="form-check-input" id="signingAuthorityConfirm" name="signingAuthorityConfirm" />
                         <label 
@@ -171,86 +156,7 @@ class FormStep3 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="placementLength" name="placementLength" />
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="placementLength"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                            I confirm that the placement is <b>12 weeks</b>.
-                        </label>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="basedInBC" name="basedInBC"/>
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="basedInBC"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                            I confirm that my organization is based in or operating in British Columbia.
-                        </label>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="insuranceCoverage" name="insuranceCoverage"/>
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="insuranceCoverage"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                        I have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
-                                WorkSafe BC insurance coverage</a>  to meet the needs of the placement.
-                        </label>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="monitorCommit" name="monitorCommit" />
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="monitorCommit"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                        I commit to:
-                        <ul>
-                            <li>Monitor and support the participant for the duration of the project; and</li>
-                            <li>Ensure that safe physical distancing practices and WorkSafeBC requirements are adhered to.</li>
-                        </ul>
-                        </label>
-                    </div>
-                </div>   
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="applicantType" name="applicantType" />
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="applicantType"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                        I confirm that applicants are:
-                        <ul>
-                            <li>Receiving disability assistance; OR</li>
-                            <li>Receiving income assistance under the Persons with Persistent Multiple Barriers (PPMB) category</li>
-                        </ul>
-                        <p>Applicants must meet eligibility requirements, and verification is required before hiring.</p>
-                        </label>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className="form-check-input" id="eligibleToWork" name="eligibleToWork" />
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="eligibleToWork"
-                        >
-                        <span style={{ color: "red" }}>*</span>
-                        I confirm that all participants are eligible to work in British Columbia.
-                        </label>
-                    </div>
+                    <h2 id="forms">Consent</h2>
                 </div>
                 <div className="form-group">
                     <div className="form-check">

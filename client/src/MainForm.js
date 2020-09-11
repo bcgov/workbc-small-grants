@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
+import {nanoid} from 'nanoid'
 
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
@@ -12,34 +13,7 @@ class MainForm extends Component {
         super()
         this.state={
             currentStep: 1,
-            /*
-            //step 1
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            address: '',
-            city: '',
-            postal: '',
-            organizationName: '',
-            businessNumber: '',
-            sectorInformation: '',
-            organizationType: '',
-            socialEnterpriseType: '',
-            existingSupplierNumber: '',
-            supplierNumber: '',
-            legalName: '',
-            dba: '',
-            businessClassification: '',
-            taxNumber: '',
-            website: '',
-            businessAddress: '',
-            //step 2
-            workExperience: '',
-            stipend: '',
-            //step 3
-            applicants: ''
-            */
+            _id: nanoid(10)
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
@@ -65,6 +39,7 @@ class MainForm extends Component {
             } 
         })
     }
+
 
     get previousButton(){
         let currentStep = this.state.currentStep;
@@ -103,6 +78,7 @@ class MainForm extends Component {
                         <ProgressTracker currentStep={this.state.currentStep}/>
                         <Formik
                             initialValues= {{
+                                            _id: this.state._id,
                                             //step 1
                                             positionTitle: '',
                                             firstName: '',
@@ -121,7 +97,8 @@ class MainForm extends Component {
                                             city: '',
                                             postal: '',
                                             website: '',
-                                            organizationName: '',
+                                            operatingName: '',
+                                            legalName: '',
                                             missionStatement: '',
                                             businessNumber: '',
                                             sectorInformation: '',
@@ -131,15 +108,17 @@ class MainForm extends Component {
                                             socialEnterpriseType: '',
                                             existingSupplierNumber: '',
                                             supplierNumber: '',
-                                            legalName: '',
                                             dba: '',
                                             businessClassification: '',
                                             taxNumber: '',
                                             businessAddress: '',
                                             //step 2
-                                            workExperience: '',
+                                            participantActivities: '',
                                             experiences: [],
+                                            otherExperience: '',
+                                            skills: [],
                                             stipend: '',
+                                            additionalBenefits: '',
                                             //step 3
                                             applicants: '',
                                             signatory1: '',
@@ -179,10 +158,6 @@ class MainForm extends Component {
                                     {this.previousButton}
                                     {this.nextButton}
 
-                                    {/*<div className="form-actions">
-                                        <button className="btn btn-primary" id="submitWorkBCWageSubsidy" type="submit">Submit
-                                        </button>
-                                    </div>*/}
                                 </Form>
                             )}
                         </Formik>
