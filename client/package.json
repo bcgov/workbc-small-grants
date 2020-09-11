@@ -14,13 +14,19 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.2"
+    "react-scripts": "3.4.2",
+    "react-test-renderer": "^16.13.1"
   },
   "devDependencies": {
     "@bcgov/bootstrap-theme": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.1.1/bcgov-bootstrap-theme-1.1.1.tgz",
     "bootstrap": "~4.3.1",
     "jest": "^26.4.2",
-    "progress-tracker": "^2.0.6"
+    "progress-tracker": "^2.0.6",
+    "react-addons-test-utils": "^15.6.2",
+    "@babel/preset-env": "7.11.5",
+    "@babel/preset-react": "7.10.4",
+    "babel-jest": "26.3.0",
+    "react-test-renderer": "16.13.1"
   },
   "scripts": {
     "tests": "jest",
