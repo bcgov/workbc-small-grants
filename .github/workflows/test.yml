@@ -12,10 +12,17 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+     
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
     steps:
-    - uses: test/checkout@v1
-    - name: Run Jest
-      uses: bcgov/workbc-small-grants/client/test@JestPushTesting
+    - uses: actions/checkout@v2
+    - name: use Node.js ${{matrix.node-version}}
+      uses: actions/setup-node@v1
       with:
-        jestArgs: /client/test/sum.test.js
+        node-version: ${{matrix.node-version}}
+        
+    - run: yarn install
+    - run: yarn test
