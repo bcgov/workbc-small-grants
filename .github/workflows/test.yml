@@ -21,8 +21,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
-        cd client
+    - name: run tests
+      working-directory: ./client
+      run: |
+        ls
+        pwd
         npm install
         npm install --save-dev jest
         npm run tests
