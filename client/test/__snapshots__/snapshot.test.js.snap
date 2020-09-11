@@ -10,3 +10,25 @@ exports[`renders correctly 1`] = `
   WorkBC Grants
 </a>
 `;
+
+exports[`renders correctly 2`] = `
+<a
+  className="hovered"
+  href="https://workbc-grants-dev.pathfinder.gov.bc.ca/"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  WorkBC Grants
+</a>
+`;
+
+exports[`renders correctly 3`] = `
+<a
+  className="normal"
+  href="https://workbc-grants-dev.pathfinder.gov.bc.ca/"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  WorkBC Grants
+</a>
+`;
