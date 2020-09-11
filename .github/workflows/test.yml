@@ -28,5 +28,5 @@ jobs:
         pwd
         npm install
         npm install --save-dev jest
-        npm install -- save-dev babel-jest @babel/preset-env @babel/preset-react react-test-renderer react-addons-test-utils babel-preset-rect webpack babel-core
+        npm install -- save-dev babel-jest @babel/preset-env @babel/preset-react react-test-renderer react-addons-test-utils webpack babel-core
         npm run tests
