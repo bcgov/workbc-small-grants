@@ -11,10 +11,21 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 10.x, 12.x]
 
     steps:
-    - uses: actions/checkout@1
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
-        with:
-          jestArgs: client/test/sum.test.js
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: run tests
+      working-directory: ./client
+      run: |
+        ls
+        pwd
+        npm install
+        npm install --save-dev jest
+        npm run tests
