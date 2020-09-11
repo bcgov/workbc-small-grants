@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: test/checkout@v1
     - name: Run Jest
       uses: bcgov/workbc-small-grants/client/test@JestPushTesting
       with:
