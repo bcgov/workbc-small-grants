@@ -3,7 +3,7 @@ import {Field} from 'formik'
 
 class FormStep2 extends Component {
     get otherExperienceField(){
-        if (this.props.experiences.includes("Other")){
+        if (this.props.experiences.indexOf("Other") > -1){
             return(
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="otherExperience">Other <span
@@ -26,7 +26,7 @@ class FormStep2 extends Component {
     }
 
     get otherSkillField(){
-        if (this.props.skills.includes("Other")){
+        if (this.props.skills.indexOf("Other") > -1){
             return(
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="otherSkill">Other <span

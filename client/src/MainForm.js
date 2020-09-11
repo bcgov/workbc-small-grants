@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
+import './utils/polyfills'
 import {nanoid} from 'nanoid'
+
 
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
@@ -117,6 +119,7 @@ class MainForm extends Component {
                                             experiences: [],
                                             otherExperience: '',
                                             skills: [],
+                                            otherSkill: '',
                                             stipend: '',
                                             additionalBenefits: '',
                                             //step 3
