@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  className="normal"
+  href="https://workbc-grants-dev.pathfinder.gov.bc.ca/"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  WorkBC Grants
+</a>
+`;
