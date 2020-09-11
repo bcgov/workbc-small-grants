@@ -12,16 +12,10 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-     
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: use Node.js ${{matrix.node-version}}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{matrix.node-version}}
-    - run: npm install --save-dev jest
-    - run: npm run tests
+    - name: Install Modules
+      run: yarn
+    - name: run Tests
+      run: yarn test
