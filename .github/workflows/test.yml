@@ -1,11 +1,10 @@
 # This is a basic workflow that will start a build with every push
 
-name: Test
+name: Tests
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on: push
-
+on: [push]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -14,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Modules
-      run: yarn
-    - name: Run Tests
-      run: yarn tests
+    - uses: actions/checkout@1
+    - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.3
+        with:
+          jestArgs: client/test/sum.test.js
