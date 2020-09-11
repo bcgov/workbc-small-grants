@@ -22,6 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+        cd ..
         cd client
         npm install
         npm install --save-dev jest
