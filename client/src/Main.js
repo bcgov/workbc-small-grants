@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import MainForm from './MainForm'
 import Thankyou from './Thankyou'
+import ClientForm from './ClientForm'
 
 function Main() {
     return (
@@ -11,6 +12,9 @@ function Main() {
                 <Switch>
                     <Route path="/form">
                         <MainForm />
+                    </Route>
+                    <Route path="/clientForm">
+                        <ClientForm />
                     </Route>
                     <Route path="/thankyou">
                         <Thankyou />
