@@ -53,12 +53,21 @@ class FormStep1 extends Component {
                         <legend>Mailing Address</legend>
                     </div>
                     <p className="text-danger">If your application is approved, funds will be issued via cheque to this address.</p>
-                    <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="mailingAddress">Street Address <span
+                    <div className="form-row">
+                    <div className="form-group col-md-12">
+                        <label className="col-form-label control-label" htmlFor="mailingAddress1">Address 1 <span
                             style={{ color: "red" }}>*  </span></label>
-                        <small className="text-muted" id="mailingAddress">  123 Main St.</small>
-                        <Field className="form-control" id="mailingAddress" name="mailingAddress" />
+                        <small className="text-muted" id="mailingAddress1">  Street address, P.O. box, company name, c/o</small>
+                        <Field className="form-control" id="mailingAddress1" name="mailingAddress1" />
                     </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-12">
+                        <label className="col-form-label control-label" htmlFor="mailingAddress2">Address 2</label>
+                        <small className="text-muted" id="mailingAddress2">  Apartment, suite, unit, building, floor, etc.</small>
+                        <Field className="form-control" id="mailingAddress2" name="mailingAddress2" />
+                    </div>
+                </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label className="col-form-label control-label" htmlFor="mailingCity">City <span
@@ -247,11 +256,20 @@ class FormStep1 extends Component {
                         </label>
                     </div>
                 </div>
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="address">Street Address <span
-                        style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="address">  123 Main St.</small>
-                    <Field className="form-control" id="address" name="address" />
+                <div className="form-row">
+                    <div className="form-group col-md-12">
+                        <label className="col-form-label control-label" htmlFor="address1">Address 1 <span
+                            style={{ color: "red" }}>*  </span></label>
+                        <small className="text-muted" id="address1">  Street address, P.O. box, company name, c/o</small>
+                        <Field className="form-control" id="address1" name="address1" />
+                    </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-12">
+                        <label className="col-form-label control-label" htmlFor="address2">Address 2</label>
+                        <small className="text-muted" id="address2">  Apartment, suite, unit, building, floor, etc.</small>
+                        <Field className="form-control" id="address2" name="address2" />
+                    </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
