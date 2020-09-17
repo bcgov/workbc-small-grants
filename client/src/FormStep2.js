@@ -146,10 +146,10 @@ class FormStep2 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="participantActivities">Participant activities <span
+                    <label className="col-form-label control-label" htmlFor="participantActivities">Work Opportunity <span
                         style={{color:"red"}}>*</span>
                     </label>
-                    <small className="text-muted" id="participantActivities">Please describe the activities the participants will be doing (700 characters max.) </small>
+                    <small className="text-muted" id="participantActivities">Please describe the work experience opportunity (700 characters max.) </small>
                     <Field
                         as="textarea"
                         className="form-control"
@@ -161,7 +161,7 @@ class FormStep2 extends Component {
                     <small>{this.props.participantActivities.length}/700</small>
                 </div>
                 <div className="form-group">
-                    <label className="control-label">What will the organization provide to support the participant during the work experience? 
+                    <label className="control-label">What will the organization provide to support the participant(s) during the work experience? 
                         <span style={{color:"red"}}>*</span>
                     </label>
                     <small className="text-muted"> Please select all that apply</small>
@@ -172,8 +172,8 @@ class FormStep2 extends Component {
                             <label className="form-check-label" htmlFor="Training">Training</label>
                         </div>
                         <div className="form-check">
-                            <Field className="form-check-input" type="checkbox" name="experiences" value="On the job coaching/supervision" />
-                            <label className="form-check-label" htmlFor="On the job coaching/supervision">On the job coaching/supervision</label>
+                            <Field className="form-check-input" type="checkbox" name="experiences" value="On the job coaching" />
+                            <label className="form-check-label" htmlFor="On the job coaching">On the job coaching/supervision</label>
                         </div>
                         <div className="form-check">
                             <Field className="form-check-input" type="checkbox" name="experiences" value="Mentorship" />
@@ -185,7 +185,7 @@ class FormStep2 extends Component {
                         </div>
                         <div className="form-check">
                             <Field className="form-check-input" type="checkbox" name="experiences" value="Wrap around supports" />
-                            <label className="form-check-label" htmlFor="Wrap around supports">Wrap around supports</label>
+                            <label className="form-check-label" htmlFor="Wrap around supports">Wrap around supports, such as personal protective equipment, childcare or transportation</label>
                         </div>
                         <div className="form-check">
                             <Field className="form-check-input" type="checkbox" name="experiences" value="Other" />
@@ -194,16 +194,12 @@ class FormStep2 extends Component {
                 </div>
                 {this.otherExperienceField}
                 <div className="form-group">
-                    <label className="control-label">What will participants receive during the work experience?
+                    <label className="control-label">During the work experience participant(s) will gain:
                         <span style={{color:"red"}}>*</span>
                     </label>
                     <small className="text-muted"> Please select all that apply</small>
                 </div>
                 <div className="form-group">
-                        <div className="form-check">
-                            <Field className="form-check-input" type="checkbox" name="skills" value="Self Employment Experience" />
-                            <label className="form-check-label" htmlFor="Self Employment Experience">Self Employment Experience</label>
-                        </div>
                         <div className="form-check">
                             <Field className="form-check-input" type="checkbox" name="skills" value="Essential Skills" />
                             <label className="form-check-label" htmlFor="Essential Skills">Essential Skills such as computer use, communications skills or literacy skills.</label>
@@ -213,12 +209,16 @@ class FormStep2 extends Component {
                             <label className="form-check-label" htmlFor="Life Skills">Life Skills such as time management</label>
                         </div>
                         <div className="form-check">
-                            <Field className="form-check-input" type="checkbox" name="skills" value="Retraining or new training" />
-                            <label className="form-check-label" htmlFor="Retraining or new training">Retraining or new training</label>
+                            <Field className="form-check-input" type="checkbox" name="skills" value="Training" />
+                            <label className="form-check-label" htmlFor="Training">Training</label>
                         </div>
                         <div className="form-check">
-                            <Field className="form-check-input" type="checkbox" name="skills" value="Job Readiness Supports or Skills" />
-                            <label className="form-check-label" htmlFor="Job Readiness Supports and or Skills">Job Readiness Supports and/or Skills</label>
+                            <Field className="form-check-input" type="checkbox" name="skills" value="Employment Experience" />
+                            <label className="form-check-label" htmlFor="Employment Experience">Employment Experience</label>
+                        </div>
+                        <div className="form-check">
+                            <Field className="form-check-input" type="checkbox" name="skills" value="Self Employment Experience" />
+                            <label className="form-check-label" htmlFor="Self Employment Experience">Self Employment Experience</label>
                         </div>
                         <div className="form-check">
                             <Field className="form-check-input" type="checkbox" name="skills" value="Other" />
