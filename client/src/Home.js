@@ -5,7 +5,7 @@ function Home() {
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                    <h1>WorkBC Grants</h1>
+                    <h1>Work Experience Opportunities Grant</h1>
                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                     <ul>
                         <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
