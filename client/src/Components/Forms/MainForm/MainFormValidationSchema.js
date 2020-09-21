@@ -104,7 +104,7 @@ export const MainFormValidationSchema = yup.object().shape({
         .required("Please select at least one experience."),
     otherExperience: yup.string()
         .when("experiences", (experiences, schema) => {
-            return experiences.indexOf("Other") > -1 ? schema.required() : null
+            return experiences.indexOf("Other") > -1 ? schema.required() : schema.min(0)
         })
         
     /*
