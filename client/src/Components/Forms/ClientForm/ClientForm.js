@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
-import './utils/polyfills'
+import '../../../utils/polyfills'
 import ClientConsent from './ClientConsent'
 
 class ClientForm extends Component {

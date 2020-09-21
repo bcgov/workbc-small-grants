@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Field} from 'formik'
+import {feedBackClassName, feedBackInvalid} from '../Shared/ValidationMessages'
 
 class NonProfitClassification extends Component {
 
@@ -206,9 +207,13 @@ class NonProfitClassification extends Component {
                         style={{ color: "red" }}>*</span></label>
                     <Field
                         as="select"
-                        className="form-control" 
+                        className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitClassification")}`}
                         id="nonProfitClassification" 
-                        name="nonProfitClassification" 
+                        name="nonProfitClassification"
+                        onChange={e => {
+                            this.props.handleChange(e)
+                            this.props.setFieldValue("nonProfitSubClassification","")
+                        }}
                     >
                         <option value="">Please select</option>
                         <option value="cultureAndRecreation">Culture and Recreation</option>
@@ -221,6 +226,7 @@ class NonProfitClassification extends Component {
                         <option value="religiousOrganizations">Religious Organizations</option>
                         <option value="other">Other</option>
                     </Field>
+                    {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitClassification")}
                 </div>
                 {subClassificationOptions}
             </div>

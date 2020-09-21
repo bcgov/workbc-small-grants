@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
-import './utils/polyfills'
+import '../../../utils/polyfills'
 import {nanoid} from 'nanoid'
 
 
@@ -9,6 +9,7 @@ import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
 import ProgressTracker from './ProgressTracker'
+import {MainFormValidationSchema} from './MainFormValidationSchema'
 
 class MainForm extends Component {
     constructor(){
@@ -102,10 +103,12 @@ class MainForm extends Component {
                                             emailAlternate: '',
                                             phoneAlternate: '',
                                             otherMailingAddress: false,
-                                            address: '',
+                                            address1: '',
+                                            address2: '',
                                             city: '',
                                             postal: '',
-                                            mailingAddress: '',
+                                            mailingAddress1: '',
+                                            mailingAddress2: '',
                                             mailingCity: '',
                                             mailingPostal: '',
                                             //step 2
@@ -131,29 +134,27 @@ class MainForm extends Component {
                                             signatory2: '',
                                             signingAuthorityConfirm: false,
                                             consent: false,
-
-
                             }}
+                            validationSchema={MainFormValidationSchema}
                             onSubmit={(values, actions) => {
                                 actions.setSubmitting(false);
                                 this.props.history.push('/thankyou')
                             }}
                         
                         >
-                            {({values}) => (
+                            {props => (
                                 <Form>
-                                    {console.log(values)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
-                                        {...values}
+                                        {...props}
                                     />
                                     <FormStep2
                                         currentStep={this.state.currentStep}
-                                        {...values}
+                                        {...props}
                                     />
                                     <FormStep3
                                         currentStep={this.state.currentStep}
-                                        {...values}
+                                        {...props}
                                     />
                                     {this.previousButton}
                                     {this.nextButton}
