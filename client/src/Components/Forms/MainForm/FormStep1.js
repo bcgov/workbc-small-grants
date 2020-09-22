@@ -93,7 +93,7 @@ class FormStep1 extends Component {
                     <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization an incorporated non-profit (society) under the BC Societies Act?<span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
-                            className="form-check-input"
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}`}
                             type="radio"
                             name="confirmOrganizationNonProfit"
                             value="yes"
@@ -102,17 +102,19 @@ class FormStep1 extends Component {
                     </div>
                     <div className="form-check">
                         <Field
-                            className="form-check-input"
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}`}
                             type="radio"
                             name="confirmOrganizationNonProfit"
                             value="no"
                         />
                         <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
+                        {feedBackInvalid(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}
                         {
                             this.props.confirmOrganizationNonProfit === "no" &&
                             <small className="text-danger"> - This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</small>
                         }
                     </div>
+                    
                     <small className="text-muted" id="confirmOrganizationNonProfit">  Registered non-profit organizations that own, operate or administer a social enterprise are also eligible to apply</small>
                 </div>
                 <NonProfitClassification 

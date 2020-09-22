@@ -11,7 +11,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -20,6 +20,7 @@ class NonProfitClassification extends Component {
                     <option value="recreation">Recreation</option>
                     <option value="serviceClubsOrOrganizations">Service Clubs/Organizations</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -32,7 +33,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -42,6 +43,7 @@ class NonProfitClassification extends Component {
                     <option value="otherEducation">Other Education</option>
                     <option value="research">Research</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -53,7 +55,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -63,6 +65,7 @@ class NonProfitClassification extends Component {
                     <option value="mentalHealthAndCrisisIntervention">Mental Health and Crisis Intervention</option>
                     <option value="otherHealthServices">Other Health Services</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -74,7 +77,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -83,6 +86,7 @@ class NonProfitClassification extends Component {
                     <option value="emergencyAndRefugees">Emergency and Refugees</option>
                     <option value="incomeSupportAndMaintenance">Income Support and Maintenance</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -94,7 +98,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -102,6 +106,7 @@ class NonProfitClassification extends Component {
                     <option value="environment">Environment</option>
                     <option value="animals">Animals</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -113,7 +118,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -121,6 +126,7 @@ class NonProfitClassification extends Component {
                     <option value="Housing">Housing</option>
                     <option value="Employment and Training">Employment and Training</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -132,7 +138,7 @@ class NonProfitClassification extends Component {
                     style={{ color: "red" }}>*</span></label>
                 <Field
                     as="select"
-                    className="form-control" 
+                    className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassification")}`} 
                     id="nonProfitSubClassification" 
                     name="nonProfitSubClassification" 
                 >
@@ -140,6 +146,7 @@ class NonProfitClassification extends Component {
                     <option value="Civic and Advocacy Organizations">Civic and Advocacy Organizations</option>
                     <option value="Law and Legal Services">Law and Legal Services</option>
                 </Field>
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassification")}
             </div>            
         )
     }
@@ -170,9 +177,10 @@ class NonProfitClassification extends Component {
     get otherField() {
         return (
             <div className="form-group">
-                <label className="col-form-label control-label" htmlFor="nonProfitSubClassification">Please specify <span
+                <label className="col-form-label control-label" htmlFor="nonProfitSubClassificationOther">Please specify <span
                 style={{ color: "red" }}>*  </span></label>
-                <Field className="form-control" id="nonProfitSubClassification" name="nonProfitSubClassification" />
+                <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"nonProfitSubClassificationOther")}`} id="nonProfitSubClassificationOther" name="nonProfitSubClassificationOther" />
+                {feedBackInvalid(this.props.errors,this.props.touched,"nonProfitSubClassificationOther")}
             </div>      
         )        
     }

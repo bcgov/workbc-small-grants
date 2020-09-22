@@ -91,6 +91,7 @@ class MainForm extends Component {
                                             confirmOrganizationNonProfit: '',
                                             nonProfitClassification: '',
                                             nonProfitSubClassification: '',
+                                            nonProfitSubClassificationOther: '',
                                             basedInBC: false,
                                             positionTitle: '',
                                             firstName: '',

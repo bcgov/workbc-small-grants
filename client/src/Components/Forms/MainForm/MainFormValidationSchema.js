@@ -18,14 +18,44 @@ export const MainFormValidationSchema = yup.object().shape({
         .typeError('Must be a number')
         .required('Please enter your business number.'),
     confirmOrganizationNonProfit: yup.string()
-        .matches("yes", " ")
-        .required('Please'),
+        .matches("yes", "Only non-profits are eligible.")
+        .required('Please select'),
     nonProfitClassification: yup.mixed()
         .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid value.")
         .required('Please select your classification.'),
-    nonProfitSubClassification: yup.mixed()
-        .oneOf([])
-        .required("Please select a subclassification."),   
+    nonProfitSubClassification: yup.string()
+        .oneOf([
+            "artsAndCulture",
+            "recreation",
+            "serviceClubsOrOrganizations",
+            "primaryAndSecondaryEducation",
+            "higherEducation",
+            "otherEducation",
+            "research",
+            "hospitalsAndRehabilitation",
+            "nursingHomes",
+            "mentalHealthAndCrisisIntervention",
+            "otherHealthServices",
+            "socialServices",
+            "emergencyAndRefugees",
+            "incomeSupportAndMaintenance",
+            "environment",
+            "animals",
+            "Economic Social and Community Development",
+            "Housing",
+            "Employment and Training",
+            "Civic and Advocacy Organizations",
+            "Law and Legal Services"
+        ], "Please select a valid field.")
+        .when("nonProfitClassification", {
+            is: (value) => value !== "religiousOrganizations",
+            then: yup.string().required("Please select a subclassification.")
+        }),
+    nonProfitSubClassificationOther: yup.string()
+        .when("nonProfitClassification", {
+            is: "other",
+            then: yup.string().required("Please specify.").max(255)
+        }),    
     basedInBC: yup.boolean()
         .oneOf([true],"Your organization must be based in BC."),
     positionTitle: yup.string()
@@ -99,26 +129,61 @@ export const MainFormValidationSchema = yup.object().shape({
     experiences: yup.array()
         .of(yup.string()
             .min(1)
-            .oneOf(["Training","Mentorship","Other"])
+            .oneOf(["Training","On the job coaching","Mentorship","Flexible working arrangements","Wrap around supports","Other"])
         )
         .required("Please select at least one experience."),
     otherExperience: yup.string()
         .when("experiences", (experiences, schema) => {
-            return experiences.indexOf("Other") > -1 ? schema.required() : schema.min(0)
-        })
-        
-    /*
-    skills
-    otherSkill
-    additionalBenefits
-    stipend
-    existingSupplierNumber
-    supplierNumber
-    businessClassification
-    taxNumber
-    signatory1
-    signatory2
-    signingAuthorityConfirm
-    consent
-    */
+            return experiences.indexOf("Other") > -1 ? schema.required("Please describe.") : schema.min(0)
+        }),
+    skills: yup.array()
+        .of(yup.string()
+            .min(1)
+            .oneOf(["Essential Skills","Life Skills","Training","Employment Experience","Self Employment Experience","Other"])
+        )
+        .required("Please select at least one skill."),
+    otherSkill: yup.string()
+        .when("skills", (skills, schema) => {
+            return skills.indexOf("Other") > -1 ? schema.required("Please describe.") : schema.min(0)
+        }),
+    additionalBenefits: yup.string(),
+    stipend: yup.number()
+        .typeError("Must be a number.")
+        .moreThan(3599,"Minimum stipend must be at least $3600")
+        .required("Please enter stipend amount."),
+    existingSupplierNumber: yup.string()
+        .oneOf(["yes","no"])
+        .required("Please select."),
+    supplierNumber: yup.number()
+        .when("existingSupplierNumber",{
+            is: "yes",
+            then: yup.number().required("Please enter your supplier number.")
+        }),
+    businessClassification: yup.string()
+        .when("existingSupplierNumber",{
+            is: "no",
+            then: yup.string()
+                .oneOf(["nonProfitAgency","corporationOrPrivateSectorAgency","publicSectorAgency","otherAgency"])
+                .required("Please select your business classification.")
+        }),
+    taxNumber: yup.number()  
+        .when("existingSupplierNumber",{
+            is: "no",
+            then: yup.number()
+            .typeError("Must be a number.")      
+            .required("Please enter your tax number.")
+        }),
+    signatory1: yup.string()
+        .required("Please enter the first organization signatory.")
+        .test('match','Signatories must be different',function (signatory1){
+            console.log(this.options)
+            return signatory1 !== this.options.parent.signatory2
+        }),     
+    signatory2: yup.string()
+        .required("Please enter the second organization signatory."),
+    signingAuthorityConfirm: yup.boolean() 
+        .oneOf([true],"Required"),
+    consent: yup.boolean()
+        .oneOf([true],"Required"),
+    
 })
