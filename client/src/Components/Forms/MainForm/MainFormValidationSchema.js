@@ -6,6 +6,7 @@ import "yup-phone"
 export const MainFormValidationSchema = yup.object().shape({
     operatingName: yup.string()
         .required('Please enter the Organization Name'),
+        /*
     legalName: yup.string()
         .required('Please enter the legal name.'),
     missionStatement: yup.string()
@@ -199,5 +200,6 @@ export const MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Required"),
     consent: yup.boolean()
         .oneOf([true],"Required"),
+    */
     
 })

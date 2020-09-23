@@ -66,7 +66,6 @@ class FormStep3 extends Component {
         //Else return step 3
         return (
             <div>
-                {console.log(this.props)}
                 {/*this.generateParticipantsInfo()*/}
                 <div className="form-group">
                     <h2 id="forms">Financial Information</h2>
@@ -156,7 +155,12 @@ class FormStep3 extends Component {
                         {feedBackInvalid(this.props.errors, this.props.touched, "consent")}
                     </div>
                 </div>
-                <button className="btn btn-success btn-block" type="submit" style={{marginBottom: "2rem"}}>Submit</button>
+                <button 
+                    className="btn btn-success btn-block" 
+                    type="submit" 
+                    style={{marginBottom: "2rem"}}
+                    disabled={this.props.isSubmitting}
+                >Submit</button>
             </div>
 
 

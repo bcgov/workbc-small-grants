@@ -16,15 +16,50 @@ class MainForm extends Component {
         super()
         this.state={
             currentStep: 1,
+            _csrf: '',
             _id: nanoid(10)
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
     }
 
+    componentDidMount(){
+        fetch("http://localhost:8000/form",{
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result.csrfToken)
+                    this.setState({
+                        _csrf: result.csrfToken
+                    })
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.history.push('/thankyou')
+        let fields = this.state
+        fetch("http://localhost:8000/form", {
+            method: "POST",
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(fields),
+        })
+        .then(res => res.json())
+        .then(
+            (resp) => {
+                console.log(resp)
+            }
+        )
+        //this.props.history.push('/thankyou')
     }
 
     _next() {
@@ -81,6 +116,7 @@ class MainForm extends Component {
                         <ProgressTracker currentStep={this.state.currentStep}/>
                         <Formik
                             initialValues= {{
+                                            _csrf: this.state._csrf,
                                             _id: this.state._id,
                                             //step 1
                                             operatingName: '',
@@ -136,15 +172,31 @@ class MainForm extends Component {
                                             signingAuthorityConfirm: false,
                                             consent: false,
                             }}
+                            enableReinitialize={true}
                             validationSchema={MainFormValidationSchema}
                             onSubmit={(values, actions) => {
-                                actions.setSubmitting(false);
-                                this.props.history.push('/thankyou')
+                                fetch("http://localhost:8000/form", {
+                                    method: "POST",
+                                    credentials: 'include',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type' : 'application/json',
+                                    },
+                                    body: JSON.stringify(values),
+                                })
+                                .then(res => res.json())
+                                .then(
+                                    (resp) => {
+                                        console.log(resp)
+                                    }
+                                )
+                                //this.props.history.push('/thankyou')
                             }}
                         
                         >
                             {props => (
                                 <Form>
+                                    {console.log(props)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...props}
