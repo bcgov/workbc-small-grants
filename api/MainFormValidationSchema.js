@@ -1,8 +1,10 @@
-import * as yup from 'yup'
-import "yup-phone"
+//import * as yup from 'yup'
+//import "yup-phone"
+var yup=require('yup')
+require('yup-phone')
 
-
-export const MainFormValidationSchema = yup.object().shape({
+//export
+var MainFormValidationSchema = yup.object().shape({
     operatingName: yup.string()
         .required('Please enter the Organization Name'),
         /*
@@ -201,3 +203,5 @@ export const MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Required"),
     */
 })
+
+module.exports = MainFormValidationSchema

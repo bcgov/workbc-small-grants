@@ -10,18 +10,10 @@ function Main() {
         <main role="main">
             <Router>
                 <Switch>
-                    <Route path="/form">
-                        <MainForm />
-                    </Route>
-                    <Route path="/clientForm">
-                        <ClientForm />
-                    </Route>
-                    <Route path="/thankyou">
-                        <Thankyou />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
+                    <Route path="/form" component={MainForm} />
+                    <Route path="/clientForm" component={ClientForm} />
+                    <Route path="/thankyou" component={Thankyou} />
+                    <Route path="/" component={Home} />
                 </Switch>
             </Router>
         </main>

@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import '../../../utils/polyfills'
-import {nanoid} from 'nanoid'
-
+import {customAlphabet} from 'nanoid'
 
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
@@ -14,10 +13,11 @@ import {MainFormValidationSchema} from './MainFormValidationSchema'
 class MainForm extends Component {
     constructor(){
         super()
+        const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz',10)
         this.state={
             currentStep: 1,
             _csrf: '',
-            _id: nanoid(10)
+            _id: nanoid()
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
@@ -39,27 +39,6 @@ class MainForm extends Component {
                     console.log(error)
                 }
             )
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        let fields = this.state
-        fetch("http://localhost:8000/form", {
-            method: "POST",
-            credentials: 'include',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type' : 'application/json',
-            },
-            body: JSON.stringify(fields),
-        })
-        .then(res => res.json())
-        .then(
-            (resp) => {
-                console.log(resp)
-            }
-        )
-        //this.props.history.push('/thankyou')
     }
 
     _next() {
@@ -174,7 +153,8 @@ class MainForm extends Component {
                             }}
                             enableReinitialize={true}
                             validationSchema={MainFormValidationSchema}
-                            onSubmit={(values, actions) => {
+                            onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
+                                
                                 fetch("http://localhost:8000/form", {
                                     method: "POST",
                                     credentials: 'include',
@@ -184,13 +164,22 @@ class MainForm extends Component {
                                     },
                                     body: JSON.stringify(values),
                                 })
+                                
                                 .then(res => res.json())
                                 .then(
                                     (resp) => {
                                         console.log(resp)
+                                        if (resp.err){
+                                            console.log("errors")
+                                            setErrors(resp.err)
+                                        } else if (resp.ok){
+                                            setSubmitting(false)
+                                            this.props.history.push('/thankyou',values)
+                                        }
                                     }
                                 )
-                                //this.props.history.push('/thankyou')
+                                
+                                
                             }}
                         
                         >

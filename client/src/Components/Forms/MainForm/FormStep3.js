@@ -159,7 +159,7 @@ class FormStep3 extends Component {
                     className="btn btn-success btn-block" 
                     type="submit" 
                     style={{marginBottom: "2rem"}}
-                    disabled={this.props.isSubmitting}
+
                 >Submit</button>
             </div>
 

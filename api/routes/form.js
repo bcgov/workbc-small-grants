@@ -1,27 +1,111 @@
 var express = require('express');
 var router = express.Router();
+const yup = require('yup')
+const yupPhone = require('yup-phone')
 
-var {check, validationResult, matchedData} = require('express-validator')
+var { check, validationResult, matchedData } = require('express-validator')
 var nodemailer = require("nodemailer");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
-router.get('/', csrfProtection, (req, res) => {
-    var token = req.csrfToken()
-    console.log(token)
-    res.cookie('XSRF-TOKEN',token)
-    res.send({
-      csrfToken: token
+var MainFormValidationSchema = require('../MainFormValidationSchema.js')
+var generateHTMLEmail = require('../utils/htmlEmail')
+var notification = require('../utils/applicationReceivedEmail')
+
+var confirmationBCC = process.env.OPENSHIFT_NODEJS_EMPLOYERBCC || "";
+
+function sendConfirmationEmail(applicationId) {
+  try {
+    let transporter = nodemailer.createTransport({
+      host: "apps.smtp.gov.bc.ca",
+      port: 25,
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      } // true for 465, false for other ports
     });
-    
+    // send mail with defined transport object
+    let message = {
+      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+      to: [],// list of receivers
+      bcc: confirmationBCC,
+      subject: "Application Confirmation - " + applicationId, // Subject line
+      html: generateHTMLEmail("Thank you, your application has been received",applicationId) // html body
+    };
+    let info = transporter.sendMail(message, (error, info) => {
+      if (error) {
+        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
+      } else {
+        console.log("Message sent: %s", info.messageId);
+        return "success"
+      }
+    });
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function notifyApplicationReceived(values){
+  try {
+    let transporter = nodemailer.createTransport({
+      host: "apps.smtp.gov.bc.ca",
+      port: 25,
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      } // true for 465, false for other ports
+    });
+    // send mail with defined transport object
+    let message = {
+      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+      to: "",// list of receivers
+      bcc: confirmationBCC,
+      subject: "A grant application has been received", // Subject line
+      html: notification.generateListNotification(values) // html body
+    };
+    let info = transporter.sendMail(message, (error, info) => {
+      if (error) {
+        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
+      } else {
+        console.log("Message sent: %s", info.messageId);
+        return "success"
+      }
+    });
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+router.get('/', csrfProtection, (req, res) => {
+  var token = req.csrfToken()
+  res.cookie('XSRF-TOKEN', token)
+  res.send({
+    csrfToken: token
+  });
+
 })
 
-router.post('/', csrfProtection, (req,res) => {
-    console.log(req.body);
-    res.send({
-      data: {},
-      errors: {}
-    });
+router.post('/', csrfProtection, (req, res) => {
+
+  MainFormValidationSchema.validate(req.body, { abortEarly: false }).catch(function (errors) {
+    console.log(errors);
+    var err = {}
+    errors.inner.forEach(e => {
+      err[e.path] = e.message
+    })
+    res.json({
+      err
+    })
+  })
+  //sendConfirmationEmail(req.body._id)
+  notifyApplicationReceived(req.body)
+  res.send({
+    ok: "ok"
+  })
+  //console.log(generateHTMLEmail("Application Submitted"));
+  /*
+
+  */
 })
 
 module.exports = router;
