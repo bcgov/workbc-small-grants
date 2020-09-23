@@ -21,7 +21,7 @@ export const MainFormValidationSchema = yup.object().shape({
         .matches("yes", "Only non-profits are eligible.")
         .required('Please select'),
     nonProfitClassification: yup.mixed()
-        .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid value.")
+        .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid field.")
         .required('Please select your classification.'),
     nonProfitSubClassification: yup.string()
         .oneOf([
@@ -54,7 +54,7 @@ export const MainFormValidationSchema = yup.object().shape({
     nonProfitSubClassificationOther: yup.string()
         .when("nonProfitClassification", {
             is: "other",
-            then: yup.string().required("Please specify.").max(255)
+            then: yup.string().required("Please specify.").max(255, "Max length is 255 characters.")
         }),    
     basedInBC: yup.boolean()
         .oneOf([true],"Your organization must be based in BC."),
@@ -113,7 +113,7 @@ export const MainFormValidationSchema = yup.object().shape({
             then: yup.string().required("Please enter a postal code.")
         }),   
     applicants: yup.mixed()
-        .oneOf(["1","2","3","4","5"])
+        .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
         .required("Please select number of applicants."),
     insuranceCoverage: yup.boolean()
         .oneOf([true],"Required"),
@@ -129,24 +129,39 @@ export const MainFormValidationSchema = yup.object().shape({
     experiences: yup.array()
         .of(yup.string()
             .min(1)
-            .oneOf(["Training","On the job coaching","Mentorship","Flexible working arrangements","Wrap around supports","Other"])
+            .oneOf([
+                "Training",
+                "On the job coaching",
+                "Mentorship",
+                "Flexible working arrangements",
+                "Wrap around supports",
+                "Other"
+            ], "Please select a valid option.")
         )
         .required("Please select at least one experience."),
     otherExperience: yup.string()
         .when("experiences", (experiences, schema) => {
-            return experiences.indexOf("Other") > -1 ? schema.required("Please describe.") : schema.min(0)
+            return experiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     skills: yup.array()
         .of(yup.string()
             .min(1)
-            .oneOf(["Essential Skills","Life Skills","Training","Employment Experience","Self Employment Experience","Other"])
+            .oneOf([
+                "Essential Skills",
+                "Life Skills",
+                "Training",
+                "Employment Experience",
+                "Self Employment Experience",
+                "Other"
+            ],"Please select a valid option.")
         )
         .required("Please select at least one skill."),
     otherSkill: yup.string()
         .when("skills", (skills, schema) => {
-            return skills.indexOf("Other") > -1 ? schema.required("Please describe.") : schema.min(0)
+            return skills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
-    additionalBenefits: yup.string(),
+    additionalBenefits: yup.string()
+        .max(700,"Maximum of 700 characters is allowed."),
     stipend: yup.number()
         .typeError("Must be a number.")
         .moreThan(3599,"Minimum stipend must be at least $3600")
@@ -157,13 +172,13 @@ export const MainFormValidationSchema = yup.object().shape({
     supplierNumber: yup.number()
         .when("existingSupplierNumber",{
             is: "yes",
-            then: yup.number().required("Please enter your supplier number.")
+            then: yup.number().typeError("Must be a number").required("Please enter your supplier number.")
         }),
     businessClassification: yup.string()
         .when("existingSupplierNumber",{
             is: "no",
             then: yup.string()
-                .oneOf(["nonProfitAgency","corporationOrPrivateSectorAgency","publicSectorAgency","otherAgency"])
+                .oneOf(["nonProfitAgency","corporationOrPrivateSectorAgency","publicSectorAgency","otherAgency"],"Please select a valid option")
                 .required("Please select your business classification.")
         }),
     taxNumber: yup.number()  
@@ -176,7 +191,6 @@ export const MainFormValidationSchema = yup.object().shape({
     signatory1: yup.string()
         .required("Please enter the first organization signatory.")
         .test('match','Signatories must be different',function (signatory1){
-            console.log(this.options)
             return signatory1 !== this.options.parent.signatory2
         }),     
     signatory2: yup.string()
