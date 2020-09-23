@@ -1,8 +1,9 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
-import Form from './Form'
+import MainForm from './Components/Forms/MainForm/MainForm'
 import Thankyou from './Thankyou'
+import ClientForm from './Components/Forms/ClientForm/ClientForm'
 
 function Main() {
     return (
@@ -10,7 +11,10 @@ function Main() {
             <Router>
                 <Switch>
                     <Route path="/form">
-                        <Form />
+                        <MainForm />
+                    </Route>
+                    <Route path="/clientForm">
+                        <ClientForm />
                     </Route>
                     <Route path="/thankyou">
                         <Thankyou />
