@@ -7,13 +7,12 @@ require('yup-phone')
 var MainFormValidationSchema = yup.object().shape({
     operatingName: yup.string()
         .required('Please enter the Organization Name'),
-        /*
     legalName: yup.string()
         .required('Please enter the legal name.'),
     missionStatement: yup.string()
         .max(255)
         .required('Please enter the mission statement.'),
-    website: yup.string().url()
+    organizationWebsite: yup.string().url()
         .required('Please enter the website.'),
     //How long, what type, min max?
     businessNumber: yup.number()
@@ -66,9 +65,9 @@ var MainFormValidationSchema = yup.object().shape({
         .required("Please enter first name."),
     lastName: yup.string()
         .required("Please enter last name"),
-    email: yup.string().email("Please enter a valid email.")
+    contactEmail: yup.string().email("Please enter a valid email.")
         .required("Please enter email"),
-    phone: yup.string()
+    contactPhone: yup.string()
         .phone("CA", false, "Please enter a valid number.")
         .required("Please enter phone."),
     positionTitleAlternate: yup.string()
@@ -83,15 +82,15 @@ var MainFormValidationSchema = yup.object().shape({
         .phone("CA", false, "Please enter a valid number.")
         .required("Please enter phone"),
     otherMailingAddress: yup.boolean(),
-    address1: yup.string()
+    contactAddress1: yup.string()
         .max(255,"Address too long, please use address line 2.")
         .required("Please enter address line 1."),
-    address2: yup.string()
+    contactAddress2: yup.string()
         .max(255,"Address too long"),
-    city: yup.string()
+    contactAity: yup.string()
         .max(100,"City name too long")
         .required("Please enter city"),
-    postal: yup.string()
+    contactPostal: yup.string()
         .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code")
         .required("Please enter a postal code."),
     mailingAddress1: yup.string()
@@ -114,7 +113,7 @@ var MainFormValidationSchema = yup.object().shape({
             is: true,
             then: yup.string().required("Please enter a postal code.")
         }),   
-    applicants: yup.mixed()
+    numberOfApplicants: yup.mixed()
         .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
         .required("Please select number of applicants."),
     insuranceCoverage: yup.boolean()
@@ -128,7 +127,7 @@ var MainFormValidationSchema = yup.object().shape({
     participantActivities: yup.string()
         .max(700, "Maximum of 700 characters is allowed")
         .required("Please describe the work opportunity"),
-    experiences: yup.array()
+    participantExperiences: yup.array()
         .of(yup.string()
             .min(1)
             .oneOf([
@@ -145,7 +144,7 @@ var MainFormValidationSchema = yup.object().shape({
         .when("experiences", (experiences, schema) => {
             return experiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
-    skills: yup.array()
+    participantSkills: yup.array()
         .of(yup.string()
             .min(1)
             .oneOf([
@@ -164,7 +163,7 @@ var MainFormValidationSchema = yup.object().shape({
         }),
     additionalBenefits: yup.string()
         .max(700,"Maximum of 700 characters is allowed."),
-    stipend: yup.number()
+    participantStipend: yup.number()
         .typeError("Must be a number.")
         .moreThan(3599,"Minimum stipend must be at least $3600")
         .required("Please enter stipend amount."),
@@ -199,9 +198,8 @@ var MainFormValidationSchema = yup.object().shape({
         .required("Please enter the second organization signatory."),
     signingAuthorityConfirm: yup.boolean() 
         .oneOf([true],"Required"),
-    consent: yup.boolean()
+    organizationConsent: yup.boolean()
         .oneOf([true],"Required"),
-    */
 })
 
 module.exports = MainFormValidationSchema

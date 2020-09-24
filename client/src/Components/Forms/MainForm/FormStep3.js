@@ -71,20 +71,20 @@ class FormStep3 extends Component {
                     <h2 id="forms">Financial Information</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="stipend">Enter the total amount of stipend provided to the individual.  <span
+                    <label className="col-form-label control-label" htmlFor="participantStipend">Enter the total amount of stipend provided to the individual.  <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="stipend"> A minimum of $3600 required. For additional details see the <a href="#guidelines">application guidelines.</a></small>
+                    <small className="text-muted" id="participantStipend"> A minimum of $3600 required. For additional details see the <a href="#guidelines">application guidelines.</a></small>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text">$</span>
                         </div>
                         <Field
-                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"stipend")}`}
-                            id="stipend"
-                            name="stipend"
+                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"participantStipend")}`}
+                            id="participantStipend"
+                            name="participantStipend"
                             
                         />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"stipend")}
+                        {feedBackInvalid(this.props.errors,this.props.touched,"participantStipend")}
                     </div>
                 </div>
                 <div className="form-group">
@@ -146,13 +146,13 @@ class FormStep3 extends Component {
                 </div>
                 <div className="form-group">
                     <div className="form-check">
-                    <Field type="checkbox" className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "consent")}`} id="consent"
-                        name="consent" />
-                    <label className="form-check-label" htmlFor="consent"><span style={{color:"red"}}>*</span> I acknowledge and understand that by clicking the "submit" icon, 
+                    <Field type="checkbox" className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "organizationConsent")}`} id="organizationConsent"
+                        name="organizationConsent" />
+                    <label className="form-check-label" htmlFor="organizationConsent"><span style={{color:"red"}}>*</span> I acknowledge and understand that by clicking the "submit" icon, 
                         I am attaching my electronic signature to this form. 
                         I am authorized to act and to enter into this Agreement on behalf of the Organization. 
                         On the Organization's behalf, I do hereby accept and agree to the terms and conditions of this Agreement</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "consent")}
+                        {feedBackInvalid(this.props.errors, this.props.touched, "organizationConsent")}
                     </div>
                 </div>
                 <button 

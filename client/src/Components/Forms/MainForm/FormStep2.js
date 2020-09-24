@@ -62,13 +62,13 @@ class FormStep2 extends Component {
                     <h2 id="forms">Opportunity Details</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="applicants">How many applicants are you applying for? <span
+                    <label className="col-form-label control-label" htmlFor="numberOfApplicants">How many applicants are you applying for? <span
                         style={{ color: "red" }}>*</span></label>
                     <Field
                         as="select"
-                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "applicants")}`}
-                        id="applicants"
-                        name="applicants"
+                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "numberOfApplicants")}`}
+                        id="numberOfApplicants"
+                        name="numberOfApplicants"
                     >
                         <option value="">Please select</option>
                         <option value="1">1</option>
@@ -77,7 +77,7 @@ class FormStep2 extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "applicants")}
+                    {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
                 </div>
                 <div className="form-group">
                     <div className="form-check">
@@ -163,29 +163,29 @@ class FormStep2 extends Component {
                     </label>
                     <small className="text-muted"> Please select all that apply</small>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="Training" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="Training" />
                         <label className="form-check-label" htmlFor="Training">Training</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="On the job coaching" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="On the job coaching" />
                         <label className="form-check-label" htmlFor="On the job coaching">On the job coaching/supervision</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="Mentorship" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="Mentorship" />
                         <label className="form-check-label" htmlFor="Mentorship">Mentorship</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="Flexible working arrangements" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="Flexible working arrangements" />
                         <label className="form-check-label" htmlFor="Flexible working arrangements">Flexible working arrangements</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="Wrap around supports" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="Wrap around supports" />
                         <label className="form-check-label" htmlFor="Wrap around supports">Wrap around supports, such as personal protective equipment, childcare or transportation</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "experiences")}`} type="checkbox" name="experiences" value="Other" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantExperiences")}`} type="checkbox" name="participantExperiences" value="Other" />
                         <label className="form-check-label" htmlFor="Other">Other</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "experiences")}
+                        {feedBackInvalid(this.props.errors, this.props.touched, "participantExperiences")}
                     </div>
                 </div>
                 {this.otherExperienceField}
@@ -195,29 +195,29 @@ class FormStep2 extends Component {
                     </label>
                     <small className="text-muted"> Please select all that apply</small>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Essential Skills" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Essential Skills" />
                         <label className="form-check-label" htmlFor="Essential Skills">Essential Skills such as computer use, communications skills or literacy skills.</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Life Skills" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Life Skills" />
                         <label className="form-check-label" htmlFor="Life Skills">Life Skills such as time management</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Training" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Training" />
                         <label className="form-check-label" htmlFor="Training">Training</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Employment Experience" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Employment Experience" />
                         <label className="form-check-label" htmlFor="Employment Experience">Employment Experience</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Self Employment Experience" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Self Employment Experience" />
                         <label className="form-check-label" htmlFor="Self Employment Experience">Self Employment Experience</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "skills")}`} type="checkbox" name="skills" value="Other" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`} type="checkbox" name="participantSkills" value="Other" />
                         <label className="form-check-label" htmlFor="Other">Other</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "skills")}
+                        {feedBackInvalid(this.props.errors, this.props.touched, "participantSkills")}
                     </div>
                 </div>
                 {this.otherSkillField}
