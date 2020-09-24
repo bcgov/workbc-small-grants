@@ -10,7 +10,8 @@ var csrfProtection = csrf({ cookie: true });
 
 var MainFormValidationSchema = require('../MainFormValidationSchema.js')
 var generateHTMLEmail = require('../utils/htmlEmail')
-var notification = require('../utils/applicationReceivedEmail')
+var notification = require('../utils/applicationReceivedEmail');
+const { generateListNotification } = require('../utils/applicationReceivedEmail');
 
 var confirmationBCC = process.env.OPENSHIFT_NODEJS_EMPLOYERBCC || "";
 
@@ -59,9 +60,14 @@ function notifyApplicationReceived(values){
     let message = {
       from: 'WEOG <donotreply@gov.bc.ca>', // sender address
       to: "",// list of receivers
-      bcc: confirmationBCC,
       subject: "A grant application has been received", // Subject line
       html: notification.generateListNotification(values) // html body
+    };
+    let message2 = {
+      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+      to: "",// list of receivers
+      subject: "A grant application has been received", // Subject line
+      html: notification.generateNotification(values) // html body
     };
     let info = transporter.sendMail(message, (error, info) => {
       if (error) {
@@ -71,8 +77,26 @@ function notifyApplicationReceived(values){
         return "success"
       }
     });
+    info = transporter.sendMail(message2, (error, info) => {
+      if (error) {
+        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
+      } else {
+        console.log("Message sent: %s", info.messageId);
+        return "success"
+      }
+    });
   } catch (error) {
     console.log(error)
+  }
+}
+
+function clean(obj) {
+  var propNames = Object.getOwnPropertyNames(obj);
+  for (var i = 0; i < propNames.length; i++) {
+    var propName = propNames[i];
+    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+      delete obj[propName];
+    }
   }
 }
 
@@ -86,18 +110,21 @@ router.get('/', csrfProtection, (req, res) => {
 })
 
 router.post('/', csrfProtection, (req, res) => {
-
+  //clean the body
+  clean(req.body);
+  console.log(req.body)
   MainFormValidationSchema.validate(req.body, { abortEarly: false }).catch(function (errors) {
     console.log(errors);
     var err = {}
     errors.inner.forEach(e => {
       err[e.path] = e.message
     })
-    res.json({
+    res.send({
       err
     })
+    return
   })
-  //sendConfirmationEmail(req.body._id)
+  sendConfirmationEmail(req.body._id)
   notifyApplicationReceived(req.body)
   res.send({
     ok: "ok"

@@ -4,7 +4,7 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 
 class FormStep2 extends Component {
     get otherExperienceField() {
-        if (this.props.values.experiences.indexOf("Other") > -1) {
+        if (this.props.values.participantExperiences.indexOf("Other") > -1) {
             return (
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="otherExperience">Other <span
@@ -28,7 +28,7 @@ class FormStep2 extends Component {
     }
 
     get otherSkillField() {
-        if (this.props.values.skills.indexOf("Other") > -1) {
+        if (this.props.values.participantSkills.indexOf("Other") > -1) {
             return (
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="otherSkill">Other <span

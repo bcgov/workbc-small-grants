@@ -85,7 +85,7 @@ export const MainFormValidationSchema = yup.object().shape({
         .required("Please enter address line 1."),
     contactAddress2: yup.string()
         .max(255,"Address too long"),
-    contactAity: yup.string()
+    contactCity: yup.string()
         .max(100,"City name too long")
         .required("Please enter city"),
     contactPostal: yup.string()
@@ -139,8 +139,8 @@ export const MainFormValidationSchema = yup.object().shape({
         )
         .required("Please select at least one experience."),
     otherExperience: yup.string()
-        .when("experiences", (experiences, schema) => {
-            return experiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+        .when("participantExperiences", (participantExperiences, schema) => {
+            return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     participantSkills: yup.array()
         .of(yup.string()
@@ -156,8 +156,8 @@ export const MainFormValidationSchema = yup.object().shape({
         )
         .required("Please select at least one skill."),
     otherSkill: yup.string()
-        .when("skills", (skills, schema) => {
-            return skills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+        .when("participantSkills", (participantSkills, schema) => {
+            return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     additionalBenefits: yup.string()
         .max(700,"Maximum of 700 characters is allowed."),

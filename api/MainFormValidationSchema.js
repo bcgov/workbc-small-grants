@@ -87,7 +87,7 @@ var MainFormValidationSchema = yup.object().shape({
         .required("Please enter address line 1."),
     contactAddress2: yup.string()
         .max(255,"Address too long"),
-    contactAity: yup.string()
+    contactCity: yup.string()
         .max(100,"City name too long")
         .required("Please enter city"),
     contactPostal: yup.string()
@@ -108,10 +108,9 @@ var MainFormValidationSchema = yup.object().shape({
             then: yup.string().required("Please enter city")
         }),    
     mailingPostal: yup.string()
-        .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code")
         .when("otherMailingAddress", {
             is: true,
-            then: yup.string().required("Please enter a postal code.")
+            then: yup.string().matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code").required("Please enter a postal code.")
         }),   
     numberOfApplicants: yup.mixed()
         .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
@@ -141,8 +140,8 @@ var MainFormValidationSchema = yup.object().shape({
         )
         .required("Please select at least one experience."),
     otherExperience: yup.string()
-        .when("experiences", (experiences, schema) => {
-            return experiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+        .when("participantExperiences", (participantExperiences, schema) => {
+            return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     participantSkills: yup.array()
         .of(yup.string()
@@ -158,8 +157,8 @@ var MainFormValidationSchema = yup.object().shape({
         )
         .required("Please select at least one skill."),
     otherSkill: yup.string()
-        .when("skills", (skills, schema) => {
-            return skills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+        .when("participantSkills", (participantSkills, schema) => {
+            return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     additionalBenefits: yup.string()
         .max(700,"Maximum of 700 characters is allowed."),
