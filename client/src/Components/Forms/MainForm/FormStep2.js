@@ -77,6 +77,7 @@ class FormStep2 extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
+                    <p>Applicants must meet eligibility requirements, and verification is required before hiring.</p>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
                 </div>
                 <div className="form-group">
@@ -120,10 +121,9 @@ class FormStep2 extends Component {
                             <span style={{ color: "red" }}>*</span>
                         I understand that all participants must be eligible to work in British Columbia and that participants are:
                         <ul>
-                                <li>Receiving disability assistance; OR</li>
+                                <li>Receiving disability assistance with the Persons with Disability designation; OR</li>
                                 <li>Receiving income assistance under the Persons with Persistent Multiple Barriers (PPMB) category</li>
                             </ul>
-                            <p>Applicants must meet eligibility requirements, and verification is required before hiring.</p>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}
                     </div>
