@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 import "yup-phone"
+import 'core-js/stable';
 
 
 export const MainFormValidationSchema = yup.object().shape({
@@ -140,7 +141,9 @@ export const MainFormValidationSchema = yup.object().shape({
         .required("Please select at least one experience."),
     otherExperience: yup.string()
         .when("participantExperiences", (participantExperiences, schema) => {
-            return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+            if (participantExperiences !== undefined){
+                return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+            }
         }),
     participantSkills: yup.array()
         .of(yup.string()
@@ -157,7 +160,9 @@ export const MainFormValidationSchema = yup.object().shape({
         .required("Please select at least one skill."),
     otherSkill: yup.string()
         .when("participantSkills", (participantSkills, schema) => {
-            return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+            if (participantSkills !== undefined){
+                return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
+            }
         }),
     additionalBenefits: yup.string()
         .max(700,"Maximum of 700 characters is allowed."),
