@@ -83,24 +83,6 @@ objects:
       targetPort: 8000
     selector:
       deploymentconfig: ${NAME}${SUFFIX}
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    creationTimestamp: null
-    name: ${NAME}${SUFFIX}
-  spec:
-    host: ${HOST_VALUE}
-    path: /api
-    port:
-      targetPort: api
-    tls:
-      insecureEdgeTerminationPolicy: Redirect
-      termination: edge
-    to:
-      kind: Service
-      name: ${NAME}${SUFFIX}
-      weight: 100
-    wildcardPolicy: None
 parameters:
 - description: A name used for all objects
   displayName: Name
@@ -117,16 +99,6 @@ parameters:
   name: TAG
   required: true
   value: latest
-- description: A name used for routes/services and deployment configs
-  displayName: Host
-  name: HOST
-  required: false
-  value: ''
-- description: The url of the api
-  displayName: Workbc-small-grants api
-  name: HOST_VALUE
-  required: false
-  value: ''
 - description: Email one to send confirmation emails (test)
   displayName: Confirmation email one
   name: OPENSHIFT_NODEJS_CONFIRMATIONONE
