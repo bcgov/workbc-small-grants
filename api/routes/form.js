@@ -30,7 +30,7 @@ function sendConfirmationEmail(applicationId) {
       } // true for 465, false for other ports
     });
     var mailingList;
-    if (confirmationEmail1 === "" && confirmationEmail2 === ""){
+    if (confirmationEmail1 !== "" && confirmationEmail2 !== ""){
       mailingList = [confirmationEmail1, confirmationEmail2]
     } else {
       //TODO
