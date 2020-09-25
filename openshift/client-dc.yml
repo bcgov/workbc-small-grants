@@ -67,6 +67,12 @@ objects:
       server {
         listen 8080;
         root /var/www/html/build/;
+        location /api/form {
+            proxy_pass ${API_URL};
+        }
+        location /api/clientForm {
+            proxy_pass ${API_URL};
+        }
         location / {
           try_files $uri /index.html;
 
@@ -76,7 +82,7 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: workbc-small-grants-nginx
+    name: ${CONFIG_NAME}
     labels:
       app: workbc-small-grants
   type: Opaque
@@ -131,11 +137,21 @@ parameters:
   name: HOST_VALUE
   required: false
   value: ''
+- description: Name used for the nginx config map
+  displayName: config name
+  name: CONFIG_NAME
+  required: false
+  value: workbc-small-grants-nginx
 - description: A volume used for the nginx from config map
   displayName: volume name
   name: VOLUME_NAME
   required: false
   value: nginx-config
+- description: The API URL to pass requests to 
+  displayName: API URL
+  name: API_URL
+  required: true
+  value: ''
 - description: The namespace of the OS project containing the imagestreams
   displayName: Image Namespace
   name: IMAGE_NAMESPACE
