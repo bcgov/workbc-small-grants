@@ -11,9 +11,13 @@ var csrfProtection = csrf({ cookie: true });
 var MainFormValidationSchema = require('../MainFormValidationSchema.js')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
-const { generateListNotification } = require('../utils/applicationReceivedEmail');
 
-var confirmationBCC = process.env.OPENSHIFT_NODEJS_EMPLOYERBCC || "";
+var confirmationEmail1 = process.env.CONFIRMATIONONE || process.env.OPENSHIFT_NODEJS_CONFIRMATIONONE || "";
+var confirmationEmail2 = process.env.CONFIRMATIONTWO || process.env.OPENSHIFT_NODEJS_CONFIRMATIONTWO || "";
+var confirmationBCC = process.env.CONFIRMATIONBCC || process.env.OPENSHIFT_NODEJS_CONFIRMATIONBCC || "";
+var listEmail = process.env.LISTEMAIL || process.env.OPENSHIFT_NODEJS_LISTEMAIL || "";
+var notifyEmail = process.env.NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_NOTIFYEMAIL || "";
+
 
 function sendConfirmationEmail(applicationId) {
   try {
@@ -25,10 +29,17 @@ function sendConfirmationEmail(applicationId) {
         rejectUnauthorized: false
       } // true for 465, false for other ports
     });
+    var mailingList;
+    if (confirmationEmail1 === "" && confirmationEmail2 === ""){
+      mailingList = [confirmationEmail1, confirmationEmail2]
+    } else {
+      //TODO
+      mailingList = ""
+    }
     // send mail with defined transport object
     let message = {
       from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: [],// list of receivers
+      to: mailingList,// list of receivers
       bcc: confirmationBCC,
       subject: "Application Confirmation - " + applicationId, // Subject line
       html: generateHTMLEmail("Thank you, your application has been received",applicationId) // html body
@@ -59,14 +70,14 @@ function notifyApplicationReceived(values){
     // send mail with defined transport object
     let message = {
       from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: "",// list of receivers
-      subject: "A grant application has been received", // Subject line
+      to: listEmail,// list of receivers
+      subject: "A grant application has been received - " + values._id, // Subject line
       html: notification.generateListNotification(values) // html body
     };
     let message2 = {
       from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: "",// list of receivers
-      subject: "A grant application has been received", // Subject line
+      to: notifyEmail,// list of receivers
+      subject: "A grant application has been received - " + values._id, // Subject line
       html: notification.generateNotification(values) // html body
     };
     let info = transporter.sendMail(message, (error, info) => {

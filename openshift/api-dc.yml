@@ -49,6 +49,16 @@ objects:
           env:
           - name: OPENSHIFT_NODEJS_ORIGIN_URL
             value: ${OPENSHIFT_NODEJS_ORIGIN_URL}
+          - name: OPENSHIFT_NODEJS_CONFIRMATIONONE
+            value: ${OPENSHIFT_NODEJS_CONFIRMATIONONE}
+          - name: OPENSHIFT_NODEJS_CONFIRMATIONTWO
+            value: ${OPENSHIFT_NODEJS_CONFIRMATIONTWO}
+          - name: OPENSHIFT_NODEJS_CONFIRMATIONBCC
+            value: ${OPENSHIFT_NODEJS_CONFIRMATIONBCC}
+          - name: OPENSHIFT_NODEJS_LISTEMAIL
+            value: ${OPENSHIFT_NODEJS_LISTEMAIL}
+          - name: OPENSHIFT_NODEJS_NOTIFYEMAIL
+            value: ${OPENSHIFT_NODEJS_NOTIFYEMAIL}
     test: false
     triggers:
     - type: ConfigChange
@@ -115,6 +125,31 @@ parameters:
 - description: The url of the api
   displayName: Workbc-small-grants api
   name: HOST_VALUE
+  required: false
+  value: ''
+- description: Email one to send confirmation emails (test)
+  displayName: Confirmation email one
+  name: OPENSHIFT_NODEJS_CONFIRMATIONONE
+  required: false
+  value: ''
+- description: Email two to send confirmation emails (test)
+  displayName: Confirmation email two
+  name: OPENSHIFT_NODEJS_CONFIRMATIONTWO
+  required: false
+  value: ''
+- description: BCC email to send confirmation emails
+  displayName: Confirmation BCC email
+  name: OPENSHIFT_NODEJS_CONFIRMATIONBCC
+  required: false
+  value: ''
+- description: List email to send notification emails
+  displayName: List email
+  name: OPENSHIFT_NODEJS_LISTEMAIL
+  required: false
+  value: ''
+- description: Notify email to send notification emails
+  displayName: Notify email
+  name: OPENSHIFT_NODEJS_NOTIFYEMAIL
   required: false
   value: ''
 - description: The origin URL
