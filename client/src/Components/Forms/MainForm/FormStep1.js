@@ -77,11 +77,11 @@ class FormStep1 extends Component {
                     {feedBackInvalid(this.props.errors,this.props.touched,"missionStatement")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="website">Website <span
+                    <label className="col-form-label control-label" htmlFor="organizationWebsite">Website <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="website"> https://somewebsite.ca</small>
-                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"website")}`} id="website" name="website" />
-                    {feedBackInvalid(this.props.errors,this.props.touched,"website")}
+                    <small className="text-muted" id="organizationWebsite"> https://website.ca</small>
+                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"organizationWebsite")}`} id="organizationWebsite" name="organizationWebsite" />
+                    {feedBackInvalid(this.props.errors,this.props.touched,"organizationWebsite")}
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="businessNumber">Business Number<span
@@ -163,18 +163,18 @@ class FormStep1 extends Component {
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label className="col-form-label control-label" htmlFor="email">Email Address<span
+                        <label className="col-form-label control-label" htmlFor="contactEmail">Email Address<span
                             style={{ color: "red" }}>*</span></label>
-                        <small className="text-muted" id="email">  someone@example.com</small>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"email")}`} id="email" name="email" />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"email")}
+                        <small className="text-muted" id="contactEmail">  someone@example.com</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactEmail")}`} id="contactEmail" name="contactEmail" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"contactEmail")}
                     </div>
                     <div className="form-group col-md-6">
-                        <label className="col-form-label control-label" htmlFor="phone">Phone Number<span
+                        <label className="col-form-label control-label" htmlFor="contactPhone">Phone Number<span
                             style={{ color: "red" }}>*</span></label>
-                        <small className="text-muted" id="phone">  250-555-5555</small>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"phone")}`} id="phone" name="phone" />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"phone")}
+                        <small className="text-muted" id="contactPhone">  250-555-5555</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactPhone")}`} id="contactPhone" name="contactPhone" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"contactPhone")}
                     </div>
                 </div>
                 <div className="form-group">
@@ -235,31 +235,31 @@ class FormStep1 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="address1">Address 1 <span
+                    <label className="col-form-label control-label" htmlFor="contactAddress1">Address 1 <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="address1">  Street address, P.O. box, company name, c/o</small>
-                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"address1")}`} id="address1" name="address1" />
-                    {feedBackInvalid(this.props.errors,this.props.touched,"address1")}
+                    <small className="text-muted" id="contactAddress1">  Street address, P.O. box, company name, c/o</small>
+                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactAddress1")}`} id="contactAddress1" name="contactAddress1" />
+                    {feedBackInvalid(this.props.errors,this.props.touched,"contactAddress1")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="address2">Address 2</label>
-                    <small className="text-muted" id="address2">  Apartment, suite, unit, building, floor, etc.</small>
-                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"address2")}`} id="address2" name="address2" />
-                    {feedBackInvalid(this.props.errors,this.props.touched,"address2")}
+                    <label className="col-form-label control-label" htmlFor="contactAddress2">Address 2</label>
+                    <small className="text-muted" id="contactAddress2">  Apartment, suite, unit, building, floor, etc.</small>
+                    <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactAddress2")}`} id="contactAddress2" name="contactAddress2" />
+                    {feedBackInvalid(this.props.errors,this.props.touched,"contactAddress2")}
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label className="col-form-label control-label" htmlFor="city">City <span
+                        <label className="col-form-label control-label" htmlFor="contactCity">City <span
                             style={{ color: "red" }}>*</span></label>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"city")}`} id="city" name="city" />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"city")}
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactCity")}`} id="contactCity" name="contactCity" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"contactCity")}
                     </div>
                     <div className="form-group col-md-6">
-                        <label className="col-form-label control-label" htmlFor="postal">Postal Code <span
+                        <label className="col-form-label control-label" htmlFor="contactPostal">Postal Code <span
                             style={{ color: "red" }}>*  </span></label>
-                        <small className="text-muted" id="postal">  V0R2V5</small>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"postal")}`} id="postal" name="postal" />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"postal")}
+                        <small className="text-muted" id="contactPostal">  V0R2V5</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"contactPostal")}`} id="contactPostal" name="contactPostal" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"contactPostal")}
                     </div>
                 </div>
                 {this.mailingAddressForm}

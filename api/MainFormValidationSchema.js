@@ -1,8 +1,10 @@
-import * as yup from 'yup'
-import "yup-phone"
+//import * as yup from 'yup'
+//import "yup-phone"
+var yup=require('yup')
+require('yup-phone')
 
-
-export const MainFormValidationSchema = yup.object().shape({
+//export
+var MainFormValidationSchema = yup.object().shape({
     operatingName: yup.string()
         .required('Please enter the Organization Name'),
     legalName: yup.string()
@@ -106,10 +108,9 @@ export const MainFormValidationSchema = yup.object().shape({
             then: yup.string().required("Please enter city")
         }),    
     mailingPostal: yup.string()
-        .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code")
         .when("otherMailingAddress", {
             is: true,
-            then: yup.string().required("Please enter a postal code.")
+            then: yup.string().matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code").required("Please enter a postal code.")
         }),   
     numberOfApplicants: yup.mixed()
         .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
@@ -199,3 +200,5 @@ export const MainFormValidationSchema = yup.object().shape({
     organizationConsent: yup.boolean()
         .oneOf([true],"Required"),
 })
+
+module.exports = MainFormValidationSchema

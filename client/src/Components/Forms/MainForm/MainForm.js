@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import '../../../utils/polyfills'
-import {nanoid} from 'nanoid'
-
+import {customAlphabet} from 'nanoid'
 
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
@@ -14,17 +13,32 @@ import {MainFormValidationSchema} from './MainFormValidationSchema'
 class MainForm extends Component {
     constructor(){
         super()
+        const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz',10)
         this.state={
             currentStep: 1,
-            _id: nanoid(10)
+            _csrf: '',
+            _id: nanoid()
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
-        this.props.history.push('/thankyou')
+    componentDidMount(){
+        fetch("/api/form",{
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result.csrfToken)
+                    this.setState({
+                        _csrf: result.csrfToken
+                    })
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
     }
 
     _next() {
@@ -81,12 +95,13 @@ class MainForm extends Component {
                         <ProgressTracker currentStep={this.state.currentStep}/>
                         <Formik
                             initialValues= {{
+                                            _csrf: this.state._csrf,
                                             _id: this.state._id,
                                             //step 1
                                             operatingName: '',
                                             legalName: '',
                                             missionStatement: '',
-                                            website: '',
+                                            organizationWebsite: '',
                                             businessNumber: '',
                                             confirmOrganizationNonProfit: '',
                                             nonProfitClassification: '',
@@ -96,37 +111,36 @@ class MainForm extends Component {
                                             positionTitle: '',
                                             firstName: '',
                                             lastName: '',
-                                            email: '',
-                                            phone: '',
+                                            contactEmail: '',
+                                            contactPhone: '',
                                             positionTitleAlternate: '',
                                             firstNameAlternate: '',
                                             lastNameAlternate: '',
                                             emailAlternate: '',
                                             phoneAlternate: '',
                                             otherMailingAddress: false,
-                                            address1: '',
-                                            address2: '',
-                                            city: '',
-                                            postal: '',
+                                            contactAddress1: '',
+                                            contactAddress2: '',
+                                            contactCity: '',
+                                            contactPostal: '',
                                             mailingAddress1: '',
                                             mailingAddress2: '',
                                             mailingCity: '',
                                             mailingPostal: '',
                                             //step 2
-                                            applicants: '',
+                                            numberOfApplicants: '',
                                             insuranceCoverage: false,
                                             monitorCommit: false,
                                             applicantType: false,
-                                            eligibleToWork: false,
                                             placementLength: false,
                                             participantActivities: '',
-                                            experiences: [],
+                                            participantExperiences: [],
                                             otherExperience: '',
-                                            skills: [],
+                                            participantSkills: [],
                                             otherSkill: '',
                                             additionalBenefits: '',
                                             //step 3
-                                            stipend: '',
+                                            participantStipend: '',
                                             existingSupplierNumber: '',
                                             supplierNumber: '',
                                             businessClassification: '',
@@ -134,17 +148,43 @@ class MainForm extends Component {
                                             signatory1: '',
                                             signatory2: '',
                                             signingAuthorityConfirm: false,
-                                            consent: false,
+                                            organizationConsent: false,
                             }}
+                            enableReinitialize={true}
                             validationSchema={MainFormValidationSchema}
-                            onSubmit={(values, actions) => {
-                                actions.setSubmitting(false);
-                                this.props.history.push('/thankyou')
+                            onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
+                                
+                                fetch("/api/form", {
+                                    method: "POST",
+                                    credentials: 'include',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type' : 'application/json',
+                                    },
+                                    body: JSON.stringify(values),
+                                })
+                                
+                                .then(res => res.json())
+                                .then(
+                                    (resp) => {
+                                        console.log(resp)
+                                        if (resp.err){
+                                            console.log("errors")
+                                            setErrors(resp.err)
+                                        } else if (resp.ok){
+                                            setSubmitting(false)
+                                            this.props.history.push('/thankyou',values)
+                                        }
+                                    }
+                                )
+                                
+                                
                             }}
                         
                         >
                             {props => (
                                 <Form>
+                                    {console.log(props)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...props}
