@@ -24,7 +24,7 @@ class MainForm extends Component {
     }
 
     componentDidMount(){
-        fetch("http://localhost:8000/form",{
+        fetch("/api/form",{
             credentials: "include"
         })
             .then(res => res.json())
@@ -154,7 +154,7 @@ class MainForm extends Component {
                             validationSchema={MainFormValidationSchema}
                             onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
                                 
-                                fetch("http://localhost:8000/form", {
+                                fetch("/api/form", {
                                     method: "POST",
                                     credentials: 'include',
                                     headers: {

@@ -7,8 +7,10 @@ var csrf = require('csurf')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 
+var origin = process.env.ORIGIN_URL || process.env.OPENSHIFT_NODEJS_ORIGIN_URL || "http://localhost:3000"
+
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: origin,
     credentials: true,
     optionsSuccessStatus: 200,
 };
@@ -26,6 +28,6 @@ app.use(cookieParser());
 app.use(helmet());
 
 
-app.use('/form', formRouter)
+app.use('/api/form', formRouter)
 
 module.exports = app;
