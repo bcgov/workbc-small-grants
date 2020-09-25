@@ -70,11 +70,11 @@ export const MainFormValidationSchema = yup.object().shape({
         .phone("CA", false, "Please enter a valid number.")
         .required("Please enter phone."),
     positionTitleAlternate: yup.string()
-        .required("Please enter title"),
+        .required("Please enter secondary contact title"),
     firstNameAlternate: yup.string()
-        .required(),
+        .required("Please enter the secondary contact first name."),
     lastNameAlternate: yup.string()
-        .required(),
+        .required("Please enter the secondary contact last name."),
     emailAlternate: yup.string().email("Please enter a valid email")
         .required("Please enter email"),
     phoneAlternate: yup.string()
