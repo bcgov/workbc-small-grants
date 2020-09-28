@@ -1,12 +1,84 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { useParams, withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import '../../../utils/polyfills'
 import ClientConsent from './ClientConsent'
 import { ClientFormValidationSchema } from './ClientFormValidationSchema'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
+import {FORM_URL} from '../../../constants/form'
 
 class ClientForm extends Component {
+    constructor() {
+        super()
+        this.state={
+            _csrf: ''
+        }
+    }
+    componentDidMount() {
+        fetch(FORM_URL.clientForm,{
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result.csrfToken)
+                    this.setState({
+                        _csrf: result.csrfToken
+                    })
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }     
+
+
+    handleApplicationId(id, hasId, errors, touched) {
+        if (id === 'none' || id.length != 10) {
+            //show non id handler
+            return (
+                <div>
+                    <p>Please follow the link provided to you via email, or provide the organization ID below. Alternatively, check the box below and provide the organization name.</p>
+                    <div className="form-group">
+                        <div className="form-check">
+                            <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "noOrgId")}`} id="noOrgId"
+                                name="noOrgId" />
+                            <label className="form-check-label" htmlFor="noOrgId">I don't have an organization ID.</label>
+                        </div>
+                    </div>
+                    {hasId ?
+                        (
+                            <div className="form-group">
+                                <label className="col-form-label control-label" htmlFor="organizationNameM">Organization Name <span
+                                    style={{ color: "red" }}>*</span></label>
+                                <small className="text-muted" id="clientAddress1"> Please provide the full organization name.</small>
+                                <Field className={`form-control ${feedBackClassName(errors, touched, "organizationNameM")}`} id="organizationNameM" name="organizationNameM" />
+                                {feedBackInvalid(errors, touched, "organizationNameM")}
+                            </div>
+                        )
+                        :
+                        (
+                            <div className="form-group">
+                                <label className="col-form-label control-label" htmlFor="applicationIdM">Organization ID <span
+                                    style={{ color: "red" }}>*</span></label>
+                                <small className="text-muted" id="clientAddress1"> Please provide the 10 character ID.</small>
+                                <Field className={`form-control ${feedBackClassName(errors, touched, "applicationIdM")}`} id="applicationIdM" name="applicationIdM" />
+                                {feedBackInvalid(errors, touched, "applicationIdM")}
+                            </div>
+                        )
+                    }
+
+
+                </div>
+            )
+        } else {
+            //display the id
+            return (
+                <p>Organization ID: {id}</p>
+            )
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -15,7 +87,11 @@ class ClientForm extends Component {
 
                         <Formik
                             initialValues={{
-                                applicationId: '',
+                                _csrf: this.state._csrf,
+                                applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : 'none',
+                                applicationIdM: '',
+                                organizationNameM: '',
+                                noOrgId: false,
                                 clientName: '',
                                 clientLastName: '',
                                 clientSIN: '',
@@ -24,18 +100,45 @@ class ClientForm extends Component {
                                 clientAddress2: '',
                                 clientConsent: false,
                             }}
+                            enableReinitialize={true}
                             validationSchema={ClientFormValidationSchema}
-                            onSubmit={(values, actions) => {
-                                //actions.setSubmitting(false);
-                                this.props.history.push('/thankyou')
+                            onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
+                                
+                                fetch(FORM_URL.clientForm, {
+                                    method: "POST",
+                                    credentials: 'include',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type' : 'application/json',
+                                    },
+                                    body: JSON.stringify(values),
+                                })
+                                
+                                .then(res => res.json())
+                                .then(
+                                    (resp) => {
+                                        console.log(resp)
+                                        if (resp.err){
+                                            console.log("errors")
+                                            setErrors(resp.err)
+                                        } else if (resp.ok){
+                                            setSubmitting(false)
+                                            this.props.history.push('/thankYouCl',values)
+                                        }
+                                    }
+                                )
+                                
+                                
                             }}
                         >
-                            {({errors, touched}) => (
+                            {({ values, errors, touched }) => (
                                 <Form>
-                                    
+                                    {console.log(this)}
+                                    {console.log(values)}
                                     <div className="form-group">
                                         <br /><h2 id="forms">Client Information</h2>
                                     </div>
+                                    {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label className="col-form-label control-label" htmlFor="clientName">First Name <span

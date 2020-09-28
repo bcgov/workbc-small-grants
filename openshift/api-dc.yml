@@ -59,6 +59,14 @@ objects:
             value: ${OPENSHIFT_NODEJS_LISTEMAIL}
           - name: OPENSHIFT_NODEJS_NOTIFYEMAIL
             value: ${OPENSHIFT_NODEJS_NOTIFYEMAIL}
+          - name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL
+            value: ${OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL}
+          - name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC
+            value: ${OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC}
+          - name: OPENSHIFT_NODEJS_CLIENT_LISTEMAIL
+            value: ${OPENSHIFT_NODEJS_CLIENT_LISTEMAIL}
+          - name: OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL
+            value: ${OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL}
     test: false
     triggers:
     - type: ConfigChange
@@ -127,5 +135,25 @@ parameters:
 - description: The origin URL
   displayName: Workbc-small-grants api
   name: OPENSHIFT_NODEJS_ORIGIN_URL
+  required: false
+  value: ''
+- description: Email to send client confirmation
+  displayName: Notify email
+  name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL
+  required: false
+  value: ''
+- description: BCC email to send client confirmation emails
+  displayName: Notify email
+  name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC
+  required: false
+  value: ''
+- description: List client email to send notification emails
+  displayName: Notify email
+  name: OPENSHIFT_NODEJS_CLIENT_LISTEMAIL
+  required: false
+  value: ''
+- description: Notify client email to send notification emails
+  displayName: Notify email
+  name: OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL
   required: false
   value: ''

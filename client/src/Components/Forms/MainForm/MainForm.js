@@ -3,12 +3,12 @@ import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import '../../../utils/polyfills'
 import {customAlphabet} from 'nanoid'
-
 import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
 import ProgressTracker from './ProgressTracker'
 import {MainFormValidationSchema} from './MainFormValidationSchema'
+import {FORM_URL} from '../../../constants/form'
 
 class MainForm extends Component {
     constructor(){
@@ -24,7 +24,7 @@ class MainForm extends Component {
     }
 
     componentDidMount(){
-        fetch("/api/form",{
+        fetch(FORM_URL.mainForm,{
             credentials: "include"
         })
             .then(res => res.json())
@@ -154,7 +154,7 @@ class MainForm extends Component {
                             validationSchema={MainFormValidationSchema}
                             onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
                                 
-                                fetch("/api/form", {
+                                fetch(FORM_URL.mainForm, {
                                     method: "POST",
                                     credentials: 'include',
                                     headers: {
@@ -173,7 +173,7 @@ class MainForm extends Component {
                                             setErrors(resp.err)
                                         } else if (resp.ok){
                                             setSubmitting(false)
-                                            this.props.history.push('/thankyou',values)
+                                            this.props.history.push('/thankYouOrg',values)
                                         }
                                     }
                                 )
@@ -184,7 +184,6 @@ class MainForm extends Component {
                         >
                             {props => (
                                 <Form>
-                                    {console.log(props)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...props}

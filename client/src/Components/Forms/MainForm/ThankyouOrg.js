@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { BsCheckCircle } from "react-icons/bs"
 import { IconContext } from 'react-icons'
 
-class Thankyou extends Component {
+class ThankyouOrg extends Component {
     render() {
         return (
             <div className="container">
@@ -38,4 +38,4 @@ class Thankyou extends Component {
     }
 }
 
-export default Thankyou
+export default ThankyouOrg

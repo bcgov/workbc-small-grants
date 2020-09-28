@@ -8,9 +8,10 @@ var nodemailer = require("nodemailer");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
-var MainFormValidationSchema = require('../MainFormValidationSchema.js')
+var MainFormValidationSchema = require('../schemas/MainFormValidationSchema')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
+var clean = require('../utils/clean')
 
 var confirmationEmail1 = process.env.CONFIRMATIONONE || process.env.OPENSHIFT_NODEJS_CONFIRMATIONONE || "";
 var confirmationEmail2 = process.env.CONFIRMATIONTWO || process.env.OPENSHIFT_NODEJS_CONFIRMATIONTWO || "";
@@ -98,16 +99,6 @@ function notifyApplicationReceived(values){
     });
   } catch (error) {
     console.log(error)
-  }
-}
-
-function clean(obj) {
-  var propNames = Object.getOwnPropertyNames(obj);
-  for (var i = 0; i < propNames.length; i++) {
-    var propName = propNames[i];
-    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
-      delete obj[propName];
-    }
   }
 }
 

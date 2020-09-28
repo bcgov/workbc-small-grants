@@ -1,5 +1,4 @@
-import * as yup from 'yup'
-import 'core-js/stable';
+var yup=require('yup')
 
 /**
  * Validate a Canadian Social Insurance Number (SIN)
@@ -44,7 +43,7 @@ function validateSIN (sin) {
   }
 
 
-export const ClientFormValidationSchema = yup.object().shape({
+var ClientFormValidationSchema = yup.object().shape({
     applicationId: yup.string(),
     applicationIdM: yup.string()
         .when('applicationId', {
@@ -80,3 +79,5 @@ export const ClientFormValidationSchema = yup.object().shape({
     clientConsent: yup.boolean()
         .oneOf([true],"You must agree before submitting.")
 })
+
+module.exports = ClientFormValidationSchema

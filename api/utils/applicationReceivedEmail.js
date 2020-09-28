@@ -29,7 +29,7 @@ module.exports = {
         <p><b>phoneAlternate:</b>  ${values.phoneAlternate}</p>
         <p><b>otherMailingAddress:</b>  ${values.otherMailingAddress}</p>
         <p><b>contactAddress1:</b>  ${values.contactAddress1}</p>
-        <p><b>contactAddress2:</b>  ${values.contactAddress2}</p>
+        <p><b>contactAddress2:</b>  ${strings.orEmpty(values.contactAddress2)}</p>
         <p><b>contactCity:</b>  ${values.contactCity}</p>
         <p><b>contactPostal:</b>  ${values.contactPostal}</p>
         <p><b>mailingAddress1:</b>  ${strings.orEmpty(values.mailingAddress1)}</p>
@@ -88,7 +88,7 @@ module.exports = {
             phoneAlternate ${values.phoneAlternate}
             otherMailingAddress ${values.otherMailingAddress}
             contactAddress1 ${values.contactAddress1}
-            contactAddress2 ${values.contactAddress2}
+            contactAddress2 ${strings.orEmpty(values.contactAddress2)}
             contactCity ${values.contactCity}
             contactPostal ${values.contactPostal}
             mailingAddress1 ${strings.orEmpty(values.mailingAddress1)}
@@ -117,6 +117,41 @@ module.exports = {
             organizationConsent ${values.organizationConsent}        
         `
         return html;
+    },
+
+    generateClientNotification: function (values){
+        var html = /*html*/`
+            <p><b>applicationId</b> ${strings.orEmpty(values.applicationId)}</p>
+            <p><b>applicationIdM</b> ${strings.orEmpty(values.applicationIdM)}</p>
+            <p><b>organizationNameM</b> ${strings.orEmpty(values.applicationNameM)}</p>
+            <p><b>noOrgId</b>: ${values.noOrgId}</p>
+            <p><b>clientName</b>: ${values.clientName}</p>
+            <p><b>clientLastName</b> ${values.clientLastName}</p>
+            <p><b>clientSIN</b> ${values.clientSIN}</p>
+            <p><b>clientEmail</b> ${values.clientEmail}</p>
+            <p><b>clientAddress1</b> ${values.clientAddress1}</p>
+            <p><b>clientAddress2</b> ${values.clientAddress2}</p>
+            <p><b>clientConsent</b> ${values.clientConsent}</p>
+        `
+
+        return html       
+    },
+
+    generateClientListNotification: function(values){
+        var html = `
+            applicationId ${strings.orEmpty(values.applicationId)}
+            applicationIdM ${strings.orEmpty(values.applicationIdM)}
+            organizationNameM ${strings.orEmpty(values.applicationNameM)}
+            noOrgId: ${values.noOrgId}
+            clientName: ${values.clientName}
+            clientLastName ${values.clientLastName}
+            clientSIN ${values.clientSIN}
+            clientEmail ${values.clientEmail}
+            clientAddress1 ${values.clientAddress1}
+            clientAddress2 ${values.clientAddress2}
+            clientConsent ${values.clientConsent}
+        `
+        return html
     }
 
 }

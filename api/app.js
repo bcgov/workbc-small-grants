@@ -16,6 +16,7 @@ const corsOptions = {
 };
 
 var formRouter = require('./routes/form')
+var clientFormRouter = require('./routes/clientForm')
 
 var app = express();
 
@@ -29,5 +30,6 @@ app.use(helmet());
 
 
 app.use('/api/form', formRouter)
+app.use('/api/clientForm',clientFormRouter)
 
 module.exports = app;
