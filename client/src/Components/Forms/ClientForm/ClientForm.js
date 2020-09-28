@@ -131,7 +131,7 @@ class ClientForm extends Component {
                                 
                             }}
                         >
-                            {({ values, errors, touched }) => (
+                            {({ values, errors, touched, isSubmitting}) => (
                                 <Form>
                                     {console.log(this)}
                                     {console.log(values)}
@@ -193,7 +193,12 @@ class ClientForm extends Component {
                                             {feedBackInvalid(errors, touched, "clientConsent")}
                                         </div>
                                     </div>
-                                    <button className="btn btn-success btn-block" type="submit" style={{ marginBottom: "2rem" }}>Submit</button>
+                                    <button 
+                                        className="btn btn-success btn-block" 
+                                        type="submit" 
+                                        style={{ marginBottom: "2rem" }}
+                                        disabled={isSubmitting}
+                                    >Submit</button>
                                 </Form>
                             )}
 

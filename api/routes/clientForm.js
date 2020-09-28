@@ -34,7 +34,7 @@ function sendConfirmationEmail(applicationId) {
             to: clientConfirmationEmail,// list of receivers
             bcc: clientConfirmationBCC,
             subject: "Application Confirmation - " + applicationId, // Subject line
-            html: generateHTMLEmail("Thank you, your application has been received") // html body
+            html: generateHTMLEmail("Thank you, your application has been received",applicationId) // html body
         };
         let info = transporter.sendMail(message, (error, info) => {
             if (error) {
@@ -64,13 +64,13 @@ function notifyApplicationReceived(values){
         from: 'WEOG <donotreply@gov.bc.ca>', // sender address
         to: clientListEmail,// list of receivers
         subject: "A grant application has been received - " + values._id, // Subject line
-        html: notification.generateListNotification(values) // html body
+        html: notification.generateClientListNotification(values) // html body
       };
       let message2 = {
         from: 'WEOG <donotreply@gov.bc.ca>', // sender address
         to: clientNotifyEmail,// list of receivers
         subject: "A grant application has been received - " + values._id, // Subject line
-        html: notification.generateNotification(values) // html body
+        html: notification.generateClientNotification(values) // html body
       };
       let info = transporter.sendMail(message, (error, info) => {
         if (error) {
