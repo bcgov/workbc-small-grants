@@ -33,6 +33,5 @@ var ClientFormValidationSchema = yup.object().shape({
     clientConsent: yup.boolean()
         .oneOf([true],"You must agree before submitting.")
 })
-})
 
 module.exports = ClientFormValidationSchema
