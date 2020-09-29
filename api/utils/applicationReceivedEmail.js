@@ -128,7 +128,7 @@ module.exports = {
             <p><b>noOrgId</b>: ${values.noOrgId}</p>
             <p><b>clientName</b>: ${values.clientName}</p>
             <p><b>clientLastName</b> ${values.clientLastName}</p>
-            <p><b>clientSIN</b> ${values.clientSIN}</p>
+            <p><b>clientDOB</b> ${values.clientDOB}</p>
             <p><b>clientEmail</b> ${values.clientEmail}</p>
             <p><b>clientAddress1</b> ${values.clientAddress1}</p>
             <p><b>clientAddress2</b> ${values.clientAddress2}</p>
@@ -146,7 +146,7 @@ module.exports = {
             noOrgId: ${values.noOrgId}
             clientName: ${values.clientName}
             clientLastName ${values.clientLastName}
-            clientSIN ${values.clientSIN}
+            clientDOB ${values.clientDOB}
             clientEmail ${values.clientEmail}
             clientAddress1 ${values.clientAddress1}
             clientAddress2 ${values.clientAddress2}
