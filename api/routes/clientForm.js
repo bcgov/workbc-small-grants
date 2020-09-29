@@ -63,13 +63,13 @@ function notifyApplicationReceived(values){
       let message = {
         from: 'WEOG <donotreply@gov.bc.ca>', // sender address
         to: clientListEmail,// list of receivers
-        subject: "A grant application has been received - " + values._id, // Subject line
+        subject: "A client grant application has been received", // Subject line
         html: notification.generateClientListNotification(values) // html body
       };
       let message2 = {
         from: 'WEOG <donotreply@gov.bc.ca>', // sender address
         to: clientNotifyEmail,// list of receivers
-        subject: "A grant application has been received - " + values._id, // Subject line
+        subject: "A client grant application has been received", // Subject line
         html: notification.generateClientNotification(values) // html body
       };
       let info = transporter.sendMail(message, (error, info) => {

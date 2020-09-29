@@ -121,6 +121,7 @@ module.exports = {
 
     generateClientNotification: function (values){
         var html = /*html*/`
+            <h2>A client grant application has been received</h2>
             <p><b>applicationId</b> ${strings.orEmpty(values.applicationId)}</p>
             <p><b>applicationIdM</b> ${strings.orEmpty(values.applicationIdM)}</p>
             <p><b>organizationNameM</b> ${strings.orEmpty(values.applicationNameM)}</p>
