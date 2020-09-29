@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
-import { useParams, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import '../../../utils/polyfills'
 import ClientConsent from './ClientConsent'
 import { ClientFormValidationSchema } from './ClientFormValidationSchema'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
+import {generateAlert} from '../Shared/Alert'
+import {DatePickerField} from '../Shared/DatePickerField'
 import {FORM_URL} from '../../../constants/form'
 
 class ClientForm extends Component {
     constructor() {
         super()
         this.state={
-            _csrf: ''
+            _csrf: '',
+            hasError: false,
         }
     }
     componentDidMount() {
@@ -23,18 +26,21 @@ class ClientForm extends Component {
                 (result) => {
                     console.log(result.csrfToken)
                     this.setState({
-                        _csrf: result.csrfToken
+                        _csrf: result.csrfToken,
                     })
                 },
                 (error) => {
                     console.log(error)
+                    this.setState({
+                        hasError: true
+                    })
                 }
             )
     }     
 
 
     handleApplicationId(id, hasId, errors, touched) {
-        if (id === 'none' || id.length != 10) {
+        if (id === 'none' || id.length !== 10) {
             //show non id handler
             return (
                 <div>
@@ -94,7 +100,7 @@ class ClientForm extends Component {
                                 noOrgId: false,
                                 clientName: '',
                                 clientLastName: '',
-                                clientSIN: '',
+                                clientDOB: '',
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
@@ -135,8 +141,11 @@ class ClientForm extends Component {
                                 <Form>
                                     {console.log(this)}
                                     {console.log(values)}
+                                    {this.state.hasError && (
+                                        generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
+                                    )}
                                     <div className="form-group">
-                                        <br /><h2 id="forms">Client Information</h2>
+                                        <h2 id="forms">Client Information</h2>
                                     </div>
                                     {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
@@ -155,10 +164,13 @@ class ClientForm extends Component {
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
-                                            <label className="col-form-label control-label" htmlFor="clientSIN">SIN <span
+                                            <label className="col-form-label control-label" htmlFor="clientDOB">Date of birth <span
                                                 style={{ color: "red" }}>*</span></label>
-                                            <Field className={`form-control ${feedBackClassName(errors, touched, "clientSIN")}`} id="clientSIN" name="clientSIN" />
-                                            {feedBackInvalid(errors, touched, "clientSIN")}
+                                            <DatePickerField 
+                                                name="clientDOB" 
+                                                className={`form-control ${feedBackClassName(errors, touched, "clientDOB")}`}
+                                            />
+                                            {feedBackInvalid(errors, touched, "clientDOB")}
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label className="col-form-label control-label" htmlFor="clientEmail">Email <span
@@ -197,7 +209,7 @@ class ClientForm extends Component {
                                         className="btn btn-success btn-block" 
                                         type="submit" 
                                         style={{ marginBottom: "2rem" }}
-                                        disabled={isSubmitting}
+                                        disabled={isSubmitting || this.state.hasError}
                                     >Submit</button>
                                 </Form>
                             )}

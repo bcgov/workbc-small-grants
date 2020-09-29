@@ -83,7 +83,7 @@ class FormStep3 extends Component {
         //Else return step 3
         return (
             <div>
-                {/*this.generateParticipantsInfo()*/}
+                {console.log(this.props)}
                 <div className="form-group">
                     <h2 id="forms">Financial Information</h2>
                 </div>
@@ -179,7 +179,7 @@ class FormStep3 extends Component {
                     className="btn btn-success btn-block"
                     type="submit"
                     style={{ marginBottom: "2rem" }}
-                    disabled={this.props.isSubmitting}
+                    disabled={this.props.isSubmitting || this.props.hasError}
                 >Submit</button>
             </div>
 

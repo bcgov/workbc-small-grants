@@ -8,6 +8,7 @@ import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
 import ProgressTracker from './ProgressTracker'
 import {MainFormValidationSchema} from './MainFormValidationSchema'
+import {generateAlert} from '../Shared/Alert'
 import {FORM_URL} from '../../../constants/form'
 
 class MainForm extends Component {
@@ -17,7 +18,8 @@ class MainForm extends Component {
         this.state={
             currentStep: 1,
             _csrf: '',
-            _id: nanoid()
+            _id: nanoid(),
+            hasError: false,
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
@@ -37,6 +39,9 @@ class MainForm extends Component {
                 },
                 (error) => {
                     console.log(error)
+                    this.setState({
+                        hasError: true
+                    })
                 }
             )
     }
@@ -93,6 +98,9 @@ class MainForm extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <ProgressTracker currentStep={this.state.currentStep}/>
+                        {this.state.hasError && (
+                            generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
+                        )}
                         <Formik
                             initialValues= {{
                                             _csrf: this.state._csrf,
@@ -194,6 +202,7 @@ class MainForm extends Component {
                                     />
                                     <FormStep3
                                         currentStep={this.state.currentStep}
+                                        hasError={this.state.hasError}
                                         {...props}
                                     />
                                     {this.previousButton}
