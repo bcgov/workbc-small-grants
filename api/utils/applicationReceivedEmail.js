@@ -124,7 +124,7 @@ module.exports = {
             <h2>A client grant application has been received</h2>
             <p><b>applicationId</b> ${strings.orEmpty(values.applicationId)}</p>
             <p><b>applicationIdM</b> ${strings.orEmpty(values.applicationIdM)}</p>
-            <p><b>organizationNameM</b> ${strings.orEmpty(values.applicationNameM)}</p>
+            <p><b>organizationNameM</b> ${strings.orEmpty(values.organizationNameM)}</p>
             <p><b>noOrgId</b>: ${values.noOrgId}</p>
             <p><b>clientName</b>: ${values.clientName}</p>
             <p><b>clientLastName</b> ${values.clientLastName}</p>
@@ -142,14 +142,14 @@ module.exports = {
         var html = `
             applicationId ${strings.orEmpty(values.applicationId)}
             applicationIdM ${strings.orEmpty(values.applicationIdM)}
-            organizationNameM ${strings.orEmpty(values.applicationNameM)}
+            organizationNameM ${strings.orEmpty(values.organizationNameM)}
             noOrgId: ${values.noOrgId}
             clientName: ${values.clientName}
             clientLastName ${values.clientLastName}
             clientDOB ${values.clientDOB}
             clientEmail ${values.clientEmail}
             clientAddress1 ${values.clientAddress1}
-            clientAddress2 ${values.clientAddress2}
+            clientAddress2 ${strings.orEmpty(values.clientAddress2)}
             clientConsent ${values.clientConsent}
         `
         return html

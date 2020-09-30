@@ -4,8 +4,8 @@ var ClientFormValidationSchema = yup.object().shape({
     applicationId: yup.string(),
     applicationIdM: yup.string()
         .when('applicationId', {
-            is: "none",
-            then: yup.string().required("Please enter the organization ID.").min(10).max(10),
+            is: (val) => val === "",
+            then: yup.string().required("Please enter the application ID.").min(10).max(10),
             otherwise: yup.string().min(0)
         }),
     noOrgId: yup.boolean(),

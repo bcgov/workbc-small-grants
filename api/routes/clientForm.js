@@ -18,7 +18,7 @@ var clientConfirmationBCC = process.env.CLIENT_CONFIRMATION_BCC || process.env.O
 var clientListEmail = process.env.CLIENT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL || "";
 var clientNotifyEmail = process.env.CLIENT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL || "";
 
-function sendConfirmationEmail(applicationId) {
+function sendConfirmationEmail(values) {
     try {
         let transporter = nodemailer.createTransport({
             host: "apps.smtp.gov.bc.ca",
@@ -33,8 +33,8 @@ function sendConfirmationEmail(applicationId) {
             from: 'WEOG <donotreply@gov.bc.ca>', // sender address
             to: clientConfirmationEmail,// list of receivers
             bcc: clientConfirmationBCC,
-            subject: "Application Confirmation - " + applicationId, // Subject line
-            html: generateHTMLEmail("Thank you, your application has been received",applicationId) // html body
+            subject: "Application Confirmation - ", // Subject line
+            html: generateHTMLEmail("Thank you, your application has been received",["Thank you your application has been received"],[],[]) // html body
         };
         let info = transporter.sendMail(message, (error, info) => {
             if (error) {
@@ -107,8 +107,17 @@ router.post('/', csrfProtection, (req, res) => {
     //clean the body
     clean(req.body);
     console.log(req.body)
-    ClientFormValidationSchema.validate(req.body, { abortEarly: false }).catch(function (errors) {
-        console.log(errors);
+    ClientFormValidationSchema.validate(req.body, { abortEarly: false })
+    .then(function(values){
+      console.log(values);
+      sendConfirmationEmail(values);
+      notifyApplicationReceived(values);
+      res.send({
+        ok: "ok"
+      })
+      return
+    })    
+    .catch(function (errors) {
         var err = {}
         errors.inner.forEach(e => {
             err[e.path] = e.message
@@ -118,15 +127,6 @@ router.post('/', csrfProtection, (req, res) => {
         })
         return
     })
-    sendConfirmationEmail(req.body.applicationId)
-    notifyApplicationReceived(req.body)
-    res.send({
-        ok: "ok"
-    })
-    //console.log(generateHTMLEmail("Application Submitted"));
-    /*
-  
-    */
 })
 
 

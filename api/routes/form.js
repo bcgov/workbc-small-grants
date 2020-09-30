@@ -18,6 +18,7 @@ var confirmationEmail2 = process.env.CONFIRMATIONTWO || process.env.OPENSHIFT_NO
 var confirmationBCC = process.env.CONFIRMATIONBCC || process.env.OPENSHIFT_NODEJS_CONFIRMATIONBCC || "";
 var listEmail = process.env.LISTEMAIL || process.env.OPENSHIFT_NODEJS_LISTEMAIL || "";
 var notifyEmail = process.env.NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_NOTIFYEMAIL || "";
+var clientURL = process.env.CLIENTURL || process.env.OPENSHIFT_NODEJS_CLIENTURL || "https://workbc-grants-dev.pathfinder.gov.bc.ca/clientForm"
 
 
 function sendConfirmationEmail(applicationId) {
@@ -31,7 +32,7 @@ function sendConfirmationEmail(applicationId) {
       } // true for 465, false for other ports
     });
     var mailingList;
-    if (confirmationEmail1 !== "" && confirmationEmail2 !== ""){
+    if (confirmationEmail1 !== "" && confirmationEmail2 !== "") {
       mailingList = [confirmationEmail1, confirmationEmail2]
     } else {
       //TODO
@@ -43,7 +44,31 @@ function sendConfirmationEmail(applicationId) {
       to: mailingList,// list of receivers
       bcc: confirmationBCC,
       subject: "Application Confirmation - " + applicationId, // Subject line
-      html: generateHTMLEmail("Thank you, your application has been received",applicationId) // html body
+      /*
+        [
+          `Application ID: ${applicationId}`,
+          `Please visit the following URL in order to provide your consent to the Ministry.`,
+          `<a href="${clientURL}/${applicationId}">${clientURL}/${applicationId}</a>`,
+          `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
+        ],
+      */
+      html: generateHTMLEmail("Thank you, your application has been received", 
+        [
+          `<b>Application ID: ${applicationId}</b>`,
+          `Your application has been successfully received. You can print this page for your records. A confirmation email has also been sent to the two contacts provided on the form.`,
+          `<b>Next Steps:</b>`,
+          `Please provide your participants the following instructions:`,
+        ],
+        [
+          `Application ID: ${applicationId}`,
+          `Please visit the following URL in order to provide your consent to the Ministry.`,
+          `<a href="${clientURL}/${applicationId}">${clientURL}/${applicationId}</a>`,
+          `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
+        ],
+        [
+          `Note: you must get all your participants to complete the step above within the next 3 weeks.`
+        ]
+        ) // html body
     };
     let info = transporter.sendMail(message, (error, info) => {
       if (error) {
@@ -58,7 +83,7 @@ function sendConfirmationEmail(applicationId) {
   }
 }
 
-function notifyApplicationReceived(values){
+function notifyApplicationReceived(values) {
   try {
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
@@ -115,22 +140,25 @@ router.post('/', csrfProtection, (req, res) => {
   //clean the body
   clean(req.body);
   console.log(req.body)
-  MainFormValidationSchema.validate(req.body, { abortEarly: false }).catch(function (errors) {
-    console.log(errors);
-    var err = {}
-    errors.inner.forEach(e => {
-      err[e.path] = e.message
+  MainFormValidationSchema.validate(req.body, { abortEarly: false })
+    .then(function (value) {
+      sendConfirmationEmail(req.body._id)
+      //notifyApplicationReceived(req.body)
+      res.send({
+        ok: "ok"
+      })
     })
-    res.send({
-      err
+    .catch(function (errors) {
+      var err = {}
+      errors.inner.forEach(e => {
+        err[e.path] = e.message
+      })
+      res.send({
+        err
+      })
+      return
     })
-    return
-  })
-  sendConfirmationEmail(req.body._id)
-  notifyApplicationReceived(req.body)
-  res.send({
-    ok: "ok"
-  })
+
   //console.log(generateHTMLEmail("Application Submitted"));
   /*
 
