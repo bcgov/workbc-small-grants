@@ -40,7 +40,7 @@ class ClientForm extends Component {
 
 
     handleApplicationId(id, hasId, errors, touched) {
-        if (id === 'none' || id.length !== 10) {
+        if (id === '' || id.length !== 10) {
             //show non id handler
             return (
                 <div>
@@ -80,7 +80,7 @@ class ClientForm extends Component {
         } else {
             //display the id
             return (
-                <p>Organization ID: {id}</p>
+                <p>Application ID: {id}</p>
             )
         }
     }
@@ -94,7 +94,7 @@ class ClientForm extends Component {
                         <Formik
                             initialValues={{
                                 _csrf: this.state._csrf,
-                                applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : 'none',
+                                applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
                                 noOrgId: false,
@@ -119,7 +119,6 @@ class ClientForm extends Component {
                                     },
                                     body: JSON.stringify(values),
                                 })
-                                
                                 .then(res => res.json())
                                 .then(
                                     (resp) => {
@@ -127,6 +126,7 @@ class ClientForm extends Component {
                                         if (resp.err){
                                             console.log("errors")
                                             setErrors(resp.err)
+                                            setSubmitting(false)
                                         } else if (resp.ok){
                                             setSubmitting(false)
                                             this.props.history.push('/thankYouCl',values)
@@ -139,8 +139,6 @@ class ClientForm extends Component {
                         >
                             {({ values, errors, touched, isSubmitting}) => (
                                 <Form>
-                                    {console.log(this)}
-                                    {console.log(values)}
                                     {this.state.hasError && (
                                         generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}
