@@ -27,7 +27,7 @@ class ThankyouOrg extends Component {
                             </div>
                         </div>
                         <p>
-                            Note: you must get all your participants to complete the step above within the next 3 weeks.
+                            <b>Note: you must get all your participants to complete the step above within the next 3 weeks.</b>
                         </p>
                         <p>For more information on this grant opportunity, visit (include website link)</p>
                         <p>If you have additional questions or require assistance, please contact (who – email and phone number)</p>

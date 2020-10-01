@@ -40,7 +40,6 @@ module.exports = {
         <p><b>insuranceCoverage:</b>  ${values.insuranceCoverage}</p>
         <p><b>monitorCommit:</b>  ${values.monitorCommit}</p>
         <p><b>applicantType:</b>  ${values.applicantType}</p>
-        <p><b>eligibleToWork:</b>  ${values.eligibleToWork}</p>
         <p><b>placementLength:</b>  ${values.placementLength}</p>
         <p><b>participantActivities:</b>  ${values.participantActivities}</p>
         <p><b>participantExperiences:</b>  ${values.participantExperiences}</p>

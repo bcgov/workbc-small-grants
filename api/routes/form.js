@@ -12,6 +12,8 @@ var MainFormValidationSchema = require('../schemas/MainFormValidationSchema')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
+var confirmData = require('../utils/confirmationData');
+const { getOrgSubmitted } = require('../utils/confirmationData');
 
 var confirmationEmail1 = process.env.CONFIRMATIONONE || process.env.OPENSHIFT_NODEJS_CONFIRMATIONONE || "";
 var confirmationEmail2 = process.env.CONFIRMATIONTWO || process.env.OPENSHIFT_NODEJS_CONFIRMATIONTWO || "";
@@ -21,7 +23,7 @@ var notifyEmail = process.env.NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_NOTIFY
 var clientURL = process.env.CLIENTURL || process.env.OPENSHIFT_NODEJS_CLIENTURL || "https://workbc-grants-dev.pathfinder.gov.bc.ca/clientForm"
 
 
-function sendConfirmationEmail(applicationId) {
+function sendConfirmationEmail(values) {
   try {
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
@@ -43,31 +45,29 @@ function sendConfirmationEmail(applicationId) {
       from: 'WEOG <donotreply@gov.bc.ca>', // sender address
       to: mailingList,// list of receivers
       bcc: confirmationBCC,
-      subject: "Application Confirmation - " + applicationId, // Subject line
+      subject: "Application Confirmation - " + values._id, // Subject line
       /*
         [
-          `Application ID: ${applicationId}`,
+          `Application ID: ${values._id}`,
           `Please visit the following URL in order to provide your consent to the Ministry.`,
-          `<a href="${clientURL}/${applicationId}">${clientURL}/${applicationId}</a>`,
+          `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
           `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
         ],
       */
       html: generateHTMLEmail("Thank you, your application has been received", 
         [
-          `<b>Application ID: ${applicationId}</b>`,
+          `<b>Application ID: ${values._id}</b>`,
           `Your application has been successfully received. You can print this page for your records. A confirmation email has also been sent to the two contacts provided on the form.`,
           `<b>Next Steps:</b>`,
           `Please provide your participants the following instructions:`,
         ],
         [
-          `Application ID: ${applicationId}`,
+          `Application ID: ${values._id}`,
           `Please visit the following URL in order to provide your consent to the Ministry.`,
-          `<a href="${clientURL}/${applicationId}">${clientURL}/${applicationId}</a>`,
+          `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
           `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
         ],
-        [
-          `Note: you must get all your participants to complete the step above within the next 3 weeks.`
-        ]
+        getOrgSubmitted(values)
         ) // html body
     };
     let info = transporter.sendMail(message, (error, info) => {
@@ -142,7 +142,7 @@ router.post('/', csrfProtection, (req, res) => {
   console.log(req.body)
   MainFormValidationSchema.validate(req.body, { abortEarly: false })
     .then(function (value) {
-      sendConfirmationEmail(req.body._id)
+      sendConfirmationEmail(value)
       //notifyApplicationReceived(req.body)
       res.send({
         ok: "ok"
