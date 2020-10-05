@@ -180,7 +180,19 @@ class FormStep3 extends Component {
                     type="submit"
                     style={{ marginBottom: "2rem" }}
                     disabled={this.props.isSubmitting || this.props.hasError}
-                >Submit</button>
+                >
+                    {
+                    this.props.isSubmitting ?
+                        <div>
+                            <span className="spinner-border spinner-border-sm" htmlRole="status" aria-hidden="true"></span>
+                              Submitting...
+                        </div>
+                        :
+                        "Submit"
+
+                    }                      
+                
+                </button>
             </div>
 
 

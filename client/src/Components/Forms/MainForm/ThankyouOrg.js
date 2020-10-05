@@ -43,7 +43,7 @@ class ThankyouOrg extends Component {
                                 <p>Non Profit Classification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
                                 <p>Non Profit SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
                                 <p>Non Profit Other SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
-                                <p>Based In BC:  {this.props.location.state !== undefined && this.props.location.state.basedInBC}</p>
+                                <p>Based In BC:  {this.props.location.state !== undefined && this.props.location.state.basedInBC.toString()}</p>
                                 <p>Position Title:  {this.props.location.state !== undefined && this.props.location.state.positionTitle}</p>
                                 <p>First Name:  {this.props.location.state !== undefined && this.props.location.state.firstName}</p>
                                 <p>Last Name:  {this.props.location.state !== undefined && this.props.location.state.lastName}</p>
@@ -60,16 +60,16 @@ class ThankyouOrg extends Component {
                                 <p>Contact City:  {this.props.location.state !== undefined && this.props.location.state.contactCity}</p>
                                 <p>Contact Postal:  {this.props.location.state !== undefined && this.props.location.state.contactPostal}</p>
                                 <h5>Mailing Address (only if different from contact)</h5>
-                                <p>Mailing Address Different:  {this.props.location.state !== undefined && this.props.location.state.otherMailingAddress}</p>
+                                <p>Mailing Address Different:  {this.props.location.state !== undefined && this.props.location.state.otherMailingAddress.toString()}</p>
                                 <p>Mailing Address1:  {this.props.location.state !== undefined && this.props.location.state.mailingAddress1}</p>
                                 <p>Mailing Address2:  {this.props.location.state !== undefined && this.props.location.state.mailingAddress2}</p>
                                 <p>Mailing City:  {this.props.location.state !== undefined && this.props.location.state.mailingCity}</p>
                                 <p>Mailing Postal:  {this.props.location.state !== undefined && this.props.location.state.mailingPostal}</p>
                                 <p>Number Of Applicants:  {this.props.location.state !== undefined && this.props.location.state.numberOfApplicants}</p>
-                                <p>WorkSafeBC Insurance Coverage:  {this.props.location.state !== undefined && this.props.location.state.insuranceCoverage}</p>
-                                <p>Commitment to monitor applicants:  {this.props.location.state !== undefined && this.props.location.state.monitorCommit}</p>
-                                <p>Applicant eligibility confirmation:  {this.props.location.state !== undefined && this.props.location.state.applicantType}</p>
-                                <p>Placement length confirmation:  {this.props.location.state !== undefined && this.props.location.state.placementLength}</p>
+                                <p>WorkSafeBC Insurance Coverage:  {this.props.location.state !== undefined && this.props.location.state.insuranceCoverage.toString()}</p>
+                                <p>Commitment to monitor applicants:  {this.props.location.state !== undefined && this.props.location.state.monitorCommit.toString()}</p>
+                                <p>Applicant eligibility confirmation:  {this.props.location.state !== undefined && this.props.location.state.applicantType.toString()}</p>
+                                <p>Placement length confirmation:  {this.props.location.state !== undefined && this.props.location.state.placementLength.toString()}</p>
                                 <p>Work Opportunity:</p>  
                                 <p>{this.props.location.state !== undefined && this.props.location.state.participantActivities}</p>
                                 <p>What will organization provide:  {this.props.location.state !== undefined && this.props.location.state.participantExperiences}</p>
@@ -81,14 +81,14 @@ class ThankyouOrg extends Component {
                                 <p>Additional Benefits: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.additionalBenefits}</p>
                                 <p>Stipend:  ${this.props.location.state !== undefined && this.props.location.state.participantStipend}</p>
-                                <p>Has Existing Supplier Number:  {this.props.location.state !== undefined && this.props.location.state.existingSupplierNumber}</p>
+                                <p>Has Existing Supplier Number:  {this.props.location.state !== undefined && this.props.location.state.existingSupplierNumber.toString()}</p>
                                 <p>Supplier Number:{this.props.location.state !== undefined && this.props.location.state.supplierNumber}</p>
                                 <p>Business Classification: {this.props.location.state !== undefined && this.props.location.state.businessClassification}</p>
                                 <p>Tax Number:  {this.props.location.state !== undefined && this.props.location.state.taxNumber}</p>
                                 <p>Signatory 1:  {this.props.location.state !== undefined && this.props.location.state.signatory1}</p>
                                 <p>Signatory 2:  {this.props.location.state !== undefined && this.props.location.state.signatory2}</p>
-                                <p>Certify Signatories:  {this.props.location.state !== undefined && this.props.location.state.signingAuthorityConfirm}</p>
-                                <p>Consent:  {this.props.location.state !== undefined && this.props.location.state.organizationConsent}</p>
+                                <p>Certify Signatories:  {this.props.location.state !== undefined && this.props.location.state.signingAuthorityConfirm.toString()}</p>
+                                <p>Consent:  {this.props.location.state !== undefined && this.props.location.state.organizationConsent.toString()}</p>
                         <hr />
                     </div>
                 </div>

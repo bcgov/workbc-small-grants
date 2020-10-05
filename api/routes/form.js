@@ -23,67 +23,8 @@ var notifyEmail = process.env.NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_NOTIFY
 var clientURL = process.env.CLIENTURL || process.env.OPENSHIFT_NODEJS_CLIENTURL || "https://workbc-grants-dev.pathfinder.gov.bc.ca/clientForm"
 
 
-function sendConfirmationEmail(values) {
-  try {
-    let transporter = nodemailer.createTransport({
-      host: "apps.smtp.gov.bc.ca",
-      port: 25,
-      secure: false,
-      tls: {
-        rejectUnauthorized: false
-      } // true for 465, false for other ports
-    });
-    var mailingList;
-    if (confirmationEmail1 !== "" && confirmationEmail2 !== "") {
-      mailingList = [confirmationEmail1, confirmationEmail2]
-    } else {
-      //TODO
-      mailingList = ""
-    }
-    // send mail with defined transport object
-    let message = {
-      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: mailingList,// list of receivers
-      bcc: confirmationBCC,
-      subject: "Application Confirmation - " + values._id, // Subject line
-      /*
-        [
-          `Application ID: ${values._id}`,
-          `Please visit the following URL in order to provide your consent to the Ministry.`,
-          `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
-          `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
-        ],
-      */
-      html: generateHTMLEmail("Thank you, your application has been received", 
-        [
-          `<b>Application ID: ${values._id}</b>`,
-          `Your application has been successfully received. You can print this page for your records. A confirmation email has also been sent to the two contacts provided on the form.`,
-          `<b>Next Steps:</b>`,
-          `Please provide your participants the following instructions:`,
-        ],
-        [
-          `Application ID: ${values._id}`,
-          `Please visit the following URL in order to provide your consent to the Ministry.`,
-          `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
-          `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
-        ],
-        getOrgSubmitted(values)
-        ) // html body
-    };
-    let info = transporter.sendMail(message, (error, info) => {
-      if (error) {
-        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
-      } else {
-        console.log("Message sent: %s", info.messageId);
-        return "success"
-      }
-    });
-  } catch (error) {
-    console.log(error)
-  }
-}
 
-function notifyApplicationReceived(values) {
+async function sendEmails(values) {
   try {
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
@@ -93,37 +34,81 @@ function notifyApplicationReceived(values) {
         rejectUnauthorized: false
       } // true for 465, false for other ports
     });
-    // send mail with defined transport object
-    let message = {
-      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: listEmail,// list of receivers
-      subject: "A grant application has been received - " + values._id, // Subject line
-      html: notification.generateListNotification(values) // html body
-    };
-    let message2 = {
-      from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-      to: notifyEmail,// list of receivers
-      subject: "A grant application has been received - " + values._id, // Subject line
-      html: notification.generateNotification(values) // html body
-    };
-    let info = transporter.sendMail(message, (error, info) => {
-      if (error) {
-        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
-      } else {
-        console.log("Message sent: %s", info.messageId);
-        return "success"
-      }
-    });
-    info = transporter.sendMail(message2, (error, info) => {
-      if (error) {
-        return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
-      } else {
-        console.log("Message sent: %s", info.messageId);
-        return "success"
-      }
-    });
+    return await transporter.verify()
+      .then(function (r) {
+        console.log(r)
+        console.log("Transporter connected.")
+        // send mail with defined transport object
+        var mailingList;
+        if (confirmationEmail1 !== "" && confirmationEmail2 !== "") {
+          mailingList = [confirmationEmail1, confirmationEmail2]
+        } else {
+          mailingList = [values.contactEmail, values.emailAlternate]
+        }
+        // send mail with defined transport object
+        let message1 = {
+          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          to: mailingList,// list of receivers
+          bcc: confirmationBCC,
+          subject: "Application Confirmation - " + values._id, // Subject line
+          html: generateHTMLEmail("Thank you, your application has been received",
+            [
+              `<b>Application ID: ${values._id}</b>`,
+              `Your application has been successfully received. You can print this page for your records. A confirmation email has also been sent to the two contacts provided on the form.`,
+              `<b>Next Steps:</b>`,
+              `Please provide your participants the following instructions:`,
+            ],
+            [
+              `Application ID: ${values._id}`,
+              `Please visit the following URL in order to provide your consent to the Ministry.`,
+              `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
+              `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
+            ],
+            getOrgSubmitted(values)
+          ) // html body
+        };
+        let message2 = {
+          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          to: listEmail,// list of receivers
+          subject: "A grant application has been received - " + values._id, // Subject line
+          html: notification.generateListNotification(values) // html body
+        };
+        let message3 = {
+          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          to: notifyEmail,// list of receivers
+          subject: "A grant application has been received - " + values._id, // Subject line
+          html: notification.generateNotification(values) // html body
+        };
+        let info = transporter.sendMail(message1, (error, info) => {
+          if (error) {
+            console.log("Error sending confirmation for " + values._id)
+          } else {
+            console.log("Message sent: %s", info.messageId);
+          }
+        });
+        info = transporter.sendMail(message2, (error, info) => {
+          if (error) {
+            console.log("Error sending list notification for " + values._id)
+          } else {
+            console.log("Message sent: %s", info.messageId);
+          }
+        });
+        info = transporter.sendMail(message3, (error, info) => {
+          if (error) {
+            console.log("Error sending notification for " + values._id)
+          } else {
+            console.log("Message sent: %s", info.messageId);
+          }
+        });
+        return true
+      }).catch(function (e) {
+        console.log(e)
+        console.log("Error connecting to transporter")
+        return false
+      })
   } catch (error) {
     console.log(error)
+    return false
   }
 }
 
@@ -136,17 +121,31 @@ router.get('/', csrfProtection, (req, res) => {
 
 })
 
-router.post('/', csrfProtection, (req, res) => {
+router.post('/', csrfProtection, async (req, res) => {
   //clean the body
   clean(req.body);
-  console.log(req.body)
+  //console.log(req.body)
   MainFormValidationSchema.validate(req.body, { abortEarly: false })
-    .then(function (value) {
-      sendConfirmationEmail(value)
-      //notifyApplicationReceived(req.body)
-      res.send({
-        ok: "ok"
-      })
+    .then(async function (value) {
+      try {
+        await sendEmails(value)
+          .then(function (sent) {
+            if (sent){
+              res.send({
+                ok: "ok"
+              })
+            } else if (!sent) {
+              res.send({
+                emailErr: "emailErr"
+              })
+            }
+          }).catch(function (e) {
+            console.log(e)
+          })
+      } catch (error) {
+        console.log(error)
+      }
+      return
     })
     .catch(function (errors) {
       var err = {}
@@ -158,11 +157,6 @@ router.post('/', csrfProtection, (req, res) => {
       })
       return
     })
-
-  //console.log(generateHTMLEmail("Application Submitted"));
-  /*
-
-  */
 })
 
 module.exports = router;

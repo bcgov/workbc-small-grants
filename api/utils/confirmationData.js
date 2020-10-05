@@ -65,5 +65,23 @@ module.exports = {
         ]
         return data
 
+    },
+    getClientSubmitted(values){
+        var data=[
+            `<p><b>Name:</b> ${values.clientName}</p>`,
+            `<p><b>Last Name:</b> ${values.clientLastName}</p>`,
+            `<p><b>DOB:</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}</p>`,
+            `<p><b>Email:</b> ${values.clientEmail}</p>`,
+            `<p><b>Address1:</b> ${values.clientAddress1}</p>`,
+            `<p><b>Address2:</b> ${values.clientAddress2}</p>`,
+            `<p><b>Consent:</b> ${values.clientConsent}</p>`,
+        ]
+        if (values.noOrgId){
+            data.push(`<p><b>Organization Name:</b> ${strings.orEmpty(values.organizationNameM)}</p>`)
+        } else {
+            data.push(`<p><b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}</p>`)
+        }
+
+
     }
 }

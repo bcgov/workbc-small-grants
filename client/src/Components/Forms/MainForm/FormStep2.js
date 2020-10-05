@@ -104,7 +104,7 @@ class FormStep2 extends Component {
                             <span style={{ color: "red" }}>*</span>
                         I commit to:
                         <ul>
-                                <li>Monitor and support the participant for the duration of the project; and</li>
+                                <li>Supervise and support the participant for the duration of the project; and</li>
                                 <li>Ensure that safe physical distancing practices and WorkSafeBC requirements are adhered to.</li>
                             </ul>
                         </label>
@@ -122,7 +122,8 @@ class FormStep2 extends Component {
                         I understand that all participants must be eligible to work in British Columbia and that participants are:
                         <ul>
                                 <li>Designated under the Employment and Assistance for Persons with Disabilities Act as a person with disabilities; OR</li>
-                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers</li>
+                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers; AND</li>
+                                <li>Participants cannot be participating in WorkBC Wage subsidy.</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}

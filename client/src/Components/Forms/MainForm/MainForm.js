@@ -179,6 +179,12 @@ class MainForm extends Component {
                                         if (resp.err){
                                             console.log("errors")
                                             setErrors(resp.err)
+                                        } else if(resp.emailErr){
+                                            console.log("emailError")
+                                            setSubmitting(false)
+                                            this.setState({
+                                                hasError: true
+                                            })
                                         } else if (resp.ok){
                                             setSubmitting(false)
                                             this.props.history.push('/thankYouOrg',values)

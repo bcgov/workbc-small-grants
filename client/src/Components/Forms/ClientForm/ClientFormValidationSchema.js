@@ -4,9 +4,11 @@ import 'core-js/stable';
 export const ClientFormValidationSchema = yup.object().shape({
     applicationId: yup.string(),
     applicationIdM: yup.string()
-        .when('applicationId', {
-            is: (val) => val === "",
-            then: yup.string().required("Please enter the application ID.").min(10).max(10),
+        .when(['applicationId','noOrgId'], {
+            is: (applicationId, noOrgId) => (typeof applicationId === "undefined" || applicationId.length < 10) && !noOrgId,
+            then: yup.string().required("Please enter the application ID.")
+                .min(10, "Must be 10 characters")
+                .max(10, "Must be 10 characters"),
             otherwise: yup.string().min(0)
         }),
     noOrgId: yup.boolean(),

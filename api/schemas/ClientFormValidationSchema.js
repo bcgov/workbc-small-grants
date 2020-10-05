@@ -1,11 +1,13 @@
-var yup=require('yup')
+var yup = require('yup')
 
 var ClientFormValidationSchema = yup.object().shape({
     applicationId: yup.string(),
     applicationIdM: yup.string()
-        .when('applicationId', {
-            is: (val) => val === "",
-            then: yup.string().required("Please enter the application ID.").min(10).max(10),
+        .when(['applicationId', 'noOrgId'], {
+            is: (applicationId, noOrgId) => (typeof applicationId === "undefined" || applicationId.length < 10) && !noOrgId,
+            then: yup.string().required("Please enter the application ID.")
+                .min(10, "Must be 10 characters")
+                .max(10, "Must be 10 characters"),
             otherwise: yup.string().min(0)
         }),
     noOrgId: yup.boolean(),
@@ -22,16 +24,16 @@ var ClientFormValidationSchema = yup.object().shape({
         .required("Please enter last name"),
     clientDOB: yup.date()
         .max(new Date())
-        .required("Please enter your date of birth."),    
+        .required("Please enter your date of birth."),
     clientEmail: yup.string().email("Please enter a valid email.")
         .required("Please enter email"),
     clientAddress1: yup.string()
-        .max(255,"Address too long, please use address line 2.")
+        .max(255, "Address too long, please use address line 2.")
         .required("Please enter address line 1."),
     clientAddress2: yup.string()
-        .max(255,"Address too long"),
+        .max(255, "Address too long"),
     clientConsent: yup.boolean()
-        .oneOf([true],"You must agree before submitting.")
+        .oneOf([true], "You must agree before submitting.")
 })
 
 module.exports = ClientFormValidationSchema

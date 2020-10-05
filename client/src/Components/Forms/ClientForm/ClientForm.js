@@ -5,20 +5,20 @@ import '../../../utils/polyfills'
 import ClientConsent from './ClientConsent'
 import { ClientFormValidationSchema } from './ClientFormValidationSchema'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
-import {generateAlert} from '../Shared/Alert'
-import {DatePickerField} from '../Shared/DatePickerField'
-import {FORM_URL} from '../../../constants/form'
+import { generateAlert } from '../Shared/Alert'
+import { DatePickerField } from '../Shared/DatePickerField'
+import { FORM_URL } from '../../../constants/form'
 
 class ClientForm extends Component {
     constructor() {
         super()
-        this.state={
+        this.state = {
             _csrf: '',
             hasError: false,
         }
     }
     componentDidMount() {
-        fetch(FORM_URL.clientForm,{
+        fetch(FORM_URL.clientForm, {
             credentials: "include"
         })
             .then(res => res.json())
@@ -36,11 +36,11 @@ class ClientForm extends Component {
                     })
                 }
             )
-    }     
+    }
 
 
     handleApplicationId(id, hasId, errors, touched) {
-        if (id === '' || id.length !== 10) {
+        if (id === "" || id.length !== 10) {
             //show non id handler
             return (
                 <div>
@@ -108,42 +108,47 @@ class ClientForm extends Component {
                             }}
                             enableReinitialize={true}
                             validationSchema={ClientFormValidationSchema}
-                            onSubmit={(values, {resetForm, setErrors, setStatus, setSubmitting }) => {
-                                
+                            onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
                                 fetch(FORM_URL.clientForm, {
                                     method: "POST",
                                     credentials: 'include',
                                     headers: {
                                         'Accept': 'application/json',
-                                        'Content-Type' : 'application/json',
+                                        'Content-Type': 'application/json',
                                     },
                                     body: JSON.stringify(values),
                                 })
-                                .then(res => res.json())
-                                .then(
-                                    (resp) => {
-                                        console.log(resp)
-                                        if (resp.err){
-                                            console.log("errors")
-                                            setErrors(resp.err)
-                                            setSubmitting(false)
-                                        } else if (resp.ok){
-                                            setSubmitting(false)
-                                            this.props.history.push('/thankYouCl',values)
+                                    .then(res => res.json())
+                                    .then(
+                                        (resp) => {
+                                            console.log(resp)
+                                            if (resp.err) {
+                                                console.log("errors")
+                                                setErrors(resp.err)
+                                                setSubmitting(false)
+                                            } else if(resp.emailErr){
+                                                console.log("emailError")
+                                                setSubmitting(false)
+                                                this.setState({
+                                                    hasError: true
+                                                })
+                                            } else if (resp.ok) {
+                                                setSubmitting(false)
+                                                this.props.history.push('/thankYouCl', values)
+                                            }
                                         }
-                                    }
-                                )
-                                
-                                
+                                    )
                             }}
                         >
-                            {({ values, errors, touched, isSubmitting}) => (
+                            {({ values, errors, touched, isSubmitting }) => (
                                 <Form>
+                                    {console.log(values)}
+                                    {console.log(errors)}
                                     {this.state.hasError && (
-                                        generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
+                                        generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}
                                     <div className="form-group">
-                                        <h2 id="forms">Client Information</h2>
+                                        <h2 id="forms">Participant Information</h2>
                                     </div>
                                     {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
@@ -164,8 +169,8 @@ class ClientForm extends Component {
                                         <div className="form-group col-md-6">
                                             <label className="col-form-label control-label" htmlFor="clientDOB">Date of birth <span
                                                 style={{ color: "red" }}>*</span></label>
-                                            <DatePickerField 
-                                                name="clientDOB" 
+                                            <DatePickerField
+                                                name="clientDOB"
                                                 className={`form-control ${feedBackClassName(errors, touched, "clientDOB")}`}
                                             />
                                             {feedBackInvalid(errors, touched, "clientDOB")}
@@ -203,12 +208,23 @@ class ClientForm extends Component {
                                             {feedBackInvalid(errors, touched, "clientConsent")}
                                         </div>
                                     </div>
-                                    <button 
-                                        className="btn btn-success btn-block" 
-                                        type="submit" 
+                                    <button
+                                        className="btn btn-success btn-block"
+                                        type="submit"
                                         style={{ marginBottom: "2rem" }}
                                         disabled={isSubmitting || this.state.hasError}
-                                    >Submit</button>
+                                    >
+                                        {
+                                            isSubmitting ?
+                                                <div>
+                                                    <span className="spinner-border spinner-border-sm" htmlRole="status" aria-hidden="true"></span>
+                                                       Submitting...
+                                                </div>
+                                                :
+                                                "Submit"
+
+                                        }
+                                    </button>
                                 </Form>
                             )}
 
