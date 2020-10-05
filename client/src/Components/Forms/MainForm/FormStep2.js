@@ -121,8 +121,8 @@ class FormStep2 extends Component {
                             <span style={{ color: "red" }}>*</span>
                         I understand that all participants must be eligible to work in British Columbia and that participants are:
                         <ul>
-                                <li>Receiving disability assistance with the Persons with Disability designation; OR</li>
-                                <li>Receiving income assistance under the Persons with Persistent Multiple Barriers (PPMB) category</li>
+                                <li>Designated under the Employment and Assistance for Persons with Disabilities Act as a person with disabilities; OR</li>
+                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}

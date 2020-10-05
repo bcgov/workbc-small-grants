@@ -180,7 +180,7 @@ class ClientForm extends Component {
                                     <div className="form-group">
                                         <label className="col-form-label control-label" htmlFor="clientAddress1">Address 1 <span
                                             style={{ color: "red" }}>*  </span></label>
-                                        <small className="text-muted" id="clientAddress1">  Street address, P.O. box, company name, c/o</small>
+                                        <small className="text-muted" id="clientAddress1">  Street address, P.O. box, c/o</small>
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress1")}`} id="clientAddress1" name="clientAddress1" />
                                         {feedBackInvalid(errors, touched, "clientAddress1")}
                                     </div>
