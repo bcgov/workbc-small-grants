@@ -142,8 +142,8 @@ module.exports = {
             applicationId ${strings.orEmpty(values.applicationId)}
             applicationIdM ${strings.orEmpty(values.applicationIdM)}
             organizationNameM ${strings.orEmpty(values.organizationNameM)}
-            noOrgId: ${values.noOrgId}
-            clientName: ${values.clientName}
+            noOrgId ${values.noOrgId}
+            clientName ${values.clientName}
             clientLastName ${values.clientLastName}
             clientDOB ${values.clientDOB}
             clientEmail ${values.clientEmail}
