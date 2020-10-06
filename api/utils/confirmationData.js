@@ -81,7 +81,7 @@ module.exports = {
         } else {
             data.push(`<p><b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}</p>`)
         }
-
+        return data
 
     }
 }
