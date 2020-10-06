@@ -16,7 +16,8 @@ var MainFormValidationSchema = yup.object().shape({
         .required('Please enter the website.'),
     //How long, what type, min max?
     businessNumber: yup.number()
-        .typeError('Must be a number')
+        .max(15, "Business number must be exactly 15 characters")
+        .min(15, "Business number must be exactly 15 characters.")
         .required('Please enter your business number.'),
     confirmOrganizationNonProfit: yup.string()
         .matches("yes", "Only non-profits are eligible.")
