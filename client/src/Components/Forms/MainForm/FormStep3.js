@@ -61,8 +61,8 @@ class FormStep3 extends Component {
                 <div>
                     <p>Please correct the following errors:</p>
                     <ul>
-                        {Object.values(this.props.errors).map(error => (
-                            <li>{error}</li>
+                        {Object.values(this.props.errors).map((error, i) => (
+                            <li key={i}>{error}</li>
                         ))}
                     </ul>
                 </div>
@@ -183,7 +183,7 @@ class FormStep3 extends Component {
                     {
                     this.props.isSubmitting ?
                         <div>
-                            <span className="spinner-border spinner-border-sm" htmlRole="status" aria-hidden="true"></span>
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                               Submitting...
                         </div>
                         :
