@@ -127,7 +127,7 @@ module.exports = {
             <p><b>noOrgId:</b> ${values.noOrgId}</p>
             <p><b>clientName:</b> ${values.clientName}</p>
             <p><b>clientLastName:</b> ${values.clientLastName}</p>
-            <p><b>clientDOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}</p>
+            <p><b>clientDOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}</p>
             <p><b>clientEmail:</b> ${values.clientEmail}</p>
             <p><b>clientAddress1:</b> ${values.clientAddress1}</p>
             <p><b>clientAddress2:</b> ${strings.orEmpty(values.clientAddress2)}</p>
@@ -145,7 +145,7 @@ module.exports = {
             noOrgId ${values.noOrgId}
             clientName ${values.clientName}
             clientLastName ${values.clientLastName}
-            clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}
+            clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}
             clientEmail ${values.clientEmail}
             clientAddress1 ${values.clientAddress1}
             clientAddress2 ${strings.orEmpty(values.clientAddress2)}

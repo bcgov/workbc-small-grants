@@ -73,7 +73,7 @@ module.exports = {
         var data=[
             `<b>Name:</b> ${values.clientName}`,
             `<b>Last Name:</b> ${values.clientLastName}`,
-            `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}`,
+            `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}`,
             `<b>Email:</b> ${values.clientEmail}`,
             `<b>Address1:</b> ${values.clientAddress1}`,
             `<b>Address2:</b> ${values.clientAddress2}`,

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { BsCheckCircle } from "react-icons/bs"
-import { IconContext } from 'react-icons'
 
 class ThankyouClient extends Component {
     get appIdOrOrgName(){
@@ -29,7 +27,7 @@ class ThankyouClient extends Component {
                         {console.log(this.props.location.state)}          
                         <p><b>Name:</b> {this.props.location.state !== undefined && this.props.location.state.clientName}</p>
                         <p><b>Last Name:</b> {this.props.location.state !== undefined && this.props.location.state.clientLastName}</p>
-                        <p><b>DOB (DD/MM/YYYY):</b> {this.props.location.state !== undefined && (<span>{this.props.location.state.clientDOB.getDate()}/{this.props.location.state.clientDOB.getMonth()}/{this.props.location.state.clientDOB.getFullYear()}</span>)}</p>
+                        <p><b>DOB (DD/MM/YYYY):</b> {this.props.location.state !== undefined && (<span>{this.props.location.state.clientDOB.getDate()}/{this.props.location.state.clientDOB.getMonth()+1}/{this.props.location.state.clientDOB.getFullYear()}</span>)}</p>
                         <p><b>Email:</b> {this.props.location.state !== undefined && this.props.location.state.clientEmail}</p>
                         <p><b>Address1:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress1}</p>
                         <p><b>Address2:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress2}</p>
