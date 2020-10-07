@@ -67,6 +67,8 @@ objects:
             value: ${OPENSHIFT_NODEJS_CLIENT_LISTEMAIL}
           - name: OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL
             value: ${OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL}
+          - name: OPENSHIFT_NODEJS_CLIENTURL
+            value: ${OPENSHIFT_NODEJS_CLIENTURL}
     test: false
     triggers:
     - type: ConfigChange
@@ -138,22 +140,27 @@ parameters:
   required: false
   value: ''
 - description: Email to send client confirmation
-  displayName: Notify email
+  displayName: Client Notify email
   name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL
   required: false
   value: ''
 - description: BCC email to send client confirmation emails
-  displayName: Notify email
+  displayName: Client BCC Notify email
   name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC
   required: false
   value: ''
 - description: List client email to send notification emails
-  displayName: Notify email
+  displayName: Client List Notify email
   name: OPENSHIFT_NODEJS_CLIENT_LISTEMAIL
   required: false
   value: ''
 - description: Notify client email to send notification emails
-  displayName: Notify email
+  displayName: Client Notify email
   name: OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL
+  required: false
+  value: ''
+- description: URL for email
+  displayName: Client URL
+  name: OPENSHIFT_NODEJS_CLIENTURL
   required: false
   value: ''
