@@ -4,6 +4,8 @@ module.exports = {
     getOrgSubmitted(values){
         var data = [
             `<b>Note: you must get all your participants to complete the step above within the next 3 weeks.</b>`,
+            `For more information on this grant opportunity, visit (include website link)`,
+            `If you have additional questions or require assistance, please contact (who – email and phone number)`,
             `The following information was received:`,
             `<hr />`,
             `Application ID:  ${values._id}`,
@@ -29,15 +31,15 @@ module.exports = {
             `Email:  ${values.emailAlternate}`,
             `Phone:  ${values.phoneAlternate}`,
             `Contact Address 1:  ${values.contactAddress1}`,
-            `contact Address 2:  ${values.contactAddress2}`,
+            `contact Address 2:  ${strings.orEmpty(values.contactAddress2)}`,
             `Contact City:  ${values.contactCity}`,
             `Contact Postal:  ${values.contactPostal}`,
             `<h5>Mailing Address (only if different from contact)</h5>`,
             `Mailing Address Different:  ${values.otherMailingAddress}`,
-            `Mailing Address1:  ${values.mailingAddress1}`,
-            `Mailing Address2:  ${values.mailingAddress2}`,
-            `Mailing City:  ${values.mailingCity}`,
-            `Mailing Postal:  ${values.mailingPostal}`,
+            `Mailing Address1:  ${strings.orEmpty(values.mailingAddress1)}`,
+            `Mailing Address2:  ${strings.orEmpty(values.mailingAddress2)}`,
+            `Mailing City:  ${strings.orEmpty(values.mailingCity)}`,
+            `Mailing Postal:  ${strings.orEmpty(values.mailingPostal)}`,
             `Number Of Applicants:  ${values.numberOfApplicants}`,
             `WorkSafeBC Insurance Coverage:  ${values.insuranceCoverage}`,
             `Commitment to monitor applicants:  ${values.monitorCommit}`,
@@ -47,42 +49,40 @@ module.exports = {
             `${values.participantActivities}`,
             `What will organization provide:  ${values.participantExperiences}`,
             `Other Experience:`, 
-            `${values.otherExperience}`,
+            `${strings.orEmpty(values.otherExperience)}`,
             `Participants will gain:  ${values.participantSkills}`,
             `Other Skills: `,
-            `${values.otherSkill}`,
+            `${strings.orEmpty(values.otherSkill)}`,
             `Additional Benefits: `,
-            `${values.additionalBenefits}`,
+            `${strings.orEmpty(values.additionalBenefits)}`,
             `Stipend:  $${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
             `Supplier Number:${values.supplierNumber}`,
-            `Business Classification: ${values.businessClassification}`,
-            `Tax Number:  ${values.taxNumber}`,
+            `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
+            `Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
             `Signatory 1:  ${values.signatory1}`,
             `Signatory 2:  ${values.signatory2}`,
             `Certify Signatories:  ${values.signingAuthorityConfirm}`,
             `Consent:  ${values.organizationConsent}`,
             `<hr />`,
-            `For more information on this grant opportunity, visit (include website link)`,
-            `If you have additional questions or require assistance, please contact (who – email and phone number)`,
         ]
         return data
 
     },
     getClientSubmitted(values){
         var data=[
-            `<p><b>Name:</b> ${values.clientName}</p>`,
-            `<p><b>Last Name:</b> ${values.clientLastName}</p>`,
-            `<p><b>DOB:</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}</p>`,
-            `<p><b>Email:</b> ${values.clientEmail}</p>`,
-            `<p><b>Address1:</b> ${values.clientAddress1}</p>`,
-            `<p><b>Address2:</b> ${values.clientAddress2}</p>`,
-            `<p><b>Consent:</b> ${values.clientConsent}</p>`,
+            `<b>Name:</b> ${values.clientName}`,
+            `<b>Last Name:</b> ${values.clientLastName}`,
+            `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}`,
+            `<b>Email:</b> ${values.clientEmail}`,
+            `<b>Address1:</b> ${values.clientAddress1}`,
+            `<b>Address2:</b> ${values.clientAddress2}`,
+            `<b>Consent:</b> ${values.clientConsent}`,
         ]
         if (values.noOrgId){
-            data.push(`<p><b>Organization Name:</b> ${strings.orEmpty(values.organizationNameM)}</p>`)
+            data.push(`<b>Organization Name:</b> ${strings.orEmpty(values.organizationNameM)}`)
         } else {
-            data.push(`<p><b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}</p>`)
+            data.push(`<b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}`)
         }
         return data
 
