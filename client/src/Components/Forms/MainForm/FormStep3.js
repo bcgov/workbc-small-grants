@@ -83,7 +83,6 @@ class FormStep3 extends Component {
         //Else return step 3
         return (
             <div>
-                {console.log(this.props)}
                 <div className="form-group">
                     <h2 id="forms">Financial Information</h2>
                 </div>
