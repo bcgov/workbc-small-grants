@@ -178,6 +178,7 @@ class MainForm extends Component {
                                         console.log(resp)
                                         if (resp.err){
                                             console.log("errors")
+                                            setSubmitting(false)
                                             setErrors(resp.err)
                                         } else if(resp.emailErr){
                                             console.log("emailError")
