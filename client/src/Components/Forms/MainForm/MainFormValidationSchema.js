@@ -174,10 +174,10 @@ export const MainFormValidationSchema = yup.object().shape({
     existingSupplierNumber: yup.string()
         .oneOf(["yes","no"])
         .required("Please select."),
-    supplierNumber: yup.number()
+    supplierNumber: yup.string()
         .when("existingSupplierNumber",{
             is: "yes",
-            then: yup.number().typeError("Must be a number").required("Please enter your supplier number.")
+            then: yup.string().min(7, "Supplier number must be exactly 7 characters.").max(7,"Supplier number must be exactly 7 characters.").required("Please enter your supplier number.")
         }),
     businessClassification: yup.string()
         .when("existingSupplierNumber",{
