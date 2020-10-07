@@ -33,7 +33,6 @@ async function sendEmails(values) {
       .then(function (r) {
         console.log(r)
         console.log("Transporter connected.")
-        var confirmationEmail;
         if (clientConfirmationEmail === ""){
           clientConfirmationEmail = values.clientEmail
         }
@@ -44,7 +43,7 @@ async function sendEmails(values) {
           bcc: clientConfirmationBCC,
           subject: "Application Confirmation - ", // Subject line
           html: generateHTMLEmail("Thank you, your application has been received", 
-            ["Thank you your application has been received", "The following information was received"],  
+            ["Thank you your application has been received", "The following information was received:"],  
             [],
             getClientSubmitted(values)) // html body
         };
