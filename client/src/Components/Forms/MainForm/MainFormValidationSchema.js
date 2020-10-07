@@ -49,7 +49,7 @@ export const MainFormValidationSchema = yup.object().shape({
             "Law and Legal Services"
         ], "Please select a valid field.")
         .when("nonProfitClassification", {
-            is: (value) => value !== "religiousOrganizations",
+            is: (value) => value !== "religiousOrganizations" && value !== "other",
             then: yup.string().required("Please select a subclassification.")
         }),
     nonProfitSubClassificationOther: yup.string()
