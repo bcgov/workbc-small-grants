@@ -121,17 +121,17 @@ module.exports = {
     generateClientNotification: function (values){
         var html = /*html*/`
             <h2>A client grant application has been received</h2>
-            <p><b>applicationId</b> ${strings.orEmpty(values.applicationId)}</p>
-            <p><b>applicationIdM</b> ${strings.orEmpty(values.applicationIdM)}</p>
-            <p><b>organizationNameM</b> ${strings.orEmpty(values.organizationNameM)}</p>
-            <p><b>noOrgId</b>: ${values.noOrgId}</p>
-            <p><b>clientName</b>: ${values.clientName}</p>
-            <p><b>clientLastName</b> ${values.clientLastName}</p>
-            <p><b>clientDOB</b> ${values.clientDOB}</p>
-            <p><b>clientEmail</b> ${values.clientEmail}</p>
-            <p><b>clientAddress1</b> ${values.clientAddress1}</p>
-            <p><b>clientAddress2</b> ${values.clientAddress2}</p>
-            <p><b>clientConsent</b> ${values.clientConsent}</p>
+            <p><b>applicationId:</b> ${strings.orEmpty(values.applicationId)}</p>
+            <p><b>applicationId (manual):</b> ${strings.orEmpty(values.applicationIdM)}</p>
+            <p><b>organizationName (no ID):</b> ${strings.orEmpty(values.organizationNameM)}</p>
+            <p><b>noOrgId:</b> ${values.noOrgId}</p>
+            <p><b>clientName:</b> ${values.clientName}</p>
+            <p><b>clientLastName:</b> ${values.clientLastName}</p>
+            <p><b>clientDOB:</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}</p>
+            <p><b>clientEmail:</b> ${values.clientEmail}</p>
+            <p><b>clientAddress1:</b> ${values.clientAddress1}</p>
+            <p><b>clientAddress2:</b> ${values.clientAddress2}</p>
+            <p><b>clientConsent:</b> ${values.clientConsent}</p>
         `
 
         return html       
@@ -145,7 +145,7 @@ module.exports = {
             noOrgId ${values.noOrgId}
             clientName ${values.clientName}
             clientLastName ${values.clientLastName}
-            clientDOB ${values.clientDOB}
+            clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()}/${values.clientDOB.getFullYear()}
             clientEmail ${values.clientEmail}
             clientAddress1 ${values.clientAddress1}
             clientAddress2 ${strings.orEmpty(values.clientAddress2)}
