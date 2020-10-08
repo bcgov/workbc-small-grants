@@ -220,7 +220,7 @@ class FormStep1 extends Component {
                     <legend>Contact Address</legend>
                 </div>
                 {
-                    !this.props.otherMailingAddress &&
+                    !this.props.values.otherMailingAddress &&
                     <p className="text-danger">If your application is approved, funds will be issued via cheque to this address.</p>
                 }
                 <div className="form-group">
