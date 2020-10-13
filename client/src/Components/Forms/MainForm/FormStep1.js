@@ -110,8 +110,8 @@ class FormStep1 extends Component {
                         <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
                         {feedBackInvalid(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}
                         {
-                            this.props.confirmOrganizationNonProfit === "no" &&
-                            <small className="text-danger"> - This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</small>
+                            this.props.values.confirmOrganizationNonProfit === "no" &&
+                            <p className="text-danger"> This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</p>
                         }
                     </div>
                     

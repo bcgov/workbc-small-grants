@@ -69,7 +69,8 @@ class MainForm extends Component {
           return (
             <button 
               className="btn btn-secondary" 
-              type="button" onClick={this._prev}>
+              type="button" onClick={this._prev}
+            >
             Previous
             </button>
           )
@@ -77,14 +78,16 @@ class MainForm extends Component {
         return null;
     }
 
-    get nextButton(){
+    nextButton(isNonProfit){
         let currentStep = this.state.currentStep;
 
         if(currentStep < 3){
           return (
             <button 
               className="btn btn-primary float-right" 
-              type="button" onClick={this._next}>
+              type="button" onClick={this._next}
+              disabled={isNonProfit !== "yes" || this.state.hasError}
+            >
             Next
             </button>        
           )
@@ -198,7 +201,9 @@ class MainForm extends Component {
                         
                         >
                             {props => (
+                                
                                 <Form>
+                                    {console.log(this.state)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...props}
@@ -213,7 +218,7 @@ class MainForm extends Component {
                                         {...props}
                                     />
                                     {this.previousButton}
-                                    {this.nextButton}
+                                    {this.nextButton(props.values.confirmOrganizationNonProfit)}
 
                                 </Form>
                             )}
