@@ -76,7 +76,7 @@ module.exports = {
             `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}`,
             `<b>Email:</b> ${values.clientEmail}`,
             `<b>Address1:</b> ${values.clientAddress1}`,
-            `<b>Address2:</b> ${values.clientAddress2}`,
+            `<b>Address2:</b> ${strings.orEmpty(values.clientAddress2)}`,
             `<b>Consent:</b> ${values.clientConsent}`,
         ]
         if (values.noOrgId){
