@@ -33,13 +33,16 @@ async function sendEmails(values) {
       .then(function (r) {
         console.log(r)
         console.log("Transporter connected.")
+        var cEmail;
         if (clientConfirmationEmail === ""){
-          clientConfirmationEmail = values.clientEmail
+          cEmail = values.clientEmail
+        } else {
+          cEmail = clientConfirmationEmail
         }
         // send mail with defined transport object
         let message1 = {
           from: 'WEOG <donotreply@gov.bc.ca>', // sender address
-          to: clientConfirmationEmail,// list of receivers
+          to: cEmail,// list of receivers
           bcc: clientConfirmationBCC,
           subject: "Application Confirmation - ", // Subject line
           html: generateHTMLEmail("Thank you, your application has been received", 
