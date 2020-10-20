@@ -62,7 +62,7 @@ class FormStep2 extends Component {
                     <h2 id="forms">Opportunity Details</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="numberOfApplicants">How many applicants are you applying for? <span
+                    <label className="col-form-label control-label" htmlFor="numberOfApplicants"> How many work experience participants are you applying for? <span
                         style={{ color: "red" }}>*</span></label>
                     <Field
                         as="select"
@@ -119,11 +119,11 @@ class FormStep2 extends Component {
                             htmlFor="applicantType"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I understand that all participants must be eligible to work in British Columbia and that participants are:
+                        I understand that all work experience participants must be eligible to work in British Columbia and that participants are:
                         <ul>
                                 <li>Designated under the Employment and Assistance for Persons with Disabilities Act as a person with disabilities; OR</li>
                                 <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers; AND</li>
-                                <li>Participants cannot be participating in WorkBC Wage subsidy.</li>
+                                <li>Work experience participants cannot be participating in a WorkBC Wage Subsidy.</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}

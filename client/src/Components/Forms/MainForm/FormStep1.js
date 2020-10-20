@@ -71,8 +71,9 @@ class FormStep1 extends Component {
                         {feedBackInvalid(this.props.errors,this.props.touched,"legalName")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="missionStatement">Mission Statement <span
+                    <label className="col-form-label control-label" htmlFor="missionStatement">Mandate <span
                         style={{ color: "red" }}>*  </span></label>
+                    <small className="text-muted" id="missionStatement"> Provide mission statement or purpose of the organization</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"missionStatement")}`} id="missionStatement" name="missionStatement" />
                     {feedBackInvalid(this.props.errors,this.props.touched,"missionStatement")}
                 </div>
