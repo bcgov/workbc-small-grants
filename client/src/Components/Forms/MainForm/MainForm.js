@@ -151,7 +151,7 @@ class MainForm extends Component {
                                             otherSkill: '',
                                             additionalBenefits: '',
                                             //step 3
-                                            participantStipend: '',
+                                            participantStipend: false,
                                             existingSupplierNumber: '',
                                             supplierNumber: '',
                                             businessClassification: '',

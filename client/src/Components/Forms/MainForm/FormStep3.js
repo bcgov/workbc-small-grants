@@ -87,19 +87,17 @@ class FormStep3 extends Component {
                     <h2 id="forms">Financial Information</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="participantStipend">Enter the total amount of stipend provided to the individual.  <span
-                        style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="participantStipend"> A minimum of $3600 required. For additional details see the <a href="#guidelines">application guidelines.</a></small>
-                    <div className="input-group">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text">$</span>
-                        </div>
-                        <Field
-                            className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantStipend")}`}
-                            id="participantStipend"
+                    <div className="form-check">
+                        <Field 
+                            type="checkbox" 
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantStipend")}`} 
+                            id="participantStipend" 
                             name="participantStipend"
-
                         />
+                        <label className="form-check-label" htmlFor="participantStipend">
+                            <span style={{ color: "red" }}>*  </span>
+                            I confirm that the minimum amount provided to the work experience participant will be equal to, or greater than, $3,600 for the duration of the project (i.e. minimum 30 hours per week for 12 weeks).
+                        </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "participantStipend")}
                     </div>
                 </div>

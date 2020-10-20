@@ -167,10 +167,8 @@ export const MainFormValidationSchema = yup.object().shape({
         }),
     additionalBenefits: yup.string()
         .max(700,"Maximum of 700 characters is allowed."),
-    participantStipend: yup.number()
-        .typeError("Must be a number.")
-        .moreThan(3599,"Minimum stipend must be at least $3600")
-        .required("Please enter stipend amount."),
+    participantStipend: yup.boolean()
+        .oneOf([true],"Please confirm that the minimum stipend being provided is $3600."),
     existingSupplierNumber: yup.string()
         .oneOf(["yes","no"])
         .required("Please select."),
