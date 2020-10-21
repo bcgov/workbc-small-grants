@@ -24,7 +24,7 @@ class ThankyouOrg extends Component {
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
                                 <p><a href={`${window.location.origin}/clientForm/${applicationId}`}>{`${window.location.origin}/clientForm/${applicationId}`}</a></p>
-                                <p>If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).</p>
+                                <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to (email).</p>
                             </div>
                         </div>
                         <p>

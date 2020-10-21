@@ -63,7 +63,7 @@ async function sendEmails(values) {
               `Application ID: ${values._id}`,
               `Please visit the following URL in order to provide your consent to the Ministry.`,
               `<a href="${clientURL}/${values._id}">${clientURL}/${values._id}</a>`,
-              `If you prefer a PDF version of the form, one can be found here. Once complete please email it to (email).`,
+              `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to (email).`,
             ],
             getOrgSubmitted(values)
           ) // html body
