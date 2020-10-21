@@ -16,7 +16,7 @@ class ThankyouClient extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Thank you, your application has been received</h1>
+                        <h1>Thank you, your information has been received</h1>
                         <button className="btn btn-success d-print-none" onClick={() => window.print()}>Print Confirmation</button>
                         <p>A confirmation email has been sent to the email address provided.</p>
                         <p>

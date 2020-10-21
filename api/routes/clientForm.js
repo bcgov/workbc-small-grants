@@ -45,7 +45,7 @@ async function sendEmails(values) {
           to: cEmail,// list of receivers
           bcc: clientConfirmationBCC,
           subject: "Application Confirmation - ", // Subject line
-          html: generateHTMLEmail("Thank you, your application has been received", 
+          html: generateHTMLEmail("Thank you, your information has been received", 
             ["Thank you your application has been received", "The following information was received:"],  
             [],
             getClientSubmitted(values)) // html body

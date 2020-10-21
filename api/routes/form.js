@@ -54,7 +54,8 @@ async function sendEmails(values) {
           html: generateHTMLEmail("Thank you, your application has been received",
             [
               `<b>Application ID: ${values._id}</b>`,
-              `Your application has been successfully received. You can print this page for your records. A confirmation email has also been sent to the two contacts provided on the form.`,
+              `Thank you. Your application for the Work Experience Opportunities Grant has been submitted. A verification email along with a copy of the application has been sent to the email addresses included on the form.`,
+              `Applications can take up to 4 weeks for processing and payment. The Ministry will contact your organization once the application has been processed, or if further information is required.`,
               `<b>Next Steps:</b>`,
               `Please provide your participants the following instructions:`,
             ],

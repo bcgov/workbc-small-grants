@@ -14,11 +14,12 @@ class ThankyouOrg extends Component {
                         <h3>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</h3>
                         <button className="btn btn-success d-print-none" onClick={() => window.print()}>Print Confirmation</button><br /><br />
                         <p>
-                        Thank you. Your application for the Work Experience Opportunities Grant has been submitted. A verification email along with a copy of the application has been sent to the email addresses included on the form
+                        Thank you. Your application for the Work Experience Opportunities Grant has been submitted. A verification email along with a copy of the application has been sent to the email addresses included on the form.
                         </p>
-                        <h4>Next Steps:</h4>
+                        <p>Applications can take up to 4 weeks for processing and payment. The Ministry will contact your organization once the application has been processed, or if further information is required.</p>
+                        <h3>Next Steps:</h3>
                         <p>Please provide your participants the following instructions:</p>
-                        <div className="card">
+                        <div className="card border-dark">
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>

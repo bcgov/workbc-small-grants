@@ -47,7 +47,7 @@ module.exports = {
         <p><b>participantSkills:</b>  ${values.participantSkills}</p>
         <p><b>otherSkill:</b>  ${strings.orEmpty(values.otherSkill)}</p>
         <p><b>additionalBenefits:</b>  ${strings.orEmpty(values.additionalBenefits)}</p>
-        <p><b>participantStipend:</b>  ${values.participantStipend}</p>
+        <p><b>participantStipendConfirmation:</b>  ${values.participantStipend}</p>
         <p><b>existingSupplierNumber:</b>  ${values.existingSupplierNumber}</p>
         <p><b>supplierNumber:</b>  ${strings.orEmpty(values.supplierNumber)}</p>
         <p><b>businessClassification:</b>  ${strings.orEmpty(values.businessClassification)}</p>
