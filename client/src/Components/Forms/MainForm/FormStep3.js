@@ -11,6 +11,7 @@ class FormStep3 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="supplierNumber">Supplier Number <span
                         style={{ color: "red" }}>*</span></label>
+                    <small className="text-muted" id="supplierNumber"> This is your BC Government unique vendor ID. More information is available on the FAQs.</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "supplierNumber")}`} id="supplierNumber" name="supplierNumber" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "supplierNumber")}
                 </div>

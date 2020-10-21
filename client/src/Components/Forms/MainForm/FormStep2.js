@@ -77,7 +77,7 @@ class FormStep2 extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
-                    <p>Applicants must meet eligibility requirements, and verification is required before hiring.</p>
+                    <p>Participants must meet all eligibility requirements.  Eligibility will be verified by the ministry prior to disbursement of grant funds.</p>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
                 </div>
                 <div className="form-group">
