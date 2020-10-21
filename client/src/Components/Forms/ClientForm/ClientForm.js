@@ -200,10 +200,8 @@ class ClientForm extends Component {
                                         <div className="form-check">
                                             <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "clientConsent")}`} id="clientConsent"
                                                 name="clientConsent" />
-                                            <label className="form-check-label control-label" htmlFor="clientConsent"><span style={{ color: "red" }}>*</span> I acknowledge and
-                                            understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that
-                                            by doing so, I am providing the same consent as I would by manually signing a physical copy of this
-                                            form.
+                                            <label className="form-check-label control-label" htmlFor="clientConsent"><span style={{ color: "red" }}>*</span>
+                                             I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that the effect of doing so is the same as if I were to manually sign a physical copy of this form.
                                             </label>
                                             {feedBackInvalid(errors, touched, "clientConsent")}
                                         </div>
