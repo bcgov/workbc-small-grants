@@ -81,7 +81,7 @@ class ThankyouOrg extends Component {
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherSkill}</p>
                                 <p>Additional Benefits: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.additionalBenefits}</p>
-                                <p>Stipend:  ${this.props.location.state !== undefined && this.props.location.state.participantStipend}</p>
+                                <p>Stipend confirmation:  {this.props.location.state !== undefined && this.props.location.state.participantStipend.toString()}</p>
                                 <p>Has Existing Supplier Number:  {this.props.location.state !== undefined && this.props.location.state.existingSupplierNumber.toString()}</p>
                                 <p>Supplier Number:{this.props.location.state !== undefined && this.props.location.state.supplierNumber}</p>
                                 <p>Business Classification: {this.props.location.state !== undefined && this.props.location.state.businessClassification}</p>

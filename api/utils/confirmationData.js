@@ -55,7 +55,7 @@ module.exports = {
             `${strings.orEmpty(values.otherSkill)}`,
             `Additional Benefits: `,
             `${strings.orEmpty(values.additionalBenefits)}`,
-            `Stipend confirmation:  $${values.participantStipend}`,
+            `Stipend confirmation:  ${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
             `Supplier Number:${values.supplierNumber}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
