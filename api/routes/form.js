@@ -47,35 +47,36 @@ async function sendEmails(values) {
         }
         // send mail with defined transport object
         let message1 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: mailingList,// list of receivers
           bcc: confirmationBCC,
           subject: "Application Confirmation - " + values._id, // Subject line
-          html: generateHTMLEmail("Thank you, your application has been received",
+          html: generateHTMLEmail("Thank you, your information has been received.",
             [
               `<b>Application ID: ${values._id}</b>`,
-              `Thank you. Your application for the Work Experience Opportunities Grant has been submitted. A verification email along with a copy of the application has been sent to the email addresses included on the form.`,
-              `Applications can take up to 4 weeks for processing and payment. The Ministry will contact your organization once the application has been processed, or if further information is required.`,
-              `<b>Next Steps:</b>`,
-              `Please provide your participants the following instructions:`,
+              `Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.`,
+              `<b>Here are your required next steps:</b>`,
+              `Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process.`,
+              `This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.`,
+              `<b>Please provide your participants the following instructions:</b>`
             ],
             [
               `Application ID: ${values._id}`,
               `Please visit the following URL in order to provide your consent to the Ministry.`,
               `<a href="${clientURL}/clientForm/${values._id}">${clientURL}/clientForm/${values._id}</a>`,
-              `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to (email).`,
+              `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.`,
             ],
             getOrgSubmitted(values)
           ) // html body
         };
         let message2 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: listEmail,// list of receivers
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateListNotification(values) // html body
         };
         let message3 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: notifyEmail,// list of receivers
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateNotification(values) // html body

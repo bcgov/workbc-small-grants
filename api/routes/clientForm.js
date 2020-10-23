@@ -41,23 +41,29 @@ async function sendEmails(values) {
         }
         // send mail with defined transport object
         let message1 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: cEmail,// list of receivers
           bcc: clientConfirmationBCC,
-          subject: "Application Confirmation - ", // Subject line
+          subject: "Application Confirmation", // Subject line
           html: generateHTMLEmail("Thank you, your information has been received", 
-            ["Thank you your application has been received", "The following information was received:"],  
+            [
+              `Your participant information for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email, along with a copy of the submission details have been sent to the email address provided.`, 
+              `Applications may take approximately four weeks for processing. The Ministry will contact your organization once the application has been processed, or if further information is required.`,
+              `<b>For more information</b>`,
+              `For more information on this grant opportunity, visit <a href="https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx</a>`,
+              `If you have additional questions or require assistance, please review the FAQs here, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>`,
+            ],  
             [],
             getClientSubmitted(values)) // html body
         };
         let message2 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: clientListEmail,// list of receivers
           subject: "A client grant application has been received", // Subject line
           html: notification.generateClientListNotification(values) // html body
         };
         let message3 = {
-          from: 'WEOG <donotreply@gov.bc.ca>', // sender address
+          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: clientNotifyEmail,// list of receivers
           subject: "A client grant application has been received", // Subject line
           html: notification.generateClientNotification(values) // html body

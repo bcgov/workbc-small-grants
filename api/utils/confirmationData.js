@@ -3,11 +3,13 @@ var strings = require("./strings")
 module.exports = {
     getOrgSubmitted(values){
         var data = [
-            `<b>Note: you must get all your participants to complete the step above within the next 3 weeks.</b>`,
-            `For more information on this grant opportunity, visit (include website link)`,
-            `If you have additional questions or require assistance, please contact (who – email and phone number)`,
-            `The following information was received:`,
+            `<b>When can I expect notification?</b>`,
+            `Applications may take approximately four weeks for processing. The Ministry will contact your organization once the application has been processed, or if further information is required. We will do our best to provide notification on decisions as quickly as possible; although, response times may vary throughout the intake period as applicant volumes fluctuate.`,
+            `<b>Still have questions?</b>`,
+            `For more information on this grant opportunity, visit <a href="https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx</a>`,
+            `If you have additional questions or require assistance, please review the FAQs here, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>`
             `<hr />`,
+            `The following information was received:`,
             `Application ID:  ${values._id}`,
             `Operating Name:  ${values.operatingName}`,
             `Legal Name:  ${values.legalName}`,
