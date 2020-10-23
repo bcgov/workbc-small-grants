@@ -97,7 +97,7 @@ class FormStep3 extends Component {
                         />
                         <label className="form-check-label" htmlFor="participantStipend">
                             <span style={{ color: "red" }}>*  </span>
-                            I confirm that the minimum amount provided to the work experience participant will be equal to, or greater than, $3,600 for the duration of the project (i.e. minimum 30 hours per week for 12 weeks).
+                            I confirm that the stipend amount provided to work experience participant will be at least $300/week for 12 weeks.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "participantStipend")}
                     </div>
