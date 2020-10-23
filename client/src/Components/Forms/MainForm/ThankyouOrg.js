@@ -8,32 +8,32 @@ class ThankyouOrg extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Thank you, your application has been received</h1>
-                        {console.log(this.props)}
-                        {console.log(window.location.origin)}
+                        <button className="btn btn-success d-print-none float-right" onClick={() => window.print()}>Print Confirmation</button><br /><br />
+                        <h1>Thank you, your information has been received.</h1>
                         <h3>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</h3>
-                        <button className="btn btn-success d-print-none" onClick={() => window.print()}>Print Confirmation</button><br /><br />
                         <p>
-                        Thank you. Your application for the Work Experience Opportunities Grant has been submitted. A verification email along with a copy of the application has been sent to the email addresses included on the form.
+                        Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
-                        <p>Applications can take up to 4 weeks for processing and payment. The Ministry will contact your organization once the application has been processed, or if further information is required.</p>
-                        <h3>Next Steps:</h3>
-                        <p>Please provide your participants the following instructions:</p>
+                        <h3>Here are your required next steps:</h3>
+                        <p>Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process. </p>
+                        <p>This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
+                        <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/clientForm/${applicationId}`}>{`${window.location.origin}/clientForm/${applicationId}`}</a></p>
-                                <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to (email).</p>
+                                <p><a href={`${window.location.origin}/clientForm/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/clientForm/${applicationId}`}</a></p>
+                                <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>
-                        <p>
-                            <b>Note: you must get all your participants to complete the step above within the next 3 weeks.</b>
-                        </p>
-                        <p>For more information on this grant opportunity, visit (include website link)</p>
-                        <p>If you have additional questions or require assistance, please contact (who – email and phone number)</p>
-                        <p>The following information was received:</p>
+                        <br />
+                        <h3>When can I expect notification?</h3>
+                        <p>Applications may take approximately four weeks for processing. The Ministry will contact your organization once the application has been processed, or if further information is required. We will do our best to provide notification on decisions as quickly as possible; although, response times may vary throughout the intake period as applicant volumes fluctuate.</p>
+                        <h3>Still have questions?</h3>
+                        <p>For more information on this grant opportunity, visit <a href="https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx</a></p>
+                        <p>If you have additional questions or require assistance, please review the FAQs here, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a></p>
                         <hr />
+                        <p>The following information was received:</p>
                                 <p>Application ID:  {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Operating Name:  {this.props.location.state !== undefined && this.props.location.state.operatingName}</p>
                                 <p>Legal Name:  {this.props.location.state !== undefined && this.props.location.state.legalName}</p>
