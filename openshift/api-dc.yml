@@ -139,8 +139,8 @@ parameters:
   name: OPENSHIFT_NODEJS_ORIGIN_URL
   required: false
   value: ''
-- description: Email to send client confirmation
-  displayName: Client Notify email
+- description: Email to send client confirmation (test)
+  displayName: Client confirmation email
   name: OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL
   required: false
   value: ''
