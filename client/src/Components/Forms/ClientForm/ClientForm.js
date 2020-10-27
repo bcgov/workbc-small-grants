@@ -24,13 +24,11 @@ class ClientForm extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result.csrfToken)
                     this.setState({
                         _csrf: result.csrfToken,
                     })
                 },
                 (error) => {
-                    console.log(error)
                     this.setState({
                         hasError: true
                     })
@@ -121,13 +119,10 @@ class ClientForm extends Component {
                                     .then(res => res.json())
                                     .then(
                                         (resp) => {
-                                            console.log(resp)
                                             if (resp.err) {
-                                                console.log("errors")
                                                 setErrors(resp.err)
                                                 setSubmitting(false)
                                             } else if(resp.emailErr){
-                                                console.log("emailError")
                                                 setSubmitting(false)
                                                 this.setState({
                                                     hasError: true
@@ -142,8 +137,6 @@ class ClientForm extends Component {
                         >
                             {({ values, errors, touched, isSubmitting }) => (
                                 <Form>
-                                    {console.log(values)}
-                                    {console.log(errors)}
                                     {this.state.hasError && (
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}

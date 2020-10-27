@@ -32,13 +32,11 @@ class MainForm extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result.csrfToken)
                     this.setState({
                         _csrf: result.csrfToken
                     })
                 },
                 (error) => {
-                    console.log(error)
                     this.setState({
                         hasError: true
                     })
@@ -178,13 +176,10 @@ class MainForm extends Component {
                                 .then(res => res.json())
                                 .then(
                                     (resp) => {
-                                        console.log(resp)
                                         if (resp.err){
-                                            console.log("errors")
                                             setSubmitting(false)
                                             setErrors(resp.err)
                                         } else if(resp.emailErr){
-                                            console.log("emailError")
                                             setSubmitting(false)
                                             this.setState({
                                                 hasError: true
@@ -203,7 +198,6 @@ class MainForm extends Component {
                             {props => (
                                 
                                 <Form>
-                                    {console.log(this.state)}
                                     <FormStep1 
                                         currentStep={this.state.currentStep}
                                         {...props}
