@@ -6,12 +6,12 @@ require('yup-phone')
 //export
 var MainFormValidationSchema = yup.object().shape({
     operatingName: yup.string()
-        .required('Please enter the Organization Name'),
+        .required('Please enter the organization name'),
     legalName: yup.string()
         .required('Please enter the legal name.'),
     missionStatement: yup.string()
         .max(255)
-        .required('Please enter the mission statement.'),
+        .required('Please enter the mandate.'),
     organizationWebsite: yup.string().url()
         .required('Please enter the website.'),
     //How long, what type, min max?
@@ -117,13 +117,13 @@ var MainFormValidationSchema = yup.object().shape({
         .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
         .required("Please select number of applicants."),
     insuranceCoverage: yup.boolean()
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please confirm you have insurance coverage."),
     monitorCommit: yup.boolean()
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please confirm your commitment."),
     applicantType: yup.boolean()
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please confirm your understanding of eligibility requirements."),
     placementLength: yup.boolean()
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please confirm that the placement will be 12 weeks."),
     participantActivities: yup.string()
         .max(700, "Maximum of 700 characters is allowed")
         .required("Please describe the work opportunity"),
@@ -195,9 +195,9 @@ var MainFormValidationSchema = yup.object().shape({
     signatory2: yup.string()
         .required("Please enter the second organization signatory."),
     signingAuthorityConfirm: yup.boolean() 
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please confirm signing authorities."),
     organizationConsent: yup.boolean()
-        .oneOf([true],"Required"),
+        .oneOf([true],"Please provide your consent."),
 })
 
 module.exports = MainFormValidationSchema
