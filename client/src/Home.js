@@ -5,9 +5,9 @@ function Home() {
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                    <h1>Work Experience Opportunities Grant</h1>
-                    <p>Welcome to the Work Experience Opportunities Grant application. Please click "start" below to get started. </p>
-                    <p>Questions? Please refer to the our FAQs located here</p>       
+                    <h1>Work Experience Opportunities Grant Program</h1>
+                    <p>Welcome to the Work Experience Opportunities Grant Program application. Please click "start" below to get started. </p>
+                    <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer"></a>here.</p>       
                 </div>
             </div>
             <div className="row">
