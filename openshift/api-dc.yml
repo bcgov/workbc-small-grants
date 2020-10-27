@@ -79,6 +79,7 @@ objects:
         from:
           kind: ImageStreamTag
           name: ${NAME}:${TAG}
+          namespace: ${IMAGE_NAMESPACE}
       type: ImageChange
 - apiVersion: v1
   kind: Service
@@ -164,3 +165,8 @@ parameters:
   name: OPENSHIFT_NODEJS_CLIENTURL
   required: false
   value: ''
+- description: The namespace of the OS project containing the imagestreams
+  displayName: Image Namespace
+  name: IMAGE_NAMESPACE
+  required: true
+  value: myproject-tools
