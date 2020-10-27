@@ -7,7 +7,7 @@ function Home() {
                 <div className="col-md-12">
                     <h1>Work Experience Opportunities Grant Program</h1>
                     <p>Welcome to the Work Experience Opportunities Grant Program application. Please click "start" below to get started. </p>
-                    <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer"></a>here.</p>       
+                    <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">here.</a></p>       
                 </div>
             </div>
             <div className="row">
