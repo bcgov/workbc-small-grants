@@ -7,7 +7,7 @@ module.exports = {
             `Applications may take approximately four weeks for processing. The Ministry will contact your organization once the application has been processed, or if further information is required. We will do our best to provide notification on decisions as quickly as possible; although, response times may vary throughout the intake period as applicant volumes fluctuate.`,
             `<b>Still have questions?</b>`,
             `For more information on this grant opportunity, visit <a href="https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">https://workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx</a>`,
-            `If you have additional questions or require assistance, please review the guidelines here, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>`,
+            `If you have additional questions or require assistance, please review the guidelines <a href="https://www.workbc.ca/getmedia/6d11e1fa-49c1-44b8-a93f-c0798e033b13/Work-Experience-Opportunities-Grant-Guidelines.aspx" target="_blank" rel="noopener noreferrer">here</a>, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>`,
             `<hr />`,
             `The following information was received:`,
             `Application ID:  ${values._id}`,
