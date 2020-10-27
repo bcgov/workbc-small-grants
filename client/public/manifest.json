@@ -1,9 +1,9 @@
 {
-  "short_name": "WorkBC Small Grants",
-  "name": "WorkBC Small Grants",
+  "short_name": "Work Experience Opportunities Grant",
+  "name": "Work Experience Opportunities Grant",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "bcid-favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/x-icon"
     }
