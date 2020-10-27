@@ -112,7 +112,7 @@ class FormStep1 extends Component {
                         {feedBackInvalid(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}
                         {
                             this.props.values.confirmOrganizationNonProfit === "no" &&
-                            <p className="text-danger"> This grant is intended for non-profit organizations. Please review grant <a href="#requirements">eligibility requirements</a> for more information.</p>
+                            <p className="text-danger"> This grant is intended for non-profit organizations. Please review grant <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant/Applicant-eligibility-criteria.aspx" target="_blank" rel="noopener noreferrer">eligibility requirements</a> for more information.</p>
                         }
                     </div>
                     
