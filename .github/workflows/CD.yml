@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: OpenShift4 Action
-        uses: redhat-developer/openshift-action
+        uses: redhat-developer/openshift-actions@v2.1.0
         with:
           # Choose the oc version you want to use to execute the command. It can be a version or an url where to download oc cli desired. If left blank latest oc cli will be used.
           version: latest
