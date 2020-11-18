@@ -125,7 +125,7 @@ var MainFormValidationSchema = yup.object().shape({
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
     participantActivities: yup.string()
-        .max(700, "Maximum of 700 characters is allowed")
+        .max(1000, "Maximum of 1000 characters is allowed")
         .required("Please describe the work opportunity"),
     participantExperiences: yup.array()
         .of(yup.string()
@@ -162,7 +162,7 @@ var MainFormValidationSchema = yup.object().shape({
             return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
         }),
     additionalBenefits: yup.string()
-        .max(700,"Maximum of 700 characters is allowed."),
+        .max(1000,"Maximum of 1000 characters is allowed."),
     participantStipend: yup.boolean()
         .oneOf([true],"Please confirm that the minimum stipend being provided is $3600."),
     existingSupplierNumber: yup.string()

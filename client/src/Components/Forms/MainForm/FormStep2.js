@@ -146,16 +146,16 @@ class FormStep2 extends Component {
                     <label className="col-form-label control-label" htmlFor="participantActivities">Work Opportunity <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="participantActivities">Please describe the work experience opportunity (700 characters max.) </small>
+                    <small className="text-muted" id="participantActivities">Please describe the work experience opportunity (1000 characters max.) </small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantActivities")}`}
                         id="participantActivities"
                         name="participantActivities"
                         rows="4"
-                        maxLength="700"
+                        maxLength="1000"
                     />
-                    <small>{this.props.values.participantActivities.length}/700</small>
+                    <small>{this.props.values.participantActivities.length}/1000</small>
                     {feedBackInvalid(this.props.errors, this.props.touched, "participantActivities")}
                 </div>
                 <div className="form-group">
@@ -232,8 +232,9 @@ class FormStep2 extends Component {
                         id="additionalBenefits"
                         name="additionalBenefits"
                         rows="4"
+                        maxLength="1000"
                     />
-                    <small>{this.props.values.additionalBenefits.length}/700</small>
+                    <small>{this.props.values.additionalBenefits.length}/1000</small>
                 </div>
             </div>
         )
