@@ -102,7 +102,7 @@ class MainForm extends Component {
                             <p><b>The Work Experience Opportunities Grant application window is closed. The good news is that we’re offering a second intake in January 2021. Stay tuned!</b></p>
                             <p>Thanks for your interest in the Work Experience Opportunities Grant. Applications are no longer being accepted for the first intake period. A review is being conducted and several modifications to the program are being considered. Once finalized, a second intake will be available in January 2021. Please check back to stay informed of when the second intake period will be available.</p>
                             <hr/>
-                            <p className="mb-0">If you have questions, please contact the ministry at workexperiencegrants@gov.bc.ca</p>
+                            <p className="mb-0">If you have questions, please contact the ministry at <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
                         </div>
                         {/*<ProgressTracker currentStep={this.state.currentStep}/>*/}
                         {/*this.state.hasError && (
