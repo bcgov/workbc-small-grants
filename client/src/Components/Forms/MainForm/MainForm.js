@@ -7,7 +7,7 @@ import FormStep1 from './FormStep1'
 import FormStep2 from './FormStep2'
 import FormStep3 from './FormStep3'
 import ProgressTracker from './ProgressTracker'
-import {MainFormValidationSchema} from './MainFormValidationSchema'
+//import {MainFormValidationSchema} from './MainFormValidationSchema'
 import {generateAlert} from '../Shared/Alert'
 import {FORM_URL} from '../../../constants/form'
 
@@ -99,10 +99,12 @@ class MainForm extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="alert alert-primary" role="alert">
-                            <p><b>The Work Experience Opportunities Grant application window is closed. The good news is that we’re offering a second intake in January 2021. Stay tuned!</b></p>
-                            <p>Thanks for your interest in the Work Experience Opportunities Grant. Applications are no longer being accepted for the first intake period. A review is being conducted and several modifications to the program are being considered. Once finalized, a second intake will be available in January 2021. Please check back to stay informed of when the second intake period will be available.</p>
+                            <p><b>Applications are no longer being accepted for the first intake period of the Work Experience Opportunities Grant.</b></p>
+                            <p>Additional application intake opportunities are planned and the next application intake will be available in January 2021.</p>
+                            <p>Please check back here for updates and to stay informed of when the next intake period will be available.</p>
+                            <p></p>
                             <hr/>
-                            <p className="mb-0">If you have questions, please contact the ministry at <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
+                            <p className="mb-0">If you have questions, please refer to the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.pdf.aspx">Application Guide</a> or email <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
                         </div>
                         {/*<ProgressTracker currentStep={this.state.currentStep}/>*/}
                         {/*this.state.hasError && (
