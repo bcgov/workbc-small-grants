@@ -12,7 +12,7 @@ function Home() {
                             <p>Please check back here for updates and to stay informed of when the next intake period will be available.</p>
                             <p></p>
                             <hr/>
-                            <p className="mb-0">If you have questions, please refer to the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.pdf.aspx">Application Guide</a> or email <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
+                            <p className="mb-0">If you have questions, please email <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
                         </div>
                     <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">here.</a></p>       
                 </div>
