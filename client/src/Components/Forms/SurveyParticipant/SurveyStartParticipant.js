@@ -6,6 +6,7 @@ class SurveyStartParticipant extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
+                        <h1>Work Experience Opportunities Grant Participant Survey</h1>
                         <p>
                             You have been directed to a secure external site and your responses are anonymous. This survey is optional, and you can decide if you want to take part. Your responses are not linked to your file in any way and we will not record any information that can be used to identify you. Please do not provide any personal or confidential information as you respond to the questions.
                         </p>
