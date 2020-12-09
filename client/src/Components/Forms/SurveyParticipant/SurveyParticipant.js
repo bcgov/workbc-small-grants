@@ -7,7 +7,7 @@ import SurveyParticipantStep2 from './SurveyParticipantStep2'
 import SurveyParticipantStep3 from './SurveyParticipantStep3'
 import SurveyParticipantStep4 from './SurveyParticipantStep4'
 import ProgressTracker from './ProgressTracker'
-import FormStep1 from '../MainForm/FormStep1'
+
 
 class SurveyParticipant extends Component {
     constructor(){

@@ -7,7 +7,6 @@ import SurveyOrgStep2 from './SurveyOrgStep2'
 import SurveyOrgStep3 from './SurveyOrgStep3'
 import SurveyOrgStep4 from './SurveyOrgStep4'
 import ProgressTracker from './ProgressTracker'
-import FormStep1 from '../MainForm/FormStep1'
 
 class SurveyOrg extends Component {
     constructor(){

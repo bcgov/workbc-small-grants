@@ -9,6 +9,8 @@ import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
 import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
 import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
 import ThankyouSurveyParticipant from './Components/Forms/SurveyParticipant/ThankYouSurveyParticipant'
+import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyStartParticipant'
+import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
 
 function Main() {
     return (
@@ -23,6 +25,8 @@ function Main() {
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
+                    <Route path="/surveyLandingOrg" component={SurveyStartOrg} />
+                    <Route path="/surveyLandingParticipant" component={SurveyStartParticipant} />
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>
