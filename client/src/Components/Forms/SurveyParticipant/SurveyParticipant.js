@@ -24,7 +24,7 @@ class SurveyParticipant extends Component {
     _next() {
         this.setState( prevState => {
             return {
-                currentStep: prevState.currentStep >= 2 ? 3 : prevState.currentStep + 1
+                currentStep: prevState.currentStep >= 3 ? 4 : prevState.currentStep + 1
             }
         })
     }
@@ -55,7 +55,7 @@ class SurveyParticipant extends Component {
     get nextButton(){
         let currentStep = this.state.currentStep;
 
-        if(currentStep < 3){
+        if(currentStep < 4){
           return (
             <button 
               className="btn btn-primary float-right" 
@@ -81,16 +81,10 @@ class SurveyParticipant extends Component {
                             initialValues={{
                                 //step 1
                                 easeOfNavigatingWebsite: '',
-                                easeOfUnderstandingAppGuide: '',
-                                satisfactionSpeedOfService: '',
                                 //step 2
-                                valueOfProgram: '',
-                                participantNumber: '',
-                                participant1Experience: '',
-                                participant2Experience: '',
-                                participant3Experience: '',
-                                participant4Experience: '',
-                                participant5Experience: '',
+                                overallExperienceWithEmployer: '',
+                                levelOfSupportsReceived: '',
+                                increasedAbilityToParticipateInLM: '',
                                 likelyToHirePeopleWithBarriersInFuture: '',
                                 difficultyHiringPeopleWithBarriers: '',
                                 //step 3
@@ -108,6 +102,18 @@ class SurveyParticipant extends Component {
                         {props => (
                             <Form>
                                 <SurveyParticipantStep1
+                                    currentStep={this.state.currentStep}
+                                    {...props}
+                                />
+                                <SurveyParticipantStep2
+                                    currentStep={this.state.currentStep}
+                                    {...props}
+                                />
+                                <SurveyParticipantStep3
+                                    currentStep={this.state.currentStep}
+                                    {...props}
+                                />
+                                <SurveyParticipantStep4
                                     currentStep={this.state.currentStep}
                                     {...props}
                                 />
