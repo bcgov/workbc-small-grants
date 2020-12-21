@@ -30,7 +30,6 @@ class SurveyOrgStep2 extends Component {
                                 value="2fair"
                             />
                             <label className="form-check-label">2 (fair)</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}
                         </div>
                         <div className="form-check">
                             <Field
@@ -40,7 +39,6 @@ class SurveyOrgStep2 extends Component {
                                 value="3good"
                             />
                             <label className="form-check-label">3 (good)</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}
                         </div>
                         <div className="form-check">
                             <Field
@@ -50,7 +48,6 @@ class SurveyOrgStep2 extends Component {
                                 value="4veryGood"
                             />
                             <label className="form-check-label">4 (very good)</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}
                         </div>
                         <div className="form-check">
                             <Field
@@ -118,7 +115,6 @@ class SurveyOrgStep2 extends Component {
                             value="2fair"
                         />
                         <label className="form-check-label">2 (fair)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "valueOfProgram")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -128,7 +124,6 @@ class SurveyOrgStep2 extends Component {
                             value="3good"
                         />
                         <label className="form-check-label">3 (good)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "valueOfProgram")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -138,7 +133,6 @@ class SurveyOrgStep2 extends Component {
                             value="4veryGood"
                         />
                         <label className="form-check-label">4 (very good)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "valueOfProgram")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -189,7 +183,6 @@ class SurveyOrgStep2 extends Component {
                             value="2unlikely"
                         />
                         <label className="form-check-label">2 (unlikely)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -199,7 +192,6 @@ class SurveyOrgStep2 extends Component {
                             value="3neitherLikelyOrUnlikely"
                         />
                         <label className="form-check-label">3 (neither likely or unlikely)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -209,7 +201,6 @@ class SurveyOrgStep2 extends Component {
                             value="4likely"
                         />
                         <label className="form-check-label">4 (likely)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}
                     </div>
                     <div className="form-check">
                         <Field

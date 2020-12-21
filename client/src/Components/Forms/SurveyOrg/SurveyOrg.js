@@ -7,6 +7,7 @@ import SurveyOrgStep2 from './SurveyOrgStep2'
 import SurveyOrgStep3 from './SurveyOrgStep3'
 import SurveyOrgStep4 from './SurveyOrgStep4'
 import ProgressTracker from './ProgressTracker'
+import {SurveyOrgValidationSchema} from './SurveyOrgValidationSchema'
 
 class SurveyOrg extends Component {
     constructor(){
@@ -99,6 +100,7 @@ class SurveyOrg extends Component {
                                 experienceBetterComments: '',
                             }}
                             enableReinitialize={true}
+                            validationSchema={SurveyOrgValidationSchema}
                             onSubmit={(values,{setErrors,setSubmitting}) => {
                                 setSubmitting(false)
                                 this.props.history.push('/thankYouSurveyOrg',values)

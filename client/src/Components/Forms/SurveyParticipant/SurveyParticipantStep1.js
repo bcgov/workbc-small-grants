@@ -31,7 +31,6 @@ class SurveyParticipantStep1 extends Component {
                             value="2fair"
                         />
                         <label className="form-check-label">2 (fair)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "easeOfNavigatingWebsite")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -41,7 +40,6 @@ class SurveyParticipantStep1 extends Component {
                             value="3good"
                         />
                         <label className="form-check-label">3 (good)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "easeOfNavigatingWebsite")}
                     </div>
                     <div className="form-check">
                         <Field
@@ -51,7 +49,6 @@ class SurveyParticipantStep1 extends Component {
                             value="4veryGood"
                         />
                         <label className="form-check-label">4 (very good)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "easeOfNavigatingWebsite")}
                     </div>
                     <div className="form-check">
                         <Field

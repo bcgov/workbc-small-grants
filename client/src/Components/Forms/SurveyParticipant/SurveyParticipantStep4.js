@@ -3,6 +3,23 @@ import { Field } from 'formik'
 
 class SurveyParticipantStep4 extends Component {
 
+    get showErrors() {
+        if (this.props.submitCount > 0) {
+            return (
+                <div>
+                    <p>Please correct the following errors:</p>
+                    <ul>
+                        {Object.values(this.props.errors).map((error, i) => (
+                            <li key={i}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
     render() {
         if (this.props.currentStep !== 4) {
             return null
@@ -23,6 +40,9 @@ class SurveyParticipantStep4 extends Component {
                         maxLength="1000"
                     />
                     <small>{this.props.values.experienceBetterComments.length}/1000</small>
+                </div>
+                <div className="form-group">
+                    {this.showErrors}
                 </div>
                 <button
                     className="btn btn-success btn-block"

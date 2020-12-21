@@ -7,6 +7,7 @@ import SurveyParticipantStep2 from './SurveyParticipantStep2'
 import SurveyParticipantStep3 from './SurveyParticipantStep3'
 import SurveyParticipantStep4 from './SurveyParticipantStep4'
 import ProgressTracker from './ProgressTracker'
+import { SurveyParticipantValidationSchema } from './SurveyParticipantValidation'
 
 
 class SurveyParticipant extends Component {
@@ -85,8 +86,6 @@ class SurveyParticipant extends Component {
                                 overallExperienceWithEmployer: '',
                                 levelOfSupportsReceived: '',
                                 increasedAbilityToParticipateInLM: '',
-                                likelyToHirePeopleWithBarriersInFuture: '',
-                                difficultyHiringPeopleWithBarriers: '',
                                 //step 3
                                 likelyToParticipateInSimilarProgram: '',
                                 likelyToRecommendGrant: '',
@@ -94,6 +93,7 @@ class SurveyParticipant extends Component {
                                 experienceBetterComments: '',
                             }}
                             enableReinitialize={true}
+                            validationSchema={SurveyParticipantValidationSchema}
                             onSubmit={(values,{setErrors,setSubmitting}) => {
                                 setSubmitting(false)
                                 this.props.history.push('/thankYouSurveyParticipant',values)

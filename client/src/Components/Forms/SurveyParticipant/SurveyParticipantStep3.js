@@ -31,7 +31,6 @@ class SurveyParticipantStep3 extends Component {
                         value="2unlikely"
                     />
                     <label className="form-check-label">2 (unlikely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}
                 </div>
                 <div className="form-check">
                     <Field
@@ -41,7 +40,6 @@ class SurveyParticipantStep3 extends Component {
                         value="3neitherLikelyOrUnlikely"
                     />
                     <label className="form-check-label">3 (neither likely or unlikely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}
                 </div>
                 <div className="form-check">
                     <Field
@@ -51,7 +49,6 @@ class SurveyParticipantStep3 extends Component {
                         value="4likely"
                     />
                     <label className="form-check-label">4 (likely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}
                 </div>
                 <div className="form-check">
                     <Field
@@ -83,7 +80,6 @@ class SurveyParticipantStep3 extends Component {
                         value="2unlikely"
                     />
                     <label className="form-check-label">2 (unlikely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToRecommendGrant")}
                 </div>
                 <div className="form-check">
                     <Field
@@ -93,7 +89,6 @@ class SurveyParticipantStep3 extends Component {
                         value="3neitherLikelyOrUnlikely"
                     />
                     <label className="form-check-label">3 (neither likely or unlikely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToRecommendGrant")}
                 </div>
                 <div className="form-check">
                     <Field
@@ -103,7 +98,6 @@ class SurveyParticipantStep3 extends Component {
                         value="4likely"
                     />
                     <label className="form-check-label">4 (likely)</label>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "likelyToRecommendGrant")}
                 </div>
                 <div className="form-check">
                     <Field
