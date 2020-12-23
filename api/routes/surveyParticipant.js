@@ -8,16 +8,16 @@ var nodemailer = require("nodemailer");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
-var SurveyOrgValidationSchema = require('../schemas/SurveyOrgValidationSchema.js')
+var SurveyParticipantValidationSchema = require('../schemas/SurveyOrgValidationSchema.js')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
 //const { getSurveyOrgSubmitted } = require('../utils/confirmationData');
 
-var surveyOrgConfirmationEmail = process.env.SURVEYORG_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_SURVEYORG_CONFIRMATION_EMAIL || "";
-var surveyOrgConfirmationBCC = process.env.SURVEYORG_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_SURVEYORG_CONFIRMATION_BCC || "";
-var surveyOrgListEmail = process.env.SURVEYORG_LISTEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYORG_LISTEMAIL || "";
-var surveyOrgNotifyEmail = process.env.SURVEYORG_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYORG_NOTIFYEMAIL || "";
+var surveyParticipantConfirmationEmail = process.env.SURVEYPARTICIPANT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_EMAIL || "";
+var surveyParticipantConfirmationBCC = process.env.SURVEYPARTICIPANT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_BCC || "";
+var surveyParticipantListEmail = process.env.SURVEYPARTICIPANT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_LISTEMAIL || "";
+var surveyParticipantNotifyEmail = process.env.SURVEYPARTICIPANT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_NOTIFYEMAIL || "";
 
 async function sendEmails(values) {
   try {
@@ -62,15 +62,15 @@ async function sendEmails(values) {
         */
         let message2 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: surveyOrgListEmail,// list of receivers
-          subject: "An organization survey response has been received", // Subject line
-          html: notification.generateSurveyOrgListNotification(values) // html body
+          to: surveyParticipantListEmail,// list of receivers
+          subject: "A participant survey response has been received", // Subject line
+          html: notification.generateSurveyParticipantListNotification(values) // html body
         };
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: surveyOrgNotifyEmail,// list of receivers
-          subject: "An organization survey response has been received", // Subject line
-          html: notification.generateSurveyOrgNotification(values) // html body
+          to: surveyParticipantNotifyEmail,// list of receivers
+          subject: "A participant survey response has been received", // Subject line
+          html: notification.generateSurveyParticipantNotification(values) // html body
         };
         /*
         let info = transporter.sendMail(message1, (error, info) => {
@@ -123,7 +123,7 @@ router.post('/', csrfProtection, async (req, res) => {
   //clean the body
   clean(req.body);
   console.log(req.body)
-  SurveyOrgValidationSchema.validate(req.body, { abortEarly: false })
+  SurveyParticipantValidationSchema.validate(req.body, { abortEarly: false })
     .then(async function (value) {
       try {
         await sendEmails(value)

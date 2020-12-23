@@ -29,11 +29,13 @@ class SurveyOrg extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log(result)
                     this.setState({
                         _csrf: result.csrfToken,
                     })
                 },
                 (error) => {
+                    console.log(error)
                     this.setState({
                         hasError: true
                     })
@@ -153,6 +155,7 @@ class SurveyOrg extends Component {
                         >
                         {props => (
                             <Form>
+                                {console.log(this)}
                                 <SurveyOrgStep1
                                     currentStep={this.state.currentStep}
                                     {...props}

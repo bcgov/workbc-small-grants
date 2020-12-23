@@ -8,7 +8,7 @@ import SurveyParticipantStep3 from './SurveyParticipantStep3'
 import SurveyParticipantStep4 from './SurveyParticipantStep4'
 import ProgressTracker from './ProgressTracker'
 import { SurveyParticipantValidationSchema } from './SurveyParticipantValidation'
-
+import { FORM_URL } from '../../../constants/form'
 
 class SurveyParticipant extends Component {
     constructor(){
@@ -20,6 +20,27 @@ class SurveyParticipant extends Component {
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
+    }
+
+    componentDidMount() {
+        fetch(FORM_URL.surveyParticipant, {
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                    this.setState({
+                        _csrf: result.csrfToken,
+                    })
+                },
+                (error) => {
+                    console.log(error)
+                    this.setState({
+                        hasError: true
+                    })
+                }
+            )
     }
 
     _next() {
