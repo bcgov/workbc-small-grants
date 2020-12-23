@@ -115,9 +115,33 @@ class SurveyParticipant extends Component {
                             }}
                             enableReinitialize={true}
                             validationSchema={SurveyParticipantValidationSchema}
-                            onSubmit={(values,{setErrors,setSubmitting}) => {
-                                setSubmitting(false)
-                                this.props.history.push('/thankYouSurveyParticipant',values)
+                            onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
+                                fetch(FORM_URL.surveyParticipant, {
+                                    method: "POST",
+                                    credentials: 'include',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(values),
+                                })
+                                    .then(res => res.json())
+                                    .then(
+                                        (resp) => {
+                                            if (resp.err) {
+                                                setErrors(resp.err)
+                                                setSubmitting(false)
+                                            } else if(resp.emailErr){
+                                                setSubmitting(false)
+                                                this.setState({
+                                                    hasError: true
+                                                })
+                                            } else if (resp.ok) {
+                                                setSubmitting(false)
+                                                this.props.history.push('/thankYouSurveyParticipant', values)
+                                            }
+                                        }
+                                    )
                             }}
                         >
                         {props => (
