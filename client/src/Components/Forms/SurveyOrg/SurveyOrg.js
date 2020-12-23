@@ -8,6 +8,7 @@ import SurveyOrgStep3 from './SurveyOrgStep3'
 import SurveyOrgStep4 from './SurveyOrgStep4'
 import ProgressTracker from './ProgressTracker'
 import {SurveyOrgValidationSchema} from './SurveyOrgValidationSchema'
+import { FORM_URL } from '../../../constants/form'
 
 class SurveyOrg extends Component {
     constructor(){
@@ -19,6 +20,25 @@ class SurveyOrg extends Component {
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
+    }
+
+    componentDidMount() {
+        fetch(FORM_URL.surveyOrg, {
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        _csrf: result.csrfToken,
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        hasError: true
+                    })
+                }
+            )
     }
 
     _next() {
@@ -79,6 +99,7 @@ class SurveyOrg extends Component {
                         )}
                         <Formik
                             initialValues={{
+                                _csrf: this.state._csrf,
                                 //step 1
                                 easeOfNavigatingWebsite: '',
                                 easeOfUnderstandingAppGuide: '',
@@ -101,9 +122,33 @@ class SurveyOrg extends Component {
                             }}
                             enableReinitialize={true}
                             validationSchema={SurveyOrgValidationSchema}
-                            onSubmit={(values,{setErrors,setSubmitting}) => {
-                                setSubmitting(false)
-                                this.props.history.push('/thankYouSurveyOrg',values)
+                            onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
+                                fetch(FORM_URL.surveyOrg, {
+                                    method: "POST",
+                                    credentials: 'include',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(values),
+                                })
+                                    .then(res => res.json())
+                                    .then(
+                                        (resp) => {
+                                            if (resp.err) {
+                                                setErrors(resp.err)
+                                                setSubmitting(false)
+                                            } else if(resp.emailErr){
+                                                setSubmitting(false)
+                                                this.setState({
+                                                    hasError: true
+                                                })
+                                            } else if (resp.ok) {
+                                                setSubmitting(false)
+                                                this.props.history.push('/thankYouSurveyOrg', values)
+                                            }
+                                        }
+                                    )
                             }}
                         >
                         {props => (

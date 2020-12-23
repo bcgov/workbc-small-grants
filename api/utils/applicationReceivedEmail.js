@@ -152,6 +152,76 @@ module.exports = {
             clientConsent ${values.clientConsent}
         `
         return html
+    },
+
+    generateSurveyOrgNotification: function(values){
+        var html = /*html*/`
+            <h2>An organization survey response has been received</h2>
+            <p><b>easeOfNavigatingWebsite: </b> ${values.easeOfNavigatingWebsite}</p>
+            <p><b>easeOfUnderstandingAppGuide: </b> ${values.easeOfUnderstandingAppGuide}</p>
+            <p><b>satisfactionSpeedOfService: </b> ${values.satisfactionSpeedOfService}</p>
+            <p><b>valueOfProgram: </b> ${values.valueOfProgram}</p>
+            <p><b>participantNumber: </b> ${values.participantNumber}</p>
+            <p><b>participant1Experience: </b> ${strings.orEmpty(values.participant1Experience)}</p>
+            <p><b>participant2Experience: </b> ${strings.orEmpty(values.participant2Experience)}</p>
+            <p><b>participant3Experience: </b> ${strings.orEmpty(values.participant3Experience)}</p>
+            <p><b>participant4Experience: </b> ${strings.orEmpty(values.participant4Experience)}</p>
+            <p><b>participant5Experience: </b> ${strings.orEmpty(values.participant5Experience)}</p>
+            <p><b>likelyToHirePeopleWithBarriersInFuture: </b> ${values.likelyToHirePeopleWithBarriersInFuture}</p>
+            <p><b>difficultyHiringPeopleWithBarriersComment: </b> ${strings.orEmpty(values.difficultyHiringPeopleWithBarriersComment)}</p>
+            <p><b>likelyToParticipateInSimilarProgram: </b> ${values.likelyToParticipateInSimilarProgram}</p>
+            <p><b>likelyToRecommendGrant: </b> ${values.likelyToRecommendGrant}</p>
+            <p><b>experienceBetterComments: </b> ${strings.orEmpty(values.experienceBetterComments)}</p>
+        `
+        return html
+    },
+
+    generateSurveyOrgListNotification: function(values){
+        var html = `
+            easeOfNavigatingWebsite ${values.easeOfNavigatingWebsite}
+            overallExperienceWithEmployer ${values.overallExperienceWithEmployer}
+            levelOfSupportsReceived ${values.levelOfSupportsReceived}
+            increasedAbilityToParticipateInLM ${values.increasedAbilityToParticipateInLM}
+            likelyToParticipateInSimilarProgram ${values.likelyToParticipateInSimilarProgram}
+            likelyToRecommendGrant ${values.likelyToRecommendGrant}
+            experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
+        `
+        return html
+    },
+
+    generateSurveyParticipantNotification: function(values){
+        var html = /*html*/`
+            <h2>A participant survey response has been received</h2>
+            <p><b>easeOfNavigatingWebsite: </b> ${values.easeOfNavigatingWebsite}</p>
+            <p><b>overallExperienceWithEmployer: </b> ${values.overallExperienceWithEmployer}</p>
+            <p><b>levelOfSupportsReceived: </b> ${values.levelOfSupportsReceived}</p>
+            <p><b>increasedAbilityToParticipateInLM: </b> ${values.increasedAbilityToParticipateInLM}</p>
+            <p><b>likelyToParticipateInSimilarProgram: </b> ${values.likelyToParticipateInSimilarProgram}</p>
+            <p><b>likelyToRecommendGrant: </b> ${values.likelyToRecommendGrant}</p>
+            <p><b>experienceBetterComments: </b> ${strings.orEmpty(values.experienceBetterComments)}</p>
+        `
+        return html
+    },
+
+    generateSurveyParticipantListNotification: function(values){
+        var html = `
+            easeOfNavigatingWebsite ${values.easeOfNavigatingWebsite}
+            easeOfUnderstandingAppGuide ${values.easeOfUnderstandingAppGuide}
+            satisfactionSpeedOfService ${values.satisfactionSpeedOfService}
+            valueOfProgram ${values.valueOfProgram}
+            participantNumber ${values.participantNumber}
+            participant1Experience ${strings.orEmpty(values.participant1Experience)}
+            participant2Experience ${strings.orEmpty(values.participant2Experience)}
+            participant3Experience ${strings.orEmpty(values.participant3Experience)}
+            participant4Experience ${strings.orEmpty(values.participant4Experience)}
+            participant5Experience ${strings.orEmpty(values.participant5Experience)}
+            likelyToHirePeopleWithBarriersInFuture ${values.likelyToHirePeopleWithBarriersInFuture}
+            difficultyHiringPeopleWithBarriersComment ${strings.orEmpty(values.difficultyHiringPeopleWithBarriersComment)}
+            likelyToParticipateInSimilarProgram ${values.likelyToParticipateInSimilarProgram}
+            likelyToRecommendGrant ${values.likelyToRecommendGrant}
+            experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
+        `
+        return html
     }
 
 }
