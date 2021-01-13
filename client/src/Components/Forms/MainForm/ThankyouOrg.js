@@ -76,9 +76,15 @@ class ThankyouOrg extends Component {
                                 <p>What will organization provide:  {this.props.location.state !== undefined && this.props.location.state.participantExperiences}</p>
                                 <p>Other Experience:</p> 
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherExperience}</p>
-                                <p>Participants will gain:  {this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
+                                <p>Work experience taking place at partnering business? {this.props.location.state !== undefined && this.props.location.state.workExperienceTakesPlaceElsewhere}</p>
+                                <p>Partnering business name: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessName}</p>
+                                <p>Partnering business activities: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessActivities}</p>
+                                <p>Partnering business affiliation: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessAffiliation}</p>
+                                <p>Skill development:  {this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
+                                {/*
                                 <p>Other Skills: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherSkill}</p>
+                                */}
                                 <p>Additional Benefits: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.additionalBenefits}</p>
                                 <p>Stipend confirmation:  {this.props.location.state !== undefined && this.props.location.state.participantStipend.toString()}</p>

@@ -124,6 +124,24 @@ export const MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Please confirm your understanding of eligibility requirements."),
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
+    workExperienceTakesPlaceElsewhere: yup.string()
+        .oneOf(["yes","no"])
+        .required("Please answer if your work experience is taking place in a partner business."),
+    partneringBusinessName: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(255).required("Please provide your partner business name.")
+        }),
+    partneringBusinessActivities: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().max(500).required("Please provide a description of the business activities.")
+    }),
+    partneringBusinessAffiliation: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().max(500).required("Please describe your affiliation with the business.")
+    }),        
     participantActivities: yup.string()
         .max(1000, "Maximum of 1000 characters is allowed")
         .required("Please describe the work opportunity"),
@@ -146,25 +164,17 @@ export const MainFormValidationSchema = yup.object().shape({
                 return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
             }
         }),
-    participantSkills: yup.array()
-        .of(yup.string()
-            .min(1)
-            .oneOf([
-                "Essential Skills",
-                "Life Skills",
-                "Training",
-                "Employment Experience",
-                "Self Employment Experience",
-                "Other"
-            ],"Please select a valid option.")
-        )
-        .required("Please select at least one skill."),
+    participantSkills: yup.string()
+        .max(1000, "Maximum of 1000 characters allowed.")
+        .required("Please describe the skill development."),
+    /*
     otherSkill: yup.string()
         .when("participantSkills", (participantSkills, schema) => {
             if (participantSkills !== undefined){
                 return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
             }
         }),
+    */
     additionalBenefits: yup.string()
         .max(1000,"Maximum of 1000 characters is allowed."),
     participantStipend: yup.boolean()

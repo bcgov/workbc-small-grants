@@ -51,6 +51,50 @@ class FormStep2 extends Component {
         return null
     }
 
+    get partneringBusiness(){
+        if (this.props.values.workExperienceTakesPlaceElsewhere === "yes"){
+            return (
+                <div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessName">What is the name of the business? <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessName")}`} id="partneringBusinessName" name="partneringBusinessName" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessName")}
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessActivities">Please provide a description of the business activities  <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field
+                            as="textarea" 
+                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessActivities")}`} 
+                            id="partneringBusinessActivities" 
+                            name="partneringBusinessActivities"
+                            rows="4"
+                            maxLength="500" 
+                        />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessActivities")}
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessName">What is your affiliation with this place of business? <span
+                            style={{ color: "red" }}>*</span></label>
+                        <Field
+                            as="textarea"  
+                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessName")}`} 
+                            id="partneringBusinessName" 
+                            name="partneringBusinessName" 
+                            rows="4"
+                            maxLength="500" 
+                        />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessName")}
+                    </div>
+                    <hr></hr>
+                </div>
+                
+            )
+        }
+        return null
+    }
+
     render() {
         if (this.props.currentStep !== 2) {
             return null
@@ -143,10 +187,33 @@ class FormStep2 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="workExperienceTakesPlaceElsewhere">Will the work experience take place at a partnering business in the community other than the non-profit organization listed on step 1 of the application form?<span style={{ color: "red" }}>*</span></label>
+                    <div className="form-check">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}`}
+                            type="radio"
+                            name="workExperienceTakesPlaceElsewhere"
+                            value="yes"
+                        />
+                        <label className="form-check-label" htmlFor="organizationNonProfitYes">Yes</label>
+                    </div>
+                    <div className="form-check">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}`}
+                            type="radio"
+                            name="workExperienceTakesPlaceElsewhere"
+                            value="no"
+                        />
+                        <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
+                        {feedBackInvalid(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}
+                    </div>
+                </div>
+                {this.partneringBusiness}
+                <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="participantActivities">Work Opportunity <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="participantActivities">Please describe the work experience opportunity (1000 characters max.) </small>
+                    <small className="text-muted" id="participantActivities"> What will participants be doing? Details such as packing boxes in a food bank, sorting items at a thrift store, working a cash register at a shop, doing data entry, maintaining trails or doing invasive species removal in a park, etc. Please describe the work experience opportunity in more detail. (1000 characters max.) </small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantActivities")}`}
@@ -191,6 +258,23 @@ class FormStep2 extends Component {
                 </div>
                 {this.otherExperienceField}
                 <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="participantSkills">Skill Development <span
+                        style={{ color: "red" }}>*</span>
+                    </label>
+                    <small className="text-muted" id="participantSkills"> What essential skills will participants gain through the work experience? Skills such as computer use, communication skills, literacy skills, time management, training, employment experience, etc. Please describe the skills in more detail. (1000 characters max.)</small>
+                    <Field
+                        as="textarea"
+                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`}
+                        id="participantSkills"
+                        name="participantSkills"
+                        rows="4"
+                        maxLength="1000"
+                    />
+                    <small>{this.props.values.participantSkills.length}/1000</small>
+                    {feedBackInvalid(this.props.errors, this.props.touched, "participantSkills")}
+                </div>
+                {/*
+                <div className="form-group">
                     <label className="control-label">During the work experience participant(s) will gain:
                         <span style={{ color: "red" }}>*</span>
                     </label>
@@ -221,7 +305,7 @@ class FormStep2 extends Component {
                         {feedBackInvalid(this.props.errors, this.props.touched, "participantSkills")}
                     </div>
                 </div>
-                {this.otherSkillField}
+                {this.otherSkillField*/}
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="additionalBenefits">Additional benefits
                     </label>

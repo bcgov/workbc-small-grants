@@ -41,6 +41,10 @@ module.exports = {
         <p><b>monitorCommit:</b>  ${values.monitorCommit}</p>
         <p><b>applicantType:</b>  ${values.applicantType}</p>
         <p><b>placementLength:</b>  ${values.placementLength}</p>
+        <p><b>workExperienceTakesPlaceElsewhere:</b> ${values.workExperienceTakesPlaceElsewhere}</p>
+        <p><b>partneringBusinessName:</b> ${strings.orEmpty(partneringBusinessName)}</p>
+        <p><b>partneringBusinessActivities:</b> ${strings.orEmpty(partneringBusinessActivities)}</p>
+        <p><b>partneringBusinessAffiliation:</b> ${strings.orEmpty(partneringBusinessAffiliation)}</p>
         <p><b>participantActivities:</b>  ${values.participantActivities}</p>
         <p><b>participantExperiences:</b>  ${values.participantExperiences}</p>
         <p><b>otherExperience:</b>  ${strings.orEmpty(values.otherExperience)}</p>
@@ -113,7 +117,11 @@ module.exports = {
             signatory1 ${values.signatory1}
             signatory2 ${values.signatory2}
             signingAuthorityConfirm ${values.signingAuthorityConfirm}
-            organizationConsent ${values.organizationConsent}        
+            organizationConsent ${values.organizationConsent}
+            workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
+            partneringBusinessName ${strings.orEmpty(partneringBusinessName)}
+            partneringBusinessActivities ${strings.orEmpty(partneringBusinessActivities)}
+            partneringBusinessAffiliation ${strings.orEmpty(partneringBusinessAffiliation)}
         `
         return html;
     },

@@ -52,9 +52,15 @@ module.exports = {
             `What will organization provide:  ${values.participantExperiences}`,
             `Other Experience:`, 
             `${strings.orEmpty(values.otherExperience)}`,
-            `Participants will gain:  ${values.participantSkills}`,
+            `Work experience taking place at partnering business? ${values.workExperienceTakesPlaceElsewhere}`,
+            `Partnering business name: ${strings.orEmpty(partneringBusinessName)}`,
+            `Partnering business activities: ${strings.orEmpty(partneringBusinessActivities)}`,
+            `Partnering business affiliation: ${strings.orEmpty(partneringBusinessAffiliation)}`,
+            `Skill Development:  ${values.participantSkills}`,
+            /*
             `Other Skills: `,
             `${strings.orEmpty(values.otherSkill)}`,
+            */
             `Additional Benefits: `,
             `${strings.orEmpty(values.additionalBenefits)}`,
             `Stipend confirmation:  ${values.participantStipend}`,
