@@ -67,6 +67,7 @@ class FormStep1 extends Component {
                 <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="legalName">Legal Name <span
                             style={{ color: "red" }}>*</span></label>
+                        <small className="text-muted" id="legalName"> Please enter the name of your organization as it is registered with the provincial Societies Act or federal Income Tax Act.</small>
                         <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"legalName")}`} id="legalName" name="legalName"/>
                         {feedBackInvalid(this.props.errors,this.props.touched,"legalName")}
                 </div>
@@ -87,19 +88,39 @@ class FormStep1 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="businessNumber">Business Number<span
                         style={{ color: "red" }}>*</span></label>
+                    <small className="text-muted"> </small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"businessNumber")}`} id="businessNumber" name="businessNumber" />
                     {feedBackInvalid(this.props.errors,this.props.touched,"businessNumber")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization an incorporated non-profit (society) under the BC Societies Act or a federally registered charity ?<span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization: <span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}`}
                             type="radio"
                             name="confirmOrganizationNonProfit"
-                            value="yes"
+                            value="incorporatedNonProfit"
+                            onChange={e => {
+                                this.props.handleChange(e)
+                                this.props.setFieldValue("societyRegistrationID","")
+                                this.props.setFieldValue("charityRegistrationNumber","")
+                            }}
                         />
-                        <label className="form-check-label" htmlFor="organizationNonProfitYes">Yes</label>
+                        <label className="form-check-label" htmlFor="incorporatedNonProfit">An incorporated non-profit (society) under the BC Societies Act</label>
+                    </div>
+                    <div className="form-check">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}`}
+                            type="radio"
+                            name="confirmOrganizationNonProfit"
+                            value="federallyRegisteredCharity"
+                            onChange={e => {
+                                this.props.handleChange(e)
+                                this.props.setFieldValue("societyRegistrationID","")
+                                this.props.setFieldValue("charityRegistrationNumber","")
+                            }}
+                        />
+                        <label className="form-check-label" htmlFor="federallyRegisteredCharity">A charity registered federally under the Income Tax Act</label>
                     </div>
                     <div className="form-check">
                         <Field
@@ -107,8 +128,13 @@ class FormStep1 extends Component {
                             type="radio"
                             name="confirmOrganizationNonProfit"
                             value="no"
+                            onChange={e => {
+                                this.props.handleChange(e)
+                                this.props.setFieldValue("societyRegistrationID","")
+                                this.props.setFieldValue("charityRegistrationNumber","")
+                            }}
                         />
-                        <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
+                        <label className="form-check-label" htmlFor="organizationNonProfitNo">None of the above</label>
                         {feedBackInvalid(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}
                         {
                             this.props.values.confirmOrganizationNonProfit === "no" &&
