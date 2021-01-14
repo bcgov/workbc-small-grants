@@ -75,12 +75,14 @@ async function sendEmails(values) {
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateListNotification(values) // html body
         };
+        /*
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: notifyEmail,// list of receivers
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateNotification(values) // html body
         };
+        */
         let info = transporter.sendMail(message1, (error, info) => {
           if (error) {
             console.log("Error sending confirmation for " + values._id)
@@ -95,6 +97,7 @@ async function sendEmails(values) {
             console.log("Message sent: %s", info.messageId);
           }
         });
+        /*
         info = transporter.sendMail(message3, (error, info) => {
           if (error) {
             console.log("Error sending notification for " + values._id)
@@ -102,6 +105,7 @@ async function sendEmails(values) {
             console.log("Message sent: %s", info.messageId);
           }
         });
+        */
         return true
       }).catch(function (e) {
         console.log(e)
