@@ -16,12 +16,22 @@ var MainFormValidationSchema = yup.object().shape({
         .required('Please enter the website.'),
     //How long, what type, min max?
     businessNumber: yup.string()
-        .max(15, "Business number must be exactly 15 characters")
-        .min(15, "Business number must be exactly 15 characters.")
+        .max(17, "Business number must be at most 17 characters.")
+        .min(9, "Business number must be at minimum 9 characters.")
         .required('Please enter your business number.'),
     confirmOrganizationNonProfit: yup.string()
         .matches("yes", "Only non-profits are eligible.")
         .required('Please select'),
+    societyRegistrationID: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "incorporatedNonProfit",
+            then: yup.string().max(9,"Registration ID can contain a maximum of 9 characters.")
+        }),
+    charityRegistrationNumber: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "federallyRegisteredCharity",
+            then: yup.string().max(17,"Charity registration number can contain a maximum of 17 characters.")
+        }),
     nonProfitClassification: yup.mixed()
         .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid field.")
         .required('Please select your classification.'),
@@ -122,6 +132,10 @@ var MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Please confirm your commitment."),
     applicantType: yup.boolean()
         .oneOf([true],"Please confirm your understanding of eligibility requirements."),
+    understandNotAvailableTo: yup.boolean()
+        .oneOf([true],"Please confirm your understanding on ineligibility."),
+    administerGrantUnderstanding: yup.boolean()
+        .oneOf([true],"Please confirm grant administering understanding."),
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
     workExperienceTakesPlaceElsewhere: yup.string()
