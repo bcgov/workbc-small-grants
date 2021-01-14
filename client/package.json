@@ -17,8 +17,8 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.2",
-    "yup": "^0.29.3",
-    "yup-phone": "^1.2.7"
+    "yup": "0.29.1",
+    "yup-phone": "1.2.12"
   },
   "devDependencies": {
     "@bcgov/bootstrap-theme": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.1.1/bcgov-bootstrap-theme-1.1.1.tgz",
