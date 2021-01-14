@@ -88,7 +88,7 @@ class FormStep1 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="businessNumber">Business Number<span
                         style={{ color: "red" }}>*</span></label>
-                    <small className="text-muted"> </small>
+                    <small className="text-muted"> Your business number is your unique, 9-digit business identifier issued by the Canada Revenue Agency.</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"businessNumber")}`} id="businessNumber" name="businessNumber" />
                     {feedBackInvalid(this.props.errors,this.props.touched,"businessNumber")}
                 </div>

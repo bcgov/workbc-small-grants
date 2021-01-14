@@ -190,7 +190,7 @@ class NonProfitClassification extends Component {
             <div className="form-group">
                 <label className="col-form-label control-label" htmlFor="charityRegistrationNumber">Please enter your charity registration number from the Canada Revenue Agency.
                 </label>
-                <small className="text-muted"> This number will have the format S1234567 or XS1234567</small>
+                <small className="text-muted"> This number is comprised of your business number, program identifier and reference number.  This number will be in the format 123456789-RR-0001 or 123456789RR0001.</small>
                 <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"charityRegistrationNumber")}`} id="charityRegistrationNumber" name="charityRegistrationNumber" />
                 {feedBackInvalid(this.props.errors,this.props.touched,"charityRegistrationNumber")}
             </div>              
@@ -202,7 +202,7 @@ class NonProfitClassification extends Component {
             <div className="form-group">
                 <label className="col-form-label control-label" htmlFor="societyRegistrationID">Please enter your registration ID under the BC Societies Act.
                 </label>
-                <small className="text-muted"> This number is comprised of your business number, program identifier and reference number.  This number will be in the format 123456789-RR-0001 or 123456789RR0001.</small>
+                <small className="text-muted"> This number will have the format S1234567 or XS1234567</small>
                 <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"societyRegistrationID")}`} id="societyRegistrationID" name="societyRegistrationID" />
                 {feedBackInvalid(this.props.errors,this.props.touched,"societyRegistrationID")}
             </div>              
