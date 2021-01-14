@@ -91,7 +91,7 @@ class FormStep1 extends Component {
                     {feedBackInvalid(this.props.errors,this.props.touched,"businessNumber")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization an incorporated non-profit (society) under the BC Societies Act?<span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="confirmOrganizationNonProfit">Is your organization an incorporated non-profit (society) under the BC Societies Act or a federally registered charity ?<span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"confirmOrganizationNonProfit")}`}

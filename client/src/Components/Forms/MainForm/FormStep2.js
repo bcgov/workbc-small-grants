@@ -62,30 +62,49 @@ class FormStep2 extends Component {
                         {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessName")}
                     </div>
                     <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="partneringBusinessActivities">Please provide a description of the business activities  <span
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessActivities">Please provide a brief description of the business activities  <span
                             style={{ color: "red" }}>*</span></label>
                         <Field
                             as="textarea" 
                             className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessActivities")}`} 
                             id="partneringBusinessActivities" 
                             name="partneringBusinessActivities"
-                            rows="4"
-                            maxLength="500" 
+                            rows="2"
+                            maxLength="250" 
                         />
+                        <small>{this.props.values.partneringBusinessActivities.length}/250</small>
                         {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessActivities")}
                     </div>
                     <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="partneringBusinessName">What is your affiliation with this place of business? <span
-                            style={{ color: "red" }}>*</span></label>
-                        <Field
-                            as="textarea"  
-                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessName")}`} 
-                            id="partneringBusinessName" 
-                            name="partneringBusinessName" 
-                            rows="4"
-                            maxLength="500" 
-                        />
-                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessName")}
+                        <p><b>Please provide contact information for the partnering business</b></p>
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessContactAddress1">Address 1 <span
+                            style={{ color: "red" }}>*  </span></label>
+                        <small className="text-muted" id="partneringBusinessContactAddress1">  Street address, P.O. box, company name, c/o</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactAddress1")}`} id="partneringBusinessContactAddress1" name="partneringBusinessContactAddress1" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactAddress1")}
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessContactAddress2">Address 2</label>
+                        <small className="text-muted" id="partneringBusinessContactAddress2">  Apartment, suite, unit, building, floor, etc.</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactAddress2")}`} id="partneringBusinessContactAddress2" name="partneringBusinessContactAddress2" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactAddress2")}
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="partneringBusinessContactCity">City <span
+                                style={{ color: "red" }}>*</span></label>
+                            <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactCity")}`} id="partneringBusinessContactCity" name="partneringBusinessContactCity" />
+                            {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactCity")}
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="partneringBusinessContactPostal">Postal Code <span
+                                style={{ color: "red" }}>*  </span></label>
+                            <small className="text-muted" id="partneringBusinessContactPostal">  V0R2V5</small>
+                            <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactPostal")}`} id="partneringBusinessContactPostal" name="partneringBusinessContactPostal" />
+                            {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactPostal")}
+                        </div>
                     </div>
                     <hr></hr>
                 </div>
@@ -166,8 +185,9 @@ class FormStep2 extends Component {
                         I understand that all work experience participants must be eligible to work in British Columbia and that participants are:
                         <ul>
                                 <li>Designated under the Employment and Assistance for Persons with Disabilities Act as a person with disabilities; OR</li>
-                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers; AND</li>
-                                <li>Work experience participants cannot be participating in a WorkBC Wage Subsidy.</li>
+                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers; OR</li>
+                                <li>Indigenous peoples on reserve who have the equivalent federal designation; AND</li>
+                                <li>Work experience participants cannot be participating in other provincial programs such as WorkBC Wage Subsidy or Community Employment Partnerships (CEP).</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}
