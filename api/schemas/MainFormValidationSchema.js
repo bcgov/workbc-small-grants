@@ -137,11 +137,33 @@ var MainFormValidationSchema = yup.object().shape({
         is:"yes",
         then: yup.string().max(500).required("Please provide a description of the business activities.")
     }),
+    /*
     partneringBusinessAffiliation: yup.string()
     .when("workExperienceTakesPlaceElsewhere", {
         is:"yes",
         then: yup.string().max(500).required("Please describe your affiliation with the business.")
-    }),  
+    }),
+    */
+   partneringBusinessContactAddress1: yup.string()
+   .when("workExperienceTakesPlaceElsewhere", {
+       is:"yes",
+       then: yup.string().max(255,"Address too long, please use address line 2.").required("Please enter address line 1.")
+   }),
+    partneringBusinessContactAddress2: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().max(255,"Address too long")
+    }),
+    partneringBusinessContactCity: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().max(100,"City name too long").required("Please enter city")
+    }),
+    partneringBusinessContactPostal: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().matches(/^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d$/,"Please enter a valid Postal Code").required("Please enter a postal code.")
+    }),       
     participantActivities: yup.string()
         .max(1000, "Maximum of 1000 characters is allowed")
         .required("Please describe the work opportunity"),
