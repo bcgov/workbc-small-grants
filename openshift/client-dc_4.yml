@@ -73,6 +73,12 @@ objects:
         location /api/clientForm {
             proxy_pass ${API_URL};
         }
+        location /api/surveyOrg {
+            proxy_pass ${API_URL};
+        }
+        location /api/surveyParticipant {
+            proxy_pass ${API_URL};
+        }
         location / {
           try_files $uri /index.html;
 

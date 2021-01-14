@@ -99,5 +99,17 @@ module.exports = {
         }
         return data
 
+    },
+    getSurveyOrgSubmitted(values){
+        var data = [
+
+        ]
+        return data
+    },
+    getSurveyParticipantSubmitted(values){
+        var data = [
+
+        ]
+        return data
     }
 }
