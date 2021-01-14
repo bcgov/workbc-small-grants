@@ -77,10 +77,17 @@ class ThankyouOrg extends Component {
                                 <p>Other Experience:</p> 
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherExperience}</p>
                                 <p>Work experience taking place at partnering business? {this.props.location.state !== undefined && this.props.location.state.workExperienceTakesPlaceElsewhere}</p>
+                                <h5>Partnering business information (only if work experience is taking place at partnering business.)</h5>
                                 <p>Partnering business name: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessName}</p>
-                                <p>Partnering business activities: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessActivities}</p>
-                                <p>Partnering business affiliation: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessAffiliation}</p>
-                                <p>Skill development:  {this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
+                                <p>Partnering business activities:</p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.partneringBusinessActivities}</p>
+                                {/*<p>Partnering business affiliation: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessAffiliation}</p>*/}
+                                <p>Partnering business contact address 1: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactAddress1}</p>
+                                <p>Partnering business contact address 2: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactAddress2}</p>
+                                <p>Partnering business contact city: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactCity}</p>
+                                <p>Partnering business contact Postal: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactPostal}</p>
+                                <p>Skill development:</p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
                                 {/*
                                 <p>Other Skills: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherSkill}</p>

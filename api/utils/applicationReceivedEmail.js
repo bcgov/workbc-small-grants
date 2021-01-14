@@ -44,7 +44,10 @@ module.exports = {
         <p><b>workExperienceTakesPlaceElsewhere:</b> ${values.workExperienceTakesPlaceElsewhere}</p>
         <p><b>partneringBusinessName:</b> ${strings.orEmpty(partneringBusinessName)}</p>
         <p><b>partneringBusinessActivities:</b> ${strings.orEmpty(partneringBusinessActivities)}</p>
-        <p><b>partneringBusinessAffiliation:</b> ${strings.orEmpty(partneringBusinessAffiliation)}</p>
+        <p><b>partneringBusinessContactAddress1:</b> ${strings.orEmpty(partneringBusinessActivities)}</p>
+        <p><b>partneringBusinessContactAddress2:</b> ${strings.orEmpty(partneringBusinessActivities)}</p>
+        <p><b>partneringBusinessContactCity:</b> ${strings.orEmpty(partneringBusinessActivities)}</p>
+        <p><b>partneringBusinessContactPostal:</b> ${strings.orEmpty(partneringBusinessContactPostal)}</p>        
         <p><b>participantActivities:</b>  ${values.participantActivities}</p>
         <p><b>participantExperiences:</b>  ${values.participantExperiences}</p>
         <p><b>otherExperience:</b>  ${strings.orEmpty(values.otherExperience)}</p>
@@ -68,61 +71,64 @@ module.exports = {
 
     generateListNotification: function(values) {
         var html = `
-            applicationID ${values._id}
-            operatingName ${values.operatingName}
-            legalName ${values.legalName}
-            missionStatement ${values.missionStatement}
-            organizationWebsite ${values.organizationWebsite}
-            businessNumber ${values.businessNumber}
-            confirmOrganizationNonProfit ${values.confirmOrganizationNonProfit}
-            nonProfitClassification ${values.nonProfitClassification}
-            nonProfitSubClassification ${strings.orEmpty(values.nonProfitSubClassification)}
-            nonProfitSubClassificationOther ${strings.orEmpty(values.nonProfitSubClassificationOther)}
-            basedInBC ${values.basedInBC}
-            positionTitle ${values.positionTitle}
-            firstName ${values.firstName}
-            lastName ${values.lastName}
-            contactEmail ${values.contactEmail}
-            contactPhone ${values.contactPhone}
-            positionTitleAlternate ${values.positionTitleAlternate}
-            firstNameAlternate ${values.firstNameAlternate}
-            lastNameAlternate ${values.lastNameAlternate}
-            emailAlternate ${values.emailAlternate}
-            phoneAlternate ${values.phoneAlternate}
-            otherMailingAddress ${values.otherMailingAddress}
-            contactAddress1 ${values.contactAddress1}
-            contactAddress2 ${strings.orEmpty(values.contactAddress2)}
-            contactCity ${values.contactCity}
-            contactPostal ${values.contactPostal}
-            mailingAddress1 ${strings.orEmpty(values.mailingAddress1)}
-            mailingAddress2 ${strings.orEmpty(values.mailingAddress2)}
-            mailingCity ${strings.orEmpty(values.mailingCity)}
-            mailingPostal ${strings.orEmpty(values.mailingPostal)}
-            numberOfApplicants ${values.numberOfApplicants}
-            insuranceCoverage ${values.insuranceCoverage}
-            monitorCommit ${values.monitorCommit}
-            applicantType ${values.applicantType}
-            placementLength ${values.placementLength}
-            participantActivities ${values.participantActivities}
-            participantExperiences ${values.participantExperiences}
-            otherExperience ${strings.orEmpty(values.otherExperience)}
-            participantSkills ${values.participantSkills}
-            otherSkill ${strings.orEmpty(values.otherSkill)}
-            additionalBenefits ${strings.orEmpty(values.additionalBenefits)}
-            participantStipend ${values.participantStipend}
-            existingSupplierNumber ${values.existingSupplierNumber}
-            supplierNumber ${strings.orEmpty(values.supplierNumber)}
-            businessClassification ${strings.orEmpty(values.businessClassification)}
-            taxNumber ${strings.orEmpty(values.taxNumber)}
-            signatory1 ${values.signatory1}
-            signatory2 ${values.signatory2}
-            signingAuthorityConfirm ${values.signingAuthorityConfirm}
-            organizationConsent ${values.organizationConsent}
-            workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
-            partneringBusinessName ${strings.orEmpty(partneringBusinessName)}
-            partneringBusinessActivities ${strings.orEmpty(partneringBusinessActivities)}
-            partneringBusinessAffiliation ${strings.orEmpty(partneringBusinessAffiliation)}
-        `
+applicationID ${values._id}
+operatingName ${values.operatingName}
+legalName ${values.legalName}
+missionStatement ${values.missionStatement}
+organizationWebsite ${values.organizationWebsite}
+businessNumber ${values.businessNumber}
+confirmOrganizationNonProfit ${values.confirmOrganizationNonProfit}
+nonProfitClassification ${values.nonProfitClassification}
+nonProfitSubClassification ${strings.orEmpty(values.nonProfitSubClassification)}
+nonProfitSubClassificationOther ${strings.orEmpty(values.nonProfitSubClassificationOther)}
+basedInBC ${values.basedInBC}
+positionTitle ${values.positionTitle}
+firstName ${values.firstName}
+lastName ${values.lastName}
+contactEmail ${values.contactEmail}
+contactPhone ${values.contactPhone}
+positionTitleAlternate ${values.positionTitleAlternate}
+firstNameAlternate ${values.firstNameAlternate}
+lastNameAlternate ${values.lastNameAlternate}
+emailAlternate ${values.emailAlternate}
+phoneAlternate ${values.phoneAlternate}
+otherMailingAddress ${values.otherMailingAddress}
+contactAddress1 ${values.contactAddress1}
+contactAddress2 ${strings.orEmpty(values.contactAddress2)}
+contactCity ${values.contactCity}
+contactPostal ${values.contactPostal}
+mailingAddress1 ${strings.orEmpty(values.mailingAddress1)}
+mailingAddress2 ${strings.orEmpty(values.mailingAddress2)}
+mailingCity ${strings.orEmpty(values.mailingCity)}
+mailingPostal ${strings.orEmpty(values.mailingPostal)}
+numberOfApplicants ${values.numberOfApplicants}
+insuranceCoverage ${values.insuranceCoverage}
+monitorCommit ${values.monitorCommit}
+applicantType ${values.applicantType}
+placementLength ${values.placementLength}
+participantActivities ${values.participantActivities}
+participantExperiences ${values.participantExperiences}
+otherExperience ${strings.orEmpty(values.otherExperience)}
+participantSkills ${values.participantSkills}
+otherSkill ${strings.orEmpty(values.otherSkill)}
+additionalBenefits ${strings.orEmpty(values.additionalBenefits)}
+participantStipend ${values.participantStipend}
+existingSupplierNumber ${values.existingSupplierNumber}
+supplierNumber ${strings.orEmpty(values.supplierNumber)}
+businessClassification ${strings.orEmpty(values.businessClassification)}
+taxNumber ${strings.orEmpty(values.taxNumber)}
+signatory1 ${values.signatory1}
+signatory2 ${values.signatory2}
+signingAuthorityConfirm ${values.signingAuthorityConfirm}
+organizationConsent ${values.organizationConsent}
+workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
+partneringBusinessName ${strings.orEmpty(partneringBusinessName)}
+partneringBusinessActivities ${strings.orEmpty(partneringBusinessActivities)}
+partneringBusinessContactAddress1 ${strings.orEmpty(partneringBusinessActivities)}
+partneringBusinessContactAddress2 ${strings.orEmpty(partneringBusinessActivities)}
+partneringBusinessContactCity ${strings.orEmpty(partneringBusinessActivities)}
+partneringBusinessContactPostal ${strings.orEmpty(partneringBusinessContactPostal)}  
+`
         return html;
     },
 
