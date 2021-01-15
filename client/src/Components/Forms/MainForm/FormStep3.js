@@ -11,7 +11,7 @@ class FormStep3 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="supplierNumber">Supplier Number <span
                         style={{ color: "red" }}>*</span></label>
-                    <small className="text-muted" id="supplierNumber"> This is your BC Government unique vendor ID. More information is available on the Application Guide.</small>
+                    <small className="text-muted" id="supplierNumber"> This is your BC Government unique vendor ID. More information is available on the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">application guide</a> .</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "supplierNumber")}`} id="supplierNumber" name="supplierNumber" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "supplierNumber")}
                 </div>

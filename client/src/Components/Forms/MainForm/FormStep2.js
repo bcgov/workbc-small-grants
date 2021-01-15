@@ -135,7 +135,7 @@ class FormStep2 extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
-                    <p>Participants must meet all eligibility requirements.  Eligibility will be verified by the Ministry.</p>
+                    <p>Participants must meet all <a href="https://www.workbc.ca/getmedia/da44cdbc-c0d0-4171-b6f1-e63670214810/Eligibility-Criteria-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">eligibility requirements</a>.  Eligibility will be verified by the Ministry.</p>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
                 </div>
                 <div className="form-group">
@@ -254,7 +254,7 @@ class FormStep2 extends Component {
                     <label className="col-form-label control-label" htmlFor="participantActivities">Work Opportunity <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="participantActivities"> Please provide additional details on each participant’s job title, duties, responsibilities, tasks, anticipated hours of work, work location, and other relevant information. Please review the application guide for a list of example activities (link). Ex: Title - thrift store associate, Duties - sorting donation items,  displaying merchandise, packing items into boxes, working a cash register, greeting customers, etc. (2000 characters max.) </small>
+                    <small className="text-muted" id="participantActivities"> Please provide additional details on each participant’s job title, duties, responsibilities, tasks, anticipated hours of work, work location, and other relevant information. Please review the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">application guide</a> for a list of example activities (link). Ex: Title - thrift store associate, Duties - sorting donation items,  displaying merchandise, packing items into boxes, working a cash register, greeting customers, etc. (2000 characters max.) </small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantActivities")}`}
