@@ -19,6 +19,7 @@ function Main() {
                 <Switch>
                     <Route path="/form" component={MainForm} />
                     <Route strict  path="/clientForm/:id?" component={ClientForm} />
+                    <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
                     <Route path="/surveyOrg" component={SurveyOrg} />

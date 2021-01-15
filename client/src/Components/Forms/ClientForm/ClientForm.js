@@ -14,6 +14,7 @@ class ClientForm extends Component {
         super()
         this.state = {
             _csrf: '',
+            _intake: '',
             hasError: false,
         }
     }
@@ -34,6 +35,11 @@ class ClientForm extends Component {
                     })
                 }
             )
+        if (this.props.match.path === "/participantForm/2/:id?"){
+            this.setState({"_intake":"2"})
+        } else if (this.props.match.path === "/clientForm/:id?"){
+            this.setState({"_intake":"1"})
+        }
     }
 
 
@@ -92,6 +98,7 @@ class ClientForm extends Component {
                         <Formik
                             initialValues={{
                                 _csrf: this.state._csrf,
+                                _intake: this.state._intake,
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
@@ -135,7 +142,7 @@ class ClientForm extends Component {
                                     )
                             }}
                         >
-                            {({ values, errors, touched, isSubmitting }) => (
+                            {({ values, errors, touched, isSubmitting, setFieldValue }) => (
                                 <Form>
                                     {this.state.hasError && (
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
@@ -216,7 +223,9 @@ class ClientForm extends Component {
 
                                         }
                                     </button>
+                                    {console.log(values)}
                                 </Form>
+                                
                             )}
 
 

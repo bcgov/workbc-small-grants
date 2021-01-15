@@ -17,6 +17,7 @@ const { getClientSubmitted } = require('../utils/confirmationData');
 var clientConfirmationEmail = process.env.CLIENT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL || "";
 var clientConfirmationBCC = process.env.CLIENT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC || "";
 var clientListEmail = process.env.CLIENT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL || "";
+var clientListEmail2 = process.env.CLIENT_LISTEMAIL2 || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL2 || "";
 var clientNotifyEmail = process.env.CLIENT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL || "";
 
 async function sendEmails(values) {
@@ -39,6 +40,12 @@ async function sendEmails(values) {
         } else {
           cEmail = clientConfirmationEmail
         }
+        var cListEmail;
+        if (values._intake === "1"){
+          cListEmail = clientListEmail
+        } else if (values._intake === "2"){
+          cListEmail = clientListEmail2
+        }
         // send mail with defined transport object
         let message1 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
@@ -60,7 +67,7 @@ async function sendEmails(values) {
         };
         let message2 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: clientListEmail,// list of receivers
+          to: cListEmail,// list of receivers
           subject: "A client grant application has been received", // Subject line
           html: notification.generateClientListNotification(values) // html body
         };
