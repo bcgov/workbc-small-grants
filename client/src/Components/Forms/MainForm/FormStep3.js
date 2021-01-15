@@ -37,12 +37,14 @@ class FormStep3 extends Component {
                         </Field>
                         {feedBackInvalid(this.props.errors, this.props.touched, "businessClassification")}
                     </div>
+                    {/*
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="taxNumber">Tax Number <span
                             style={{ color: "red" }}>*  </span></label>
                         <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "taxNumber")}`} id="taxNumber" name="taxNumber" />
                         {feedBackInvalid(this.props.errors, this.props.touched, "taxNumber")}
                     </div>
+                    */}
                     { /*
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="businessAddress">Business Address <span
