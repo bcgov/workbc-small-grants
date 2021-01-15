@@ -229,6 +229,7 @@ var MainFormValidationSchema = yup.object().shape({
                 .oneOf(["nonProfitAgency","corporationOrPrivateSectorAgency","publicSectorAgency","otherAgency"],"Please select a valid option")
                 .required("Please select your business classification.")
         }),
+    /*
     taxNumber: yup.number()  
         .when("existingSupplierNumber",{
             is: "no",
@@ -236,6 +237,7 @@ var MainFormValidationSchema = yup.object().shape({
             .typeError("Must be a number.")      
             .required("Please enter your tax number.")
         }),
+    */
     signatory1: yup.string()
         .required("Please enter the first organization signatory.")
         .test('match','Signatories must be different',function (signatory1){
