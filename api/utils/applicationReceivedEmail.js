@@ -12,7 +12,9 @@ module.exports = {
         <p><b>missionStatement:</b>  ${values.missionStatement}</p>
         <p><b>organizationWebsite:</b>  ${values.organizationWebsite}</p>
         <p><b>businessNumber:</b>  ${values.businessNumber}</p>
-        <p><b>confirmOrganizationNonProfit:</b>  ${values.confirmOrganizationNonProfit}</p>
+        <p><b>organizationType:</b>  ${values.confirmOrganizationNonProfit}</p>
+        <p><b>societyRegistrationID:</b> ${values.societyRegistrationID}</p>
+        <p><b>charityRegistrationNumber:</b> ${values.charityRegistrationNumber}</p>
         <p><b>nonProfitClassification:</b>  ${values.nonProfitClassification}</p>
         <p><b>nonProfitSubClassification:</b>  ${strings.orEmpty(values.nonProfitSubClassification)}</p>
         <p><b>nonProfitSubClassificationOther:</b>  ${strings.orEmpty(values.nonProfitSubClassificationOther)}</p>
@@ -40,6 +42,8 @@ module.exports = {
         <p><b>insuranceCoverage:</b>  ${values.insuranceCoverage}</p>
         <p><b>monitorCommit:</b>  ${values.monitorCommit}</p>
         <p><b>applicantType:</b>  ${values.applicantType}</p>
+        <p><b>understandNotAvailableTo:</b> ${values.understandNotAvailableTo}</p>
+        <p><b>administerGrantUnderstanding:</b> ${values.administerGrantUnderstanding}</p>
         <p><b>placementLength:</b>  ${values.placementLength}</p>
         <p><b>workExperienceTakesPlaceElsewhere:</b> ${values.workExperienceTakesPlaceElsewhere}</p>
         <p><b>partneringBusinessName:</b> ${strings.orEmpty(partneringBusinessName)}</p>
@@ -121,6 +125,10 @@ signatory1 ${values.signatory1}
 signatory2 ${values.signatory2}
 signingAuthorityConfirm ${values.signingAuthorityConfirm}
 organizationConsent ${values.organizationConsent}
+societyRegistrationID ${values.societyRegistrationID}
+charityRegistrationNumber ${values.charityRegistrationNumber}
+understandNotAvailableTo ${values.understandNotAvailableTo}
+administerGrantUnderstanding ${values.administerGrantUnderstanding}
 workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
 partneringBusinessName ${strings.orEmpty(partneringBusinessName)}
 partneringBusinessActivities ${strings.orEmpty(partneringBusinessActivities)}

@@ -56,8 +56,9 @@ async function sendEmails(values) {
               `<b>Application ID: ${values._id}</b>`,
               `Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.`,
               `<b>Here are your required next steps:</b>`,
-              `Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process.`,
+              `Your participants' application form must be submitted to the Ministry to complete the application process.`,
               `This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.`,
+              `Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx">WorkBC Centre</a> to help with the recruitment of eligible participants.`,
               `<b>Please provide your participants the following instructions:</b>`
             ],
             [

@@ -133,9 +133,9 @@ var MainFormValidationSchema = yup.object().shape({
     applicantType: yup.boolean()
         .oneOf([true],"Please confirm your understanding of eligibility requirements."),
     understandNotAvailableTo: yup.boolean()
-        .oneOf([true],"Please confirm your understanding on ineligibility."),
+        .oneOf([true],"Please confirm your understanding on participant ineligibility."),
     administerGrantUnderstanding: yup.boolean()
-        .oneOf([true],"Please confirm grant administering understanding."),
+        .oneOf([true],"Please confirm grant administration understanding."),
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
     workExperienceTakesPlaceElsewhere: yup.string()

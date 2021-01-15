@@ -15,8 +15,9 @@ class ThankyouOrg extends Component {
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
                         <h3>Here are your required next steps:</h3>
-                        <p>Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process. </p>
+                        <p>Your participants' application form must be submitted to the Ministry to complete the application process. </p>
                         <p>This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
+                        <p>Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
                         <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
@@ -40,7 +41,9 @@ class ThankyouOrg extends Component {
                                 <p>Mission Statement:  {this.props.location.state !== undefined && this.props.location.state.missionStatement}</p>
                                 <p>Organization Website:  {this.props.location.state !== undefined && this.props.location.state.organizationWebsite}</p>
                                 <p>Business Number:  {this.props.location.state !== undefined && this.props.location.state.businessNumber}</p>
-                                <p>Non Profit:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Registration ID (if non-profit):  {this.props.location.state !== undefined && this.props.location.state.societyRegistrationID}</p>
+                                <p>Charity Registration Number (if charity):  {this.props.location.state !== undefined && this.props.location.state.charityRegistrationNumber}</p>
                                 <p>Non Profit Classification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
                                 <p>Non Profit SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
                                 <p>Non Profit Other SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
@@ -70,6 +73,8 @@ class ThankyouOrg extends Component {
                                 <p>WorkSafeBC Insurance Coverage:  {this.props.location.state !== undefined && this.props.location.state.insuranceCoverage.toString()}</p>
                                 <p>Commitment to monitor applicants:  {this.props.location.state !== undefined && this.props.location.state.monitorCommit.toString()}</p>
                                 <p>Applicant eligibility confirmation:  {this.props.location.state !== undefined && this.props.location.state.applicantType.toString()}</p>
+                                <p>Understanding on participant ineligibility:  {this.props.location.state !== undefined && this.props.location.state.understandNotAvailableTo.toString()}</p>
+                                <p>Grant administration understanding:  {this.props.location.state !== undefined && this.props.location.state.administerGrantUnderstanding.toString()}</p>
                                 <p>Placement length confirmation:  {this.props.location.state !== undefined && this.props.location.state.placementLength.toString()}</p>
                                 <p>Work Opportunity:</p>  
                                 <p>{this.props.location.state !== undefined && this.props.location.state.participantActivities}</p>
