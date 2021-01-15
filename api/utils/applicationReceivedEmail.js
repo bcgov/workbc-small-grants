@@ -48,9 +48,9 @@ module.exports = {
         <p><b>workExperienceTakesPlaceElsewhere:</b> ${values.workExperienceTakesPlaceElsewhere}</p>
         <p><b>partneringBusinessName:</b> ${strings.orEmpty(values.partneringBusinessName)}</p>
         <p><b>partneringBusinessActivities:</b> ${strings.orEmpty(values.partneringBusinessActivities)}</p>
-        <p><b>partneringBusinessContactAddress1:</b> ${strings.orEmpty(values.partneringBusinessActivities)}</p>
-        <p><b>partneringBusinessContactAddress2:</b> ${strings.orEmpty(values.partneringBusinessActivities)}</p>
-        <p><b>partneringBusinessContactCity:</b> ${strings.orEmpty(values.partneringBusinessActivities)}</p>
+        <p><b>partneringBusinessContactAddress1:</b> ${strings.orEmpty(values.partneringBusinessContactAddress1)}</p>
+        <p><b>partneringBusinessContactAddress2:</b> ${strings.orEmpty(values.partneringBusinessContactAddress2)}</p>
+        <p><b>partneringBusinessContactCity:</b> ${strings.orEmpty(values.partneringBusinessContactCity)}</p>
         <p><b>partneringBusinessContactPostal:</b> ${strings.orEmpty(values.partneringBusinessContactPostal)}</p>        
         <p><b>participantActivities:</b>  ${values.participantActivities}</p>
         <p><b>participantExperiences:</b>  ${values.participantExperiences}</p>
@@ -132,9 +132,9 @@ administerGrantUnderstanding ${values.administerGrantUnderstanding}
 workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
 partneringBusinessName ${strings.orEmpty(values.partneringBusinessName)}
 partneringBusinessActivities ${strings.orEmpty(values.partneringBusinessActivities)}
-partneringBusinessContactAddress1 ${strings.orEmpty(values.partneringBusinessActivities)}
-partneringBusinessContactAddress2 ${strings.orEmpty(values.partneringBusinessActivities)}
-partneringBusinessContactCity ${strings.orEmpty(values.partneringBusinessActivities)}
+partneringBusinessContactAddress1 ${strings.orEmpty(values.partneringContactAddress1)}
+partneringBusinessContactAddress2 ${strings.orEmpty(values.partneringContactAddress2)}
+partneringBusinessContactCity ${strings.orEmpty(values.partneringBusinessContactCity)}
 partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessContactPostal)}  
 `
         return html;

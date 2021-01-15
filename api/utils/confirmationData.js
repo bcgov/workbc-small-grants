@@ -60,9 +60,9 @@ module.exports = {
             `<h5>Partnering business information (only if work experience is taking place at partnering business.)</h5>`,
             `Partnering business name: ${strings.orEmpty(values.partneringBusinessName)}`,
             `Partnering business activities: ${strings.orEmpty(values.partneringBusinessActivities)}`,
-            `Partnering business contact address 1: ${strings.orEmpty(values.partneringBusinessActivities)}`,
-            `Partnering business contact address 2: ${strings.orEmpty(values.partneringBusinessActivities)}`,
-            `Partnering business contact city: ${strings.orEmpty(values.partneringBusinessActivities)}`,
+            `Partnering business contact address 1: ${strings.orEmpty(values.partneringBusinessContactAddress1)}`,
+            `Partnering business contact address 2: ${strings.orEmpty(values.partneringBusinessContactAddress2)}`,
+            `Partnering business contact city: ${strings.orEmpty(values.partneringBusinessContactCity)}`,
             `Partnering business contact postal: ${strings.orEmpty(values.partneringBusinessContactPostal)} `,
             `Skill Development:  ${values.participantSkills}`,
             /*
