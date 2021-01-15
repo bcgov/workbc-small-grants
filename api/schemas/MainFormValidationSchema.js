@@ -20,7 +20,10 @@ var MainFormValidationSchema = yup.object().shape({
         .min(9, "Business number must be at minimum 9 characters.")
         .required('Please enter your business number.'),
     confirmOrganizationNonProfit: yup.string()
-        .matches("yes", "Only non-profits are eligible.")
+        .oneOf([
+            "incorporatedNonProfit",
+            "federallyRegisteredCharity"
+        ], "Only non-profits or federally registered charities are eligible.")
         .required('Please select'),
     societyRegistrationID: yup.string()
         .when("confirmOrganizationNonProfit", {
