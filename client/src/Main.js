@@ -22,12 +22,14 @@ function Main() {
                     <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
+                    {/*
                     <Route path="/surveyOrg" component={SurveyOrg} />
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
                     <Route path="/surveyLandingOrg" component={SurveyStartOrg} />
                     <Route path="/surveyLandingParticipant" component={SurveyStartParticipant} />
+                    */}
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>
