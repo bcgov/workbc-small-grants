@@ -64,7 +64,7 @@ async function sendEmails(values) {
             [
               `Application ID: ${values._id}`,
               `Please visit the following URL in order to provide your consent to the Ministry.`,
-              `<a href="${clientURL}/clientForm/${values._id}">${clientURL}/clientForm/${values._id}</a>`,
+              `<a href="${clientURL}/participantForm/2/${values._id}">${clientURL}/participantForm/2/${values._id}</a>`,
               `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.`,
             ],
             getOrgSubmitted(values)
