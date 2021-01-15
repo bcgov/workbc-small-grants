@@ -178,7 +178,7 @@ class FormStep2 extends Component {
                             htmlFor="applicantType"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I understand that all work experience participants must be eligible to work in British Columbia and that participants are:
+                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must have:
                         <ul>
                                 <li>Designation as a Person with Disabilities (PWD) from the Ministry of Social Development and Poverty Reduction; OR</li>
                                 <li>Status as a Person with Persistent Multiple Barriers to employment (PPMB) from the Ministry of Social Development and Poverty Reduction; OR</li>
