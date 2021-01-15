@@ -161,17 +161,17 @@ partneringBusinessContactPostal ${strings.orEmpty(partneringBusinessContactPosta
 
     generateClientListNotification: function(values){
         var html = `
-            applicationId ${strings.orEmpty(values.applicationId)}
-            applicationIdM ${strings.orEmpty(values.applicationIdM)}
-            organizationNameM ${strings.orEmpty(values.organizationNameM)}
-            noOrgId ${values.noOrgId}
-            clientName ${values.clientName}
-            clientLastName ${values.clientLastName}
-            clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}
-            clientEmail ${values.clientEmail}
-            clientAddress1 ${values.clientAddress1}
-            clientAddress2 ${strings.orEmpty(values.clientAddress2)}
-            clientConsent ${values.clientConsent}
+applicationId ${strings.orEmpty(values.applicationId)}
+applicationIdM ${strings.orEmpty(values.applicationIdM)}
+organizationNameM ${strings.orEmpty(values.organizationNameM)}
+noOrgId ${values.noOrgId}
+clientName ${values.clientName}
+clientLastName ${values.clientLastName}
+clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}
+clientEmail ${values.clientEmail}
+clientAddress1 ${values.clientAddress1}
+clientAddress2 ${strings.orEmpty(values.clientAddress2)}
+clientConsent ${values.clientConsent}
         `
         return html
     },
