@@ -62,7 +62,6 @@ module.exports = {
         <p><b>existingSupplierNumber:</b>  ${values.existingSupplierNumber}</p>
         <p><b>supplierNumber:</b>  ${strings.orEmpty(values.supplierNumber)}</p>
         <p><b>businessClassification:</b>  ${strings.orEmpty(values.businessClassification)}</p>
-        <p><b>taxNumber:</b>  ${strings.orEmpty(values.taxNumber)}</p>
         <p><b>signatory1:</b>  ${values.signatory1}</p>
         <p><b>signatory2:</b>  ${values.signatory2}</p>
         <p><b>signingAuthorityConfirm:</b>  ${values.signingAuthorityConfirm}</p>

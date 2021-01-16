@@ -103,7 +103,7 @@ class ThankyouOrg extends Component {
                                 <p>Has Existing Supplier Number:  {this.props.location.state !== undefined && this.props.location.state.existingSupplierNumber.toString()}</p>
                                 <p>Supplier Number:{this.props.location.state !== undefined && this.props.location.state.supplierNumber}</p>
                                 <p>Business Classification: {this.props.location.state !== undefined && this.props.location.state.businessClassification}</p>
-                                <p>Tax Number:  {this.props.location.state !== undefined && this.props.location.state.taxNumber}</p>
+                                {/*<p>Tax Number:  {this.props.location.state !== undefined && this.props.location.state.taxNumber}</p>*/}
                                 <p>Signatory 1:  {this.props.location.state !== undefined && this.props.location.state.signatory1}</p>
                                 <p>Signatory 2:  {this.props.location.state !== undefined && this.props.location.state.signatory2}</p>
                                 <p>Certify Signatories:  {this.props.location.state !== undefined && this.props.location.state.signingAuthorityConfirm.toString()}</p>

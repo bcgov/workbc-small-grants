@@ -75,7 +75,7 @@ module.exports = {
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
             `Supplier Number:${values.supplierNumber}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
-            `Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
+            //`Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
             `Signatory 1:  ${values.signatory1}`,
             `Signatory 2:  ${values.signatory2}`,
             `Certify Signatories:  ${values.signingAuthorityConfirm}`,
