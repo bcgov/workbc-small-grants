@@ -73,7 +73,7 @@ module.exports = {
             `${strings.orEmpty(values.additionalBenefits)}`,
             `Stipend confirmation:  ${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
-            `Supplier Number:${values.supplierNumber}`,
+            `Supplier Number:${strings.orEmpty(values.supplierNumber)}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
             //`Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
             `Signatory 1:  ${values.signatory1}`,

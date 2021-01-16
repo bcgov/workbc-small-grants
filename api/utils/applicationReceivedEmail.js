@@ -131,8 +131,8 @@ administerGrantUnderstanding ${values.administerGrantUnderstanding}
 workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
 partneringBusinessName ${strings.orEmpty(values.partneringBusinessName)}
 partneringBusinessActivities ${strings.orEmpty(values.partneringBusinessActivities)}
-partneringBusinessContactAddress1 ${strings.orEmpty(values.partneringContactAddress1)}
-partneringBusinessContactAddress2 ${strings.orEmpty(values.partneringContactAddress2)}
+partneringBusinessContactAddress1 ${strings.orEmpty(values.partneringBusinessContactAddress1)}
+partneringBusinessContactAddress2 ${strings.orEmpty(values.partneringBusinessContactAddress2)}
 partneringBusinessContactCity ${strings.orEmpty(values.partneringBusinessContactCity)}
 partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessContactPostal)}  
 `
