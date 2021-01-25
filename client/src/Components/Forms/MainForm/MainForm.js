@@ -101,6 +101,12 @@ class MainForm extends Component {
                         {this.state.hasError && (
                             generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
                         )}
+                        <div className="alert alert-primary alert-dismissible fade show" role="alert">
+                            To navigate the form, use the Previous and Next buttons at the bottom. Using the Browser Back or Forward button will not retain the form information.
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         <Formik
                             initialValues= {{
                                             _csrf: this.state._csrf,
