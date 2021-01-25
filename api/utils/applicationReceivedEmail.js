@@ -175,11 +175,15 @@ clientEmail ${values.clientEmail}
 clientAddress1 ${values.clientAddress1}
 clientAddress2 ${strings.orEmpty(values.clientAddress2)}
 clientConsent ${values.clientConsent}
+        `
+        if (values._intake === "2"){
+            html += `
 livingOnReserveCommunity ${strings.orEmpty(values.livingOnReserveCommunity)}
 receivingAssistanceFrom ${strings.orEmpty(values.receivingAssistanceFrom)}
 pwdDesignationOrganization ${strings.orEmpty(values.pwdDesignationOrganization)}
 ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization)}
-        `
+`
+        }
         return html
     },
 
