@@ -5,6 +5,7 @@ import MainForm from './Components/Forms/MainForm/MainForm'
 import ThankyouOrg from './Components/Forms/MainForm/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
+import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
 import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
 import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
 import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
@@ -19,7 +20,7 @@ function Main() {
                 <Switch>
                     <Route path="/form" component={MainForm} />
                     <Route strict  path="/clientForm/:id?" component={ClientForm} />
-                    <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
+                    <Route strict  path="/participantForm/2/:id?" component={FormUnavailable} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
                     {/*
