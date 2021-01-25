@@ -153,6 +153,10 @@ partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessConta
             <p><b>clientAddress1:</b> ${values.clientAddress1}</p>
             <p><b>clientAddress2:</b> ${strings.orEmpty(values.clientAddress2)}</p>
             <p><b>clientConsent:</b> ${values.clientConsent}</p>
+            <p><b>livingOnReserveCommunity:</b> ${strings.orEmpty(values.livingOnReserveCommunity)}</p>
+            <p><b>receivingAssistanceFrom:</b> ${strings.orEmpty(values.receivingAssistanceFrom)}</p>
+            <p><b>pwdDesignationOrganization:</b> ${strings.orEmpty(values.pwdDesignationOrganization)}</p>
+            <p><b>ppmbDesignationOrganization:</b> ${strings.orEmpty(values.ppmbDesignationOrganization)}</p>
         `
 
         return html       
@@ -171,6 +175,10 @@ clientEmail ${values.clientEmail}
 clientAddress1 ${values.clientAddress1}
 clientAddress2 ${strings.orEmpty(values.clientAddress2)}
 clientConsent ${values.clientConsent}
+livingOnReserveCommunity ${strings.orEmpty(values.livingOnReserveCommunity)}
+receivingAssistanceFrom ${strings.orEmpty(values.receivingAssistanceFrom)}
+pwdDesignationOrganization ${strings.orEmpty(values.pwdDesignationOrganization)}
+ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization)}
         `
         return html
     },

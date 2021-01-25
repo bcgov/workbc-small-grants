@@ -63,6 +63,7 @@ class FormStep3 extends Component {
             return (
                 <div>
                     <p>Please correct the following errors:</p>
+                    <p><b>To modify the form, use the Previous button at the bottom of the form. Using the Browser Back button will not retain the form information.</b></p>
                     <ul>
                         {Object.values(this.props.errors).map((error, i) => (
                             <li key={i}>{error}</li>

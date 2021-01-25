@@ -8,6 +8,7 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 import { generateAlert } from '../Shared/Alert'
 import { DatePickerField } from '../Shared/DatePickerField'
 import { FORM_URL } from '../../../constants/form'
+import IndigenousForm from './IndigenousForm'
 
 class ClientForm extends Component {
     constructor() {
@@ -109,6 +110,10 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
+                                livingOnReserveCommunity: '',
+                                receivingAssistanceFrom: '',
+                                pwdDesignationOrganization: '',
+                                ppmbDesignationOrganization: '',
                                 clientConsent: false,
                             }}
                             enableReinitialize={true}
@@ -195,6 +200,7 @@ class ClientForm extends Component {
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress2")}`} id="clientAddress2" name="clientAddress2" />
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
+                                    <IndigenousForm errors={errors} touched={touched} intake={values._intake}/>
                                     <ClientConsent />
                                     <div className="form-group">
                                         <div className="form-check">
@@ -215,7 +221,7 @@ class ClientForm extends Component {
                                         {
                                             isSubmitting ?
                                                 <div>
-                                                    <span className="spinner-border spinner-border-sm" htmlRole="status" aria-hidden="true"></span>
+                                                    <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                                                        Submitting...
                                                 </div>
                                                 :
@@ -223,7 +229,6 @@ class ClientForm extends Component {
 
                                         }
                                     </button>
-                                    {console.log(values)}
                                 </Form>
                                 
                             )}
