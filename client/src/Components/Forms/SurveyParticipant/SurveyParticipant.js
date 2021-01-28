@@ -102,7 +102,7 @@ class SurveyParticipant extends Component {
                         <Formik
                             initialValues={{
                                 //step 1
-                                easeOfNavigatingWebsite: '',
+                                easeOfApplicationCompletion: '',
                                 //step 2
                                 overallExperienceWithEmployer: '',
                                 levelOfSupportsReceived: '',

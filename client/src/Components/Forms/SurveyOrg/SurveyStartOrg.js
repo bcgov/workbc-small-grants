@@ -25,9 +25,6 @@ class SurveyStartOrg extends Component {
                         <p>
                             How to complete the survey:
                         </p>
-                        <p>
-                            How to complete this survey:
-                        </p>
                         <ul>
                             <li>Use the buttons at the bottom of the page to move through the survey. Using the Internet browser buttons will not work.</li>
                             <li>Complete the survey in one sitting. Your answers will not be saved if you close the survey.</li>

@@ -6,25 +6,36 @@ class SurveyStartParticipant extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Work Experience Opportunities Grant Participant Survey</h1>
+                    <h1>Work Experience Opportunities Grant Organization Survey</h1>
                         <p>
-                            You have been directed to a secure external site and your responses are anonymous. This survey is optional, and you can decide if you want to take part. Your responses are not linked to your file in any way and we will not record any information that can be used to identify you. Please do not provide any personal or confidential information as you respond to the questions.
+                            Welcome to the Work Experience Opportunities Grant survey.
                         </p>
                         <p>
-                            The information from this survey is being collected under the authority of the Freedom of Information and Protection of Privacy Act, Section 26(e) (<a href="https://www.bclaws.ca/civix/document/id/complete/statreg/96165_03#section26" target="_blank" rel="noopener noreferrer">https://www.bclaws.ca/civix/document/id/complete/statreg/96165_03#section26</a>). If you have any questions about the collection or use of this information, please contact the Manager of Stakeholder and Client Engagement (<a href="mailto:elms.stakeholders@gov.bc.ca">elms.stakeholders@gov.bc.ca</a>), Ministry of Social Development and Poverty Reduction.
+                        We need your help! Please share your views and experiences on the work experience so far. Feedback on the application process, the organization, the work experience, and any contribution the program has made to your skills and abilities is of great value. Providing this information will help improve the program for yourself and for future participants.
                         </p>
                         <p>
-                            You must use the buttons at the bottom of the page to move through the survey as using the Internet browser buttons will cause you to lose your progress. Please complete the survey in one sitting as your answers will not be saved until you click on the "Submit" button at the end of the survey.
+                            The survey will take approximately 10 minutes to complete and your feedback is greatly appreciated.
                         </p>
                         <p>
-                            If you are using assistive technology programs (such as JAWS or Dragon), please use your navigation keys/commands to complete the survey. You can use the keyboard space bar on the “Back”, “Reset”, “Next” and “Submit” buttons to navigate through the survey.
+                            This survey is optional. Your responses are anonymous and not linked to your file in any way.
                         </p>
                         <p>
-                            It will take about 10 minutes to complete this survey.
+                            Please don’t include personal or confidential information. If you do, we will not record any of your information if it identifies you.
                         </p>
                         <p>
-                            Thank you for your participation.
+                            How to complete the survey:
                         </p>
+                        <ul>
+                            <li>Use the buttons at the bottom of the page to move through the survey. Using the Internet browser buttons will not work.</li>
+                            <li>Complete the survey in one sitting. Your answers will not be saved if you close the survey.</li>
+                            <li>When you’re done, click on the "Submit" button at the end of the survey.</li>
+                        </ul>
+                        <p>Using assistive technology likes JAWS or Dragon?</p>
+                        <ul>
+                            <li>Use your navigation keys/commands to complete the survey – you can use the keyboard spacebar on the “Back”, “Next” and “Submit” buttons to navigate through the survey.</li>
+                        </ul>
+                        <p>Please note that all information is being collected under the authority of the <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/96165_03#section26" target="_blank" rel="noopener noreferrer">Freedom of Information and Protection of Privacy Act, Section 26(e).</a> If you have any questions about the collection or use of this information, please contact the <a href="mailto:workexperiencegrants@gov.bc.ca">Ministry of Social Development and Poverty Reduction.</a></p>
+                        <p>Thank you for participating – your contribution will make a difference in shaping how the Work Experience Opportunities Grant program is offered in the future!</p>
                         <p><a href="/surveyParticipant" className="btn btn-lg btn-primary">Start</a><br /></p>
                     </div>
                 </div>

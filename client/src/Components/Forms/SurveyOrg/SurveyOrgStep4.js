@@ -28,7 +28,21 @@ class SurveyOrgStep4 extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="experienceBetterComments">4a. How can we make your experience better? Please feel free to include any other comments or feedback. 
+                    <label className="col-form-label control-label" htmlFor="bestPartOfProgramComments">What has been the best part of the program for your organization ?  
+                </label>
+                    <small className="text-muted" id="bestPartOfProgramComments"> (1000 characters max.)</small>
+                    <Field
+                        as="textarea"
+                        className="form-control"
+                        id="bestPartOfProgramComments"
+                        name="bestPartOfProgramComments"
+                        rows="4"
+                        maxLength="1000"
+                    />
+                    <small>{this.props.values.bestPartOfProgramComments.length}/1000</small>
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="experienceBetterComments">How can we make the experience better for your organization? Please feel free to include any comments, suggestions, or feedback.
                 </label>
                     <small className="text-muted" id="experienceBetterComments"> (1000 characters max.)</small>
                     <Field

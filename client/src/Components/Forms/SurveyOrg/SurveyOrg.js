@@ -103,23 +103,22 @@ class SurveyOrg extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 //step 1
-                                easeOfNavigatingWebsite: '',
-                                easeOfUnderstandingAppGuide: '',
-                                satisfactionSpeedOfService: '',
+                                easeOfApplicationCompletion: '',
+                                speedApplicationProcessed: '',
+                                experienceOnlineApplicationComments: '',
                                 //step 2
-                                valueOfProgram: '',
-                                participantNumber: '',
-                                participant1Experience: '',
-                                participant2Experience: '',
-                                participant3Experience: '',
-                                participant4Experience: '',
-                                participant5Experience: '',
-                                likelyToHirePeopleWithBarriersInFuture: '',
-                                difficultyHiringPeopleWithBarriersComment: '',
+                                participantContributionValuable: '',
+                                //participantNumber: '',
+                                hiredPeopleWithBarriersBefore: '',
+                                hirePeopleWithBarriersFuture: '',
+                                experienceWithWorkParticipantsComments: '',
+                                //difficultyHiringPeopleWithBarriersComment: '',
                                 //step 3
+                                receivedOtherWorkBCServicesOrPrograms: '',
                                 likelyToParticipateInSimilarProgram: '',
                                 likelyToRecommendGrant: '',
                                 //step 4
+                                bestPartOfProgramComments: '',
                                 experienceBetterComments: '',
                             }}
                             enableReinitialize={true}

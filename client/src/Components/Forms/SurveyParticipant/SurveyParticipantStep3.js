@@ -19,45 +19,45 @@ class SurveyParticipantStep3 extends Component {
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}`}
                         type="radio"
                         name="likelyToParticipateInSimilarProgram"
-                        value="1highlyUnlikely"
+                        value="1stronglyDisagree"
                     />
-                    <label className="form-check-label">1 (highly unlikely)</label>
+                    <label className="form-check-label">1</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}`}
                         type="radio"
                         name="likelyToParticipateInSimilarProgram"
-                        value="2unlikely"
+                        value="2disagree"
                     />
-                    <label className="form-check-label">2 (unlikely)</label>
+                    <label className="form-check-label">2</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}`}
                         type="radio"
                         name="likelyToParticipateInSimilarProgram"
-                        value="3neitherLikelyOrUnlikely"
+                        value="3neitherAgreeNorDisagree"
                     />
-                    <label className="form-check-label">3 (neither likely or unlikely)</label>
+                    <label className="form-check-label">3</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}`}
                         type="radio"
                         name="likelyToParticipateInSimilarProgram"
-                        value="4likely"
+                        value="4agree"
                     />
-                    <label className="form-check-label">4 (likely)</label>
+                    <label className="form-check-label">4</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}`}
                         type="radio"
                         name="likelyToParticipateInSimilarProgram"
-                        value="5highlyLikely"
+                        value="5stronglyAgree"
                     />
-                    <label className="form-check-label">5 (highly likely)</label>
+                    <label className="form-check-label">5</label>
                     {feedBackInvalid(this.props.errors, this.props.touched, "likelyToParticipateInSimilarProgram")}
                 </div>
             </div>
@@ -68,45 +68,45 @@ class SurveyParticipantStep3 extends Component {
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToRecommendGrant")}`}
                         type="radio"
                         name="likelyToRecommendGrant"
-                        value="1highlyUnlikely"
+                        value="1stronglyDisagree"
                     />
-                    <label className="form-check-label">1 (highly unlikely)</label>
+                    <label className="form-check-label">1</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToRecommendGrant")}`}
                         type="radio"
                         name="likelyToRecommendGrant"
-                        value="2unlikely"
+                        value="2disagree"
                     />
-                    <label className="form-check-label">2 (unlikely)</label>
+                    <label className="form-check-label">2</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToRecommendGrant")}`}
                         type="radio"
                         name="likelyToRecommendGrant"
-                        value="3neitherLikelyOrUnlikely"
+                        value="3neitherAgreeNorDisagree"
                     />
-                    <label className="form-check-label">3 (neither likely or unlikely)</label>
+                    <label className="form-check-label">3</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToRecommendGrant")}`}
                         type="radio"
                         name="likelyToRecommendGrant"
-                        value="4likely"
+                        value="4agree"
                     />
-                    <label className="form-check-label">4 (likely)</label>
+                    <label className="form-check-label">4</label>
                 </div>
                 <div className="form-check">
                     <Field
                         className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToRecommendGrant")}`}
                         type="radio"
                         name="likelyToRecommendGrant"
-                        value="5highlyLikely"
+                        value="5stronglyAgree"
                     />
-                    <label className="form-check-label">5 (highly likely)</label>
+                    <label className="form-check-label">5</label>
                     {feedBackInvalid(this.props.errors, this.props.touched, "likelyToRecommendGrant")}
                 </div>
             </div>

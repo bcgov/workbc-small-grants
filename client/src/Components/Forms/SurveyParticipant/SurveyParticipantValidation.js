@@ -3,7 +3,7 @@ import 'core-js/stable';
 
 
 export const SurveyParticipantValidationSchema = yup.object().shape({
-    easeOfNavigatingWebsite: yup.string()
+    easeOfApplicationCompletion: yup.string()
         .required("Please rate the ease of website navigation.")
         .oneOf([
             '1poor',
@@ -44,20 +44,20 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
     likelyToParticipateInSimilarProgram: yup.string()
         .required("Please select how likely are you to participate in a similar program in the future.")
         .oneOf([
-            '1highlyUnlikely',
-            '2unlikely',
-            '3neitherLikelyOrUnlikely',
-            '4likely',
-            '5highlyLikely'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),    
     likelyToRecommendGrant: yup.string()
         .required("Please rate how likely are you to recommend this grant.")
         .oneOf([
-            '1highlyUnlikely',
-            '2unlikely',
-            '3neitherLikelyOrUnlikely',
-            '4likely',
-            '5highlyLikely'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]), 
     //step 4
     experienceBetterComments: yup.string()

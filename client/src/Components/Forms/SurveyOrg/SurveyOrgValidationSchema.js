@@ -3,24 +3,27 @@ import 'core-js/stable';
 
 
 export const SurveyOrgValidationSchema = yup.object().shape({
-    easeOfNavigatingWebsite: yup.string()
+    easeOfApplicationCompletion: yup.string()
         .required("Please rate the ease of website navigation.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'   
         ]),
-    easeOfUnderstandingAppGuide: yup.string()
+    speedApplicationProcessed: yup.string()
         .required("Please rate the ease of understanding the application guide.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'             
         ]),
+    experienceOnlineApplicationComments: yup.string()
+        .max(1000, "Max characters for comments is 1000."),
+    /*
     satisfactionSpeedOfService: yup.string()
         .required("Please rate your satisfaction with the speed of service.")
         .oneOf([
@@ -29,17 +32,19 @@ export const SurveyOrgValidationSchema = yup.object().shape({
             '3good',
             '4veryGood',
             '5excellent'            
-        ]),        
+        ]),
+    */        
     //step 2
-    valueOfProgram: yup.string()
+    participantContributionValuable: yup.string()
         .required("Please rate the value of the program.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'              
         ]),
+    /*
     participantNumber: yup.string()
         .required("Please select your number of participants.")
         .oneOf([
@@ -49,6 +54,7 @@ export const SurveyOrgValidationSchema = yup.object().shape({
             '4',
             '5,'
         ]),
+    
     participant1Experience: yup.string()
         .when('participantNumber', (participantNumber, schema) => {
             if (participantNumber !== undefined){
@@ -134,37 +140,53 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                     schema.min(0)
         }
     }),
-    likelyToHirePeopleWithBarriersInFuture: yup.string()
+    */
+    hiredPeopleWithBarriersBefore: yup.string()
+        .required("Please select if your organization has hired people with barriers in the past.")
+        .oneOf([
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
+        ]), 
+    hirePeopleWithBarriersFuture: yup.string()
         .required("Please select how likely are you to hire people with barriers to employment in the future.")
         .oneOf([
-            '1highlyUnlikely',
-            '2unlikely',
-            '3neitherLikelyOrUnlikely',
-            '4likely',
-            '5highlyLikely'            
-        ]),    
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
+        ]), 
+    experienceWithWorkParticipantsComments: yup.string()
+        .max(1000),
+    /*   
     difficultyHiringPeopleWithBarriersComment: yup.string()
         .max(1000),
+    */
     //step 3
     likelyToParticipateInSimilarProgram: yup.string()
         .required("Please rate how likely are you to participate in a similar program.")
         .oneOf([
-            '1highlyUnlikely',
-            '2unlikely',
-            '3neitherLikelyOrUnlikely',
-            '4likely',
-            '5highlyLikely'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     likelyToRecommendGrant: yup.string()
         .required("Please rate how likely are you to recommend this grant.")
         .oneOf([
-            '1highlyUnlikely',
-            '2unlikely',
-            '3neitherLikelyOrUnlikely',
-            '4likely',
-            '5highlyLikely'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]), 
     //step 4
+    bestPartOfProgramComments: yup.string()
+        .max(1000, "Max characters for comments is 1000."),
     experienceBetterComments: yup.string()
         .max(1000, "Max characters for comments is 1000.")
 })

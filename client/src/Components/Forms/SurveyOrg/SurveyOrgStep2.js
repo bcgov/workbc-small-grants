@@ -18,45 +18,45 @@ class SurveyOrgStep2 extends Component {
                                 className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}`}
                                 type="radio"
                                 name={`participant${i + 1}Experience`}
-                                value="1poor"
+                                value="1stronglyDisagree"
                             />
-                            <label className="form-check-label">1 (poor)</label>
+                            <label className="form-check-label">1</label>
                         </div>
                         <div className="form-check">
                             <Field
                                 className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}`}
                                 type="radio"
                                 name={`participant${i + 1}Experience`}
-                                value="2fair"
+                                value="2disagree"
                             />
-                            <label className="form-check-label">2 (fair)</label>
+                            <label className="form-check-label">2</label>
                         </div>
                         <div className="form-check">
                             <Field
                                 className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}`}
                                 type="radio"
                                 name={`participant${i + 1}Experience`}
-                                value="3good"
+                                value="3neitherAgreeNorDisagree"
                             />
-                            <label className="form-check-label">3 (good)</label>
+                            <label className="form-check-label">3</label>
                         </div>
                         <div className="form-check">
                             <Field
                                 className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}`}
                                 type="radio"
                                 name={`participant${i + 1}Experience`}
-                                value="4veryGood"
+                                value="4agree"
                             />
-                            <label className="form-check-label">4 (very good)</label>
+                            <label className="form-check-label">4</label>
                         </div>
                         <div className="form-check">
                             <Field
                                 className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}`}
                                 type="radio"
                                 name={`participant${i + 1}Experience`}
-                                value="5excellent"
+                                value="5stronglyAgree"
                             />
-                            <label className="form-check-label">5 (excellent)</label>
+                            <label className="form-check-label">5</label>
                             {feedBackInvalid(this.props.errors, this.props.touched, `participant${i + 1}Experience`)}
                         </div>
                     </div>
@@ -66,7 +66,7 @@ class SurveyOrgStep2 extends Component {
         return applicantsInputs
     }
     get generateDifficultyHiring() {
-        if (this.props.values.likelyToHirePeopleWithBarriersInFuture === "5highlyLikely" || this.props.values.likelyToHirePeopleWithBarriersInFuture === "4likely" || this.props.values.likelyToHirePeopleWithBarriersInFuture === '') {
+        if (this.props.values.hiredPeopleWithBarriersBefore === "5stronglyAgree" || this.props.values.hiredPeopleWithBarriersBefore === "4agree" || this.props.values.hiredPeopleWithBarriersBefore === '') {
             return null
         } else {
             return (
@@ -95,125 +95,201 @@ class SurveyOrgStep2 extends Component {
         //else return step 2
         return (
             <div>
-                <p>Thinking about the participants in the program, please rate the following:</p>
+                <p>Thinking about the <b>participants in the program,</b> please rate your level of agreement with the following statements:</p>
+                <p>The rating scale used is as follows: 1 = strongly disagree, 2 = disagree, 3 = neither agree nor disagree, 4 = agree, 5 = strongly agree.</p>
+                <hr/>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="valueOfProgram">2a. Value of the program.<span style={{ color: "red" }}>*</span></label>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "valueOfProgram")}`}
-                            type="radio"
-                            name="valueOfProgram"
-                            value="1poor"
-                        />
-                        <label className="form-check-label">1 (poor)</label>
+                    <div className="row">
+                        <div className="col-6"></div>
+                        <div className="col d-none d-md-block">
+                            Strongly <br /> Disagree
+                        </div>
+                        <div className="col">
+
+                        </div>
+                        <div className="col">
+
+                        </div>
+                        <div className="col">
+
+                        </div>
+                        <div className="col d-none d-md-block">
+                            Strongly<br /> Agree
+                        </div>
                     </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "valueOfProgram")}`}
-                            type="radio"
-                            name="valueOfProgram"
-                            value="2fair"
-                        />
-                        <label className="form-check-label">2 (fair)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "valueOfProgram")}`}
-                            type="radio"
-                            name="valueOfProgram"
-                            value="3good"
-                        />
-                        <label className="form-check-label">3 (good)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "valueOfProgram")}`}
-                            type="radio"
-                            name="valueOfProgram"
-                            value="4veryGood"
-                        />
-                        <label className="form-check-label">4 (very good)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "valueOfProgram")}`}
-                            type="radio"
-                            name="valueOfProgram"
-                            value="5excellent"
-                        />
-                        <label className="form-check-label">5 (excellent)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "valueOfProgram")}
+                    <div className="row">
+                        <div className="col-md-6 col-sm-12 col-xs-12">
+                            <label className="col-form-label control-label" htmlFor="participantContributionValuable">The participant contribution was valuable to my organization.<span style={{ color: "red" }}>*</span></label>
+                        </div>
+                        <div className="form-check col">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantContributionValuable")}`}
+                                type="radio"
+                                name="participantContributionValuable"
+                                value="1stronglyDisagree"
+                            />
+                            <label className="form-check-label">1</label>
+                        </div>
+                        <div className="form-check col">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantContributionValuable")}`}
+                                type="radio"
+                                name="participantContributionValuable"
+                                value="2disagree"
+                            />
+                            <label className="form-check-label">2</label>
+                        </div>
+                        <div className="form-check col">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantContributionValuable")}`}
+                                type="radio"
+                                name="participantContributionValuable"
+                                value="3neitherAgreeNorDisagree"
+                            />
+                            <label className="form-check-label">3</label>
+                        </div>
+                        <div className="form-check col">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantContributionValuable")}`}
+                                type="radio"
+                                name="participantContributionValuable"
+                                value="4agree"
+                            />
+                            <label className="form-check-label">4</label>
+                        </div>
+                        <div className="form-check col">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantContributionValuable")}`}
+                                type="radio"
+                                name="participantContributionValuable"
+                                value="5stronglyAgree"
+                            />
+                            <label className="form-check-label">5</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "participantContributionValuable")}
+                        </div>
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="participantNumber"> 2b. How many participants did you have? <span
-                        style={{ color: "red" }}>*</span></label>
+                    <div className="row">
+                        <div className="col-md-6 col-sm-12 col-xs-12">
+                            <label className="col-form-label control-label" htmlFor="hiredPeopleWithBarriersBefore">Prior to participating in this program, my organization has hired people with barriers to employment.<span style={{ color: "red" }}>*</span></label>
+                        </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}`}
+                            type="radio"
+                            name="hiredPeopleWithBarriersBefore"
+                            value="1stronglyDisagree"
+                        />
+                        <label className="form-check-label">1</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}`}
+                            type="radio"
+                            name="hiredPeopleWithBarriersBefore"
+                            value="2disagree"
+                        />
+                        <label className="form-check-label">2</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}`}
+                            type="radio"
+                            name="hiredPeopleWithBarriersBefore"
+                            value="3neitherAgreeNorDisagree"
+                        />
+                        <label className="form-check-label">3</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}`}
+                            type="radio"
+                            name="hiredPeopleWithBarriersBefore"
+                            value="4agree"
+                        />
+                        <label className="form-check-label">4</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}`}
+                            type="radio"
+                            name="hiredPeopleWithBarriersBefore"
+                            value="5stronglyAgree"
+                        />
+                        <label className="form-check-label">5</label>
+                        {feedBackInvalid(this.props.errors, this.props.touched, "hiredPeopleWithBarriersBefore")}
+                    </div>
+                    </div>
+                </div>
+                <div className="form-group">
+                <div className="row">
+                        <div className="col-md-6 col-sm-12 col-xs-12">
+                    <label className="col-form-label control-label" htmlFor="hirePeopleWithBarriersFuture">Prior to participating in this program, my organization has hired people with barriers to employment.<span style={{ color: "red" }}>*</span></label>
+                        </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}`}
+                            type="radio"
+                            name="hirePeopleWithBarriersFuture"
+                            value="1stronglyDisagree"
+                        />
+                        <label className="form-check-label">1</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}`}
+                            type="radio"
+                            name="hirePeopleWithBarriersFuture"
+                            value="2disagree"
+                        />
+                        <label className="form-check-label">2</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}`}
+                            type="radio"
+                            name="hirePeopleWithBarriersFuture"
+                            value="3neitherAgreeNorDisagree"
+                        />
+                        <label className="form-check-label">3</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}`}
+                            type="radio"
+                            name="hirePeopleWithBarriersFuture"
+                            value="4agree"
+                        />
+                        <label className="form-check-label">4</label>
+                    </div>
+                    <div className="form-check col">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}`}
+                            type="radio"
+                            name="hirePeopleWithBarriersFuture"
+                            value="5stronglyAgree"
+                        />
+                        <label className="form-check-label">5</label>
+                        {feedBackInvalid(this.props.errors, this.props.touched, "hirePeopleWithBarriersFuture")}
+                    </div>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="experienceWithWorkParticipantsComments">Please provide any additional details or comments about your organization’s experience with the work experience participants.
+                </label>
+                    <small className="text-muted" id="experienceWithWorkParticipantsComments"> (1000 characters max.)</small>
                     <Field
-                        as="select"
-                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantNumber")}`}
-                        id="participantNumber"
-                        name="participantNumber"
-                    >
-                        <option value="">Please select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </Field>
-                    {feedBackInvalid(this.props.errors, this.props.touched, "participantNumber")}
+                        as="textarea"
+                        className="form-control"
+                        id="experienceWithWorkParticipantsComments"
+                        name="experienceWithWorkParticipantsComments"
+                        rows="4"
+                        maxLength="1000"
+                    />
+                    <small>{this.props.values.experienceWithWorkParticipantsComments.length}/1000</small>
                 </div>
-                {this.generateParticipantsExperience()}
-                <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="likelyToHirePeopleWithBarriersInFuture">2d. How likely are you to hire people with barriers to employment in the future?<span style={{ color: "red" }}>*</span></label>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}`}
-                            type="radio"
-                            name="likelyToHirePeopleWithBarriersInFuture"
-                            value="1highlyUnlikely"
-                        />
-                        <label className="form-check-label">1 (highly unlikely)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}`}
-                            type="radio"
-                            name="likelyToHirePeopleWithBarriersInFuture"
-                            value="2unlikely"
-                        />
-                        <label className="form-check-label">2 (unlikely)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}`}
-                            type="radio"
-                            name="likelyToHirePeopleWithBarriersInFuture"
-                            value="3neitherLikelyOrUnlikely"
-                        />
-                        <label className="form-check-label">3 (neither likely or unlikely)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}`}
-                            type="radio"
-                            name="likelyToHirePeopleWithBarriersInFuture"
-                            value="4likely"
-                        />
-                        <label className="form-check-label">4 (likely)</label>
-                    </div>
-                    <div className="form-check">
-                        <Field
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}`}
-                            type="radio"
-                            name="likelyToHirePeopleWithBarriersInFuture"
-                            value="5highlyLikely"
-                        />
-                        <label className="form-check-label">5 (highly likely)</label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "likelyToHirePeopleWithBarriersInFuture")}
-                    </div>
-                </div>
-                {this.generateDifficultyHiring}
+
             </div>
         )
     }
