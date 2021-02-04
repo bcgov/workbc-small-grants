@@ -110,9 +110,11 @@ class SurveyParticipant extends Component {
                                 increasedAbilityGettingAndKeepingJob: '',
                                 organizationAndExperienceComments: '',
                                 //step 3
+                                receivedOtherWorkBCServicesOrPrograms: '',
                                 likelyToParticipateInSimilarProgram: '',
                                 likelyToRecommendGrant: '',
                                 //step 4
+                                bestPartOfTheProgramComments: '',
                                 experienceBetterComments: '',
                             }}
                             enableReinitialize={true}

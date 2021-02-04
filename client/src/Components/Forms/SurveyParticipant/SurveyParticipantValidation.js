@@ -11,7 +11,9 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '3neitherAgreeNorDisagree',
             '4agree',
             '5stronglyAgree'
-        ]),       
+        ]),
+    experienceOnlineApplicationComments: yup.string()
+        .max(1000, "Max characters for online experience comments is 1000."),       
     //step 2
     overallExperienceWithEmployer: yup.string()
         .required("Please rate your overall experience with your employer.")
@@ -32,7 +34,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '5stronglyAgree'            
         ]),
     increasedAbilityToParticipateInLM: yup.string()
-        .required("Please rate your increased ability to participate in the labour market.")
+        .required("Please select Prior to this experience, I have received other WorkBC services or participated in other WorkBC programs.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
@@ -41,6 +43,15 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '5stronglyAgree'            
         ]),
     //step3
+    receivedOtherWorkBCServicesOrPrograms: yup.string()
+        .required("Please select how likely are you to participate in a similar program in the future.")
+        .oneOf([
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
+        ]),      
     likelyToParticipateInSimilarProgram: yup.string()
         .required("Please select how likely are you to participate in a similar program in the future.")
         .oneOf([
@@ -60,6 +71,8 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '5stronglyAgree'            
         ]), 
     //step 4
+    bestPartOfTheProgramComments: yup.string()
+        .max(1000, "Max characters of best of part of program comments is 1000."),
     experienceBetterComments: yup.string()
-        .max(1000, "Max characters for comments is 1000.")
+        .max(1000, "Max characters to make experience better comments is 1000.")
 })
