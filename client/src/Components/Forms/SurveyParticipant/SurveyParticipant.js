@@ -103,10 +103,12 @@ class SurveyParticipant extends Component {
                             initialValues={{
                                 //step 1
                                 easeOfApplicationCompletion: '',
+                                experienceOnlineApplicationComments: '',
                                 //step 2
-                                overallExperienceWithEmployer: '',
+                                overallExperienceWithOrganization: '',
                                 levelOfSupportsReceived: '',
-                                increasedAbilityToParticipateInLM: '',
+                                increasedAbilityGettingAndKeepingJob: '',
+                                organizationAndExperienceComments: '',
                                 //step 3
                                 likelyToParticipateInSimilarProgram: '',
                                 likelyToRecommendGrant: '',

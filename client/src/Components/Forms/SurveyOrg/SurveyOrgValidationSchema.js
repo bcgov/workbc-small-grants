@@ -27,11 +27,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
     satisfactionSpeedOfService: yup.string()
         .required("Please rate your satisfaction with the speed of service.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     */        
     //step 2
@@ -62,11 +62,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                     ? 
                         schema.required("Please rate participant 1 experience")
                         .oneOf([
-                            '1poor',
-                            '2fair',
-                            '3good',
-                            '4veryGood',
-                            '5excellent'            
+                            '1stronglyDisagree',
+                            '2disagree',
+                            '3neitherAgreeNorDisagree',
+                            '4agree',
+                            '5stronglyAgree'            
                         ])
                     :
                         schema.min(0)
@@ -79,11 +79,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 2 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -96,11 +96,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 3 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -113,11 +113,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 4 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -130,11 +130,11 @@ export const SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 5 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)

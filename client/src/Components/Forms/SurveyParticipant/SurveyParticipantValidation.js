@@ -6,39 +6,39 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
     easeOfApplicationCompletion: yup.string()
         .required("Please rate the ease of website navigation.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'
         ]),       
     //step 2
     overallExperienceWithEmployer: yup.string()
         .required("Please rate your overall experience with your employer.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     levelOfSupportsReceived: yup.string()
         .required("Please rate the level of supports you received.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     increasedAbilityToParticipateInLM: yup.string()
         .required("Please rate your increased ability to participate in the labour market.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     //step3
     likelyToParticipateInSimilarProgram: yup.string()

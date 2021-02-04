@@ -4,39 +4,39 @@ var SurveyOrgValidationSchema = yup.object().shape({
     easeOfApplicationCompletion: yup.string()
         .required("Please rate the ease of website navigation.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'
         ]),
     speedApplicationProcessed: yup.string()
         .required("Please rate the ease of understanding the application guide.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     satisfactionSpeedOfService: yup.string()
         .required("Please rate your satisfaction with the speed of service.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),        
     //step 2
     participantContributionValuable: yup.string()
         .required("Please rate the value of the program.")
         .oneOf([
-            '1poor',
-            '2fair',
-            '3good',
-            '4veryGood',
-            '5excellent'            
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'            
         ]),
     participantNumber: yup.string()
         .required("Please select your number of participants.")
@@ -54,11 +54,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
                     ? 
                         schema.required("Please rate participant 1 experience")
                         .oneOf([
-                            '1poor',
-                            '2fair',
-                            '3good',
-                            '4veryGood',
-                            '5excellent'            
+                            '1stronglyDisagree',
+                            '2disagree',
+                            '3neitherAgreeNorDisagree',
+                            '4agree',
+                            '5stronglyAgree'            
                         ])
                     :
                         schema.min(0)
@@ -71,11 +71,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 2 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -88,11 +88,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 3 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -105,11 +105,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 4 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
@@ -122,11 +122,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
                 ? 
                     schema.required("Please rate participant 5 experience")
                     .oneOf([
-                        '1poor',
-                        '2fair',
-                        '3good',
-                        '4veryGood',
-                        '5excellent'            
+                        '1stronglyDisagree',
+                        '2disagree',
+                        '3neitherAgreeNorDisagree',
+                        '4agree',
+                        '5stronglyAgree'            
                     ])
                 :
                     schema.min(0)
