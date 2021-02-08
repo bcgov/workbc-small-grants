@@ -6,7 +6,7 @@ class SurveyStartParticipant extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                    <h1>Work Experience Opportunities Grant Organization Survey</h1>
+                    <h1>Work Experience Opportunities Grant Participant Survey</h1>
                         <p>
                             Welcome to the Work Experience Opportunities Grant survey.
                         </p>
