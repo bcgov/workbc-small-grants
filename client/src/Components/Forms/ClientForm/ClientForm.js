@@ -8,12 +8,14 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 import { generateAlert } from '../Shared/Alert'
 import { DatePickerField } from '../Shared/DatePickerField'
 import { FORM_URL } from '../../../constants/form'
+import IndigenousForm from './IndigenousForm'
 
 class ClientForm extends Component {
     constructor() {
         super()
         this.state = {
             _csrf: '',
+            _intake: '',
             hasError: false,
         }
     }
@@ -34,6 +36,11 @@ class ClientForm extends Component {
                     })
                 }
             )
+        if (this.props.match.path === "/participantForm/2/:id?"){
+            this.setState({"_intake":"2"})
+        } else if (this.props.match.path === "/clientForm/:id?"){
+            this.setState({"_intake":"1"})
+        }
     }
 
 
@@ -92,6 +99,7 @@ class ClientForm extends Component {
                         <Formik
                             initialValues={{
                                 _csrf: this.state._csrf,
+                                _intake: this.state._intake,
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
@@ -102,6 +110,10 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
+                                livingOnReserveCommunity: '',
+                                receivingAssistanceFrom: '',
+                                pwdDesignationOrganization: '',
+                                ppmbDesignationOrganization: '',
                                 clientConsent: false,
                             }}
                             enableReinitialize={true}
@@ -135,7 +147,7 @@ class ClientForm extends Component {
                                     )
                             }}
                         >
-                            {({ values, errors, touched, isSubmitting }) => (
+                            {({ values, errors, touched, isSubmitting, setFieldValue }) => (
                                 <Form>
                                     {this.state.hasError && (
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
@@ -188,6 +200,7 @@ class ClientForm extends Component {
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress2")}`} id="clientAddress2" name="clientAddress2" />
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
+                                    <IndigenousForm errors={errors} touched={touched} intake={values._intake}/>
                                     <ClientConsent />
                                     <div className="form-group">
                                         <div className="form-check">
@@ -208,7 +221,7 @@ class ClientForm extends Component {
                                         {
                                             isSubmitting ?
                                                 <div>
-                                                    <span className="spinner-border spinner-border-sm" htmlRole="status" aria-hidden="true"></span>
+                                                    <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                                                        Submitting...
                                                 </div>
                                                 :
@@ -217,6 +230,7 @@ class ClientForm extends Component {
                                         }
                                     </button>
                                 </Form>
+                                
                             )}
 
 

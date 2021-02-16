@@ -8,17 +8,16 @@ var nodemailer = require("nodemailer");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
-var ClientFormValidationSchema = require('../schemas/ClientFormValidationSchema.js')
+var SurveyParticipantValidationSchema = require('../schemas/SurveyOrgValidationSchema.js')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
-const { getClientSubmitted } = require('../utils/confirmationData');
+//const { getSurveyOrgSubmitted } = require('../utils/confirmationData');
 
-var clientConfirmationEmail = process.env.CLIENT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_EMAIL || "";
-var clientConfirmationBCC = process.env.CLIENT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC || "";
-var clientListEmail = process.env.CLIENT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL || "";
-var clientListEmail2 = process.env.CLIENT_LISTEMAIL2 || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL2 || "";
-var clientNotifyEmail = process.env.CLIENT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL || "";
+var surveyParticipantConfirmationEmail = process.env.SURVEYPARTICIPANT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_EMAIL || "";
+var surveyParticipantConfirmationBCC = process.env.SURVEYPARTICIPANT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_BCC || "";
+var surveyParticipantListEmail = process.env.SURVEYPARTICIPANT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_LISTEMAIL || "";
+var surveyParticipantNotifyEmail = process.env.SURVEYPARTICIPANT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_NOTIFYEMAIL || "";
 
 async function sendEmails(values) {
   try {
@@ -40,13 +39,8 @@ async function sendEmails(values) {
         } else {
           cEmail = clientConfirmationEmail
         }
-        var cListEmail;
-        if (values._intake === "1"){
-          cListEmail = clientListEmail
-        } else if (values._intake === "2"){
-          cListEmail = clientListEmail2
-        }
         // send mail with defined transport object
+        /*
         let message1 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: cEmail,// list of receivers
@@ -65,19 +59,20 @@ async function sendEmails(values) {
             [],
             getClientSubmitted(values)) // html body
         };
+        */
         let message2 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: cListEmail,// list of receivers
-          subject: "A client grant application has been received", // Subject line
-          html: notification.generateClientListNotification(values) // html body
+          to: surveyParticipantListEmail,// list of receivers
+          subject: "A participant survey response has been received", // Subject line
+          html: notification.generateSurveyParticipantListNotification(values) // html body
         };
-        /*
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: clientNotifyEmail,// list of receivers
-          subject: "A client grant application has been received", // Subject line
-          html: notification.generateClientNotification(values) // html body
-        };*/
+          to: surveyParticipantNotifyEmail,// list of receivers
+          subject: "A participant survey response has been received", // Subject line
+          html: notification.generateSurveyParticipantNotification(values) // html body
+        };
+        /*
         let info = transporter.sendMail(message1, (error, info) => {
           if (error) {
             return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
@@ -86,7 +81,8 @@ async function sendEmails(values) {
             return "success"
           }
         });
-        info = transporter.sendMail(message2, (error, info) => {
+        */
+        let info = transporter.sendMail(message2, (error, info) => {
           if (error) {
             return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
           } else {
@@ -94,7 +90,6 @@ async function sendEmails(values) {
             return "success"
           }
         });
-        /*
         info = transporter.sendMail(message3, (error, info) => {
           if (error) {
             return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
@@ -103,7 +98,6 @@ async function sendEmails(values) {
             return "success"
           }
         });
-        */
         return true
       }).catch(function (e) {
         console.log(e)
@@ -129,7 +123,7 @@ router.post('/', csrfProtection, async (req, res) => {
   //clean the body
   clean(req.body);
   console.log(req.body)
-  ClientFormValidationSchema.validate(req.body, { abortEarly: false })
+  SurveyParticipantValidationSchema.validate(req.body, { abortEarly: false })
     .then(async function (value) {
       try {
         await sendEmails(value)

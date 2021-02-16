@@ -15,12 +15,25 @@ export const MainFormValidationSchema = yup.object().shape({
         .required('Please enter the website.'),
     //How long, what type, min max?
     businessNumber: yup.string()
-        .max(15, "Business number must be exactly 15 characters")
-        .min(15, "Business number must be exactly 15 characters.")
+        .max(17, "Business number must be at most 17 characters.")
+        .min(9, "Business number must be at minimum 9 characters.")
         .required('Please enter your business number.'),
     confirmOrganizationNonProfit: yup.string()
-        .matches("yes", "Only non-profits are eligible.")
+        .oneOf([
+            "incorporatedNonProfit",
+            "federallyRegisteredCharity"
+        ], "Only non-profits or federally registered charities are eligible.")
         .required('Please select'),
+    societyRegistrationID: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "incorporatedNonProfit",
+            then: yup.string().max(9,"Registration ID can contain a maximum of 9 characters.")
+        }),
+    charityRegistrationNumber: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "federallyRegisteredCharity",
+            then: yup.string().max(17,"Charity registration number can contain a maximum of 17 characters.")
+        }),
     nonProfitClassification: yup.mixed()
         .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid field.")
         .required('Please select your classification.'),
@@ -122,8 +135,52 @@ export const MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Please confirm your commitment."),
     applicantType: yup.boolean()
         .oneOf([true],"Please confirm your understanding of eligibility requirements."),
+    understandNotAvailableTo: yup.boolean()
+        .oneOf([true],"Please confirm your understanding on participant ineligibility."),
+    administerGrantUnderstanding: yup.boolean()
+        .oneOf([true],"Please confirm grant administration understanding."),
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
+    workExperienceTakesPlaceElsewhere: yup.string()
+        .oneOf(["yes","no"])
+        .required("Please answer if your work experience is taking place in a partner business."),
+    partneringBusinessName: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(255)
+        }),
+    partneringBusinessActivities: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(500)
+        }),
+    /*
+    partneringBusinessAffiliation: yup.string()
+    .when("workExperienceTakesPlaceElsewhere", {
+        is:"yes",
+        then: yup.string().max(500).required("Please describe your affiliation with the business.")
+    }),
+    */
+    partneringBusinessContactAddress1: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(255,"Address too long, please use address line 2.")
+        }),
+    partneringBusinessContactAddress2: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(255,"Address too long")
+        }),
+    partneringBusinessContactCity: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().max(100,"City name too long")
+        }),
+    partneringBusinessContactPostal: yup.string()
+        .when("workExperienceTakesPlaceElsewhere", {
+            is:"yes",
+            then: yup.string().matches(/^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d$/,"Please enter a valid Postal Code")
+        }),        
     participantActivities: yup.string()
         .max(1000, "Maximum of 1000 characters is allowed")
         .required("Please describe the work opportunity"),
@@ -146,25 +203,17 @@ export const MainFormValidationSchema = yup.object().shape({
                 return participantExperiences.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
             }
         }),
-    participantSkills: yup.array()
-        .of(yup.string()
-            .min(1)
-            .oneOf([
-                "Essential Skills",
-                "Life Skills",
-                "Training",
-                "Employment Experience",
-                "Self Employment Experience",
-                "Other"
-            ],"Please select a valid option.")
-        )
-        .required("Please select at least one skill."),
+    participantSkills: yup.string()
+        .max(1000, "Maximum of 1000 characters allowed.")
+        .required("Please describe the skill development."),
+    /*
     otherSkill: yup.string()
         .when("participantSkills", (participantSkills, schema) => {
             if (participantSkills !== undefined){
                 return participantSkills.indexOf("Other") > -1 ? schema.required("Please describe.").max(500,"Maximum of 500 characters is allowed") : schema.min(0)
             }
         }),
+    */
     additionalBenefits: yup.string()
         .max(1000,"Maximum of 1000 characters is allowed."),
     participantStipend: yup.boolean()
@@ -184,6 +233,7 @@ export const MainFormValidationSchema = yup.object().shape({
                 .oneOf(["nonProfitAgency","corporationOrPrivateSectorAgency","publicSectorAgency","otherAgency"],"Please select a valid option")
                 .required("Please select your business classification.")
         }),
+    /*
     taxNumber: yup.number()  
         .when("existingSupplierNumber",{
             is: "no",
@@ -191,6 +241,7 @@ export const MainFormValidationSchema = yup.object().shape({
             .typeError("Must be a number.")      
             .required("Please enter your tax number.")
         }),
+    */
     signatory1: yup.string()
         .required("Please enter the first organization signatory.")
         .test('match','Signatories must be different',function (signatory1){

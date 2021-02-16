@@ -11,7 +11,7 @@ class FormStep3 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="supplierNumber">Supplier Number <span
                         style={{ color: "red" }}>*</span></label>
-                    <small className="text-muted" id="supplierNumber"> This is your BC Government unique vendor ID. More information is available on the FAQs.</small>
+                    <small className="text-muted" id="supplierNumber"> This is your BC Government unique vendor ID. More information is available on the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">application guide</a> .</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "supplierNumber")}`} id="supplierNumber" name="supplierNumber" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "supplierNumber")}
                 </div>
@@ -37,12 +37,14 @@ class FormStep3 extends Component {
                         </Field>
                         {feedBackInvalid(this.props.errors, this.props.touched, "businessClassification")}
                     </div>
+                    {/*
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="taxNumber">Tax Number <span
                             style={{ color: "red" }}>*  </span></label>
                         <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "taxNumber")}`} id="taxNumber" name="taxNumber" />
                         {feedBackInvalid(this.props.errors, this.props.touched, "taxNumber")}
                     </div>
+                    */}
                     { /*
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="businessAddress">Business Address <span
@@ -61,6 +63,7 @@ class FormStep3 extends Component {
             return (
                 <div>
                     <p>Please correct the following errors:</p>
+                    <p><b>To modify the form, use the Previous button at the bottom of the form. Using the Browser Back button will not retain the form information.</b></p>
                     <ul>
                         {Object.values(this.props.errors).map((error, i) => (
                             <li key={i}>{error}</li>

@@ -15,14 +15,15 @@ class ThankyouOrg extends Component {
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
                         <h3>Here are your required next steps:</h3>
-                        <p>Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process. </p>
+                        <p>Your participants' application form must be submitted to the Ministry to complete the application process. </p>
                         <p>This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
+                        <p>Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
                         <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/clientForm/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/clientForm/${applicationId}`}</a></p>
+                                <p><a href={`${window.location.origin}/participantForm/2/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/2/${applicationId}`}</a></p>
                                 <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>
@@ -40,7 +41,9 @@ class ThankyouOrg extends Component {
                                 <p>Mission Statement:  {this.props.location.state !== undefined && this.props.location.state.missionStatement}</p>
                                 <p>Organization Website:  {this.props.location.state !== undefined && this.props.location.state.organizationWebsite}</p>
                                 <p>Business Number:  {this.props.location.state !== undefined && this.props.location.state.businessNumber}</p>
-                                <p>Non Profit:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Registration ID (if non-profit):  {this.props.location.state !== undefined && this.props.location.state.societyRegistrationID}</p>
+                                <p>Charity Registration Number (if charity):  {this.props.location.state !== undefined && this.props.location.state.charityRegistrationNumber}</p>
                                 <p>Non Profit Classification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
                                 <p>Non Profit SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
                                 <p>Non Profit Other SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
@@ -70,22 +73,37 @@ class ThankyouOrg extends Component {
                                 <p>WorkSafeBC Insurance Coverage:  {this.props.location.state !== undefined && this.props.location.state.insuranceCoverage.toString()}</p>
                                 <p>Commitment to monitor applicants:  {this.props.location.state !== undefined && this.props.location.state.monitorCommit.toString()}</p>
                                 <p>Applicant eligibility confirmation:  {this.props.location.state !== undefined && this.props.location.state.applicantType.toString()}</p>
+                                <p>Understanding on participant ineligibility:  {this.props.location.state !== undefined && this.props.location.state.understandNotAvailableTo.toString()}</p>
+                                <p>Grant administration understanding:  {this.props.location.state !== undefined && this.props.location.state.administerGrantUnderstanding.toString()}</p>
                                 <p>Placement length confirmation:  {this.props.location.state !== undefined && this.props.location.state.placementLength.toString()}</p>
                                 <p>Work Opportunity:</p>  
                                 <p>{this.props.location.state !== undefined && this.props.location.state.participantActivities}</p>
                                 <p>What will organization provide:  {this.props.location.state !== undefined && this.props.location.state.participantExperiences}</p>
                                 <p>Other Experience:</p> 
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherExperience}</p>
-                                <p>Participants will gain:  {this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
+                                <p>Work experience taking place at partnering business? {this.props.location.state !== undefined && this.props.location.state.workExperienceTakesPlaceElsewhere}</p>
+                                <h5>Partnering business information (only if work experience is taking place at partnering business.)</h5>
+                                <p>Partnering business name: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessName}</p>
+                                <p>Partnering business activities:</p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.partneringBusinessActivities}</p>
+                                {/*<p>Partnering business affiliation: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessAffiliation}</p>*/}
+                                <p>Partnering business contact address 1: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactAddress1}</p>
+                                <p>Partnering business contact address 2: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactAddress2}</p>
+                                <p>Partnering business contact city: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactCity}</p>
+                                <p>Partnering business contact Postal: {this.props.location.state !== undefined && this.props.location.state.partneringBusinessContactPostal}</p>
+                                <p>Skill development:</p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.participantSkills}</p>
+                                {/*
                                 <p>Other Skills: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.otherSkill}</p>
+                                */}
                                 <p>Additional Benefits: </p>
                                 <p>{this.props.location.state !== undefined && this.props.location.state.additionalBenefits}</p>
                                 <p>Stipend confirmation:  {this.props.location.state !== undefined && this.props.location.state.participantStipend.toString()}</p>
                                 <p>Has Existing Supplier Number:  {this.props.location.state !== undefined && this.props.location.state.existingSupplierNumber.toString()}</p>
                                 <p>Supplier Number:{this.props.location.state !== undefined && this.props.location.state.supplierNumber}</p>
                                 <p>Business Classification: {this.props.location.state !== undefined && this.props.location.state.businessClassification}</p>
-                                <p>Tax Number:  {this.props.location.state !== undefined && this.props.location.state.taxNumber}</p>
+                                {/*<p>Tax Number:  {this.props.location.state !== undefined && this.props.location.state.taxNumber}</p>*/}
                                 <p>Signatory 1:  {this.props.location.state !== undefined && this.props.location.state.signatory1}</p>
                                 <p>Signatory 2:  {this.props.location.state !== undefined && this.props.location.state.signatory2}</p>
                                 <p>Certify Signatories:  {this.props.location.state !== undefined && this.props.location.state.signingAuthorityConfirm.toString()}</p>

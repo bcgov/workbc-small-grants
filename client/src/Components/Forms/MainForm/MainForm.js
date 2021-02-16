@@ -78,13 +78,12 @@ class MainForm extends Component {
 
     nextButton(isNonProfit){
         let currentStep = this.state.currentStep;
-
         if(currentStep < 3){
           return (
             <button 
               className="btn btn-primary float-right" 
               type="button" onClick={this._next}
-              disabled={isNonProfit !== "yes" || this.state.hasError}
+              disabled={(isNonProfit !== "incorporatedNonProfit" && isNonProfit !== "federallyRegisteredCharity") || this.state.hasError}
             >
             Next
             </button>        
@@ -123,6 +122,8 @@ class MainForm extends Component {
                                             organizationWebsite: '',
                                             businessNumber: '',
                                             confirmOrganizationNonProfit: '',
+                                            charityRegistrationNumber: '',
+                                            societyRegistrationID: '',
                                             nonProfitClassification: '',
                                             nonProfitSubClassification: '',
                                             nonProfitSubClassificationOther: '',
@@ -151,7 +152,17 @@ class MainForm extends Component {
                                             insuranceCoverage: false,
                                             monitorCommit: false,
                                             applicantType: false,
+                                            understandNotAvailableTo: false,
+                                            administerGrantUnderstanding: false,
                                             placementLength: false,
+                                            workExperienceTakesPlaceElsewhere: '',
+                                            partneringBusinessName: '',
+                                            partneringBusinessActivities: '',
+                                            //partneringBusinessAffiliation: '',
+                                            partneringBusinessContactAddress1: '',
+                                            partneringBusinessContactAddress2: '',
+                                            partneringBusinessContactCity: '',
+                                            partneringBusinessContactPostal: '',
                                             participantActivities: '',
                                             participantExperiences: [],
                                             otherExperience: '',

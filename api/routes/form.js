@@ -56,14 +56,15 @@ async function sendEmails(values) {
               `<b>Application ID: ${values._id}</b>`,
               `Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.`,
               `<b>Here are your required next steps:</b>`,
-              `Your participants' consent to participate must be submitted to the Ministry <b>within 3 weeks</b> to complete the application process.`,
+              `Your participants' application form must be submitted to the Ministry to complete the application process.`,
               `This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.`,
+              `Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx">WorkBC Centre</a> to help with the recruitment of eligible participants.`,
               `<b>Please provide your participants the following instructions:</b>`
             ],
             [
               `Application ID: ${values._id}`,
               `Please visit the following URL in order to provide your consent to the Ministry.`,
-              `<a href="${clientURL}/clientForm/${values._id}">${clientURL}/clientForm/${values._id}</a>`,
+              `<a href="${clientURL}/participantForm/2/${values._id}">${clientURL}/participantForm/2/${values._id}</a>`,
               `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.`,
             ],
             getOrgSubmitted(values)
@@ -75,12 +76,14 @@ async function sendEmails(values) {
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateListNotification(values) // html body
         };
+        /*
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: notifyEmail,// list of receivers
           subject: "A grant application has been received - " + values._id, // Subject line
           html: notification.generateNotification(values) // html body
         };
+        */
         let info = transporter.sendMail(message1, (error, info) => {
           if (error) {
             console.log("Error sending confirmation for " + values._id)
@@ -95,6 +98,7 @@ async function sendEmails(values) {
             console.log("Message sent: %s", info.messageId);
           }
         });
+        /*
         info = transporter.sendMail(message3, (error, info) => {
           if (error) {
             console.log("Error sending notification for " + values._id)
@@ -102,6 +106,7 @@ async function sendEmails(values) {
             console.log("Message sent: %s", info.messageId);
           }
         });
+        */
         return true
       }).catch(function (e) {
         console.log(e)

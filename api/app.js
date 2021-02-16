@@ -17,10 +17,11 @@ const corsOptions = {
 
 var formRouter = require('./routes/form')
 var clientFormRouter = require('./routes/clientForm')
+var surveyOrgRouter = require('./routes/surveyOrg')
+var surveyParticipantRouter = require('./routes/surveyParticipant')
 
 var app = express();
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
@@ -31,5 +32,7 @@ app.use(helmet());
 
 app.use('/api/form', formRouter)
 app.use('/api/clientForm',clientFormRouter)
+app.use('/api/surveyOrg',surveyOrgRouter)
+app.use('/api/surveyParticipant',surveyParticipantRouter)
 
 module.exports = app;

@@ -16,10 +16,12 @@ module.exports = {
             `Mission Statement:  ${values.missionStatement}`,
             `Organization Website:  ${values.organizationWebsite}`,
             `Business Number:  ${values.businessNumber}`,
-            `Non Profit:  ${values.confirmOrganizationNonProfit}`,
+            `Organization Type:  ${values.confirmOrganizationNonProfit}`,
+            `Registration ID (if non-profit):  ${strings.orEmpty(values.societyRegistrationID)}`,
+            `Charity Registration Number (if charity): ${strings.orEmpty(values.charityRegistrationNumber)}`,
             `Non Profit Classification:  ${values.nonProfitClassification}`,
             `Non Profit SubClassification:  ${values.nonProfitSubClassification}`,
-            `Non Profit Other SubClassification:  ${values.nonProfitSubClassificationOther}`,
+            `Non Profit Other SubClassification:  ${strings.orEmpty(values.nonProfitSubClassificationOther)}`,
             `Based In BC:  ${values.basedInBC}`,
             `Position Title:  ${values.positionTitle}`,
             `First Name:  ${values.firstName}`,
@@ -46,22 +48,34 @@ module.exports = {
             `WorkSafeBC Insurance Coverage:  ${values.insuranceCoverage}`,
             `Commitment to monitor applicants:  ${values.monitorCommit}`,
             `Applicant eligibility confirmation:  ${values.applicantType}`,
+            `Understanding on participant ineligibility: ${values.understandNotAvailableTo}`,
+            `Grant administration understanding: ${values.administerGrantUnderstanding}`,
             `Placement length confirmation:  ${values.placementLength}`,
             `Work Opportunity:`,  
             `${values.participantActivities}`,
             `What will organization provide:  ${values.participantExperiences}`,
             `Other Experience:`, 
             `${strings.orEmpty(values.otherExperience)}`,
-            `Participants will gain:  ${values.participantSkills}`,
+            `Work experience taking place at partnering business? ${values.workExperienceTakesPlaceElsewhere}`,
+            `<h5>Partnering business information (only if work experience is taking place at partnering business.)</h5>`,
+            `Partnering business name: ${strings.orEmpty(values.partneringBusinessName)}`,
+            `Partnering business activities: ${strings.orEmpty(values.partneringBusinessActivities)}`,
+            `Partnering business contact address 1: ${strings.orEmpty(values.partneringBusinessContactAddress1)}`,
+            `Partnering business contact address 2: ${strings.orEmpty(values.partneringBusinessContactAddress2)}`,
+            `Partnering business contact city: ${strings.orEmpty(values.partneringBusinessContactCity)}`,
+            `Partnering business contact postal: ${strings.orEmpty(values.partneringBusinessContactPostal)} `,
+            `Skill Development:  ${values.participantSkills}`,
+            /*
             `Other Skills: `,
             `${strings.orEmpty(values.otherSkill)}`,
+            */
             `Additional Benefits: `,
             `${strings.orEmpty(values.additionalBenefits)}`,
             `Stipend confirmation:  ${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
-            `Supplier Number:${values.supplierNumber}`,
+            `Supplier Number:${strings.orEmpty(values.supplierNumber)}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
-            `Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
+            //`Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
             `Signatory 1:  ${values.signatory1}`,
             `Signatory 2:  ${values.signatory2}`,
             `Certify Signatories:  ${values.signingAuthorityConfirm}`,
@@ -86,7 +100,28 @@ module.exports = {
         } else {
             data.push(`<b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}`)
         }
+        if (values._intake === "2") {
+            data.push(
+                `<h5>Indigenous Participants</h5>`,
+                `<b>If Living On Reserve, Community Type:</b> ${strings.orEmpty(values.livingOnReserveCommunity)}`,
+                `<b>If Receiving Assistance, From:</b> ${strings.orEmpty(values.receivingAssistanceFrom)}`,
+                `<b>If PWD Designation, Organization:</b> ${strings.orEmpty(values.pwdDesignationOrganization)}`,
+                `<b>If PPMB Designation, Organization:</b> ${strings.orEmpty(values.ppmbDesignationOrganization)}`
+            )
+        }
         return data
 
+    },
+    getSurveyOrgSubmitted(values){
+        var data = [
+
+        ]
+        return data
+    },
+    getSurveyParticipantSubmitted(values){
+        var data = [
+
+        ]
+        return data
     }
 }

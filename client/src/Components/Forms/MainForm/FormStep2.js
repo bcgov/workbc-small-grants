@@ -51,6 +51,64 @@ class FormStep2 extends Component {
         return null
     }
 
+    get partneringBusiness(){
+        if (this.props.values.workExperienceTakesPlaceElsewhere === "yes"){
+            return (
+                <div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessName">What is the name of the business</label>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessName")}`} id="partneringBusinessName" name="partneringBusinessName" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessName")}
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessActivities">Please provide a brief description of the business activities</label>
+                        <Field
+                            as="textarea" 
+                            className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessActivities")}`} 
+                            id="partneringBusinessActivities" 
+                            name="partneringBusinessActivities"
+                            rows="2"
+                            maxLength="250" 
+                        />
+                        <small>{this.props.values.partneringBusinessActivities.length}/250</small>
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessActivities")}
+                    </div>
+                    <div className="form-group">
+                        <p><b>Contact information for the partnering business</b></p>
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessContactAddress1">Address 1 </label>
+                        <small className="text-muted" id="partneringBusinessContactAddress1">  Street address, P.O. box, company name, c/o</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactAddress1")}`} id="partneringBusinessContactAddress1" name="partneringBusinessContactAddress1" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactAddress1")}
+                    </div>
+                    <div className="form-group">
+                        <label className="col-form-label control-label" htmlFor="partneringBusinessContactAddress2">Address 2</label>
+                        <small className="text-muted" id="partneringBusinessContactAddress2">  Apartment, suite, unit, building, floor, etc.</small>
+                        <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactAddress2")}`} id="partneringBusinessContactAddress2" name="partneringBusinessContactAddress2" />
+                        {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactAddress2")}
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="partneringBusinessContactCity">City </label>
+                            <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactCity")}`} id="partneringBusinessContactCity" name="partneringBusinessContactCity" />
+                            {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactCity")}
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label className="col-form-label control-label" htmlFor="partneringBusinessContactPostal">Postal Code </label>
+                            <small className="text-muted" id="partneringBusinessContactPostal">  V0R2V5</small>
+                            <Field className={`form-control ${feedBackClassName(this.props.errors,this.props.touched,"partneringBusinessContactPostal")}`} id="partneringBusinessContactPostal" name="partneringBusinessContactPostal" />
+                            {feedBackInvalid(this.props.errors,this.props.touched,"partneringBusinessContactPostal")}
+                        </div>
+                    </div>
+                    <hr></hr>
+                </div>
+                
+            )
+        }
+        return null
+    }
+
     render() {
         if (this.props.currentStep !== 2) {
             return null
@@ -77,7 +135,7 @@ class FormStep2 extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
-                    <p>Participants must meet all eligibility requirements.  Eligibility will be verified by the ministry prior to disbursement of grant funds.</p>
+                    <p>Participants must meet all <a href="https://www.workbc.ca/getmedia/da44cdbc-c0d0-4171-b6f1-e63670214810/Eligibility-Criteria-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">eligibility requirements</a>.  Eligibility will be verified by the Ministry.</p>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
                 </div>
                 <div className="form-group">
@@ -105,7 +163,8 @@ class FormStep2 extends Component {
                         I commit to:
                         <ul>
                                 <li>Supervise and support the participant for the duration of the project; and</li>
-                                <li>Ensure that safe physical distancing practices and WorkSafeBC requirements are adhered to.</li>
+                                <li>Adhere to all health and safety guidance from the BC Provincial Health Officer (PHO) to reduce the transmission of COVID-19; and</li>
+                                <li>Ensure all WorkSafeBC requirements are met.</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "monitorCommit")}
@@ -119,14 +178,40 @@ class FormStep2 extends Component {
                             htmlFor="applicantType"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I understand that all work experience participants must be eligible to work in British Columbia and that participants are:
+                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must have:
                         <ul>
-                                <li>Designated under the Employment and Assistance for Persons with Disabilities Act as a person with disabilities; OR</li>
-                                <li>Qualified to receive assistance under the Employment and Assistance Act as a person with persistent multiple barriers; AND</li>
-                                <li>Work experience participants cannot be participating in a WorkBC Wage Subsidy.</li>
+                                <li>Designation as a Person with Disabilities (PWD) from the Ministry of Social Development and Poverty Reduction; OR</li>
+                                <li>Status as a Person with Persistent Multiple Barriers to employment (PPMB) from the Ministry of Social Development and Poverty Reduction; OR</li>
+                                <li>For Indigenous individuals living on reserve, the equivalent federal PWD designation or PPMB status.</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="form-check">
+                        <Field type="checkbox" className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "understandNotAvailableTo")}`} id="understandNotAvailableTo" name="understandNotAvailableTo" />
+                        <label
+                            className="form-check-label"
+                            htmlFor="understandNotAvailableTo"
+                        >
+                            <span style={{ color: "red" }}>*</span>
+                            I understand that the Work Experience Opportunities Grant program is not available to WorkBC Wage Subsidy recipients or current employees in their existing positions.
+                        </label>
+                        {feedBackInvalid(this.props.errors, this.props.touched, "understandNotAvailableTo")}
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="form-check">
+                        <Field type="checkbox" className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "administerGrantUnderstanding")}`} id="administerGrantUnderstanding" name="administerGrantUnderstanding" />
+                        <label
+                            className="form-check-label"
+                            htmlFor="administerGrantUnderstanding"
+                        >
+                            <span style={{ color: "red" }}>*</span>
+                            I understand that, as the non-profit organization, our organization will hold and administer the grant, provide wraparound supports and services, and ensure that the work experience placement complies with all requirements.
+                        </label>
+                        {feedBackInvalid(this.props.errors, this.props.touched, "administerGrantUnderstanding")}
                     </div>
                 </div>
                 <div className="form-group">
@@ -143,19 +228,42 @@ class FormStep2 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="workExperienceTakesPlaceElsewhere">Will the work experience take place at a partnering business in the community other than the non-profit organization listed on step 1 of the application form?<span style={{ color: "red" }}>*</span></label>
+                    <div className="form-check">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}`}
+                            type="radio"
+                            name="workExperienceTakesPlaceElsewhere"
+                            value="yes"
+                        />
+                        <label className="form-check-label" htmlFor="organizationNonProfitYes">Yes</label>
+                    </div>
+                    <div className="form-check">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}`}
+                            type="radio"
+                            name="workExperienceTakesPlaceElsewhere"
+                            value="no"
+                        />
+                        <label className="form-check-label" htmlFor="organizationNonProfitNo">No</label>
+                        {feedBackInvalid(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}
+                    </div>
+                </div>
+                {this.partneringBusiness}
+                <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="participantActivities">Work Opportunity <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="participantActivities">Please describe the work experience opportunity (1000 characters max.) </small>
+                    <small className="text-muted" id="participantActivities"> Please provide additional details on each participant’s job title, duties, responsibilities, tasks, anticipated hours of work, work location, and other relevant information. Please review the <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">application guide</a> for a list of example activities (link). Ex: Title - thrift store associate, Duties - sorting donation items,  displaying merchandise, packing items into boxes, working a cash register, greeting customers, etc. (2000 characters max.) </small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantActivities")}`}
                         id="participantActivities"
                         name="participantActivities"
                         rows="4"
-                        maxLength="1000"
+                        maxLength="2000"
                     />
-                    <small>{this.props.values.participantActivities.length}/1000</small>
+                    <small>{this.props.values.participantActivities.length}/2000</small>
                     {feedBackInvalid(this.props.errors, this.props.touched, "participantActivities")}
                 </div>
                 <div className="form-group">
@@ -191,6 +299,23 @@ class FormStep2 extends Component {
                 </div>
                 {this.otherExperienceField}
                 <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="participantSkills">Skill Development <span
+                        style={{ color: "red" }}>*</span>
+                    </label>
+                    <small className="text-muted" id="participantSkills"> What essential skills will participants gain through the work experience? Skills such as computer use, communication skills, literacy skills, time management, training, employment experience, etc. Please describe the skills in more detail. (1000 characters max.)</small>
+                    <Field
+                        as="textarea"
+                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantSkills")}`}
+                        id="participantSkills"
+                        name="participantSkills"
+                        rows="4"
+                        maxLength="1000"
+                    />
+                    <small>{this.props.values.participantSkills.length}/1000</small>
+                    {feedBackInvalid(this.props.errors, this.props.touched, "participantSkills")}
+                </div>
+                {/*
+                <div className="form-group">
                     <label className="control-label">During the work experience participant(s) will gain:
                         <span style={{ color: "red" }}>*</span>
                     </label>
@@ -221,7 +346,7 @@ class FormStep2 extends Component {
                         {feedBackInvalid(this.props.errors, this.props.touched, "participantSkills")}
                     </div>
                 </div>
-                {this.otherSkillField}
+                {this.otherSkillField*/}
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="additionalBenefits">Additional benefits
                     </label>
