@@ -38,6 +38,8 @@ class ClientForm extends Component {
             )
         if (this.props.match.path === "/participantForm/2/:id?"){
             this.setState({"_intake":"2"})
+        } else if (this.props.match.path === "/participantForm/3/:id?"){
+            this.setState({"_intake":"3"})
         } else if (this.props.match.path === "/clientForm/:id?"){
             this.setState({"_intake":"1"})
         }
