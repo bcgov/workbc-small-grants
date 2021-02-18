@@ -15,9 +15,9 @@ class ThankyouOrg extends Component {
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
                         <h3>Here are your required next steps:</h3>
-                        <p>Your participants' application form must be submitted to the Ministry to complete the application process. </p>
-                        <p>This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
-                        <p>Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
+                        <p>Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence so please submit your participant applications as soon as possible to get this process started. September 15, 2021 is the deadline for submitting your participant application forms.</p>
+                        <p>Participant forms can be submitted in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
+                        <p>Organizations can contact their nearest <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
                         <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
