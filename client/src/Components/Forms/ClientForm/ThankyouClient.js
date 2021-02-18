@@ -11,6 +11,24 @@ class ThankyouClient extends Component {
         }
         return null
     }
+    get indigenousInformation(){
+        if (this.props.location.state !== undefined){
+            if (this.props.location.state._intake >= 2){
+                return (
+                    <div>
+                        <h5>Indigenous Participants</h5>
+                        <p><b>If Living On Reserve, Community Type:</b> {this.props.location.state.livingOnReserveCommunity}</p>
+                        <p><b>If Receiving Assistance, From:</b> {this.props.location.state.receivingAssistanceFrom}</p>
+                        <p><b>If PWD Designation, Organization:</b> {this.props.location.state.pwdDesignationOrganization}</p>
+                        <p><b>If PPMB Designation, Organization:</b> {this.props.location.state.ppmbDesignationOrganization}</p>
+                    </div>
+                )
+            } else {
+                return null
+            }
+        }
+        return null
+    }
     render() {
         return (
             <div className="container">
@@ -37,6 +55,8 @@ class ThankyouClient extends Component {
                         <p><b>Address1:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress1}</p>
                         <p><b>Address2:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress2}</p>
                         <p><b>Consent:</b> {this.props.location.state !== undefined && this.props.location.state.clientConsent.toString()}</p>
+                        
+                        {this.indigenousInformation}
                         {this.appIdOrOrgName}  
                         <hr />
                     </div>

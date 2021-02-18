@@ -34,5 +34,13 @@ export const ClientFormValidationSchema = yup.object().shape({
     clientAddress2: yup.string()
         .max(255,"Address too long"),
     clientConsent: yup.boolean()
-        .oneOf([true],"You must agree before submitting.")
+        .oneOf([true],"You must agree before submitting."),
+    livingOnReserveCommunity: yup.string()
+        .oneOf(["treaty","nonTreaty"],"Please select an accepted value."),
+    receivingAssistanceFrom: yup.string()
+        .oneOf(["federally","provincially","other"],"Please select an accepted value."),
+    pwdDesignationOrganization: yup.string()
+        .max(250,"Organization Name too long."),
+    ppmbDesignationOrganization: yup.string()
+        .max(250,"Organization Name too long.")
 })

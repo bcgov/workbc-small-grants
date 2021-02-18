@@ -100,6 +100,15 @@ module.exports = {
         } else {
             data.push(`<b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}`)
         }
+        if (values._intake === "2") {
+            data.push(
+                `<h5>Indigenous Participants</h5>`,
+                `<b>If Living On Reserve, Community Type:</b> ${strings.orEmpty(values.livingOnReserveCommunity)}`,
+                `<b>If Receiving Assistance, From:</b> ${strings.orEmpty(values.receivingAssistanceFrom)}`,
+                `<b>If PWD Designation, Organization:</b> ${strings.orEmpty(values.pwdDesignationOrganization)}`,
+                `<b>If PPMB Designation, Organization:</b> ${strings.orEmpty(values.ppmbDesignationOrganization)}`
+            )
+        }
         return data
 
     },

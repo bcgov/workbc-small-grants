@@ -18,6 +18,7 @@ var clientConfirmationEmail = process.env.CLIENT_CONFIRMATION_EMAIL || process.e
 var clientConfirmationBCC = process.env.CLIENT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_CLIENT_CONFIRMATION_BCC || "";
 var clientListEmail = process.env.CLIENT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL || "";
 var clientListEmail2 = process.env.CLIENT_LISTEMAIL2 || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL2 || "";
+var clientListEmail3 = process.env.CLIENT_LISTEMAIL3 || process.env.OPENSHIFT_NODEJS_CLIENT_LISTEMAIL3 || "";
 var clientNotifyEmail = process.env.CLIENT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL || "";
 
 async function sendEmails(values) {
@@ -45,6 +46,8 @@ async function sendEmails(values) {
           cListEmail = clientListEmail
         } else if (values._intake === "2"){
           cListEmail = clientListEmail2
+        } else if (values._intake === "3"){
+          cListEmail = clientListEmail3
         }
         // send mail with defined transport object
         let message1 = {
