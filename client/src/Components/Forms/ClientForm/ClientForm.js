@@ -157,6 +157,7 @@ class ClientForm extends Component {
                                     <div className="form-group">
                                         <h2 id="forms">Participant Information</h2>
                                     </div>
+                                    <ClientConsent />
                                     {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
@@ -202,8 +203,17 @@ class ClientForm extends Component {
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress2")}`} id="clientAddress2" name="clientAddress2" />
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
+                                    <hr></hr>
                                     <IndigenousForm errors={errors} touched={touched} intake={values._intake}/>
-                                    <ClientConsent />
+                                    <hr></hr>
+                                    <div className="form-group">
+                                        <h2>For All Participants</h2>
+                                        <p>By clicking on the “submit” icon below, you:</p>
+                                        <ul>
+                                            <li>Confirm that the information you have provided on this form is true and accurate to the best of your knowledge; and</li>
+                                            <li>Provide your consent for SDPR to disclose your personal information to, and collect your personal information from, the BC Aboriginal Network on Disability Society for that purpose.</li>
+                                        </ul>
+                                    </div>
                                     <div className="form-group">
                                         <div className="form-check">
                                             <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "clientConsent")}`} id="clientConsent"
