@@ -41,12 +41,13 @@ class ThankyouOrg extends Component {
                                 <p>Mission Statement:  {this.props.location.state !== undefined && this.props.location.state.missionStatement}</p>
                                 <p>Organization Website:  {this.props.location.state !== undefined && this.props.location.state.organizationWebsite}</p>
                                 <p>Business Number:  {this.props.location.state !== undefined && this.props.location.state.businessNumber}</p>
-                                <p>Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
-                                <p>Registration ID (if non-profit):  {this.props.location.state !== undefined && this.props.location.state.societyRegistrationID}</p>
-                                <p>Charity Registration Number (if charity):  {this.props.location.state !== undefined && this.props.location.state.charityRegistrationNumber}</p>
-                                <p>Non Profit Classification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
-                                <p>Non Profit SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
-                                <p>Non Profit Other SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
+                                <p>Business/Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Other Business/Organization Type Specify:  {this.props.location.state !== undefined && this.props.location.state.otherBusinessOrgSpecify}</p>
+                                <p>Ability To Support Participant (if social-enterprise, business, or other): </p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.abilityToSupportParticipant}</p>
+                                <p>Non Profit Classification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
+                                <p>Non Profit SubClassification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
+                                <p>Non Profit Other SubClassification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
                                 <p>Based In BC:  {this.props.location.state !== undefined && this.props.location.state.basedInBC.toString()}</p>
                                 <p>Position Title:  {this.props.location.state !== undefined && this.props.location.state.positionTitle}</p>
                                 <p>First Name:  {this.props.location.state !== undefined && this.props.location.state.firstName}</p>
