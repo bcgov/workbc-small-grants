@@ -22,9 +22,12 @@ var MainFormValidationSchema = yup.object().shape({
     confirmOrganizationNonProfit: yup.string()
         .oneOf([
             "incorporatedNonProfit",
-            "federallyRegisteredCharity"
-        ], "Only non-profits or federally registered charities are eligible.")
-        .required('Please select'),
+            "federallyRegisteredCharity",
+            "socialEnterprise",
+            "aBusiness",
+            "otherBusinessOrg",
+        ], "Please select a valid option.")
+        .required('Please select your business/organization type'),
     societyRegistrationID: yup.string()
         .when("confirmOrganizationNonProfit", {
             is: (value) => value === "incorporatedNonProfit",
@@ -35,9 +38,23 @@ var MainFormValidationSchema = yup.object().shape({
             is: (value) => value === "federallyRegisteredCharity",
             then: yup.string().max(17,"Charity registration number can contain a maximum of 17 characters.")
         }),
+    otherBusinessOrgSpecify: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "otherBusinessOrg",
+            then: yup.string().max(100,"Other business/organization type too long.").required("Please specify your business/organization.")
+        }),
+    abilityToSupportParticipant: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => (value === "socialEnterprise" || value === "aBusiness" || value === "otherBusinessOrg"),
+            then: yup.string().max(1000,"Max length for ability to support participant description is 1000.")
+        }),
     nonProfitClassification: yup.mixed()
-        .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid field.")
-        .required('Please select your classification.'),
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => (value === "federallyRegisteredCharity" || value === "incorporatedNonProfit"),
+            then: yup.mixed()
+                .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select your classification.")
+                .required('Please select your classification.'),
+        }), 
     nonProfitSubClassification: yup.string()
         .oneOf([
             "artsAndCulture",
@@ -64,7 +81,12 @@ var MainFormValidationSchema = yup.object().shape({
         ], "Please select a valid field.")
         .when("nonProfitClassification", {
             is: (value) => value !== "religiousOrganizations" && value !== "other",
-            then: yup.string().required("Please select a subclassification.")
+            then: yup.string()
+                .when("confirmOrganizationNonProfit", {
+                    is: (value) => (value === "federallyRegisteredCharity" || value === "incorporatedNonProfit"),
+                    then: yup.string()
+                        .required("Please select a subclassification.")
+                })
         }),
     nonProfitSubClassificationOther: yup.string()
         .when("nonProfitClassification", {
@@ -127,7 +149,7 @@ var MainFormValidationSchema = yup.object().shape({
             then: yup.string().matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code").required("Please enter a postal code.")
         }),   
     numberOfApplicants: yup.mixed()
-        .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
+        .oneOf(["1","2","3","4","5","6","7","8","9","10"], "Please choose a valid option.")
         .required("Please select number of applicants."),
     insuranceCoverage: yup.boolean()
         .oneOf([true],"Please confirm you have insurance coverage."),

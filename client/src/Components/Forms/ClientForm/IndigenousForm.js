@@ -11,10 +11,10 @@ class IndigenousForm extends Component{
         return (
             <div>
                 <div className="form-group">
-                    <h2 id="forms">Indigenous Participants</h2>
+                    <h2 id="forms">For Indigenous Participants Only</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="livingOnReserveCommunity">Are you a person living on-reserve in one of British Columbia’s First Nation communities: If yes, is the community: </label>
+                    <label className="col-form-label control-label" htmlFor="livingOnReserveCommunity">If you are a person living on a reserve in one of British Columbia’s First Nation communities, is the community: </label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "livingOnReserveCommunity")}`}
@@ -36,7 +36,7 @@ class IndigenousForm extends Component{
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="receivingAssistanceFrom">Are you receiving assistance on a regular basis? If yes, from where: </label>
+                    <label className="col-form-label control-label" htmlFor="receivingAssistanceFrom">If you are receiving financial assistance on a regular basis, are you receiving it from: </label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "receivingAssistanceFrom")}`}
@@ -76,6 +76,7 @@ class IndigenousForm extends Component{
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "ppmbDesignationOrganization")}`} id="ppmbDesignationOrganization" name="ppmbDesignationOrganization" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "ppmbDesignationOrganization")}
                 </div>
+                <small>The Ministry of Social Development and Poverty Reduction (“SDPR”) may need to collect, use and disclose your personal information to determine whether you are eligible for the Work Experience Opportunities Grant Program.</small>
             </div>
         )
     }

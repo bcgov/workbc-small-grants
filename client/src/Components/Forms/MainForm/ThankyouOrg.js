@@ -15,15 +15,15 @@ class ThankyouOrg extends Component {
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
                         <h3>Here are your required next steps:</h3>
-                        <p>Your participants' application form must be submitted to the Ministry to complete the application process. </p>
-                        <p>This can be accomplished in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
-                        <p>Organizations can contact their local <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
+                        <p>Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence so please submit your participant applications as soon as possible to get this process started. September 15, 2021 is the deadline for submitting your participant application forms.</p>
+                        <p>Participant forms can be submitted in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
+                        <p>Organizations can contact their nearest <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
                         <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/participantForm/2/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/2/${applicationId}`}</a></p>
+                                <p><a href={`${window.location.origin}/participantForm/3/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/3/${applicationId}`}</a></p>
                                 <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>
@@ -41,12 +41,13 @@ class ThankyouOrg extends Component {
                                 <p>Mission Statement:  {this.props.location.state !== undefined && this.props.location.state.missionStatement}</p>
                                 <p>Organization Website:  {this.props.location.state !== undefined && this.props.location.state.organizationWebsite}</p>
                                 <p>Business Number:  {this.props.location.state !== undefined && this.props.location.state.businessNumber}</p>
-                                <p>Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
-                                <p>Registration ID (if non-profit):  {this.props.location.state !== undefined && this.props.location.state.societyRegistrationID}</p>
-                                <p>Charity Registration Number (if charity):  {this.props.location.state !== undefined && this.props.location.state.charityRegistrationNumber}</p>
-                                <p>Non Profit Classification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
-                                <p>Non Profit SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
-                                <p>Non Profit Other SubClassification:  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
+                                <p>Business/Organization Type:  {this.props.location.state !== undefined && this.props.location.state.confirmOrganizationNonProfit}</p>
+                                <p>Other Business/Organization Type Specify:  {this.props.location.state !== undefined && this.props.location.state.otherBusinessOrgSpecify}</p>
+                                <p>Ability To Support Participant (if social-enterprise, business, or other): </p>
+                                <p>{this.props.location.state !== undefined && this.props.location.state.abilityToSupportParticipant}</p>
+                                <p>Non Profit Classification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitClassification}</p>
+                                <p>Non Profit SubClassification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassification}</p>
+                                <p>Non Profit Other SubClassification (if non-profit or charity):  {this.props.location.state !== undefined && this.props.location.state.nonProfitSubClassificationOther}</p>
                                 <p>Based In BC:  {this.props.location.state !== undefined && this.props.location.state.basedInBC.toString()}</p>
                                 <p>Position Title:  {this.props.location.state !== undefined && this.props.location.state.positionTitle}</p>
                                 <p>First Name:  {this.props.location.state !== undefined && this.props.location.state.firstName}</p>
