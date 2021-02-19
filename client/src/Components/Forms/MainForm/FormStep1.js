@@ -76,7 +76,7 @@ class FormStep1 extends Component {
                         rows="3"
                         maxLength="1000"
                     />
-                    <small>{this.props.values.additionalBenefits.length}/1000</small>
+                    <small>{this.props.values.abilityToSupportParticipant.length}/1000</small>
                 </div>
             )
         }
