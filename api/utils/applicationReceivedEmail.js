@@ -15,7 +15,7 @@ module.exports = {
         <p><b>organizationType:</b>  ${values.confirmOrganizationNonProfit}</p>
         <p><b>abilityToSupportParticipant:</b> ${strings.orEmpty(values.abilityToSupportParticipant)}</p>
         <p><b>otherBusinessOrgSpecify:</b> ${strings.orEmpty(values.otherBusinessOrgSpecify)}</p>
-        <p><b>nonProfitClassification:</b>  ${values.nonProfitClassification}</p>
+        <p><b>nonProfitClassification:</b>  ${strings.orEmpty(values.nonProfitClassification)}</p>
         <p><b>nonProfitSubClassification:</b>  ${strings.orEmpty(values.nonProfitSubClassification)}</p>
         <p><b>nonProfitSubClassificationOther:</b>  ${strings.orEmpty(values.nonProfitSubClassificationOther)}</p>
         <p><b>basedInBC:</b>  ${values.basedInBC}</p>
@@ -81,7 +81,7 @@ missionStatement ${values.missionStatement}
 organizationWebsite ${values.organizationWebsite}
 businessNumber ${values.businessNumber}
 confirmOrganizationNonProfit ${values.confirmOrganizationNonProfit}
-nonProfitClassification ${values.nonProfitClassification}
+nonProfitClassification ${strings.orEmpty(values.nonProfitClassification)}
 nonProfitSubClassification ${strings.orEmpty(values.nonProfitSubClassification)}
 nonProfitSubClassificationOther ${strings.orEmpty(values.nonProfitSubClassificationOther)}
 basedInBC ${values.basedInBC}
