@@ -183,11 +183,10 @@ class FormStep2 extends Component {
                             htmlFor="applicantType"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must have:
+                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must be:
                         <ul>
-                                <li>Designation as a Person with Disabilities (PWD) from the Ministry of Social Development and Poverty Reduction; OR</li>
-                                <li>Status as a Person with Persistent Multiple Barriers to employment (PPMB) from the Ministry of Social Development and Poverty Reduction; OR</li>
-                                <li>For Indigenous individuals living on reserve, the equivalent federal PWD designation or PPMB status.</li>
+                                <li>Qualified to receive income or disability assistance in BC; OR</li>
+                                <li>Indigenous individuals on reserve qualified to receive federal assistance</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}
@@ -214,7 +213,7 @@ class FormStep2 extends Component {
                             htmlFor="administerGrantUnderstanding"
                         >
                             <span style={{ color: "red" }}>*</span>
-                            I understand that, as the non-profit organization, our organization will hold and administer the grant, provide wraparound supports and services, and ensure that the work experience placement complies with all requirements.
+                            I understand that, as the grant holder, our organization will hold and administer the grant, provide wraparound supports and services, and ensure that the work experience placement complies with all requirements.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "administerGrantUnderstanding")}
                     </div>
@@ -233,7 +232,7 @@ class FormStep2 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="workExperienceTakesPlaceElsewhere">Will the work experience take place at a partnering business in the community other than the non-profit organization listed on step 1 of the application form?<span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="workExperienceTakesPlaceElsewhere">Will the work experience take place at a partnering business/organization in the community other than the location which has been listed on step one of the application form?<span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors,this.props.touched,"workExperienceTakesPlaceElsewhere")}`}
