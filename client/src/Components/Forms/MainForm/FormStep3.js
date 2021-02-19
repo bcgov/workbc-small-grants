@@ -106,7 +106,7 @@ class FormStep3 extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="existingSupplierNumber">Does your organization have an existing supplier number?  <span
+                    <label className="col-form-label control-label" htmlFor="existingSupplierNumber">Does your business/organization have an existing supplier number?  <span
                         style={{ color: "red" }}>*  </span></label>
                     <div className="form-check">
                         <Field
@@ -135,14 +135,14 @@ class FormStep3 extends Component {
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="signatory1">Signing Authority <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="signatory1">Please enter the full name of the first organization signatory</small>
+                    <small className="text-muted" id="signatory1">Please enter the full name of the first business/organization signatory</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "signatory1")}`} id="signatory1" name="signatory1" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "signatory1")}
                 </div>
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="signatory2">Signing Authority <span
                         style={{ color: "red" }}>*  </span></label>
-                    <small className="text-muted" id="signatory2">Please enter the full name of the second organization signatory</small>
+                    <small className="text-muted" id="signatory2">Please enter the full name of the second business/organization signatory</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "signatory2")}`} id="signatory2" name="signatory2" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "signatory2")}
                 </div>
@@ -154,7 +154,7 @@ class FormStep3 extends Component {
                             htmlFor="signingAuthorityConfirm"
                         >
                             <span style={{ color: "red" }}>*</span>
-                            I certify that the 2 individuals above are signing authority for the organization.
+                            I certify that the 2 individuals above are signing authority for the business/organization.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "signingAuthorityConfirm")}
                     </div>
@@ -168,8 +168,8 @@ class FormStep3 extends Component {
                             name="organizationConsent" />
                         <label className="form-check-label" htmlFor="organizationConsent"><span style={{ color: "red" }}>*</span> I acknowledge and understand that by clicking the "submit" icon,
                         I am attaching my electronic signature to this form.
-                        I am authorized to act and to enter into this Agreement on behalf of the Organization.
-                        On the Organization's behalf, I do hereby accept and agree to the terms and conditions of this Agreement</label>
+                        I am authorized to act and to enter into this Agreement on behalf of the business/organization.
+                        On the business/organization's behalf, I do hereby accept and agree to the terms and conditions of this Agreement</label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "organizationConsent")}
                     </div>
                 </div>
