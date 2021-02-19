@@ -37,6 +37,16 @@ export const MainFormValidationSchema = yup.object().shape({
             is: (value) => value === "federallyRegisteredCharity",
             then: yup.string().max(17,"Charity registration number can contain a maximum of 17 characters.")
         }),
+    otherBusinessOrgSpecify: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => value === "otherBusinessOrg",
+            then: yup.string().max(100,"Other business/organization type too long.").required("Please specify your business/organization.")
+        }),
+    abilityToSupportParticipant: yup.string()
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => (value === "socialEnterprise" || value === "aBusiness" || value === "otherBusinessOrg"),
+            then: yup.string().max(1000,"Max length for ability to support participant description is 1000.")
+        }),
     nonProfitClassification: yup.mixed()
         .when("confirmOrganizationNonProfit", {
             is: (value) => (value === "federallyRegisteredCharity" || value === "incorporatedNonProfit"),
