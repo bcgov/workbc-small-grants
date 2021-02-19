@@ -13,8 +13,8 @@ module.exports = {
         <p><b>organizationWebsite:</b>  ${values.organizationWebsite}</p>
         <p><b>businessNumber:</b>  ${values.businessNumber}</p>
         <p><b>organizationType:</b>  ${values.confirmOrganizationNonProfit}</p>
-        <p><b>societyRegistrationID:</b> ${strings.orEmpty(values.societyRegistrationID)}</p>
-        <p><b>charityRegistrationNumber:</b> ${strings.orEmpty(values.charityRegistrationNumber)}</p>
+        <p><b>abilityToSupportParticipant:</b> ${strings.orEmpty(values.abilityToSupportParticipant)}</p>
+        <p><b>otherBusinessOrgSpecify:</b> ${strings.orEmpty(values.otherBusinessOrgSpecify)}</p>
         <p><b>nonProfitClassification:</b>  ${values.nonProfitClassification}</p>
         <p><b>nonProfitSubClassification:</b>  ${strings.orEmpty(values.nonProfitSubClassification)}</p>
         <p><b>nonProfitSubClassificationOther:</b>  ${strings.orEmpty(values.nonProfitSubClassificationOther)}</p>
@@ -124,8 +124,8 @@ signatory1 ${values.signatory1}
 signatory2 ${values.signatory2}
 signingAuthorityConfirm ${values.signingAuthorityConfirm}
 organizationConsent ${values.organizationConsent}
-societyRegistrationID ${strings.orEmpty(values.societyRegistrationID)}
-charityRegistrationNumber ${strings.orEmpty(values.charityRegistrationNumber)}
+abilityToSupportParticipant ${strings.orEmpty(values.abilityToSupportParticipant)}
+otherBusinessOrgSpecify ${strings.orEmpty(values.otherBusinessOrgSpecify)}
 understandNotAvailableTo ${values.understandNotAvailableTo}
 administerGrantUnderstanding ${values.administerGrantUnderstanding}
 workExperienceTakesPlaceElsewhere ${values.workExperienceTakesPlaceElsewhere}
@@ -176,7 +176,7 @@ clientAddress1 ${values.clientAddress1}
 clientAddress2 ${strings.orEmpty(values.clientAddress2)}
 clientConsent ${values.clientConsent}
         `
-        if (values._intake === "2"){
+        if (values._intake === "2" || values._intake === "3"){
             html += `
 livingOnReserveCommunity ${strings.orEmpty(values.livingOnReserveCommunity)}
 receivingAssistanceFrom ${strings.orEmpty(values.receivingAssistanceFrom)}
