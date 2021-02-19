@@ -18,7 +18,7 @@ module.exports = {
             `Business Number:  ${values.businessNumber}`,
             `Business/Organization Type:  ${values.confirmOrganizationNonProfit}`,
             `Ability To Support Participant (if social-enterprise, business, or other):`,
-            `${strings.orEmpty(values.abilityToSupportParticipant)}`
+            `${strings.orEmpty(values.abilityToSupportParticipant)}`,
             `Other Business/Organization Type Specify: ${strings.orEmpty(values.otherBusinessOrgSpecify)}`,
             `Non Profit Classification (if non-profit or charity):  ${values.nonProfitClassification}`,
             `Non Profit SubClassification (if non-profit or charity):  ${values.nonProfitSubClassification}`,
