@@ -21,8 +21,11 @@ export const MainFormValidationSchema = yup.object().shape({
     confirmOrganizationNonProfit: yup.string()
         .oneOf([
             "incorporatedNonProfit",
-            "federallyRegisteredCharity"
-        ], "Only non-profits or federally registered charities are eligible.")
+            "federallyRegisteredCharity",
+            "socialEnterprise",
+            "aBusiness",
+            "otherBusinessOrg",
+        ], "Please select a valid option.")
         .required('Please select'),
     societyRegistrationID: yup.string()
         .when("confirmOrganizationNonProfit", {
@@ -35,8 +38,12 @@ export const MainFormValidationSchema = yup.object().shape({
             then: yup.string().max(17,"Charity registration number can contain a maximum of 17 characters.")
         }),
     nonProfitClassification: yup.mixed()
-        .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select a valid field.")
-        .required('Please select your classification.'),
+        .when("confirmOrganizationNonProfit", {
+            is: (value) => (value === "federallyRegisteredCharity" || value === "incorporatedNonProfit"),
+            then: yup.mixed()
+                .oneOf(["cultureAndRecreation","education","healthServices","socialServices","environment","developerAndHousing","lawAndAdvocacy","religiousOrganizations","other"],"Please select your classification.")
+                .required('Please select your classification.'),
+        }),   
     nonProfitSubClassification: yup.string()
         .oneOf([
             "artsAndCulture",
@@ -63,7 +70,12 @@ export const MainFormValidationSchema = yup.object().shape({
         ], "Please select a valid field.")
         .when("nonProfitClassification", {
             is: (value) => value !== "religiousOrganizations" && value !== "other",
-            then: yup.string().required("Please select a subclassification.")
+            then: yup.string()
+                .when("confirmOrganizationNonProfit", {
+                    is: (value) => (value === "federallyRegisteredCharity" || value === "incorporatedNonProfit"),
+                    then: yup.string()
+                        .required("Please select a subclassification.")
+                })
         }),
     nonProfitSubClassificationOther: yup.string()
         .when("nonProfitClassification", {

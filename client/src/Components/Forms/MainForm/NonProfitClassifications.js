@@ -233,9 +233,9 @@ class NonProfitClassification extends Component {
             subClassificationOptions = this.otherField
         }
         if (isNonProfit === "federallyRegisteredCharity"){
-            moreInfo = this.charityRegistrationNumber
+            //moreInfo = this.charityRegistrationNumber
         } else if (isNonProfit === "incorporatedNonProfit"){
-            moreInfo = this.societyRegistrationID
+            //moreInfo = this.societyRegistrationID
         }
         if (isNonProfit === "federallyRegisteredCharity" || isNonProfit === "incorporatedNonProfit"){
         return (

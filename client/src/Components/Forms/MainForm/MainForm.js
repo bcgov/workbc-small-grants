@@ -83,7 +83,7 @@ class MainForm extends Component {
             <button 
               className="btn btn-primary float-right" 
               type="button" onClick={this._next}
-              disabled={(isNonProfit !== "incorporatedNonProfit" && isNonProfit !== "federallyRegisteredCharity") || this.state.hasError}
+              disabled={this.state.hasError}
             >
             Next
             </button>        
@@ -123,6 +123,8 @@ class MainForm extends Component {
                                             nonProfitClassification: '',
                                             nonProfitSubClassification: '',
                                             nonProfitSubClassificationOther: '',
+                                            otherBusinessOrgSpecify: '',
+                                            abilityToSupportParticipant: '',
                                             basedInBC: false,
                                             positionTitle: '',
                                             firstName: '',
