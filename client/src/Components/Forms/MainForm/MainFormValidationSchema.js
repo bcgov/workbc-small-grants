@@ -26,7 +26,7 @@ export const MainFormValidationSchema = yup.object().shape({
             "aBusiness",
             "otherBusinessOrg",
         ], "Please select a valid option.")
-        .required('Please select'),
+        .required('Please select your business/organization type'),
     societyRegistrationID: yup.string()
         .when("confirmOrganizationNonProfit", {
             is: (value) => value === "incorporatedNonProfit",
@@ -139,7 +139,7 @@ export const MainFormValidationSchema = yup.object().shape({
             then: yup.string().required("Please enter a postal code.")
         }),   
     numberOfApplicants: yup.mixed()
-        .oneOf(["1","2","3","4","5"], "Please choose a valid option.")
+        .oneOf(["1","2","3","4","5","6","7","8","9","10"], "Please choose a valid option.")
         .required("Please select number of applicants."),
     insuranceCoverage: yup.boolean()
         .oneOf([true],"Please confirm you have insurance coverage."),
