@@ -211,12 +211,18 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
 
     generateSurveyOrgListNotification: function(values){
         var html = `
-            easeOfApplicationCompletion ${values.easeOfApplicationCompletion}
-            overallExperienceWithEmployer ${values.overallExperienceWithEmployer}
-            levelOfSupportsReceived ${values.levelOfSupportsReceived}
-            increasedAbilityToParticipateInLM ${values.increasedAbilityToParticipateInLM}
-            likelyToParticipateInSimilarProgram ${values.likelyToParticipateInSimilarProgram}
-            likelyToRecommendGrant ${values.likelyToRecommendGrant}
+            easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)}
+            speedApplicationProcessed ${strings.orEmpty(values.speedApplicationProcessed)}
+            experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)}
+            participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)}
+            hiredPeopleWithBarriersBefore ${strings.orEmpty(values.hiredPeopleWithBarriersBefore)}
+            hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)}
+            experienceWithWorkParticipantsComments ${strings.orEmpty(experienceWithWorkParticipantsComments)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
+            experienceWithWorkParticipantsComments ${strings.orEmpty(experienceWithWorkParticipantsComments)}
+            likelyToParticipateInSimilarProgram ${strings.orEmpty(likelyToParticipateInSimilarProgram)}
+            likelyToRecommendGrant ${strings.orEmpty(likelyToRecommendGrant)}
+            bestPartOfProgramComments ${strings.orEmpty(bestPartOfProgramComments)}
             experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
         `
         return html
@@ -238,20 +244,16 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
 
     generateSurveyParticipantListNotification: function(values){
         var html = `
-            easeOfApplicationCompletion ${values.easeOfApplicationCompletion}
-            speedApplicationProcessed ${values.speedApplicationProcessed}
-            satisfactionSpeedOfService ${values.satisfactionSpeedOfService}
-            participantContributionValuable ${values.participantContributionValuable}
-            participantNumber ${values.participantNumber}
-            participant1Experience ${strings.orEmpty(values.participant1Experience)}
-            participant2Experience ${strings.orEmpty(values.participant2Experience)}
-            participant3Experience ${strings.orEmpty(values.participant3Experience)}
-            participant4Experience ${strings.orEmpty(values.participant4Experience)}
-            participant5Experience ${strings.orEmpty(values.participant5Experience)}
-            hiredPeopleWithBarriersBefore ${values.hiredPeopleWithBarriersBefore}
-            difficultyHiringPeopleWithBarriersComment ${strings.orEmpty(values.difficultyHiringPeopleWithBarriersComment)}
-            likelyToParticipateInSimilarProgram ${values.likelyToParticipateInSimilarProgram}
-            likelyToRecommendGrant ${values.likelyToRecommendGrant}
+            easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)}
+            experienceOnlineApplicationComments ${strings.orEmpty(experienceOnlineApplicationComments)}
+            overallExperienceWithOrganization ${strings.orEmpty(overallExperienceWithOrganization)}
+            levelOfSupportsReceived ${strings.orEmpty(levelOfSupportsReceived)}
+            increasedAbilityGettingAndKeepingJob ${strings.orEmpty(increasedAbilityGettingAndKeepingJob)}
+            organizationAndExperienceComments ${strings.orEmpty(organizationAndExperienceComments)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
+            likelyToRecommendGrant ${strings.orEmpty(likelyToRecommendGrant)}
+            bestPartOfTheProgramComments ${strings.orEmpty(bestPartOfTheProgramComments)}
             experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
         `
         return html
