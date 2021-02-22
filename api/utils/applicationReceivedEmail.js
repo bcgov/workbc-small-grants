@@ -217,12 +217,12 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
             participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)}
             hiredPeopleWithBarriersBefore ${strings.orEmpty(values.hiredPeopleWithBarriersBefore)}
             hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)}
-            experienceWithWorkParticipantsComments ${strings.orEmpty(experienceWithWorkParticipantsComments)}
-            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
-            experienceWithWorkParticipantsComments ${strings.orEmpty(experienceWithWorkParticipantsComments)}
-            likelyToParticipateInSimilarProgram ${strings.orEmpty(likelyToParticipateInSimilarProgram)}
-            likelyToRecommendGrant ${strings.orEmpty(likelyToRecommendGrant)}
-            bestPartOfProgramComments ${strings.orEmpty(bestPartOfProgramComments)}
+            experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
+            experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)}
+            likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
+            likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
+            bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)}
             experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
         `
         return html
@@ -245,15 +245,15 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
     generateSurveyParticipantListNotification: function(values){
         var html = `
             easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)}
-            experienceOnlineApplicationComments ${strings.orEmpty(experienceOnlineApplicationComments)}
-            overallExperienceWithOrganization ${strings.orEmpty(overallExperienceWithOrganization)}
-            levelOfSupportsReceived ${strings.orEmpty(levelOfSupportsReceived)}
-            increasedAbilityGettingAndKeepingJob ${strings.orEmpty(increasedAbilityGettingAndKeepingJob)}
-            organizationAndExperienceComments ${strings.orEmpty(organizationAndExperienceComments)}
-            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
-            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(receivedOtherWorkBCServicesOrPrograms)}
-            likelyToRecommendGrant ${strings.orEmpty(likelyToRecommendGrant)}
-            bestPartOfTheProgramComments ${strings.orEmpty(bestPartOfTheProgramComments)}
+            experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)}
+            overallExperienceWithOrganization ${strings.orEmpty(values.overallExperienceWithOrganization)}
+            levelOfSupportsReceived ${strings.orEmpty(values.levelOfSupportsReceived)}
+            increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGettingAndKeepingJob)}
+            organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
+            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
+            likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
+            bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)}
             experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
         `
         return html
