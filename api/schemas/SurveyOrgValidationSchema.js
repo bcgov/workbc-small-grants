@@ -1,4 +1,4 @@
-var yup=require('yup')
+var yup = require('yup')
 
 var SurveyOrgValidationSchema = yup.object().shape({
     easeOfApplicationCompletion: yup.string()
@@ -17,8 +17,11 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '2disagree',
             '3neitherAgreeNorDisagree',
             '4agree',
-            '5stronglyAgree'            
+            '5stronglyAgree'
         ]),
+    experienceOnlineApplicationComments: yup.string()
+        .max(1000, "Max characters for comments is 1000."),
+    /*
     satisfactionSpeedOfService: yup.string()
         .required("Please rate your satisfaction with the speed of service.")
         .oneOf([
@@ -27,7 +30,8 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '3neitherAgreeNorDisagree',
             '4agree',
             '5stronglyAgree'            
-        ]),        
+        ]),
+    */
     //step 2
     participantContributionValuable: yup.string()
         .required("Please rate the value of the program.")
@@ -36,8 +40,9 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '2disagree',
             '3neitherAgreeNorDisagree',
             '4agree',
-            '5stronglyAgree'            
+            '5stronglyAgree'
         ]),
+    /*
     participantNumber: yup.string()
         .required("Please select your number of participants.")
         .oneOf([
@@ -47,6 +52,7 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '4',
             '5,'
         ]),
+    
     participant1Experience: yup.string()
         .when('participantNumber', (participantNumber, schema) => {
             if (participantNumber !== undefined){
@@ -132,17 +138,31 @@ var SurveyOrgValidationSchema = yup.object().shape({
                     schema.min(0)
         }
     }),
+    */
     hiredPeopleWithBarriersBefore: yup.string()
+        .required("Please select if your organization has hired people with barriers in the past.")
+        .oneOf([
+            '1stronglyDisagree',
+            '2disagree',
+            '3neitherAgreeNorDisagree',
+            '4agree',
+            '5stronglyAgree'
+        ]),
+    hirePeopleWithBarriersFuture: yup.string()
         .required("Please select how likely are you to hire people with barriers to employment in the future.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
             '3neitherAgreeNorDisagree',
             '4agree',
-            '5stronglyAgree'            
-        ]),    
+            '5stronglyAgree'
+        ]),
+    experienceWithWorkParticipantsComments: yup.string()
+        .max(1000),
+    /*   
     difficultyHiringPeopleWithBarriersComment: yup.string()
         .max(1000),
+    */
     //step 3
     likelyToParticipateInSimilarProgram: yup.string()
         .required("Please rate how likely are you to participate in a similar program.")
@@ -151,7 +171,7 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '2disagree',
             '3neitherAgreeNorDisagree',
             '4agree',
-            '5stronglyAgree'            
+            '5stronglyAgree'
         ]),
     likelyToRecommendGrant: yup.string()
         .required("Please rate how likely are you to recommend this grant.")
@@ -160,11 +180,14 @@ var SurveyOrgValidationSchema = yup.object().shape({
             '2disagree',
             '3neitherAgreeNorDisagree',
             '4agree',
-            '5stronglyAgree'            
-        ]), 
+            '5stronglyAgree'
+        ]),
     //step 4
+    bestPartOfProgramComments: yup.string()
+        .max(1000, "Max characters for comments is 1000."),
     experienceBetterComments: yup.string()
         .max(1000, "Max characters for comments is 1000.")
 })
+
 
 module.exports = SurveyOrgValidationSchema
