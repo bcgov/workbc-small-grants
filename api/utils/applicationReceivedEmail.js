@@ -219,7 +219,6 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
             hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)}
             experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)}
             receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
-            experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)}
             likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
             likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
             bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)}
