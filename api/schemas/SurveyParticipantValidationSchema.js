@@ -77,4 +77,4 @@ var SurveyParticipantValidationSchema = yup.object().shape({
 })
 
 
-module.exports = SurveyOrgValidationSchema
+module.exports = SurveyParticipantValidationSchema
