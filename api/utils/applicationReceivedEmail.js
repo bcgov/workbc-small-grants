@@ -250,7 +250,6 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
             increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGettingAndKeepingJob)}
             organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)}
             receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
-            receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
             likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
             bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)}
             experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
