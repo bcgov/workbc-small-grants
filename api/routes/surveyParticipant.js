@@ -33,6 +33,7 @@ async function sendEmails(values) {
       .then(function (r) {
         console.log(r)
         console.log("Transporter connected.")
+        /*
         var cEmail;
         if (clientConfirmationEmail === ""){
           cEmail = values.clientEmail
