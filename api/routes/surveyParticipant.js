@@ -8,7 +8,7 @@ var nodemailer = require("nodemailer");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
-var SurveyParticipantValidationSchema = require('../schemas/SurveyOrgValidationSchema.js')
+var SurveyParticipantValidationSchema = require('../schemas/SurveyParticipantValidationSchema.js')
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
