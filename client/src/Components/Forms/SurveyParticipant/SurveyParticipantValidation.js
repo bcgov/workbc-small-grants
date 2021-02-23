@@ -33,7 +33,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '4agree',
             '5stronglyAgree'            
         ]),
-    increasedAbilityToParticipateInLM: yup.string()
+    increasedAbilityGettingAndKeepingJob: yup.string()
         .required("Please select Prior to this experience, I have received other WorkBC services or participated in other WorkBC programs.")
         .oneOf([
             '1stronglyDisagree',

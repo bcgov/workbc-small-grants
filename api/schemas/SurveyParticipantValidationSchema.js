@@ -13,7 +13,7 @@ var SurveyParticipantValidationSchema = yup.object().shape({
     experienceOnlineApplicationComments: yup.string()
         .max(1000, "Max characters for online experience comments is 1000."),
     //step 2
-    overallExperienceWithEmployer: yup.string()
+    overallExperienceWithOrganization: yup.string()
         .required("Please rate your overall experience with your employer.")
         .oneOf([
             '1stronglyDisagree',
@@ -31,7 +31,7 @@ var SurveyParticipantValidationSchema = yup.object().shape({
             '4agree',
             '5stronglyAgree'
         ]),
-    increasedAbilityToParticipateInLM: yup.string()
+    increasedAbilityGettingAndKeepingJob: yup.string()
         .required("Please select Prior to this experience, I have received other WorkBC services or participated in other WorkBC programs.")
         .oneOf([
             '1stronglyDisagree',
@@ -40,6 +40,8 @@ var SurveyParticipantValidationSchema = yup.object().shape({
             '4agree',
             '5stronglyAgree'
         ]),
+    organizationAndExperienceComments: yup.string()
+        .max(1000, "Max characters for organization and experience comments is 1000."),
     //step3
     receivedOtherWorkBCServicesOrPrograms: yup.string()
         .required("Please select how likely are you to participate in a similar program in the future.")
