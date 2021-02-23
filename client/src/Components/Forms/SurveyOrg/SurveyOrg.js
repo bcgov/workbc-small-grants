@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import {generateAlert} from '../Shared/Alert'
+import {customAlphabet} from 'nanoid'
 import SurveyOrgStep1 from './SurveyOrgStep1'
 import SurveyOrgStep2 from './SurveyOrgStep2'
 import SurveyOrgStep3 from './SurveyOrgStep3'
@@ -13,9 +14,11 @@ import { FORM_URL } from '../../../constants/form'
 class SurveyOrg extends Component {
     constructor(){
         super()
+        const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz',5)
         this.state={
             currentStep: 1,
             _csrf: '',
+            _id: nanoid(),
             hasError: false,
         }
         this._next = this._next.bind(this)
@@ -102,6 +105,7 @@ class SurveyOrg extends Component {
                         <Formik
                             initialValues={{
                                 _csrf: this.state._csrf,
+                                _id: this.state._id,
                                 //step 1
                                 easeOfApplicationCompletion: '',
                                 speedApplicationProcessed: '',
