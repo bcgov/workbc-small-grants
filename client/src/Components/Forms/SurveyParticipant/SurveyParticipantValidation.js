@@ -15,7 +15,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
     experienceOnlineApplicationComments: yup.string()
         .max(1000, "Max characters for online experience comments is 1000."),       
     //step 2
-    overallExperienceWithEmployer: yup.string()
+    overallExperienceWithOrganization: yup.string()
         .required("Please rate your overall experience with your employer.")
         .oneOf([
             '1stronglyDisagree',
