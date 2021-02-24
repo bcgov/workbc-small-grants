@@ -32,13 +32,13 @@ class SurveyParticipant extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result)
+                    //console.log(result)
                     this.setState({
                         _csrf: result.csrfToken,
                     })
                 },
                 (error) => {
-                    console.log(error)
+                    //console.log(error)
                     this.setState({
                         hasError: true
                     })
