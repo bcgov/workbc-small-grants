@@ -253,9 +253,9 @@ increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGe
 organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)}
 receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
 likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
-likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
 bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)}
 experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
+likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
         `
         return html
     }
