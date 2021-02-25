@@ -4,7 +4,7 @@ import 'core-js/stable';
 
 export const SurveyParticipantValidationSchema = yup.object().shape({
     easeOfApplicationCompletion: yup.string()
-        .required("Please rate the ease of website navigation.")
+        .required("Please rate the ease of application completion.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
@@ -16,7 +16,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
         .max(1000, "Max characters for online experience comments is 1000."),       
     //step 2
     overallExperienceWithOrganization: yup.string()
-        .required("Please rate your overall experience with your employer.")
+        .required("Please rate your overall experience with your organization.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
@@ -34,7 +34,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
             '5stronglyAgree'            
         ]),
     increasedAbilityGettingAndKeepingJob: yup.string()
-        .required("Please select Prior to this experience, I have received other WorkBC services or participated in other WorkBC programs.")
+        .required("Please rate this experience has improved my abilities for getting and keeping a job.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
@@ -44,7 +44,7 @@ export const SurveyParticipantValidationSchema = yup.object().shape({
         ]),
     //step3
     receivedOtherWorkBCServicesOrPrograms: yup.string()
-        .required("Please select how likely are you to participate in a similar program in the future.")
+        .required("Please select if you have received other WorkBC Services or Programs.")
         .oneOf([
             '1stronglyDisagree',
             '2disagree',
