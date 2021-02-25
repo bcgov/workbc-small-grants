@@ -225,7 +225,7 @@ class SurveyOrgStep2 extends Component {
                 <div className="form-group">
                 <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12">
-                    <label className="col-form-label control-label" htmlFor="hirePeopleWithBarriersFuture">Prior to participating in this program, my organization has hired people with barriers to employment.<span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="hirePeopleWithBarriersFuture">Based on this experience, my organization  will hire people with barriers to employment in the future.<span style={{ color: "red" }}>*</span></label>
                         </div>
                     <div className="form-check col">
                         <Field

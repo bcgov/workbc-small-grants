@@ -11,7 +11,7 @@ class SurveyParticipantStep2 extends Component {
         //else return step 2
         return (
             <div>
-                <p>Thinking about the <b>participants in the program,</b> please rate your level of agreement with the following statements:</p>
+                <p>Thinking about the <b>work experience and the organization ,</b> please rate your level of agreement with the following statements:</p>
                 <p>The rating scale used is as follows: 1 = strongly disagree, 2 = disagree, 3 = neither agree nor disagree, 4 = agree, 5 = strongly agree.</p>
                 <hr />
                 <div className="form-group">

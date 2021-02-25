@@ -11,7 +11,7 @@ class SurveyOrgStep3 extends Component {
         //else return step 3
         return (
             <div>
-                <p>Thinking back about your <b>experience with the Work Experience Opportunities Grant program,</b> please rate your level of agreement with the following statements:</p>
+                <p>Please rate your level of agreement with the following statements:</p>
                 <p>The rating scale used is as follows: 1 = strongly disagree, 2 = disagree, 3 = neither agree nor disagree, 4 = agree, 5 = strongly agree.</p>
                 <hr />
                 <div className="form-group">
@@ -35,7 +35,7 @@ class SurveyOrgStep3 extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12">
-                            <label className="col-form-label control-label" htmlFor="receivedOtherWorkBCServicesOrPrograms">Prior to participating in this program, my organization has  received other WorkBC services or participated in other WorkBC programs.<span style={{ color: "red" }}>*</span></label>
+                            <label className="col-form-label control-label" htmlFor="receivedOtherWorkBCServicesOrPrograms">Prior to participating in this program, my organization has received WorkBC services or participated in WorkBC programs.<span style={{ color: "red" }}>*</span></label>
                         </div>
                         <div className="form-check col">
                             <Field
