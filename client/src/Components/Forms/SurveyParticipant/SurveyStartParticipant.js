@@ -14,7 +14,7 @@ class SurveyStartParticipant extends Component {
                         We need your help! Please share your views and experiences on the work experience so far. Feedback on the application process, the organization, the work experience, and any contribution the program has made to your skills and abilities is of great value. Providing this information will help improve the program for yourself and for future participants.
                         </p>
                         <p>
-                            The survey will take approximately 10 minutes to complete and your feedback is greatly appreciated.
+                            The survey will take approximately 5-7 minutes to complete and your feedback is greatly appreciated.
                         </p>
                         <p>
                             This survey is optional. Your responses are anonymous and not linked to your file in any way.

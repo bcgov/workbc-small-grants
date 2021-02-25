@@ -14,7 +14,7 @@ class SurveyStartOrg extends Component {
                             We need your help! Please share your views and experiences on the grant program so far. Feedback on the grant application process, the work experience participants, and any contribution the program has made to your organization is of great value. Providing this information will help improve the program for yourself and for future participants.
                         </p>
                         <p>
-                            The survey will take approximately 10 minutes to complete and your feedback is greatly appreciated.
+                            The survey will take approximately 5-7 minutes to complete and your feedback is greatly appreciated.
                         </p>
                         <p>
                             This survey is optional. Your responses are anonymous and not linked to your file in any way.
