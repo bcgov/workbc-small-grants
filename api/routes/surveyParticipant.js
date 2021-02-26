@@ -67,6 +67,7 @@ async function sendEmails(values) {
           subject: "A participant survey response has been received", // Subject line
           html: notification.generateSurveyParticipantListNotification(values) // html body
         };
+        /*
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: surveyParticipantNotifyEmail,// list of receivers
@@ -82,7 +83,7 @@ async function sendEmails(values) {
             return "success"
           }
         });
-        */
+       
         let info = transporter.sendMail(message2, (error, info) => {
           if (error) {
             return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
@@ -91,7 +92,8 @@ async function sendEmails(values) {
             return "success"
           }
         });
-        info = transporter.sendMail(message3, (error, info) => {
+         */
+        info = transporter.sendMail(message2, (error, info) => {
           if (error) {
             return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
           } else {
