@@ -5,7 +5,7 @@ import MainForm from './Components/Forms/MainForm/MainForm'
 import ThankyouOrg from './Components/Forms/MainForm/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
-import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
+//import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
 import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
 import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
 import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
@@ -24,12 +24,12 @@ function Main() {
                     <Route strict  path="/participantForm/3/:id?" component={ClientForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
-                    <Route path="/surveyOrg" component={SurveyOrg} />
+                    <Route path="/surveyOrg/1" component={SurveyOrg} />
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
-                    <Route path="/surveyParticipant" component={SurveyParticipant} />
+                    <Route path="/surveyParticipant/1" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
-                    <Route path="/surveyLandingOrg" component={SurveyStartOrg} />
-                    <Route path="/surveyLandingParticipant" component={SurveyStartParticipant} />
+                    <Route path="/surveyLandingOrg/1" component={SurveyStartOrg} />
+                    <Route path="/surveyLandingParticipant/1" component={SurveyStartParticipant} />
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>

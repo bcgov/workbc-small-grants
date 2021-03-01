@@ -224,6 +224,7 @@ likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipate
 likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
 bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)}
 experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
+surveyUID ${strings.orEmpty(values._uid)}
         `
         return html
     },
@@ -256,6 +257,9 @@ likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
 bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)}
 experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
 likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
+hasStartedWorkExperience ${strings.orEmpty(values.hasStartedWorkExperience)}
+workExperienceStartDate ${strings.orEmpty(values.workExperienceStartDate)}
+surveyUID ${strings.orEmpty(values._uid)}
         `
         return html
     }

@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import {generateAlert} from '../Shared/Alert'
 import {customAlphabet} from 'nanoid'
+import SurveyParticipantStep0 from './SurveyParticipantStep0'
 import SurveyParticipantStep1 from './SurveyParticipantStep1'
 import SurveyParticipantStep2 from './SurveyParticipantStep2'
 import SurveyParticipantStep3 from './SurveyParticipantStep3'
@@ -10,15 +11,17 @@ import SurveyParticipantStep4 from './SurveyParticipantStep4'
 import ProgressTracker from './ProgressTracker'
 import { SurveyParticipantValidationSchema } from './SurveyParticipantValidation'
 import { FORM_URL } from '../../../constants/form'
+import qs from 'qs'
 
 class SurveyParticipant extends Component {
     constructor(){
         super()
         const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz',5)
         this.state={
-            currentStep: 1,
+            currentStep: 0,
             _csrf: '',
             _id: nanoid(),
+            _uid: '',
             hasError: false,
         }
         this._next = this._next.bind(this)
@@ -44,6 +47,8 @@ class SurveyParticipant extends Component {
                     })
                 }
             )
+        let uid = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).uid || ""
+        this.setState({"_uid": uid})
     }
 
     _next() {
@@ -57,14 +62,14 @@ class SurveyParticipant extends Component {
     _prev() {
         this.setState( prevState => {
             return {
-                currentStep: prevState.currentStep <= 1 ? 1 : prevState.currentStep - 1 
+                currentStep: prevState.currentStep <= 0 ? 0 : prevState.currentStep - 1 
             } 
         })
     }    
 
     get previousButton(){
         let currentStep = this.state.currentStep;
-        if(currentStep !== 1){
+        if(currentStep !== 0){
           return (
             <button 
               className="btn btn-secondary" 
@@ -77,10 +82,10 @@ class SurveyParticipant extends Component {
         return null;
     }
 
-    get nextButton(){
+    nextButton(hasStartedWorkExperience){
         let currentStep = this.state.currentStep;
 
-        if(currentStep < 4){
+        if(currentStep < 4 && hasStartedWorkExperience === "yes"){
           return (
             <button 
               className="btn btn-primary float-right" 
@@ -106,6 +111,9 @@ class SurveyParticipant extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 _id: this.state._id,
+                                _uid: this.state._uid,
+                                hasStartedWorkExperience: '',
+                                workExperienceStartDate: '',
                                 //step 1
                                 easeOfApplicationCompletion: '',
                                 experienceOnlineApplicationComments: '',
@@ -154,7 +162,14 @@ class SurveyParticipant extends Component {
                             }}
                         >
                         {props => (
+                            
                             <Form>
+                                {console.log(props)}
+                                {console.log(this.props)}
+                                <SurveyParticipantStep0
+                                    currentStep={this.state.currentStep}
+                                    {...props}
+                                />
                                 <SurveyParticipantStep1
                                     currentStep={this.state.currentStep}
                                     {...props}
@@ -173,7 +188,7 @@ class SurveyParticipant extends Component {
                                 />
 
                                 {this.previousButton}
-                                {this.nextButton}
+                                {this.nextButton(props.values.hasStartedWorkExperience)}
                             </Form>
                         )}
 

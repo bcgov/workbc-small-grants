@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import {Formik, Form} from 'formik'
 import {generateAlert} from '../Shared/Alert'
 import {customAlphabet} from 'nanoid'
+import qs from 'qs'
 import SurveyOrgStep1 from './SurveyOrgStep1'
 import SurveyOrgStep2 from './SurveyOrgStep2'
 import SurveyOrgStep3 from './SurveyOrgStep3'
@@ -44,6 +45,8 @@ class SurveyOrg extends Component {
                     })
                 }
             )
+        let uid = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).uid || ""
+        this.setState({"_uid": uid})
     }
 
     _next() {
@@ -106,6 +109,7 @@ class SurveyOrg extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 _id: this.state._id,
+                                _uid: this.state._uid,
                                 //step 1
                                 easeOfApplicationCompletion: '',
                                 speedApplicationProcessed: '',
