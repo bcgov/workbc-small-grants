@@ -23,6 +23,7 @@ class SurveyParticipant extends Component {
             _id: nanoid(),
             _uid: '',
             hasError: false,
+            invalidLink: false,
         }
         this._next = this._next.bind(this)
         this._prev = this._prev.bind(this)
@@ -48,6 +49,9 @@ class SurveyParticipant extends Component {
                 }
             )
         let uid = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).uid || ""
+        if (uid === ""){
+            this.setState({invalidLink: true})
+        }
         this.setState({"_uid": uid})
     }
 
@@ -106,6 +110,9 @@ class SurveyParticipant extends Component {
                         <ProgressTracker currentStep={this.state.currentStep}/>
                         {this.state.hasError && (
                             generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
+                        )}
+                        {this.state.invalidLink && (
+                            generateAlert("alert-danger","Invalid link, please use the link that was sent to you through email.")
                         )}
                         <Formik
                             initialValues={{
