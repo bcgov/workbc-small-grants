@@ -140,8 +140,7 @@ class FormStep3 extends Component {
                     {feedBackInvalid(this.props.errors, this.props.touched, "signatory1")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="signatory2">Signing Authority <span
-                        style={{ color: "red" }}>*  </span></label>
+                    <label className="col-form-label control-label" htmlFor="signatory2">Signing Authority </label>
                     <small className="text-muted" id="signatory2">Please enter the full name of the second business/organization signatory</small>
                     <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "signatory2")}`} id="signatory2" name="signatory2" />
                     {feedBackInvalid(this.props.errors, this.props.touched, "signatory2")}

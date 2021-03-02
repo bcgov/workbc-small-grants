@@ -266,7 +266,8 @@ var MainFormValidationSchema = yup.object().shape({
             return signatory1 !== this.options.parent.signatory2
         }),     
     signatory2: yup.string()
-        .required("Please enter the second organization signatory."),
+        .max(100, "Max length for signatory 2 is 100 characters.")    
+    ,
     signingAuthorityConfirm: yup.boolean() 
         .oneOf([true],"Please confirm signing authorities."),
     organizationConsent: yup.boolean()
