@@ -28,8 +28,8 @@ function Main() {
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant/1" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
-                    <Route path="/surveyLandingOrg/1" component={SurveyStartOrg} />
-                    <Route path="/surveyLandingParticipant/1" component={SurveyStartParticipant} />
+                    <Route path="/surveyLandingOrg/:intake?" component={SurveyStartOrg} />
+                    <Route path="/surveyLandingParticipant/:intake?" component={SurveyStartParticipant} />
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>

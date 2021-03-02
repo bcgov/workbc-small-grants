@@ -36,7 +36,7 @@ class SurveyStartParticipant extends Component {
                         </ul>
                         <p>Please note that all information is being collected under the authority of the <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/96165_03#section26" target="_blank" rel="noopener noreferrer">Freedom of Information and Protection of Privacy Act, Section 26(e).</a> If you have any questions about the collection or use of this information, please contact the <a href="mailto:workexperiencegrants@gov.bc.ca">Ministry of Social Development and Poverty Reduction.</a></p>
                         <p>Thank you for participating – your contribution will make a difference in shaping how the Work Experience Opportunities Grant program is offered in the future!</p>
-                        <p><a href="/surveyParticipant" className="btn btn-lg btn-primary">Start</a><br /></p>
+                        <p><a href={`/surveyParticipant/${(typeof this.props.match.params.intake !== 'undefined') ? this.props.match.params.intake : ''}`} className="btn btn-lg btn-primary">Start</a><br /></p>
                     </div>
                 </div>
 
