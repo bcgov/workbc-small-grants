@@ -87,7 +87,7 @@ class SurveyOrg extends Component {
     get nextButton(){
         let currentStep = this.state.currentStep;
 
-        if(currentStep < 4){
+        if(currentStep < 4 && !this.state.invalidLink){
           return (
             <button 
               className="btn btn-primary float-right" 

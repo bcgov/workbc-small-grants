@@ -89,7 +89,7 @@ class SurveyParticipant extends Component {
     nextButton(hasStartedWorkExperience){
         let currentStep = this.state.currentStep;
 
-        if(currentStep < 4 && hasStartedWorkExperience === "yes"){
+        if(currentStep < 4 && hasStartedWorkExperience === "yes" && !this.state.invalidLink){
           return (
             <button 
               className="btn btn-primary float-right" 
