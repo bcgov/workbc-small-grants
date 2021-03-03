@@ -63,7 +63,7 @@ module.exports = {
         <p><b>supplierNumber:</b>  ${strings.orEmpty(values.supplierNumber)}</p>
         <p><b>businessClassification:</b>  ${strings.orEmpty(values.businessClassification)}</p>
         <p><b>signatory1:</b>  ${values.signatory1}</p>
-        <p><b>signatory2:</b>  ${values.signatory2}</p>
+        <p><b>signatory2:</b>  ${strings.orEmpty(values.signatory2)}</p>
         <p><b>signingAuthorityConfirm:</b>  ${values.signingAuthorityConfirm}</p>
         <p><b>organizationConsent:</b>  ${values.organizationConsent}</p>
 
@@ -121,7 +121,7 @@ supplierNumber ${strings.orEmpty(values.supplierNumber)}
 businessClassification ${strings.orEmpty(values.businessClassification)}
 taxNumber ${strings.orEmpty(values.taxNumber)}
 signatory1 ${values.signatory1}
-signatory2 ${values.signatory2}
+signatory2 ${strings.orEmpty(values.signatory2)}
 signingAuthorityConfirm ${values.signingAuthorityConfirm}
 organizationConsent ${values.organizationConsent}
 abilityToSupportParticipant ${strings.orEmpty(values.abilityToSupportParticipant)}
