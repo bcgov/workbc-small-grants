@@ -171,8 +171,6 @@ class SurveyParticipant extends Component {
                         {props => (
                             
                             <Form>
-                                {console.log(props)}
-                                {console.log(this.props)}
                                 <SurveyParticipantStep0
                                     currentStep={this.state.currentStep}
                                     {...props}
