@@ -9,7 +9,7 @@ class SurveyParticipantStep0 extends Component {
             return (
                 <div>
                     <div className="form-group">
-                        <label className="col-form-label control-label" htmlFor="workExperienceStartDate">When did you started your work experience? <span
+                        <label className="col-form-label control-label" htmlFor="workExperienceStartDate">When did you start your work experience? <span
                             style={{ color: "red" }}>*</span></label>
                         <MonthPickerField
                             name="workExperienceStartDate"
