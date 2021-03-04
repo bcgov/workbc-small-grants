@@ -38,7 +38,7 @@ class SurveyStartOrg extends Component {
                             The survey will take approximately 5-7 minutes to complete and your feedback is greatly appreciated.
                         </p>
                         <p>
-                            This survey is optional. Please note that we will not share your responses with your participants. Your responses will remain confidential and will be used for research purposes to help improve the program in the future.
+                            This survey is optional, and responses are confidential. Your responses will not be shared with anyone outside the Ministry and are for research purposes only to help improve the program.  
                         </p>
                         <p>
                             Please don’t include personal or confidential information. If you do, we will not record this information.
