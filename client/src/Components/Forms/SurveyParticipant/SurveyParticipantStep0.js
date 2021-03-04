@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'formik'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
-import { DatePickerField, MonthPickerField } from '../Shared/DatePickerField'
+import { MonthPickerField } from '../Shared/DatePickerField'
 
 class SurveyParticipantStep0 extends Component {
     handleWorkExperience() {

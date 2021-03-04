@@ -19,8 +19,8 @@ class ThankyouSurveyParticipant extends Component {
                     </div>
                 )
             }
-            return null
         }
+        return null
     }
     
     render() {
