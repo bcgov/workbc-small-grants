@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'formik'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
-import { DatePickerField } from '../Shared/DatePickerField'
+import { DatePickerField, MonthPickerField } from '../Shared/DatePickerField'
 
 class SurveyParticipantStep0 extends Component {
     handleWorkExperience() {
@@ -11,7 +11,7 @@ class SurveyParticipantStep0 extends Component {
                     <div className="form-group">
                         <label className="col-form-label control-label" htmlFor="workExperienceStartDate">When did you started your work experience? <span
                             style={{ color: "red" }}>*</span></label>
-                        <DatePickerField
+                        <MonthPickerField
                             name="workExperienceStartDate"
                             className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "workExperienceStartDate")}`}
                         />

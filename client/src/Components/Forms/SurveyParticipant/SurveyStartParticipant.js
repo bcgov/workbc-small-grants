@@ -39,10 +39,10 @@ class SurveyStartParticipant extends Component {
                             The survey will take approximately 5-7 minutes to complete and your feedback is greatly appreciated.
                         </p>
                         <p>
-                            This survey is optional. Your responses are anonymous and not linked to your file in any way.
+                            This survey is optional. Please note that we will not share your responses with your organization. Your responses will remain confidential and will be used for research purposes to help improve the program in the future.
                         </p>
                         <p>
-                            Please don’t include personal or confidential information. If you do, we will not record any of your information if it identifies you.
+                            Please don’t include personal or confidential information. If you do, we will not record this information.
                         </p>
                         <p>
                             How to complete the survey:
