@@ -4,7 +4,7 @@ var SurveyParticipantValidationSchema = yup.object().shape({
     hasStartedWorkExperience: yup.string()
         .required("Please select if you have started your work experience")
     ,
-    workExperienceStatDate: yup.date()
+    workExperienceStartDate: yup.date()
         .when("hasStartedWorkExperience", {
             is: (value) => value === "yes",
             then: yup.date()
