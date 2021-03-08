@@ -4,14 +4,14 @@ import React, { Component } from 'react'
 class ThankyouSurveyParticipant extends Component {
     get handleThankYouPage(){
         if (this.props.location.state !== undefined){
-            if (this.props.location.state.hasStartedWorkExperience === "no"){
+            if (this.props.location.state.hasStartedWorkExperience === "yes"){
                 return (
                     <div>
                         <p>Thank you for providing your feedback and taking the time to help make the Work Experience Opportunities Grant program better. As a participant in the program, your views are very valuable and your contribution is much appreciated.</p>
                         <p>To find out more about WorkBC programs and services, check out these links below highlighting some of our great programs for both employers and jobseekers:</p>
                     </div>
                 )
-            } else if (this.props.location.state.hasStartedWorkExperience === "yes"){
+            } else if (this.props.location.state.hasStartedWorkExperience === "no"){
                 return (
                     <div>
                         <p>You do not meet the qualifications for this survey. We sincerely thank you and appreciate your time, dedication, and continued interest in our programs and services.</p>
