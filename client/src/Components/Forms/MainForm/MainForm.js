@@ -97,16 +97,25 @@ class MainForm extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <ProgressTracker currentStep={this.state.currentStep}/>
-                        {this.state.hasError && (
+                    <div className="alert alert-primary" role="alert">
+                        <p><b>The Work Experience Opportunities Grant application window is now closed. Thanks for your interest in this funding opportunity. Check back to learn about how many participants and organizations were supported through this program as well as potential future funding opportunities.</b></p>
+                        <p></p>
+                        <hr />
+                        <p className="mb-0">If you have questions, please contact the ministry at <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
+                    </div>
+                    <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">here.</a></p> 
+
+                        {/*<ProgressTracker currentStep={this.state.currentStep}/>*/}
+                        {/*this.state.hasError && (
                             generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
-                        )}
-                        <div className="alert alert-primary alert-dismissible fade show" role="alert">
+                        )*/}
+                        {/*<div className="alert alert-primary alert-dismissible fade show" role="alert">
                             To navigate the form, use the Previous and Next buttons at the bottom. Using the Browser Back or Forward button will not retain the form information.
                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+                        </div>*/}
+                        {/*}
                         <Formik
                             initialValues= {{
                                             _csrf: this.state._csrf,
@@ -235,10 +244,10 @@ class MainForm extends Component {
 
                                 </Form>
                             )}
-                        </Formik>
+                        </Formik>*/}
                     </div>
                 </div>
-            </div>
+            </div> 
 
 
             )
