@@ -107,9 +107,9 @@ class MainForm extends Component {
                     <p>For more information please click <a href="https://www.workbc.ca/Employment-Services/Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">here.</a></p> 
                     */}
                         <ProgressTracker currentStep={this.state.currentStep}/>
-                        this.state.hasError && (
+                        {this.state.hasError && (
                             generateAlert("alert-danger","An error has occurred, please refresh the page. If the error persists, please try again later.")
-                        )
+                        )}
                         <div className="alert alert-primary alert-dismissible fade show" role="alert">
                             To navigate the form, use the Previous and Next buttons at the bottom. Using the Browser Back or Forward button will not retain the form information.
                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
