@@ -25,12 +25,14 @@ function Main() {
                     <Route strict  path="/participantForm/3/:id?" component={ClientForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
+                    {/*
                     <Route path="/surveyOrg/1" component={SurveyOrg} />
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant/1" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
                     <Route path="/surveyLandingOrg/:intake?" component={SurveyStartOrg} />
                     <Route path="/surveyLandingParticipant/:intake?" component={SurveyStartParticipant} />
+                    */}
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>
