@@ -6,12 +6,14 @@ import ThankyouOrg from './Components/Forms/MainForm/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
 //import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
-import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
-import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
-import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
-import ThankyouSurveyParticipant from './Components/Forms/SurveyParticipant/ThankYouSurveyParticipant'
-import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyStartParticipant'
-import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
+//import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
+//import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
+//import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
+//import ThankyouSurveyParticipant from './Components/Forms/SurveyParticipant/ThankYouSurveyParticipant'
+//import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyStartParticipant'
+//import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
+import ReportForm from './Components/Forms/Report/ReportForm'
+import ThankYouReport from './Components/Forms/Report/ThankYouReport'
 
 function Main() {
     return (
@@ -23,8 +25,10 @@ function Main() {
                     <Route strict  path="/clientForm/:id?" component={ClientForm} />
                     <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
                     <Route strict  path="/participantForm/3/:id?" component={ClientForm} />
+                    <Route strict  path="/report/:id?" component={ReportForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
+                    <Route path="/thankyouReport" component={ThankYouReport} />
                     {/*
                     <Route path="/surveyOrg/1" component={SurveyOrg} />
                     <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
