@@ -196,7 +196,7 @@ class ReportForm extends Component {
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}
                                     <div className="form-group">
-                                        <h1 id="forms">Report Form</h1>
+                                        <h1 id="forms">Work Experience Summary Report</h1>
                                     </div>
                                     {console.log(props.values)}
                                     {this.handleApplicationId(props.values.applicationId, props.values.noOrgId, props.errors, props.touched)}
