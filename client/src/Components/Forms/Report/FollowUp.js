@@ -29,7 +29,7 @@ class FollowUpForm extends Component{
                     <h2 id="forms">Follow-Up</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="followUpWillingToHavePhoneConversation">Would you be willing to have a brief telephone conversation to share additional insights into your experience with the WEOG?? <span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="followUpWillingToHavePhoneConversation">Would you be willing to have a brief telephone conversation to share additional insights into your experience with the WEOG? <span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "followUpWillingToHavePhoneConversation")}`}
