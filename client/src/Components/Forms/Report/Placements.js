@@ -5,7 +5,7 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 class PlacementsForm extends Component{
     
     get otherExperienceField() {
-        if (this.props.values.placementSupportsProvided.indexOf("Other") > -1) {
+        if (this.props.values.placementSupportsProvided.indexOf("other") > -1) {
             return (
                 <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="placementSupportsProvidedOther">Other <span
@@ -27,6 +27,30 @@ class PlacementsForm extends Component{
         }
         return null
     }
+
+    get detailChangeExplain(){
+        if (this.props.values.placementDetailsChange === "yes") {
+            return (
+                <div className="form-group">
+                    <label className="col-form-label control-label" htmlFor="placementDetailsChangeExplanation">Other <span
+                        style={{ color: "red" }}>*</span>
+                    </label>
+                    <small className="text-muted" id="placementDetailsChangeExplanation"> Please describe (500 characters max.) </small>
+                    <Field
+                        as="textarea"
+                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "placementDetailsChangeExplanation")}`}
+                        id="placementDetailsChangeExplanation"
+                        name="placementDetailsChangeExplanation"
+                        rows="4"
+                        maxLength="500"
+                    />
+                    <small>{this.props.values.placementDetailsChangeExplanation.length}/500</small>
+                    {feedBackInvalid(this.props.errors, this.props.touched, "placementDetailsChangeExplanation")}
+                </div>
+            )
+        }
+        return null        
+    }
     
     
     render(){
@@ -37,7 +61,7 @@ class PlacementsForm extends Component{
                     <h2 id="forms">Placements</h2>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="placementDetailsChange">Was additional funding beyond the grant used to support participants? <span style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="placementDetailsChange">Did the details of the work experience placement (participant duties, responsibilities, etc) change from what you submitted in your application?<span style={{ color: "red" }}>*</span></label>
                     <div className="form-check">
                         <Field
                             className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "placementDetailsChange")}`}
@@ -66,6 +90,7 @@ class PlacementsForm extends Component{
                         {feedBackInvalid(this.props.errors, this.props.touched, "placementDetailsChange")}
                     </div>
                 </div>
+                {this.detailChangeExplain}
                 <div className="form-group">
                     <label className="control-label">Please indicate the supports you provided to participants to help them succeed in their placements
                         <span style={{ color: "red" }}>*</span>
@@ -104,11 +129,12 @@ class PlacementsForm extends Component{
                         <label className="form-check-label" htmlFor="Childcare">Childcare</label>
                     </div>
                     <div className="form-check">
-                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "placementSupportsProvided")}`} type="checkbox" name="placementSupportsProvided" value="Other" />
+                        <Field className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "placementSupportsProvided")}`} type="checkbox" name="placementSupportsProvided" value="other" />
                         <label className="form-check-label" htmlFor="Other">Other</label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "placementSupportsProvided")}
                     </div>
                 </div>
+                {this.otherExperienceField}
             </div>
         )
     }

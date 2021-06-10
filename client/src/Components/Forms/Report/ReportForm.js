@@ -3,8 +3,9 @@ import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import '../../../utils/polyfills'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
-import {generateAlert} from '../Shared/Alert'
+import { generateAlert } from '../Shared/Alert'
 import { FORM_URL } from '../../../constants/form'
+import ProgressTracker from './ProgressTracker'
 import RecruitmentForm from './Recruitment'
 import ParticipantForm from './Participants'
 import FundingForm from './Funding'
@@ -12,21 +13,25 @@ import PlacementsForm from './Placements'
 import ParticipantOutcomesForm from './ParticipantOutcomes'
 import NarrativeForm from './Narrative'
 import FollowUpForm from './FollowUp'
-import KeyRecruitmentForm from './KeyRectruitment'
-import KeyParticipantsForm from './KeyParticipants'
-import KeyPlacementsForm from './KeyPlacements'
-import KeyParticipantOutcomesForm from './KeyParticipantOutcomes'
-import KeyOrganizationalOutcomesForm from './KeyOrganizationalOutcomes'
-import KeyGeneralForm from './KeyGeneral'
+import ClientConsent from '../ClientForm/ClientConsent'
+//import KeyRecruitmentForm from './KeyRectruitment'
+//import KeyParticipantsForm from './KeyParticipants'
+//import KeyPlacementsForm from './KeyPlacements'
+//import KeyParticipantOutcomesForm from './KeyParticipantOutcomes'
+//import KeyOrganizationalOutcomesForm from './KeyOrganizationalOutcomes'
+//import KeyGeneralForm from './KeyGeneral'
 
 class ReportForm extends Component {
     constructor() {
         super()
         this.state = {
+            currentStep: 1,
             _csrf: '',
             _intake: '',
             hasError: false,
         }
+        this._next = this._next.bind(this)
+        this._prev = this._prev.bind(this)
     }
     componentDidMount() {
         fetch(FORM_URL.reportForm, {
@@ -45,13 +50,60 @@ class ReportForm extends Component {
                     })
                 }
             )
-        if (this.props.match.path === "/participantForm/2/:id?"){
-            this.setState({"_intake":"2"})
-        } else if (this.props.match.path === "/participantForm/3/:id?"){
-            this.setState({"_intake":"3"})
-        } else if (this.props.match.path === "/clientForm/:id?"){
-            this.setState({"_intake":"1"})
+        if (this.props.match.path === "/participantForm/2/:id?") {
+            this.setState({ "_intake": "2" })
+        } else if (this.props.match.path === "/participantForm/3/:id?") {
+            this.setState({ "_intake": "3" })
+        } else if (this.props.match.path === "/clientForm/:id?") {
+            this.setState({ "_intake": "1" })
         }
+    }
+
+    _next() {
+        this.setState(prevState => {
+            return {
+                currentStep: prevState.currentStep >= 4 ? 5 : prevState.currentStep + 1
+            }
+        })
+    }
+
+    _prev() {
+        this.setState(prevState => {
+            return {
+                currentStep: prevState.currentStep <= 1 ? 1 : prevState.currentStep - 1
+            }
+        })
+    }
+
+    get previousButton() {
+        let currentStep = this.state.currentStep;
+        if (currentStep !== 1) {
+            return (
+                <button
+                    className="btn btn-secondary"
+                    type="button" onClick={this._prev}
+                >
+                    Previous
+                </button>
+            )
+        }
+        return null;
+    }
+
+    get nextButton() {
+        let currentStep = this.state.currentStep;
+        if (currentStep < 5) {
+            return (
+                <button
+                    className="btn btn-primary float-right"
+                    type="button" onClick={this._next}
+                    disabled={this.state.hasError}
+                >
+                    Next
+                </button>
+            )
+        }
+        return null;
     }
 
 
@@ -143,7 +195,9 @@ class ReportForm extends Component {
                                 narrativeCommunityBenefit: '',
                                 narrativeImproveAboutProgram: '',
                                 followUpWillingToHavePhoneConversation: '',
-                                followUpContactInformation: '',
+                                followUpContactName: '',
+                                followUpContactPhone: '',
+                                /*
                                 recruitmentChallengesFindingParticipant: '',
                                 recruitmentReceivedAssistanceFromWorkBC: '',
                                 recruitmentChallengesWithEligibility: '',
@@ -158,6 +212,7 @@ class ReportForm extends Component {
                                 generalInterest: '',
                                 generalParticipateAgain: '',
                                 generalImproveAboutProgram: '',
+                                */
                             }}
                             enableReinitialize={true}
                             onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
@@ -177,7 +232,7 @@ class ReportForm extends Component {
                                             if (resp.err) {
                                                 setErrors(resp.err)
                                                 setSubmitting(false)
-                                            } else if(resp.emailErr){
+                                            } else if (resp.emailErr) {
                                                 setSubmitting(false)
                                                 this.setState({
                                                     hasError: true
@@ -192,6 +247,7 @@ class ReportForm extends Component {
                         >
                             {props => (
                                 <Form>
+                                    <ProgressTracker currentStep={this.state.currentStep} />
                                     {this.state.hasError && (
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}
@@ -199,14 +255,59 @@ class ReportForm extends Component {
                                         <h1 id="forms">Work Experience Summary Report</h1>
                                     </div>
                                     {console.log(props.values)}
-                                    {this.handleApplicationId(props.values.applicationId, props.values.noOrgId, props.errors, props.touched)}
-                                    <RecruitmentForm {...props}/>
-                                    <ParticipantForm {...props}/>
-                                    <FundingForm {...props} />
-                                    <PlacementsForm {...props} />
-                                    <ParticipantOutcomesForm {...props} />
-                                    <NarrativeForm {...props} />
-                                    <FollowUpForm {...props} />
+                                    {
+                                        this.state.currentStep === 1 &&
+                                        <div>
+                                            {this.handleApplicationId(props.values.applicationId, props.values.noOrgId, props.errors, props.touched)}
+                                            <RecruitmentForm {...props} />
+                                            <ParticipantForm {...props} />
+                                        </div>
+                                    }
+                                    {
+                                        this.state.currentStep === 2 &&
+                                        <div>
+                                            <FundingForm {...props} />
+                                            <PlacementsForm {...props} />
+                                        </div>
+                                    }
+                                    {
+                                        this.state.currentStep === 3 &&
+                                        <div>
+                                            <ParticipantOutcomesForm {...props} />
+                                        </div>
+                                    }
+                                    {
+                                        this.state.currentStep === 4 &&
+                                        <div>
+                                            <NarrativeForm {...props} />
+                                        </div>
+                                    }
+                                    {
+                                        this.state.currentStep === 5 &&
+                                        <div>
+                                            <FollowUpForm {...props} />
+                                            <ClientConsent />
+                                            <button
+                                                className="btn btn-success btn-block"
+                                                type="submit"
+                                                style={{ marginBottom: "2rem" }}
+                                                disabled={props.isSubmitting || this.state.hasError}
+                                            >
+                                                {
+                                                    props.isSubmitting ?
+                                                        <div>
+                                                            <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                                       Submitting...
+                                                </div>
+                                                        :
+                                                        "Submit"
+
+                                                }
+                                            </button>
+                                        </div>
+                                    }
+
+                                    {/*
                                     <div className="form-group">
                                         <h2 id="forms">Key Informant Questions</h2>
                                     </div>
@@ -216,25 +317,12 @@ class ReportForm extends Component {
                                     <KeyParticipantOutcomesForm {...props} />
                                     <KeyOrganizationalOutcomesForm {...props} />
                                     <KeyGeneralForm {...props} />
-                                    <button
-                                        className="btn btn-success btn-block"
-                                        type="submit"
-                                        style={{ marginBottom: "2rem" }}
-                                        disabled={props.isSubmitting || this.state.hasError}
-                                    >
-                                        {
-                                            props.isSubmitting ?
-                                                <div>
-                                                    <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                                                       Submitting...
-                                                </div>
-                                                :
-                                                "Submit"
+                                    */}
 
-                                        }
-                                    </button>
+                                    {this.previousButton}
+                                    {this.nextButton}
                                 </Form>
-                                
+
                             )}
 
 

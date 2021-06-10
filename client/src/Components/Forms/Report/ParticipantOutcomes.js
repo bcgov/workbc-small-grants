@@ -33,34 +33,122 @@ class ParticipantsOutcomesForm extends Component {
         return (
             <div>
                 <div className="form-group">
-                    <h2 id="forms">Recruitment</h2>
+                    <h2 id="forms">Participant Outcomes</h2>
                 </div>
                 <div className="form-group">
                     <p>To the best of your knowledge, please indicate any changes in participant employment status as a result of their participation in the Work Experience Opportunities Grant program. For each comment below, please indicate the number of participants that the comment relates to.</p>
                     <p>After the program concluded, how many:</p>
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsStayedInPosition">Participants stayed in their positions and were hired by my organization<span
+                <label className="col-form-label control-label" htmlFor="numberOfParticipantsStayedInPosition">Participants stayed in their positions and were hired by my organization<span
                         style={{ color: "red" }}>*</span></label>
-                    <Field
-                        as="select"
-                        className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}`}
-                        id="numberOfParticipantsStayedInPosition"
-                        name="numberOfParticipantsStayedInPosition"
-                    >
-                        <option value="">Please select</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </Field>
+                </div>
+                <div className="form-group mx-auto">
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="0"
+                            />
+                            <label className="form-check-label">0</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="1"
+                            />
+                            <label className="form-check-label">1</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="2"
+                            />
+                            <label className="form-check-label">2</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="3"
+                            />
+                            <label className="form-check-label">3</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="4"
+                            />
+                            <label className="form-check-label">4</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="5"
+                            />
+                            <label className="form-check-label">5</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="6"
+                            />
+                            <label className="form-check-label">6</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="7"
+                            />
+                            <label className="form-check-label">7</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="8"
+                            />
+                            <label className="form-check-label">8</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="9"
+                            />
+                            <label className="form-check-label">9</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <Field
+                                className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "speedApplicationProcessed")}`}
+                                type="radio"
+                                name="speedApplicationProcessed"
+                                value="10"
+                            />
+                            <label className="form-check-label">10</label>
+                            {feedBackInvalid(this.props.errors, this.props.touched, "speedApplicationProcessed")}
+                        </div>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
                 </div>
                 <div className="form-group">
