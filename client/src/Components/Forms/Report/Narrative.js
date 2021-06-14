@@ -12,7 +12,7 @@ class NarrativeForm extends Component{
         return (
             <div>
                 <div className="form-group">
-                    <h2 id="forms">Optional Narrative Questions</h2>
+                    <h2 id="forms">Other Outcomes</h2>
                 </div>
                 <div className="form-group">
                     <p>These questions are optional but will help us understand the success of the program.</p>

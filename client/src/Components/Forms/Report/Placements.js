@@ -8,10 +8,10 @@ class PlacementsForm extends Component{
         if (this.props.values.placementSupportsProvided.indexOf("other") > -1) {
             return (
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="placementSupportsProvidedOther">Other <span
+                    <label className="col-form-label control-label" htmlFor="placementSupportsProvidedOther">Please Describe <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="placementSupportsProvidedOther"> Please describe (500 characters max.) </small>
+                    <small className="text-muted" id="placementSupportsProvidedOther"> 500 characters max.</small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "placementSupportsProvidedOther")}`}
@@ -32,10 +32,10 @@ class PlacementsForm extends Component{
         if (this.props.values.placementDetailsChange === "yes") {
             return (
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="placementDetailsChangeExplanation">Other <span
+                    <label className="col-form-label control-label" htmlFor="placementDetailsChangeExplanation">Please describe <span
                         style={{ color: "red" }}>*</span>
                     </label>
-                    <small className="text-muted" id="placementDetailsChangeExplanation"> Please describe (500 characters max.) </small>
+                    <small className="text-muted" id="placementDetailsChangeExplanation"> 500 characters max.</small>
                     <Field
                         as="textarea"
                         className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "placementDetailsChangeExplanation")}`}

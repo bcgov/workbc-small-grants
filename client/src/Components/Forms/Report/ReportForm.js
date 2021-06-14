@@ -13,7 +13,7 @@ import PlacementsForm from './Placements'
 import ParticipantOutcomesForm from './ParticipantOutcomes'
 import NarrativeForm from './Narrative'
 import FollowUpForm from './FollowUp'
-import ClientConsent from '../ClientForm/ClientConsent'
+import Consent from './Consent'
 //import KeyRecruitmentForm from './KeyRectruitment'
 //import KeyParticipantsForm from './KeyParticipants'
 //import KeyPlacementsForm from './KeyPlacements'
@@ -252,7 +252,7 @@ class ReportForm extends Component {
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
                                     )}
                                     <div className="form-group">
-                                        <h1 id="forms">Work Experience Summary Report</h1>
+                                        <h1 id="forms">Work Experience Opportunities Grant Summary Report</h1>
                                     </div>
                                     {console.log(props.values)}
                                     {
@@ -286,7 +286,7 @@ class ReportForm extends Component {
                                         this.state.currentStep === 5 &&
                                         <div>
                                             <FollowUpForm {...props} />
-                                            <ClientConsent />
+                                            <Consent />
                                             <button
                                                 className="btn btn-success btn-block"
                                                 type="submit"

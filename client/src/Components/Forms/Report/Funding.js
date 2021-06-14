@@ -44,16 +44,16 @@ class FundingForm extends Component {
                         {feedBackInvalid(this.props.errors, this.props.touched, "fundingStipendAmount")}
                     </div>
                     <div className="form-group col-md-4">
-                        <label className="col-form-label control-label" htmlFor="participantsHoursPerWeek">Participants supports <span
+                        <label className="col-form-label control-label" htmlFor="fundingSupportsAmount">Participants supports <span
                             style={{ color: "red" }}>*</span></label>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantsHoursPerWeek")}`} id="participantsHoursPerWeek" name="participantsHoursPerWeek" />
-                        {feedBackInvalid(this.props.errors, this.props.touched, "participantsHoursPerWeek")}
+                        <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "fundingSupportsAmount")}`} id="fundingSupportsAmount" name="fundingSupportsAmount" />
+                        {feedBackInvalid(this.props.errors, this.props.touched, "fundingSupportsAmount")}
                     </div>
                     <div className="form-group col-md-4">
-                        <label className="col-form-label control-label" htmlFor="participantsHoursPerWeek">Administration/Operational expenses <span
+                        <label className="col-form-label control-label" htmlFor="fundingAdministrationOperationalExpense">Administration/Operational expenses <span
                             style={{ color: "red" }}>*</span></label>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "participantsHoursPerWeek")}`} id="participantsHoursPerWeek" name="participantsHoursPerWeek" />
-                        {feedBackInvalid(this.props.errors, this.props.touched, "participantsHoursPerWeek")}
+                        <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "fundingAdministrationOperationalExpense")}`} id="fundingAdministrationOperationalExpense" name="fundingAdministrationOperationalExpense" />
+                        {feedBackInvalid(this.props.errors, this.props.touched, "fundingAdministrationOperationalExpense")}
                     </div>
                 </div>
                 <div className="form-group">
