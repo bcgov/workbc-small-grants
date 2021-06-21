@@ -8,6 +8,10 @@ var csrfProtection = csrf({ cookie: true });
 var generateHTMLEmail = require('../utils/htmlEmail')
 var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
+
+var ReportValidationSchema = require('../schemas/ReportValidationSchema')
+var {saveReport} = require('../utils/mongoOperations')
+
 //const { getSurveyOrgSubmitted } = require('../utils/confirmationData');
 
 var reportConfirmation = process.env.REPORT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_REPORT_CONFIRMATION_EMAIL || "";
@@ -66,9 +70,36 @@ router.post('/', csrfProtection, async (req, res) => {
   //clean the body
   //clean(req.body);
   console.log(req.body)
-  res.send({
-    ok: "ok"
-  })
+  ReportValidationSchema.validate(req.body, {abortEarly: false})
+    .then(async function (value) {
+      try {
+        var item = req.body
+        await saveReport(item)
+          .then(async r => {
+            console.log(r.result)
+            if (r.result.ok === 1) {
+              res.send({
+                ok: "ok",
+              })
+            }
+          })
+      } catch (error) {
+        console.log(error)
+        res.send ({
+          saveErr: "saveErr"
+        })
+      }
+    })
+    .catch(function (errors) {
+      var err = {}
+      errors.inner.forEach(e => {
+        err[e.path] = e.message
+      })
+      res.send({
+        err
+      })
+      return
+    })
 })
 
 
