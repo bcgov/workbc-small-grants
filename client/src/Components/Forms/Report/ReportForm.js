@@ -117,25 +117,6 @@ class ReportForm extends Component {
             return (
                 <div>
                     <p>Please follow the link provided to you via email, or provide the application ID below. Alternatively, check the box below and provide the organization name.</p>
-                    <div className="form-group">
-                        <div className="form-check">
-                            <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "noOrgId")}`} id="noOrgId"
-                                name="noOrgId" />
-                            <label className="form-check-label" htmlFor="noOrgId">I don't have an application ID.</label>
-                        </div>
-                    </div>
-                    {hasId ?
-                        (
-                            <div className="form-group">
-                                <label className="col-form-label control-label" htmlFor="organizationNameM">Organization Name <span
-                                    style={{ color: "red" }}>*</span></label>
-                                <small className="text-muted" id="clientAddress1"> Please provide the full organization name.</small>
-                                <Field className={`form-control ${feedBackClassName(errors, touched, "organizationNameM")}`} id="organizationNameM" name="organizationNameM" />
-                                {feedBackInvalid(errors, touched, "organizationNameM")}
-                            </div>
-                        )
-                        :
-                        (
                             <div className="form-group">
                                 <label className="col-form-label control-label" htmlFor="applicationIdM">Application ID <span
                                     style={{ color: "red" }}>*</span></label>
@@ -143,10 +124,6 @@ class ReportForm extends Component {
                                 <Field className={`form-control ${feedBackClassName(errors, touched, "applicationIdM")}`} id="applicationIdM" name="applicationIdM" />
                                 {feedBackInvalid(errors, touched, "applicationIdM")}
                             </div>
-                        )
-                    }
-
-
                 </div>
             )
         } else {
