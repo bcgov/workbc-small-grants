@@ -1,0 +1,151 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: workbc-small-grants-db
+labels:
+  template: workbc-small-grants-db
+objects:
+- apiVersion: v1
+  kind: Secret
+  type: opaque
+  metadata:
+    name: ${NAME}-mongodb
+  stringData:
+    password: ${DATABASE_PASSWORD}
+    user: ${DATABASE_USER}
+    adminPassword: ${DATABASE_ADMIN_PASSWORD}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: ${DATABASE_SERVICE_NAME}
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: ${VOLUME_CAPACITY}
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      description: Defines how to deploy the database
+    name: ${DATABASE_SERVICE_NAME}
+  spec:
+    replicas: 1
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          name: ${DATABASE_SERVICE_NAME}
+      spec:
+        containers:
+          - env:
+              - name: MONGODB_USER
+                value: ${DATABASE_USER}
+              - name: MONGODB_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: ${NAME}-mongodb
+              - name: MONGODB_DATABASE
+                value: ${DATABASE_NAME}
+              - name: MONGODB_ADMIN_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: adminPassword
+                    name: ${NAME}-mongodb
+            image: ' '
+            livenessProbe:
+              initialDelaySeconds: 30
+              tcpSocket:
+                port: 27017
+              timeoutSeconds: 1
+            name: mongodb
+            ports:
+              - containerPort: 27017
+            readinessProbe:
+              exec:
+                command:
+                  - /bin/sh
+                  - -i
+                  - -c
+                  - mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD
+                    --eval="quit()"
+              initialDelaySeconds: 3
+              timeoutSeconds: 1
+            resources:
+              limits:
+                memory: ${MEMORY_MONGODB_LIMIT}
+            volumeMounts:
+              - mountPath: /var/lib/mongodb/data
+                name: ${DATABASE_SERVICE_NAME}-data
+        volumes:
+          - name: ${DATABASE_SERVICE_NAME}-data
+            persistentVolumeClaim:
+              claimName: ${DATABASE_SERVICE_NAME}
+    triggers:
+      - imageChangeParams:
+          automatic: true
+          containerNames:
+            - mongodb
+          from:
+            kind: ImageStreamTag
+            name: mongodb-36-rhel7:1
+            namespace: ${IMAGE_NAMESPACE}
+        type: ImageChange
+      - type: ConfigChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Exposes the database server
+    name: ${DATABASE_SERVICE_NAME}
+  spec:
+    ports:
+      - name: ${DATABASE_SERVICE_NAME}
+        port: 27017
+        targetPort: 27017
+    selector:
+        name: ${DATABASE_SERVICE_NAME}
+
+parameters:
+- description: Database service name
+  name: DATABASE_SERVICE_NAME
+  value: workbc-small-grants-mongodb
+- description: Username for MongoDB user that will be used for accessing the database
+  from: user[A-Z0-9]{3}
+  generate: expression
+  name: DATABASE_USER
+- description: Password for the MongoDB user
+  from: '[a-zA-Z0-9]{16}'
+  generate: expression
+  name: DATABASE_PASSWORD
+- description: Database name
+  name: DATABASE_NAME
+  value: workbc-small-grants
+- description: Password for the database admin user
+  from: '[a-zA-Z0-9]{16}'
+  generate: expression
+  name: DATABASE_ADMIN_PASSWORD
+- description: Volume space available for data, e.g. 512Mi, 2Gi
+  displayName: Volume capacity
+  name: VOLUME_CAPACITY
+  required: true
+  value: 512Mi
+- description: Maximum amount of memory the MongoDB container can use.
+  displayName: Memory Limit (MongoDB)
+  name: MEMORY_MONGODB_LIMIT
+  required: true
+  value: 512Mi
+- description: A name used for all objects
+  displayName: Name
+  name: NAME
+  required: true
+  value: workbc-small-grants-api
+- description: The namespace of the OS project containing the imagestreams
+  displayName: Image Namespace
+  name: IMAGE_NAMESPACE
+  required: true
+  value: myproject-tools
