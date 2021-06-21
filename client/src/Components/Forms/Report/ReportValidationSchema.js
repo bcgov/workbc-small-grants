@@ -13,16 +13,19 @@ export const ReportValidationSchema = yup.object().shape({
                 .max(10, "Must be 10 characters"),
             otherwise: yup.string().min(0)
         }),
-    recruitmentParticipantsSource: yup.string()
-        .oneOf([
-            "Own Client Rosters",
-            "Postings in the community",
-            "Social media",
-            "Networking with other organizations",
-            "Recruitment assistance from WorkBC",
-            "other"
-        ], "Please select a valid option.")
-        .required("recruitmentParticipantsSource is required"),
+    recruitmentParticipantsSource: yup.array()
+        .of(yup.string()
+            .min(1)
+            .oneOf([
+                "Own Client Rosters",
+                "Postings in the community",
+                "Social media",
+                "Networking with other organizations",
+                "Recruitment assistance from WorkBC",
+                "other"
+            ], "Please select a valid option.")
+        )
+        .required("Recruitment Participants Source is required"),
     recruitmentOtherSourceExplain: yup.string()
         .when("recruitmentParticipantsSource", {
             is: (value) => value === "other",

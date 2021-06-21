@@ -1,9 +1,8 @@
-import * as yup from 'yup'
-import "yup-phone"
-import 'core-js/stable';
+var yup = require('yup')
+require('yup-phone')
 
 
-export const ReportValidationSchema = yup.object().shape({
+var ReportValidationSchema = yup.object().shape({
     applicationId: yup.string(),
     applicationIdM: yup.string()
         .when(['applicationId',], {
@@ -13,16 +12,19 @@ export const ReportValidationSchema = yup.object().shape({
                 .max(10, "Must be 10 characters"),
             otherwise: yup.string().min(0)
         }),
-    recruitmentParticipantsSource: yup.string()
-        .oneOf([
-            "Own Client Rosters",
-            "Postings in the community",
-            "Social media",
-            "Networking with other organizations",
-            "Recruitment assistance from WorkBC",
-            "other"
-        ], "Please select a valid option.")
-        .required("recruitmentParticipantsSource is required"),
+    recruitmentParticipantsSource: yup.array()
+        .of(yup.string()
+            .min(1)
+            .oneOf([
+                "Own Client Rosters",
+                "Postings in the community",
+                "Social media",
+                "Networking with other organizations",
+                "Recruitment assistance from WorkBC",
+                "other"
+            ], "Please select a valid option.")
+        )
+        .required("Recruitment Participants Source is required"),
     recruitmentOtherSourceExplain: yup.string()
         .when("recruitmentParticipantsSource", {
             is: (value) => value === "other",
@@ -271,3 +273,5 @@ export const ReportValidationSchema = yup.object().shape({
             then: yup.string().max(500, "Text too long.").required("Please provide a contact phone.")
         }),
 })
+
+module.exports = ReportValidationSchema
