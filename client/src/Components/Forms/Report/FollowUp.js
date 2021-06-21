@@ -59,7 +59,8 @@ class FollowUpForm extends Component {
                             value="yes"
                             onChange={e => {
                                 this.props.handleChange(e)
-                                this.props.setFieldValue("followUpContactInformation", "")
+                                this.props.setFieldValue("followUpContactName", "")
+                                this.props.setFieldValue("followUpContactPhone", "")
                             }}
                         />
                         <label className="form-check-label" htmlFor="yes">Yes</label>
@@ -72,7 +73,8 @@ class FollowUpForm extends Component {
                             value="no"
                             onChange={e => {
                                 this.props.handleChange(e)
-                                this.props.setFieldValue("followUpContactInformation", "")
+                                this.props.setFieldValue("followUpContactName", "")
+                                this.props.setFieldValue("followUpContactPhone", "")
                             }}
                         />
                         <label className="form-check-label" htmlFor="no">No</label>
