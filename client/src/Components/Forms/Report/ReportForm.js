@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import '../../../utils/polyfills'
+import {customAlphabet} from 'nanoid'
 import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages'
 import { generateAlert } from '../Shared/Alert'
 import { FORM_URL } from '../../../constants/form'
@@ -25,10 +26,12 @@ import { ReportValidationSchema } from './ReportValidationSchema'
 class ReportForm extends Component {
     constructor() {
         super()
+        const nanoid = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',5)
         this.state = {
             currentStep: 1,
             _csrf: '',
             _intake: '',
+            _id: nanoid(),
             hasError: false,
         }
         this._next = this._next.bind(this)
@@ -164,9 +167,10 @@ class ReportForm extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 _intake: this.state._intake,
+                                _referenceID: this.state._id,
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
-                                recruitmentParticipantsSource: '',
+                                recruitmentParticipantsSource: [],
                                 recruitmentOtherSourceExplain: '',
                                 participantsHoursPerWeek: '',
                                 participantsAllCompletedPlacement: '',
@@ -181,7 +185,7 @@ class ReportForm extends Component {
                                 fundingAdditionalUse: '',
                                 placementDetailsChange: '',
                                 placementDetailsChangeExplanation: '',
-                                placementSupportsProvided: '',
+                                placementSupportsProvided: [],
                                 placementSupportsProvidedOther: '',
                                 numberOfParticipantsStayedInPosition: '',
                                 numberOfParticipantsHiredDifferentRole: '',
@@ -234,7 +238,7 @@ class ReportForm extends Component {
                                             if (resp.err) {
                                                 setErrors(resp.err)
                                                 setSubmitting(false)
-                                            } else if (resp.emailErr) {
+                                            } else if (resp.saveErr) {
                                                 setSubmitting(false)
                                                 this.setState({
                                                     hasError: true
