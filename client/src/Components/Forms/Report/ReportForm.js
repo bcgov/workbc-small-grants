@@ -20,6 +20,7 @@ import Consent from './Consent'
 //import KeyParticipantOutcomesForm from './KeyParticipantOutcomes'
 //import KeyOrganizationalOutcomesForm from './KeyOrganizationalOutcomes'
 //import KeyGeneralForm from './KeyGeneral'
+import { ReportValidationSchema } from './ReportValidationSchema'
 
 class ReportForm extends Component {
     constructor() {
@@ -215,6 +216,7 @@ class ReportForm extends Component {
                                 */
                             }}
                             enableReinitialize={true}
+                            validationSchema={ReportValidationSchema}
                             onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
                                 fetch(FORM_URL.reportForm, {
                                     method: "POST",
