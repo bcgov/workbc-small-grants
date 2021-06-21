@@ -97,7 +97,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
+                
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -107,7 +107,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
+                
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -117,7 +117,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
+                
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -127,7 +127,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
+                
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -137,7 +137,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
+                
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -146,7 +146,7 @@ class ParticipantsOutcomesForm extends Component {
                                 name="numberOfParticipantsStayedInPosition"
                                 value="10"
                             />
-                            <label className="form-check-label">10</label>
+                            <label className="form-check-label">10</label> 
                             {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
                         </div>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsStayedInPosition")}
@@ -209,7 +209,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -219,7 +219,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -229,7 +229,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -239,7 +239,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -249,7 +249,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -321,7 +321,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsFoundEmploymentElsewhere")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -331,7 +331,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsFoundEmploymentElsewhere")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -341,7 +341,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsFoundEmploymentElsewhere")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -351,7 +351,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsFoundEmploymentElsewhere")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -361,7 +361,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsFoundEmploymentElsewhere")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -433,7 +433,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsConnectedToWorkBC")}
+                    
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -443,7 +443,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsConnectedToWorkBC")}
+                    
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -453,7 +453,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsConnectedToWorkBC")}
+                    
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -463,7 +463,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsConnectedToWorkBC")}
+                    
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -473,7 +473,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsConnectedToWorkBC")}
+                    
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -545,7 +545,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -555,7 +555,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -565,7 +565,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -575,7 +575,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -585,7 +585,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -657,7 +657,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -667,7 +667,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -677,7 +677,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -687,7 +687,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -697,7 +697,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -769,7 +769,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="5"
                             />
                             <label className="form-check-label">5</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsOther")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -779,7 +779,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="6"
                             />
                             <label className="form-check-label">6</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsOther")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -789,7 +789,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="7"
                             />
                             <label className="form-check-label">7</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsOther")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -799,7 +799,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="8"
                             />
                             <label className="form-check-label">8</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsOther")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
@@ -809,7 +809,7 @@ class ParticipantsOutcomesForm extends Component {
                                 value="9"
                             />
                             <label className="form-check-label">9</label>
-                            {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsOther")}
+                            
                         </div>
                         <div className="form-check form-check-inline">
                             <Field
