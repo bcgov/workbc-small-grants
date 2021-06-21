@@ -71,6 +71,17 @@ objects:
             value: ${OPENSHIFT_NODEJS_CLIENT_NOTIFYEMAIL}
           - name: OPENSHIFT_NODEJS_CLIENTURL
             value: ${OPENSHIFT_NODEJS_CLIENTURL}
+          - name: MONGO_USERNAME
+            value: ${DATABASE_USER}
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: ${NAME}-mongodb
+          - name: MONGO_CONNECTION_URI
+            value: ${DATABASE_SERVICE_NAME}
+          - name: MONGO_DB_NAME
+            value: ${DATABASE_NAME}            
     test: false
     triggers:
     - type: ConfigChange
@@ -177,3 +188,31 @@ parameters:
   name: IMAGE_NAMESPACE
   required: true
   value: myproject-tools
+- description: Database service name
+  name: DATABASE_SERVICE_NAME
+  value: workbc-small-grants-mongodb
+- description: Username for MongoDB user that will be used for accessing the database
+  from: user[A-Z0-9]{3}
+  generate: expression
+  name: DATABASE_USER
+- description: Password for the MongoDB user
+  from: '[a-zA-Z0-9]{16}'
+  generate: expression
+  name: DATABASE_PASSWORD
+- description: Database name
+  name: DATABASE_NAME
+  value: workbc-small-grants
+- description: Password for the database admin user
+  from: '[a-zA-Z0-9]{16}'
+  generate: expression
+  name: DATABASE_ADMIN_PASSWORD
+- description: Volume space available for data, e.g. 512Mi, 2Gi
+  displayName: Volume capacity
+  name: VOLUME_CAPACITY
+  required: true
+  value: 1Gi
+- description: Maximum amount of memory the MongoDB container can use.
+  displayName: Memory Limit (MongoDB)
+  name: MEMORY_MONGODB_LIMIT
+  required: true
+  value: 1Gi
