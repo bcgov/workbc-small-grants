@@ -1,6 +1,7 @@
 import * as yup from 'yup'
 import "yup-phone"
 import 'core-js/stable';
+import { yupToFormErrors } from 'formik';
 
 
 export const ReportValidationSchema = yup.object().shape({
@@ -63,11 +64,15 @@ export const ReportValidationSchema = yup.object().shape({
                 .required("How many participants were not able to complete their placements?")
         }),
     participantsAbleToFindNew: yup.string()
-        .oneOf([
-            "yes",
-            "no"
-        ], "Please select a valid option.")
-        .required("Were you able to find new participants to complete the remainder of the placement?"),
+        .when("participantsAllCompletedPlacement", {
+            is: (value) => value === "no",
+            then: yup.string()
+                .oneOf([
+                    "yes",
+                    "no"
+                ], "Please select a valid option.")
+                .required("Were you able to find new participants to complete the remainder of the placement?")
+        }),
     participantsAbleToFindNewNoExplain: yup.string()
         .when("participantsAbleToFindNew", {
             is: (value) => value === "no",
@@ -97,15 +102,25 @@ export const ReportValidationSchema = yup.object().shape({
             "no"
         ], "Please select a valid option.")
         .required("Was additional funding beyond the grant used to support participants?"),
-    fundingAdditionalAmount: yup.number().test(
-        'is-decimal',
-        'invalid decimal',
-        value => (value + "").match(/^\d*.{1}\d*$/))
-        .typeError("Additional funding must be a decimal number")
-        .required('How much additional funding was used?'),
+    fundingAdditionalAmount: yup.number()
+        .when("fundingAdditional", {
+            is: (value) => value === "yes",
+            then:
+                yup.number().test(
+                    'is-decimal',
+                    'invalid decimal',
+                    value => (value + "").match(/^\d*.{1}\d*$/))
+                    .typeError("Additional funding must be a decimal number")
+                    .required('How much additional funding was used?')
+        }),
     fundingAdditionalUse: yup.string()
-        .max(255, "Additional funding use too long")
-        .required('How was the additional funding used?'),
+        .when("fundingAdditional", {
+            is: (value) => value === "yes",
+            then:
+                yup.string()
+                    .max(255, "Additional funding use too long")
+                    .required('How was the additional funding used?')
+        }),
     placementDetailsChange: yup.string()
         .oneOf([
             "yes",
@@ -246,7 +261,7 @@ export const ReportValidationSchema = yup.object().shape({
         .required("Other participant outcomes"),
     numberOfParticipantsOtherDescribe: yup.string()
         .when("numberOfParticipantsOther", {
-            is: (value) => (value !== "0" || value !== ""),
+            is: (value) => (value !== "0" && value !== ""),
             then: yup.string().max(500, "Text too long.").required("Please explain other participant outcomes.")
         }),
     narrativeParticipantSuccessStories: yup.string()

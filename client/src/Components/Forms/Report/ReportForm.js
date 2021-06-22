@@ -22,6 +22,7 @@ import Consent from './Consent'
 //import KeyOrganizationalOutcomesForm from './KeyOrganizationalOutcomes'
 //import KeyGeneralForm from './KeyGeneral'
 import { ReportValidationSchema } from './ReportValidationSchema'
+import { number } from 'yup'
 
 class ReportForm extends Component {
     constructor() {
@@ -134,6 +135,24 @@ class ReportForm extends Component {
         }
     }
 
+    get showErrors() {
+        if (this.props.submitCount > 0) {
+            return (
+                <div>
+                    <p>Please correct the following errors:</p>
+                    <p><b>To modify the form, use the Previous button at the bottom of the form. Using the Browser Back button will not retain the form information.</b></p>
+                    <ul>
+                        {Object.values(this.props.errors).map((error, i) => (
+                            <li key={i}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -158,7 +177,7 @@ class ReportForm extends Component {
                                 fundingSupportsAmount: '',
                                 fundingAdministrationOperationalExpense: '',
                                 fundingAdditional: '',
-                                fundingAdditionalAmount: '',
+                                fundingAdditionalAmount: '0',
                                 fundingAdditionalUse: '',
                                 placementDetailsChange: '',
                                 placementDetailsChangeExplanation: '',
@@ -237,7 +256,7 @@ class ReportForm extends Component {
                                     <div className="form-group">
                                         <h1 id="forms">Work Experience Opportunities Grant Summary Report</h1>
                                     </div>
-                                    {console.log(props.values)}
+                                    {console.log(props)}
                                     {
                                         this.state.currentStep === 1 &&
                                         <div>
@@ -269,6 +288,9 @@ class ReportForm extends Component {
                                         this.state.currentStep === 5 &&
                                         <div>
                                             <FollowUpForm {...props} />
+                                            <div className="form-group">
+                                                {this.showErrors}
+                                            </div>
                                             <Consent />
                                             <button
                                                 className="btn btn-success btn-block"

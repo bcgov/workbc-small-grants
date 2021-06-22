@@ -66,7 +66,7 @@ class FundingForm extends Component {
                             value="yes"
                             onChange={e => {
                                 this.props.handleChange(e)
-                                this.props.setFieldValue("fundingAdditionalAmount", "")
+                                this.props.setFieldValue("fundingAdditionalAmount", "0")
                                 this.props.setFieldValue("fundingAdditionalUse", "")
                             }}
                         />
@@ -80,7 +80,7 @@ class FundingForm extends Component {
                             value="no"
                             onChange={e => {
                                 this.props.handleChange(e)
-                                this.props.setFieldValue("fundingAdditionalAmount", "")
+                                this.props.setFieldValue("fundingAdditionalAmount", "0")
                                 this.props.setFieldValue("fundingAdditionalUse", "")
                             }}
                         />
