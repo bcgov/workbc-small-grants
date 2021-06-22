@@ -135,14 +135,14 @@ class ReportForm extends Component {
         }
     }
 
-    get showErrors() {
-        if (this.props.submitCount > 0) {
+    showErrors(errors, submitCount) {
+        if (submitCount > 0) {
             return (
                 <div>
                     <p>Please correct the following errors:</p>
                     <p><b>To modify the form, use the Previous button at the bottom of the form. Using the Browser Back button will not retain the form information.</b></p>
                     <ul>
-                        {Object.values(this.props.errors).map((error, i) => (
+                        {Object.values(errors).map((error, i) => (
                             <li key={i}>{error}</li>
                         ))}
                     </ul>
@@ -256,7 +256,6 @@ class ReportForm extends Component {
                                     <div className="form-group">
                                         <h1 id="forms">Work Experience Opportunities Grant Summary Report</h1>
                                     </div>
-                                    {console.log(props)}
                                     {
                                         this.state.currentStep === 1 &&
                                         <div>
@@ -289,7 +288,7 @@ class ReportForm extends Component {
                                         <div>
                                             <FollowUpForm {...props} />
                                             <div className="form-group">
-                                                {this.showErrors}
+                                                {this.showErrors(props.errors, props.submitCount)}
                                             </div>
                                             <Consent />
                                             <button
