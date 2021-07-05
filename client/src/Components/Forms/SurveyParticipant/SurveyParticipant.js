@@ -22,6 +22,7 @@ class SurveyParticipant extends Component {
             _csrf: '',
             _id: nanoid(),
             _uid: '',
+            _intake: '',
             hasError: false,
             invalidLink: false,
         }
@@ -53,6 +54,11 @@ class SurveyParticipant extends Component {
             this.setState({invalidLink: true})
         }
         this.setState({"_uid": uid})
+        if (this.props.match.path === "/surveyParticipant/2"){
+            this.setState({_intake: '2'})
+        } else if (this.props.match.path === "/surveyParticipant/3"){
+            this.setState({_intake: '3'})
+        }
     }
 
     _next() {
@@ -119,6 +125,7 @@ class SurveyParticipant extends Component {
                                 _csrf: this.state._csrf,
                                 _id: this.state._id,
                                 _uid: this.state._uid,
+                                _intake: this.state._intake,
                                 hasStartedWorkExperience: '',
                                 workExperienceStartDate: '',
                                 //step 1

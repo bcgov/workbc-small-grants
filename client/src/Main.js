@@ -6,12 +6,12 @@ import ThankyouOrg from './Components/Forms/MainForm/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
 //import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
-//import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
-//import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
-//import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
-//import ThankyouSurveyParticipant from './Components/Forms/SurveyParticipant/ThankYouSurveyParticipant'
-//import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyStartParticipant'
-//import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
+import SurveyOrg from './Components/Forms/SurveyOrg/SurveyOrg'
+import ThankyouSurveyOrg from './Components/Forms/SurveyOrg/ThankYouSurveyOrg'
+import SurveyParticipant from './Components/Forms/SurveyParticipant/SurveyParticipant'
+import ThankyouSurveyParticipant from './Components/Forms/SurveyParticipant/ThankYouSurveyParticipant'
+import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyStartParticipant'
+import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
 import ReportForm from './Components/Forms/Report/ReportForm'
 import ThankYouReport from './Components/Forms/Report/ThankYouReport'
 
@@ -31,12 +31,14 @@ function Main() {
                     <Route path="/thankyouReport" component={ThankYouReport} />
                     {/*
                     <Route path="/surveyOrg/1" component={SurveyOrg} />
-                    <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant/1" component={SurveyParticipant} />
+                    */}
+                    <Route path="/surveyOrg/2" component={SurveyOrg} />
+                    <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
+                    <Route path="/surveyParticipant/2" component={SurveyParticipant} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
                     <Route path="/surveyLandingOrg/:intake?" component={SurveyStartOrg} />
                     <Route path="/surveyLandingParticipant/:intake?" component={SurveyStartParticipant} />
-                    */}
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>

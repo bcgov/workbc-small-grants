@@ -210,22 +210,7 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
     },
 
     generateSurveyOrgListNotification: function(values){
-        var html = `
-applicationID ${values._id}
-easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)}
-speedApplicationProcessed ${strings.orEmpty(values.speedApplicationProcessed)}
-experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)}
-participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)}
-hiredPeopleWithBarriersBefore ${strings.orEmpty(values.hiredPeopleWithBarriersBefore)}
-hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)}
-experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)}
-receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
-likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
-likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
-bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)}
-experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
-surveyUID ${strings.orEmpty(values._uid)}
-        `
+        var html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)} speedApplicationProcessed ${strings.orEmpty(values.speedApplicationProcessed)} experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)} participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)} hiredPeopleWithBarriersBefore ${strings.orEmpty(values.hiredPeopleWithBarriersBefore)} hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)} experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)} likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} surveyUID ${strings.orEmpty(values._uid)} intake ${strings.orEmpty(values._intake)}`
         return html
     },
 
@@ -244,23 +229,7 @@ surveyUID ${strings.orEmpty(values._uid)}
     },
 
     generateSurveyParticipantListNotification: function(values){
-        var html = `
-applicationID ${values._id}
-easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)}
-experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)}
-overallExperienceWithOrganization ${strings.orEmpty(values.overallExperienceWithOrganization)}
-levelOfSupportsReceived ${strings.orEmpty(values.levelOfSupportsReceived)}
-increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGettingAndKeepingJob)}
-organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)}
-receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)}
-likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)}
-bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)}
-experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)}
-likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)}
-hasStartedWorkExperience ${strings.orEmpty(values.hasStartedWorkExperience)}
-workExperienceStartDate ${strings.orEmpty(values.workExperienceStartDate)}
-surveyUID ${strings.orEmpty(values._uid)}
-        `
+        var html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)} experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)} overallExperienceWithOrganization ${strings.orEmpty(values.overallExperienceWithOrganization)} levelOfSupportsReceived ${strings.orEmpty(values.levelOfSupportsReceived)} increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGettingAndKeepingJob)} organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)} hasStartedWorkExperience ${strings.orEmpty(values.hasStartedWorkExperience)} workExperienceStartDate ${strings.orEmpty(values.workExperienceStartDate)} surveyUID ${strings.orEmpty(values._uid)} intake ${strings.orEmpty(values._intake)}`
         return html
     }
 

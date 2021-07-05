@@ -20,6 +20,7 @@ class SurveyOrg extends Component {
             currentStep: 1,
             _csrf: '',
             _id: nanoid(),
+            _intake: '',
             hasError: false,
             invalidLink: false,
         }
@@ -51,6 +52,12 @@ class SurveyOrg extends Component {
             this.setState({invalidLink: true})
         }
         this.setState({"_uid": uid})
+        if (this.props.match.path === "/surveyOrg/2"){
+            this.setState({_intake: '2'})
+        } else if (this.props.match.path === "/surveyOrg/3"){
+            this.setState({_intake: '3'})
+        }
+
     }
 
     _next() {
@@ -117,6 +124,7 @@ class SurveyOrg extends Component {
                                 _csrf: this.state._csrf,
                                 _id: this.state._id,
                                 _uid: this.state._uid,
+                                _intake: this.state._intake,
                                 //step 1
                                 easeOfApplicationCompletion: '',
                                 speedApplicationProcessed: '',
