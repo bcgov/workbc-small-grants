@@ -39,6 +39,8 @@ function Main() {
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
                     <Route path="/surveyLandingOrg/:intake?" component={SurveyStartOrg} />
                     <Route path="/surveyLandingParticipant/:intake?" component={SurveyStartParticipant} />
+                    <Route path="/surveyOrg/3" component={SurveyOrg} />
+                    <Route path="/surveyParticipant/3" component={SurveyParticipant} />
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>
