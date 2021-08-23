@@ -32,10 +32,10 @@ function Main() {
                     {/*
                     <Route path="/surveyOrg/1" component={SurveyOrg} />
                     <Route path="/surveyParticipant/1" component={SurveyParticipant} />
-                    */}
-                    <Route path="/surveyOrg/2" component={SurveyOrg} />
-                    <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/surveyParticipant/2" component={SurveyParticipant} />
+                    <Route path="/surveyOrg/2" component={SurveyOrg} />
+                    */}
+                    <Route path="/thankyouSurveyOrg" component={ThankyouSurveyOrg} />
                     <Route path="/thankyouSurveyParticipant" component={ThankyouSurveyParticipant} />
                     <Route path="/surveyLandingOrg/:intake?" component={SurveyStartOrg} />
                     <Route path="/surveyLandingParticipant/:intake?" component={SurveyStartParticipant} />
