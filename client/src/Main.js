@@ -14,6 +14,7 @@ import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyS
 import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
 import ReportForm from './Components/Forms/Report/ReportForm'
 import ThankYouReport from './Components/Forms/Report/ThankYouReport'
+import MainForm2 from './Components/Forms/MainFormIntake2/MainForm2'
 
 function Main() {
     return (
@@ -21,6 +22,7 @@ function Main() {
             <Router>
                 <Switch>
                     <Route path="/form" component={MainForm} />
+                    <Route path="/formIntake2" component={MainForm2} />
                     {/*<Route path="/intakeForm/0t2lzfoxkijzq8gfnftg7ap0eh6gmkswn4m0" component={MainForm} />*/}
                     <Route strict  path="/clientForm/:id?" component={ClientForm} />
                     <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
