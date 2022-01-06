@@ -1,8 +1,8 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
-import MainForm from './Components/Forms/MainForm/MainForm'
-import ThankyouOrg from './Components/Forms/MainFormIntake2/ThankyouOrg'
+//import MainForm from './Components/Forms/MainFormDeprecated/MainForm'
+import ThankyouOrg from './Components/Forms/MainFormIntake4/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
 //import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
@@ -14,7 +14,7 @@ import SurveyStartParticipant from './Components/Forms/SurveyParticipant/SurveyS
 import SurveyStartOrg from './Components/Forms/SurveyOrg/SurveyStartOrg'
 import ReportForm from './Components/Forms/Report/ReportForm'
 import ThankYouReport from './Components/Forms/Report/ThankYouReport'
-import MainForm2 from './Components/Forms/MainFormIntake2/MainForm2'
+import MainForm2 from './Components/Forms/MainFormIntake4/MainForm2'
 
 function Main() {
     return (
