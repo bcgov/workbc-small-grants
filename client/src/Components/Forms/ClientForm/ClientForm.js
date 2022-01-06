@@ -36,12 +36,14 @@ class ClientForm extends Component {
                     })
                 }
             )
-        if (this.props.match.path === "/participantForm/2/:id?"){
-            this.setState({"_intake":"2"})
-        } else if (this.props.match.path === "/participantForm/3/:id?"){
-            this.setState({"_intake":"3"})
-        } else if (this.props.match.path === "/clientForm/:id?"){
-            this.setState({"_intake":"1"})
+        if (this.props.match.path === "/participantForm/4/:id?") {
+                this.setState({ "_intake": "4" })
+        } else if (this.props.match.path === "/participantForm/2/:id?") {
+            this.setState({ "_intake": "2" })
+        } else if (this.props.match.path === "/participantForm/3/:id?") {
+            this.setState({ "_intake": "3" })
+        } else if (this.props.match.path === "/clientForm/:id?") {
+            this.setState({ "_intake": "1" })
         }
     }
 
@@ -112,6 +114,7 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
+                                identifyAsIndigenous: '',
                                 livingOnReserveCommunity: '',
                                 receivingAssistanceFrom: '',
                                 pwdDesignationOrganization: '',
@@ -136,7 +139,7 @@ class ClientForm extends Component {
                                             if (resp.err) {
                                                 setErrors(resp.err)
                                                 setSubmitting(false)
-                                            } else if(resp.emailErr){
+                                            } else if (resp.emailErr) {
                                                 setSubmitting(false)
                                                 this.setState({
                                                     hasError: true
@@ -158,6 +161,7 @@ class ClientForm extends Component {
                                         <h2 id="forms">Participant Information</h2>
                                     </div>
                                     <ClientConsent />
+                                    {console.log(values)}
                                     {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
@@ -204,7 +208,33 @@ class ClientForm extends Component {
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
                                     <hr></hr>
-                                    <IndigenousForm errors={errors} touched={touched} intake={values._intake}/>
+                                    {values._intake >= 2 && 
+                                        <div className="form-group">
+                                            <label className="col-form-label control-label" htmlFor="identifyAsIndigenous">Do you identify as Indigenous?<span style={{ color: "red" }}>*</span></label>
+                                            <div className="form-check">
+                                                <Field
+                                                    className={`form-check-input ${feedBackClassName(errors, touched, "identifyAsIndigenous")}`}
+                                                    type="radio"
+                                                    name="identifyAsIndigenous"
+                                                    value="yes"
+                                                />
+                                                <label className="form-check-label" htmlFor="identifyAsIndigenousYes">Yes</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <Field
+                                                    className={`form-check-input ${feedBackClassName(errors, touched, "identifyAsIndigenous")}`}
+                                                    type="radio"
+                                                    name="identifyAsIndigenous"
+                                                    value="no"
+                                                />
+                                                <label className="form-check-label" htmlFor="identifyAsIndigenousNo">No</label>
+                                                {feedBackInvalid(errors, touched, "identifyAsIndigenous")}
+                                            </div>
+                                        </div>
+                                    }
+                                    {
+                                       values.identifyAsIndigenous === "yes" && <IndigenousForm errors={errors} touched={touched} intake={values._intake} />
+                                    }
                                     <hr></hr>
                                     <div className="form-group">
                                         <h2>For All Participants</h2>
@@ -219,7 +249,7 @@ class ClientForm extends Component {
                                             <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "clientConsent")}`} id="clientConsent"
                                                 name="clientConsent" />
                                             <label className="form-check-label control-label" htmlFor="clientConsent"><span style={{ color: "red" }}>*</span>
-                                             I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that the effect of doing so is the same as if I were to manually sign a physical copy of this form.
+                                                I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that the effect of doing so is the same as if I were to manually sign a physical copy of this form.
                                             </label>
                                             {feedBackInvalid(errors, touched, "clientConsent")}
                                         </div>
@@ -234,7 +264,7 @@ class ClientForm extends Component {
                                             isSubmitting ?
                                                 <div>
                                                     <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                                                       Submitting...
+                                                    Submitting...
                                                 </div>
                                                 :
                                                 "Submit"
@@ -242,7 +272,7 @@ class ClientForm extends Component {
                                         }
                                     </button>
                                 </Form>
-                                
+
                             )}
 
 

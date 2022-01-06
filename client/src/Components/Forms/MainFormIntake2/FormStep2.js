@@ -163,7 +163,7 @@ class FormStep2 extends Component {
                         I commit to:
                         <ul>
                                 <li>Supervise and support the participant for the duration of the project; and</li>
-                                <li>Adhere to all health and safety guidance from the BC Provincial Health Officer (PHO) to reduce the transmission of COVID-19; and</li>
+                                <li>Adhere to all federal, provincial, and regional public health orders to reduce the transmission of communicable diseases, including a COVID-19 Safety Plan that outlines the protocols and policies in place to reduce the risk of COVID-19 transmission in the workplace; and</li>
                                 <li>Ensure all WorkSafeBC requirements are met.</li>
                             </ul>
                         </label>
@@ -178,11 +178,10 @@ class FormStep2 extends Component {
                             htmlFor="applicantType"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must have:
+                        I understand that all work experience participants must be eligible to work in British Columbia and that participants must be:
                         <ul>
-                                <li>Designation as a Person with Disabilities (PWD) from the Ministry of Social Development and Poverty Reduction; OR</li>
-                                <li>Status as a Person with Persistent Multiple Barriers to employment (PPMB) from the Ministry of Social Development and Poverty Reduction; OR</li>
-                                <li>For Indigenous individuals living on reserve, the equivalent federal PWD designation or PPMB status.</li>
+                                <li>Qualified to receive income or disability assistance in BC; OR</li>
+                                <li>Indigenous individuals on reserve qualified to receive federal assistance</li>
                             </ul>
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "applicantType")}
@@ -209,22 +208,9 @@ class FormStep2 extends Component {
                             htmlFor="administerGrantUnderstanding"
                         >
                             <span style={{ color: "red" }}>*</span>
-                            I understand that, as the non-profit organization, our organization will hold and administer the grant, provide wraparound supports and services, and ensure that the work experience placement complies with all requirements.
+                            I understand that, as the grant holder, our organization will hold and administer the grant, provide wraparound supports and services, and ensure that the work experience placement complies with all requirements.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "administerGrantUnderstanding")}
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="form-check">
-                        <Field type="checkbox" className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "placementLength")}`} id="placementLength" name="placementLength" />
-                        <label
-                            className="form-check-label"
-                            htmlFor="placementLength"
-                        >
-                            <span style={{ color: "red" }}>*</span>
-                            I confirm that the placement is <b>12 weeks</b>.
-                        </label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "placementLength")}
                     </div>
                 </div>
                 <div className="form-group">

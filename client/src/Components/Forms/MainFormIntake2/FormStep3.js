@@ -90,21 +90,6 @@ class FormStep3 extends Component {
                     <h2 id="forms">Financial Information</h2>
                 </div>
                 <div className="form-group">
-                    <div className="form-check">
-                        <Field 
-                            type="checkbox" 
-                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "participantStipend")}`} 
-                            id="participantStipend" 
-                            name="participantStipend"
-                        />
-                        <label className="form-check-label" htmlFor="participantStipend">
-                            <span style={{ color: "red" }}>*  </span>
-                            I confirm that the stipend amount provided to work experience participant will be at least $300/week for 12 weeks.
-                        </label>
-                        {feedBackInvalid(this.props.errors, this.props.touched, "participantStipend")}
-                    </div>
-                </div>
-                <div className="form-group">
                     <label className="col-form-label control-label" htmlFor="existingSupplierNumber">Does your organization have an existing supplier number?  <span
                         style={{ color: "red" }}>*  </span></label>
                     <div className="form-check">

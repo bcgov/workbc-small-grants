@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import MainForm from './Components/Forms/MainForm/MainForm'
-import ThankyouOrg from './Components/Forms/MainForm/ThankyouOrg'
+import ThankyouOrg from './Components/Forms/MainFormIntake2/ThankyouOrg'
 import ThankyouClient from './Components/Forms/ClientForm/ThankyouClient'
 import ClientForm from './Components/Forms/ClientForm/ClientForm'
 //import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
@@ -21,12 +21,13 @@ function Main() {
         <main role="main">
             <Router>
                 <Switch>
-                    <Route path="/form" component={MainForm} />
-                    <Route path="/formIntake2" component={MainForm2} />
+                    <Route path="/form" component={MainForm2} />
+                    {/*<Route path="/formIntake2" component={MainForm2} />*/}
                     {/*<Route path="/intakeForm/0t2lzfoxkijzq8gfnftg7ap0eh6gmkswn4m0" component={MainForm} />*/}
                     <Route strict  path="/clientForm/:id?" component={ClientForm} />
                     <Route strict  path="/participantForm/2/:id?" component={ClientForm} />
                     <Route strict  path="/participantForm/3/:id?" component={ClientForm} />
+                    <Route strict  path="/participantForm/4/:id?" component={ClientForm} />
                     <Route strict  path="/report/:id?" component={ReportForm} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />

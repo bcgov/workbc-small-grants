@@ -42,5 +42,8 @@ export const ClientFormValidationSchema = yup.object().shape({
     pwdDesignationOrganization: yup.string()
         .max(250,"Organization Name too long."),
     ppmbDesignationOrganization: yup.string()
-        .max(250,"Organization Name too long.")
+        .max(250,"Organization Name too long."),
+    identifyAsIndigenous: yup.string()
+        .required("Please select if you identify as Indigenous")
+        .oneOf(["yes", "no"], "Invalid value")
 })
