@@ -135,20 +135,32 @@ router.post('/', csrfProtection, async (req, res) => {
   ClientFormValidationSchema.validate(req.body, { abortEarly: false })
     .then(async function (value) {
       try {
-        await sendEmails(value)
-          .then(function (sent) {
-            if (sent){
-              res.send({
-                ok: "ok"
+        var item = req.body
+        await saveClientForm(item)
+          .then(async r => {
+            console.log(r.result)
+            if (r.result.ok === 1) {
+              await sendEmails(value)
+              .then(function (sent) {
+                if (sent){
+                  res.send({
+                    ok: "ok"
+                  })
+                } else if (!sent) {
+                  res.send({
+                    emailErr: "emailErr"
+                  })
+                }
+              }).catch(function (e) {
+                console.log(e)
               })
-            } else if (!sent) {
+            } else {
               res.send({
                 emailErr: "emailErr"
-              })
+              })              
             }
-          }).catch(function (e) {
-            console.log(e)
           })
+
       } catch (error) {
         console.log(error)
       }
