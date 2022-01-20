@@ -35,6 +35,7 @@ export const ClientFormValidationSchema = yup.object().shape({
         .max(255,"Address too long"),
     clientConsent: yup.boolean()
         .oneOf([true],"You must agree before submitting."),
+    /*
     livingOnReserveCommunity: yup.string()
         .oneOf(["treaty","nonTreaty"],"Please select an accepted value."),
     receivingAssistanceFrom: yup.string()
@@ -43,7 +44,8 @@ export const ClientFormValidationSchema = yup.object().shape({
         .max(250,"Organization Name too long."),
     ppmbDesignationOrganization: yup.string()
         .max(250,"Organization Name too long."),
-    identifyAsIndigenous: yup.string()
-        .required("Please select if you identify as Indigenous")
+    */
+    receivingAssistanceFromFirstNationOrTribalCouncil: yup.string()
+        .required("Please select if you are currently receiving income assistance or disability assistance from a First Nation or Tribal Council.")
         .oneOf(["yes", "no"], "Invalid value")
 })

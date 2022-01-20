@@ -15,7 +15,7 @@ class ThankyouOrg extends Component {
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
                         <h3>Here are your required next steps:</h3>
-                        <p>Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence so please submit your participant applications as soon as possible to get this process started. September 15, 2022 is the deadline for submitting your participant application forms.</p>
+                        <p>Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence. Participant applications should be submitted as soon as possible to get this process started. September 12, 2022 is the deadline for submitting your participant application forms.</p>
                         <p>Participant forms can be submitted in two ways; participants can submit an online form, or complete and email PDF version of the form.</p>
                         <p>Organizations can contact their nearest <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx" target="_blank" rel="noopener noreferrer">WorkBC Centre</a> to help with the recruitment of eligible participants.</p>
                         <h4>Please provide your participants the following instructions:</h4>
@@ -23,7 +23,7 @@ class ThankyouOrg extends Component {
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/participantForm/3/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/3/${applicationId}`}</a></p>
+                                <p><a href={`${window.location.origin}/participantForm/4/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/4/${applicationId}`}</a></p>
                                 <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>

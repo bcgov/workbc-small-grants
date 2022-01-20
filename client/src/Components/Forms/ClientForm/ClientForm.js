@@ -114,12 +114,14 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
-                                identifyAsIndigenous: '',
+                                receivingAssistanceFromFirstNationOrTribalCouncil: '',
+                                /*
                                 livingOnReserveCommunity: '',
                                 receivingAssistanceFrom: '',
                                 pwdDesignationOrganization: '',
                                 ppmbDesignationOrganization: '',
                                 clientConsent: false,
+                                */
                             }}
                             enableReinitialize={true}
                             validationSchema={ClientFormValidationSchema}
@@ -210,30 +212,27 @@ class ClientForm extends Component {
                                     <hr></hr>
                                     {values._intake >= 2 && 
                                         <div className="form-group">
-                                            <label className="col-form-label control-label" htmlFor="identifyAsIndigenous">Do you identify as Indigenous?<span style={{ color: "red" }}>*</span></label>
+                                            <label className="col-form-label control-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncil">Are you currently receiving income assistance or disability assistance from a First Nation or Tribal Council?<span style={{ color: "red" }}>*</span></label>
                                             <div className="form-check">
                                                 <Field
-                                                    className={`form-check-input ${feedBackClassName(errors, touched, "identifyAsIndigenous")}`}
+                                                    className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
                                                     type="radio"
-                                                    name="identifyAsIndigenous"
+                                                    name="receivingAssistanceFromFirstNationOrTribalCouncil"
                                                     value="yes"
                                                 />
-                                                <label className="form-check-label" htmlFor="identifyAsIndigenousYes">Yes</label>
+                                                <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilYes">Yes</label>
                                             </div>
                                             <div className="form-check">
                                                 <Field
-                                                    className={`form-check-input ${feedBackClassName(errors, touched, "identifyAsIndigenous")}`}
+                                                    className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
                                                     type="radio"
-                                                    name="identifyAsIndigenous"
+                                                    name="receivingAssistanceFromFirstNationOrTribalCouncil"
                                                     value="no"
                                                 />
-                                                <label className="form-check-label" htmlFor="identifyAsIndigenousNo">No</label>
-                                                {feedBackInvalid(errors, touched, "identifyAsIndigenous")}
+                                                <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilNo">No</label>
+                                                {feedBackInvalid(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}
                                             </div>
                                         </div>
-                                    }
-                                    {
-                                       values.identifyAsIndigenous === "yes" && <IndigenousForm errors={errors} touched={touched} intake={values._intake} />
                                     }
                                     <hr></hr>
                                     <div className="form-group">

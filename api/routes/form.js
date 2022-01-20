@@ -14,6 +14,7 @@ var notification = require('../utils/applicationReceivedEmail');
 var clean = require('../utils/clean')
 var confirmData = require('../utils/confirmationData');
 const { getOrgSubmitted } = require('../utils/confirmationData');
+const { saveOrgForm } = require('../utils/mongoOperations');
 
 var confirmationEmail1 = process.env.CONFIRMATIONONE || process.env.OPENSHIFT_NODEJS_CONFIRMATIONONE || "";
 var confirmationEmail2 = process.env.CONFIRMATIONTWO || process.env.OPENSHIFT_NODEJS_CONFIRMATIONTWO || "";
@@ -56,7 +57,7 @@ async function sendEmails(values) {
               `<b>Application ID: ${values._id}</b>`,
               `Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.`,
               `<b>Here are your required next steps:</b>`,
-              `Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence so please submit your participant applications as soon as possible to get this process started. September 15, 2021 is the deadline for submitting your participant application forms.`,
+              `Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence. Participant applications should be submitted as soon as possible to get this process started. September 12, 2022 is the deadline for submitting your participant application forms.`,
               `Participant forms can be submitted in two ways; participants can submit an online form, or complete and email PDF version of the form.`,
               `Organizations can contact their nearest <a href="https://www.workbc.ca/Employment-Services/WorkBC-Centres/Find-Your-WorkBC-Centre.aspx">WorkBC Centre</a> to help with the recruitment of eligible participants.`,
               `<b>Please provide your participants the following instructions:</b>`
@@ -135,20 +136,36 @@ router.post('/', csrfProtection, async (req, res) => {
   MainFormValidationSchema.validate(req.body, { abortEarly: false })
     .then(async function (value) {
       try {
-        await sendEmails(value)
-          .then(function (sent) {
-            if (sent){
-              res.send({
-                ok: "ok"
-              })
-            } else if (!sent) {
-              res.send({
-                emailErr: "emailErr"
-              })
-            }
-          }).catch(function (e) {
-            console.log(e)
-          })
+        try {
+          var item = req.body
+          await saveOrgForm(item)
+            .then(async r => {
+              console.log(r.result)
+              if (r.result.ok === 1) {
+                await sendEmails(value)
+                .then(function (sent) {
+                  if (sent){
+                    res.send({
+                      ok: "ok"
+                    })
+                  } else if (!sent) {
+                    res.send({
+                      emailErr: "emailErr"
+                    })
+                  }
+                }).catch(function (e) {
+                  console.log(e)
+                })
+              } else {
+                res.send({
+                  emailErr: "emailErr"
+                })              
+              }
+            })
+  
+        } catch (error) {
+          console.log(error)
+        }
       } catch (error) {
         console.log(error)
       }

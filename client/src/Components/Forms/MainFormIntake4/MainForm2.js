@@ -150,7 +150,7 @@ class MainForm2 extends Component {
                                             applicantType: false,
                                             understandNotAvailableTo: false,
                                             administerGrantUnderstanding: false,
-                                            placementLength: false,
+                                            //placementLength: false,
                                             workExperienceTakesPlaceElsewhere: '',
                                             partneringBusinessName: '',
                                             partneringBusinessActivities: '',
@@ -166,7 +166,7 @@ class MainForm2 extends Component {
                                             otherSkill: '',
                                             additionalBenefits: '',
                                             //step 3
-                                            participantStipend: false,
+                                            //participantStipend: false,
                                             existingSupplierNumber: '',
                                             supplierNumber: '',
                                             businessClassification: '',

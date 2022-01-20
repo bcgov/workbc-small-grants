@@ -139,8 +139,10 @@ export const MainFormValidationSchema = yup.object().shape({
         .oneOf([true],"Please confirm your understanding on participant ineligibility."),
     administerGrantUnderstanding: yup.boolean()
         .oneOf([true],"Please confirm grant administration understanding."),
+    /*
     placementLength: yup.boolean()
         .oneOf([true],"Please confirm that the placement will be 12 weeks."),
+    */
     workExperienceTakesPlaceElsewhere: yup.string()
         .oneOf(["yes","no"])
         .required("Please answer if your work experience is taking place in a partner business."),
@@ -216,8 +218,10 @@ export const MainFormValidationSchema = yup.object().shape({
     */
     additionalBenefits: yup.string()
         .max(1000,"Maximum of 1000 characters is allowed."),
+    /*
     participantStipend: yup.boolean()
         .oneOf([true],"Please confirm that the minimum stipend being provided is $3600."),
+    */
     existingSupplierNumber: yup.string()
         .oneOf(["yes","no"])
         .required("Please select."),
