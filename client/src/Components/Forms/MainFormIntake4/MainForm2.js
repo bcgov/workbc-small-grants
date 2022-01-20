@@ -111,6 +111,8 @@ class MainForm2 extends Component {
                             initialValues= {{
                                             _csrf: this.state._csrf,
                                             _id: this.state._id,
+                                            _savedToSP: false,
+                                            _date: new Date(),
                                             //step 1
                                             operatingName: '',
                                             legalName: '',

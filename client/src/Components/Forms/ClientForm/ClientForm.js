@@ -104,6 +104,8 @@ class ClientForm extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 _intake: this.state._intake,
+                                _savedToSP: false,
+                                _date: new Date(),
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
