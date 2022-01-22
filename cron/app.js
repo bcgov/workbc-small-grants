@@ -17,141 +17,217 @@ app = express();
 var spr;
 
 async function saveListClient(values) {
-  try{
+  try {
     var headers;
-  return await spr
-  .then(async data => {
-      headers = data.headers;
-      headers['Accept'] = 'application/json;odata=verbose';
-      return headers
-  }).then(async response => {
+    return await spr
+      .then(async data => {
+        headers = data.headers;
+        headers['Accept'] = 'application/json;odata=verbose';
+        return headers
+      }).then(async response => {
         //return true
         //console.log(response)
         headers = response
         return request.post({
-          url: listWebURL + testList === ""  ? 'workbcgrant/_api/contextInfo' : 'workbcgrantTest/_api/contextInfo',
+          url: listWebURL + testList === ""  ? `workbcgrant/_api/contextInfo` : `workbcGrantTest/_api/contextInfo`,
           headers: headers,
           json: true,
         })
-    }).then(async response => {
-      var digest = response.d.GetContextWebInformation.FormDigestValue
-      return digest
-    }).then(async response => {
-      //console.log(headers)
-      headers['X-RequestDigest'] = response
-      headers['Content-Type'] = "application/json;odata=verbose"
-      if (testList === ""){
-        var l = listWebURL + `workbcGrantTest/_api/web/lists/getByTitle('ClientSubmissions')/items`
-        var t = `SP.Data.Catchment${ca}ListItem`
-      } else {
-        var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('ClientSubmissions')/items`
-        var t = `SP.Data.CatchmentTESTListItem`
-      }
-      console.log(l)
-      return request.post({
-        url: l,
-        headers: headers,
-        json: true,
-        body: {
-          "__metadata": {
-            "type": t
-          },
-
+      }).then(async response => {
+        var digest = response.d.GetContextWebInformation.FormDigestValue
+        return digest
+      }).then(async response => {
+        //console.log(headers)
+        headers['X-RequestDigest'] = response
+        headers['Content-Type'] = "application/json;odata=verbose"
+        if (testList === "") {
+          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('ClientSubmissions')/items`
+          var t = `SP.Data.ClientSubmissionsListItem`
+        } else {
+          var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('ClientSubmissions')/items`
+          var t = `SP.Data.CatchmentTESTListItem`
         }
+       
+        return request.post({
+          url: l,
+          headers: headers,
+          json: true,
+          body: {
+            "__metadata": {
+              "type": t
+            },
+            "Title": `${values.clientName} - ${values.applicationIdM}`,
+            "selfSubmitID": values.applicationId,//?
+            "linkedID": values.applicationIdM,
+            "selfSubmitOrganization": values.organizationNameM,
+            "": values.noOrgId,
+            "firstName": values.clientName,
+            "lastName": values.clientLastName,
+            "SIN": typeof values.clientDOB !== "undefined" ? new Date(values.clientDOB) : null,
+            "email": values.clientEmail,
+            "address1": values.clientAddress1,
+            "address2": values.clientAddress2,
+            "receivingAssistanceFromFirstNati": values.receivingAssistanceFromFirstNationOrTribalCouncil,
+          }
+        })
+      }).then(async response => {
+        //item was created
+        //console.log(response)
+        return true
       })
-    }).then(async response => {
-      //item was created
-      //console.log(response)
-      return true
-    })    
-    .catch(err => {
-      //there was an error in the chan
-      //item was not created
-      console.log("error in chain")
-      if (err.statusCode !== 403){
-        console.log(err);
-      }
-      console.log(err.statusCode)
-      /*
-      if (err.statusCode == 403){
-        saveList(values)
-      }
-      */
-      return false
-    })
-  
-  //try catch catcher
+      .catch(err => {
+        //there was an error in the chan
+        //item was not created
+        console.log("error in chain")
+        if (err.statusCode !== 403) {
+          console.log(err);
+        }
+        console.log(err.statusCode)
+        /*
+        if (err.statusCode == 403){
+          saveList(values)
+        }
+        */
+        return false
+      })
+
+    //try catch catcher
   } catch (error) {
     console.log(error)
     return false
   }
 }
 
-async function saveListForm(values,email,ca) {
-  try{
+async function saveListForm(values, email, ca) {
+  try {
     var headers;
-  return await spr
-  .then(async data => {
-      headers = data.headers;
-      headers['Accept'] = 'application/json;odata=verbose';
-      return headers
-  }).then(async response => {
+    return await spr
+      .then(async data => {
+        headers = data.headers;
+        headers['Accept'] = 'application/json;odata=verbose';
+        return headers
+      }).then(async response => {
         //return true
         //console.log(response)
         headers = response
+        //testList === "" ? `workbcgrant/_api/contextInfo` :  `workbcGrantTest/_api/contextInfo`
         return request.post({
-          url: listWebURL + testList === ""  ? 'workbcgrant/_api/contextInfo' : 'workbcgrantTest/_api/contextInfo',
+          url: listWebURL +  `/workbcGrantTest/_api/contextInfo`,
           headers: headers,
           json: true,
         })
-    }).then(async response => {
-      var digest = response.d.GetContextWebInformation.FormDigestValue
-      return digest
-    }).then(async response => {
-      //console.log(headers)
-      headers['X-RequestDigest'] = response
-      headers['Content-Type'] = "application/json;odata=verbose"
-      if (testList === ""){
-        var l = listWebURL + `workbcGrantTest/_api/web/lists/getByTitle('GrantApplications')/items`
-        var t = `SP.Data.Catchment${ca}ListItem`
-      } else {
-        var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('GrantApplications')/items`
-        var t = `SP.Data.CatchmentTESTListItem`
-      }
-      console.log("webURL:")
-      console.log(l)
-      return request.post({
-        url: l,
-        headers: headers,
-        json: true,
-        body: {
-          "__metadata": {
-            "type": t
-          },
-          //"": values.,
+      }).then(async response => {
+        var digest = response.d.GetContextWebInformation.FormDigestValue
+        return digest
+      }).then(async response => {
+        //console.log(headers)
+        headers['X-RequestDigest'] = response
+        headers['Content-Type'] = "application/json;odata=verbose"
+        if (testList === "") {
+          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('GrantApplications')/items`
+          var t = `SP.Data.GrantApplicationsListItem`
+        } else {
+          var l = listWebURL + `/workbcgrant/_api/web/lists/getByTitle('GrantApplications')/items`
+          var t = `SP.Data.CatchmentTESTListItem`
         }
+        console.log("webURL:")
+        console.log(l)
+        return request.post({
+          url: l,
+          headers: headers,
+          json: true,
+          body: {
+            "__metadata": {
+              "type": t
+            },
+            "Title": values.applicationId + "-" + values.operatingName,
+            "applicationID": values.applicationId,// check the others consistency
+            "operatingName": values.operatingName,
+            "legalName": values.legalName,
+            "missionStatement": values.missionStatement,
+            "organizationWebsite": values.organizationWebsite,
+            "businessNumber": values.businessNumber,
+            "confirmOrganizationNonProfit": values.confirmOrganizationNonProfit,
+            "charityRegistrationNumber": values.charityRegistrationNumber,
+            "societyRegistrationID": values.societyRegistrationID,
+            "nonProfitClassification": values.nonProfitClassification,
+            "nonProfitSubClassification": values.nonProfitSubClassification,
+            "nonProfitSubClassificationOther": values.nonProfitSubClassificationOther,
+            "basedInBC": values.basedInBC,
+            "positionTitle": values.positionTitle,
+            "firstName": values.firstName,
+            "lastName": values.lastName,
+            "contactEmail": values.contactEmail,
+            "contactPhone": values.contactPhone,
+            "positionTitleAlternate": values.positionTitleAlternate,
+            "firstNameAlternate": values.firstNameAlternate,
+            "lastNameAlternate": values.lastNameAlternate,
+            "emailAlternate": values.emailAlternate,
+            "phoneAlternate": values.phoneAlternate,
+            "otherMailingAddress": values.otherMailingAddress,
+            "contactAddress1": values.contactAddress1,
+            "contactAddress2": values.contactAddress2,
+            "contactCity": values.contactCity,
+            "contactPostal": values.contactPostal,
+            "mailingAddress1": values.mailingAddress1,
+            "mailingAddress2": values.mailingAddress2,
+            "mailingCity": values.mailingCity,
+            "mailingPostal": values.mailingPostal,
+            //step 2
+            "numberOfApplicants": values.numberOfApplicants,
+            "insuranceCoverage": values.insuranceCoverage,
+            "monitorCommit": values.monitorCommit,
+            "applicantType": values.applicantType,
+            "understandNotAvailableTo": values.understandNotAvailableTo,
+            "administerGrantUnderstanding": values.administerGrantUnderstanding,
+            //placementLength,
+            "workExperienceTakesPlaceElsewher": values.workExperienceTakesPlaceElsewhere,
+            "partneringBusinessName": values.partneringBusinessName,
+            "partneringBusinessActivities": values.partneringBusinessActivities,
+            //partneringBusinessAffiliation,
+            "partneringBusinessContactAddress": values.partneringBusinessContactAddress1,
+            "partneringBusinessContactAddress0": values.partneringBusinessContactAddress2,
+            "partneringBusinessContactCity": values.partneringBusinessContactCity,
+            "partneringBusinessContactPostal": values.partneringBusinessContactPostal,
+            "participantActivities": values.participantActivities,
+            "participantExperiences": values.participantExperiences,
+            "otherExperience": values.otherExperience,
+            "participantSkills": values.participantSkills,
+            "otherSkill": values.otherSkill,
+            "additionalBenefits": values.additionalBenefits,
+            //step 3
+            //participantStipend,
+            "existingSupplierNumber": values.existingSupplierNumber,
+            "supplierNumber": values.supplierNumber,
+            "businessClassification": values.businessClassification,
+            "taxNumber": values.taxNumber,
+            "signatory1": values.signatory1,
+            "signatory2": values.signatory2,
+            "signingAuthorityConfirm": values.signingAuthorityConfirm,
+            "organizationConsent": values.organizationConsent,
+          }
+        })
+      }).then(async response => {
+        //item was created
+        return true
       })
-    }).then(async response => {
-      //item was created
-      return true
-    })    
-    .catch(err => {
-      //there was an error in the chan
-      //item was not created
-      console.log("error in chain")
-      if (err.statusCode !== 403){
-        console.log(err);
-      }
-      console.log(err.statusCode)
-      /*
-      if (err.statusCode == 403){
-        saveList(values)
-      }
-      */
-      return false
-    })
-  
-  //try catch catcher
+      .catch(err => {
+        //there was an error in the chan
+        //item was not created
+        console.log("error in chain")
+        if (err.statusCode !== 403) {
+          console.log(err);
+        }
+        console.log(err.statusCode)
+        /*
+        if (err.statusCode == 403){
+          saveList(values)
+        }
+        */
+        return false
+      })
+
+    //try catch catcher
   } catch (error) {
     console.log(error)
     return false
@@ -159,9 +235,10 @@ async function saveListForm(values,email,ca) {
 }
 
 
-cron.schedule('*/3 * * * *', async function() {
-    console.log('running a task every 3 minutes');
-    //console.log('running a task every 10 seconds');
+cron.schedule('*/1 * * * *', async function () {
+  console.log('running a task every 3 minutes');
+  //console.log('running a task every 10 seconds')
+
     spr = spauth.getAuth(listWebURL, {
       username: listUser,
       password: listPass,
@@ -169,64 +246,65 @@ cron.schedule('*/3 * * * *', async function() {
       relyingParty: listParty,
       adfsUrl: listADFS
   })
-    
-    await getClientNotSP()
+  
+  await getClientNotSP()
     .then(async cursor => {
-        var results = await cursor.toArray()
-        console.log("Have Employee not saved to reporting")
-        console.log(results.length)
-        for (const data of results){
-          clean(data)
-          console.log(data)
-          await saveListClient(data)
-              .then(function(saved){
-                console.log("saved")
-                console.log(saved)
-                // save values to mongo db
-                if (saved) {
-                  try {
-                    updateSavedToSP("Client",data._id);
-                  }
-                  catch (error) {
-                    console.log(error);
-                  }
-                }
-              })
-              .catch(function(e){
-                console.log("error")
-                console.log(e)
-              })
-              
-        }
+      var results = await cursor.toArray()
+      console.log("Have Employee not saved to reporting")
+      console.log(results.length)
+      for (const data of results) {
+        clean(data)
+        console.log(data)
+        await saveListClient(data)
+          .then(function (saved) {
+            console.log("saved")
+            console.log(saved)
+            // save values to mongo db
+            if (saved) {
+              try {
+                updateSavedToSP("Client", data._id);
+              }
+              catch (error) {
+                console.log(error);
+              }
+            }
+          })
+          .catch(function (e) {
+            console.log("error")
+            console.log(e)
+          })
+
+      }
     })
-    await getFormNotSP()
+
+  await getFormNotSP()
     .then(async cursor => {
-        var results = await cursor.toArray()
-        console.log("Need employee not saved to reporting")
-        console.log(results.length)
-        for (const data of results){
-          clean(data)
-          console.log(data)
-          await saveListForm(data)
-              .then(function(saved){
-                console.log("saved")
-                console.log(saved)
-                // save values to mongo db
-                if (saved) {
-                  try {
-                    updateSavedToSP("Organization",data._id);
-                  }
-                  catch (error) {
-                    console.log(error);
-                  }
-                }
-              })
-              .catch(function(e){
-                console.log("error")
-                console.log(e)
-              })
-              
-        }
+      var results = await cursor.toArray()
+      console.log("Need employee not saved to reporting")
+      console.log(results.length)
+      for (const data of results) {
+        clean(data)
+        console.log(data)
+        await saveListForm(data)
+          .then(function (saved) {
+            console.log("saved")
+            console.log(saved)
+            // save values to mongo db
+            if (saved) {
+              try {
+                updateSavedToSP("Organization", data._id);
+              }
+              catch (error) {
+                console.log(error);
+              }
+            }
+          })
+          .catch(function (e) {
+            console.log("error")
+            console.log(e)
+          })
+
+      }
     })
 });
 
