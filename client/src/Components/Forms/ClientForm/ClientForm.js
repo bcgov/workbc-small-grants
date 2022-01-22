@@ -8,7 +8,7 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 import { generateAlert } from '../Shared/Alert'
 import { DatePickerField } from '../Shared/DatePickerField'
 import { FORM_URL } from '../../../constants/form'
-import IndigenousForm from './IndigenousForm'
+//import IndigenousForm from './IndigenousForm'
 
 class ClientForm extends Component {
     constructor() {
