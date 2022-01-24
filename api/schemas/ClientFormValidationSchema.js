@@ -44,6 +44,9 @@ var ClientFormValidationSchema = yup.object().shape({
     ppmbDesignationOrganization: yup.string()
         .max(250,"Organization Name too long.")
     */
+    approximateHours: yup.string()
+        .required("Please select approximate hours.")
+        .oneOf(["10hours", "20hours"], "Invalid value"),
     receivingAssistanceFromFirstNationOrTribalCouncil: yup.string()
         .required("Please select if you are currently receiving income assistance or disability assistance from a First Nation or Tribal Council.")
         .oneOf(["yes", "no"], "Invalid value")

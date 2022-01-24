@@ -38,7 +38,7 @@ class ClientForm extends Component {
                 }
             )
         if (this.props.match.path === "/participantForm/4/:id?") {
-                this.setState({ "_intake": "4" })
+            this.setState({ "_intake": "4" })
         } else if (this.props.match.path === "/participantForm/2/:id?") {
             this.setState({ "_intake": "2" })
         } else if (this.props.match.path === "/participantForm/3/:id?") {
@@ -117,6 +117,7 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
+                                approximateHours: '',
                                 receivingAssistanceFromFirstNationOrTribalCouncil: '',
                                 /*
                                 livingOnReserveCommunity: '',
@@ -212,30 +213,53 @@ class ClientForm extends Component {
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress2")}`} id="clientAddress2" name="clientAddress2" />
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
-                                    <hr></hr>
-                                    {values._intake >= 2 && 
-                                        <div className="form-group">
-                                            <label className="col-form-label control-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncil">Are you currently receiving income assistance or disability assistance from a First Nation or Tribal Council?<span style={{ color: "red" }}>*</span></label>
-                                            <div className="form-check">
-                                                <Field
-                                                    className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
-                                                    type="radio"
-                                                    name="receivingAssistanceFromFirstNationOrTribalCouncil"
-                                                    value="yes"
-                                                />
-                                                <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilYes">Yes</label>
+                                    {values._intake >= 2 &&
+                                        <>
+                                            <div className="form-group">
+                                                <label className="col-form-label control-label" htmlFor="approximateHours">Approximately how many hours per week will you participate in work experience?<span style={{ color: "red" }}>*</span></label>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "approximateHours")}`}
+                                                        type="radio"
+                                                        name="approximateHours"
+                                                        value="10hours"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="approximateHours10">Approximately 10 hours per week</label>
+                                                </div>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "approximateHours")}`}
+                                                        type="radio"
+                                                        name="approximateHours"
+                                                        value="20hours"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="approximateHours20">Approximately 20 hours per week</label>
+                                                    {feedBackInvalid(errors, touched, "approximateHours")}
+                                                </div>
                                             </div>
-                                            <div className="form-check">
-                                                <Field
-                                                    className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
-                                                    type="radio"
-                                                    name="receivingAssistanceFromFirstNationOrTribalCouncil"
-                                                    value="no"
-                                                />
-                                                <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilNo">No</label>
-                                                {feedBackInvalid(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}
+                                            <div className="form-group">
+                                                <label className="col-form-label control-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncil">Are you currently receiving income assistance or disability assistance from a First Nation or Tribal Council?<span style={{ color: "red" }}>*</span></label>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
+                                                        type="radio"
+                                                        name="receivingAssistanceFromFirstNationOrTribalCouncil"
+                                                        value="yes"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilYes">Yes</label>
+                                                </div>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
+                                                        type="radio"
+                                                        name="receivingAssistanceFromFirstNationOrTribalCouncil"
+                                                        value="no"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilNo">No</label>
+                                                    {feedBackInvalid(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </>
                                     }
                                     <hr></hr>
                                     <div className="form-group">
