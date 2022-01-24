@@ -16,6 +16,7 @@ class ClientForm extends Component {
         this.state = {
             _csrf: '',
             _intake: '',
+            _date: new Date().toDateString(),
             hasError: false,
         }
     }
@@ -105,7 +106,7 @@ class ClientForm extends Component {
                                 _csrf: this.state._csrf,
                                 _intake: this.state._intake,
                                 _savedToSP: false,
-                                _date: new Date(),
+                                _date: this.state._date,
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
