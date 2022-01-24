@@ -19,6 +19,7 @@ class MainForm2 extends Component {
             currentStep: 1,
             _csrf: '',
             _id: nanoid(),
+            _date: new Date().toDateString(),
             hasError: false,
         }
         this._next = this._next.bind(this)
@@ -112,7 +113,7 @@ class MainForm2 extends Component {
                                             _csrf: this.state._csrf,
                                             _id: this.state._id,
                                             _savedToSP: false,
-                                            _date: new Date(),
+                                            _date: this.state._date,
                                             //step 1
                                             operatingName: '',
                                             legalName: '',
