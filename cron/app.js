@@ -45,7 +45,7 @@ async function saveListClient(values) {
           var t = `SP.Data.ClientSubmissionsListItem`
         } else {
           var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('ClientSubmissions')/items`
-          var t = `SP.Data.CatchmentTESTListItem`
+          var t = `SP.Data.ClientSubmissionsListItem`
         }
        
         return request.post({
@@ -124,11 +124,11 @@ async function saveListForm(values, email, ca) {
         headers['X-RequestDigest'] = response
         headers['Content-Type'] = "application/json;odata=verbose"
         if (testList === "") {
-          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('GrantApplications')/items`
-          var t = `SP.Data.GrantApplicationsListItem`
+          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('GrantApplicationsV2.0')/items`
+          var t = `SP.Data.GrantApplicationsV20ListItem`
         } else {
           var l = listWebURL + `/workbcgrant/_api/web/lists/getByTitle('GrantApplications')/items`
-          var t = `SP.Data.CatchmentTESTListItem`
+          var t = `SP.Data.GrantApplicationsListItem`
         }
         console.log("webURL:")
         console.log(l)
@@ -140,7 +140,7 @@ async function saveListForm(values, email, ca) {
             "__metadata": {
               "type": t
             },
-            "Title": values.applicationId + "-" + values.operatingName,
+            "Title": `${values.applicationId} - ${values.operatingName}`,
             "applicationID": values.applicationId,// check the others consistency
             "operatingName": values.operatingName,
             "legalName": values.legalName,
