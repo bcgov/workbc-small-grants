@@ -4,6 +4,7 @@ const spauth = require('node-sp-auth')
 const request = require('request-promise')
 var {getClientNotSP, getFormNotSP, updateSavedToSP} = require('./mongo')
 var clean = require('./clean')
+
 var listWebURL = process.env.LISTWEBURL || process.env.OPENSHIFT_NODEJS_LISTWEBURL || ""
 var listUser = process.env.LISTUSER || process.env.OPENSHIFT_NODEJS_LISTUSER || ""
 var listPass = process.env.LISTPASS || process.env.OPENSHIFT_NODEJS_LISTPASS || ""
@@ -28,8 +29,9 @@ async function saveListClient(values) {
         //return true
         //console.log(response)
         headers = response
+        // UPDATE url depending on PROD:`/workbcgrant/_api/contextInfo` TEST: `/workbcGrantTest/_api/contextInfo`
         return request.post({
-          url: listWebURL + testList === ""  ? `workbcgrant/_api/contextInfo` : `workbcGrantTest/_api/contextInfo`,
+          url: listWebURL + `/workbcGrantTest/_api/contextInfo`,
           headers: headers,
           json: true,
         })
@@ -41,8 +43,8 @@ async function saveListClient(values) {
         headers['X-RequestDigest'] = response
         headers['Content-Type'] = "application/json;odata=verbose"
         if (testList === "") {
-          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('ClientSubmissions')/items`
-          var t = `SP.Data.ClientSubmissionsListItem`
+          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('ClientSumbissionsTest')/items`
+          var t = `SP.Data.ClientSumbissionsTestListItem`
         } else {
           var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('ClientSubmissions')/items`
           var t = `SP.Data.ClientSubmissionsListItem`
@@ -56,18 +58,20 @@ async function saveListClient(values) {
             "__metadata": {
               "type": t
             },
-            "Title": `${values.clientName} - ${values.applicationIdM}`,
-            "selfSubmitID": values.applicationId,//?
-            "linkedID": values.applicationIdM,
-            "selfSubmitOrganization": values.organizationNameM,
-            "": values.noOrgId,
-            "firstName": values.clientName,
-            "lastName": values.clientLastName,
-            "SIN": typeof values.clientDOB !== "undefined" ? new Date(values.clientDOB) : null,
-            "email": values.clientEmail,
-            "address1": values.clientAddress1,
-            "address2": values.clientAddress2,
-            "receivingAssistanceFromFirstNati": values.receivingAssistanceFromFirstNationOrTribalCouncil,
+            'Title': `${values.clientName} - ${values.applicationIdM}`,
+            'Intake': `Intake${values._intake}`,
+            'selfSubmitID': values.applicationIdM,
+            'linkedID':  typeof values.applicationId !== 'undefined' ? values.applicationId:'',
+            'selfSubmitOrganization': values.organizationNameM,
+            'firstName': values.clientName,
+            'lastName': values.clientLastName,
+            'SIN': values.clientDOB,
+            'email': values.clientEmail,
+            'address1': values.clientAddress1,
+            'address2': values.clientAddress2,
+            'consent': values.clientConsent,
+            'approximateHours':values.approximateHours,
+            'receivingAssistanceFromFirstNati': values.receivingAssistanceFromFirstNationOrTribalCouncil,
           }
         })
       }).then(async response => {
@@ -78,7 +82,7 @@ async function saveListClient(values) {
       .catch(err => {
         //there was an error in the chan
         //item was not created
-        console.log("error in chain")
+        console.log('error in chain')
         if (err.statusCode !== 403) {
           console.log(err);
         }
@@ -110,7 +114,7 @@ async function saveListForm(values, email, ca) {
         //return true
         //console.log(response)
         headers = response
-        //testList === "" ? `workbcgrant/_api/contextInfo` :  `workbcGrantTest/_api/contextInfo`
+        // UPDATE url depending on PROD:`/workbcgrant/_api/contextInfo` TEST: `/workbcGrantTest/_api/contextInfo`
         return request.post({
           url: listWebURL +  `/workbcGrantTest/_api/contextInfo`,
           headers: headers,
@@ -124,8 +128,8 @@ async function saveListForm(values, email, ca) {
         headers['X-RequestDigest'] = response
         headers['Content-Type'] = "application/json;odata=verbose"
         if (testList === "") {
-          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('GrantApplicationsV2.0')/items`
-          var t = `SP.Data.GrantApplicationsV20ListItem`
+          var l = listWebURL + `/workbcGrantTest/_api/web/lists/getByTitle('GrantApplicationsTest')/items`
+          var t = `SP.Data.GrantApplicationsTestListItem`
         } else {
           var l = listWebURL + `/workbcgrant/_api/web/lists/getByTitle('GrantApplications')/items`
           var t = `SP.Data.GrantApplicationsListItem`
@@ -140,71 +144,72 @@ async function saveListForm(values, email, ca) {
             "__metadata": {
               "type": t
             },
-            "Title": `${values.applicationId} - ${values.operatingName}`,
-            "applicationID": values.applicationId,// check the others consistency
-            "operatingName": values.operatingName,
-            "legalName": values.legalName,
-            "missionStatement": values.missionStatement,
-            "organizationWebsite": values.organizationWebsite,
-            "businessNumber": values.businessNumber,
-            "confirmOrganizationNonProfit": values.confirmOrganizationNonProfit,
-            "charityRegistrationNumber": values.charityRegistrationNumber,
-            "societyRegistrationID": values.societyRegistrationID,
-            "nonProfitClassification": values.nonProfitClassification,
-            "nonProfitSubClassification": values.nonProfitSubClassification,
-            "nonProfitSubClassificationOther": values.nonProfitSubClassificationOther,
-            "basedInBC": values.basedInBC,
-            "positionTitle": values.positionTitle,
-            "firstName": values.firstName,
-            "lastName": values.lastName,
-            "contactEmail": values.contactEmail,
-            "contactPhone": values.contactPhone,
-            "positionTitleAlternate": values.positionTitleAlternate,
-            "firstNameAlternate": values.firstNameAlternate,
-            "lastNameAlternate": values.lastNameAlternate,
-            "emailAlternate": values.emailAlternate,
-            "phoneAlternate": values.phoneAlternate,
-            "otherMailingAddress": values.otherMailingAddress,
-            "contactAddress1": values.contactAddress1,
-            "contactAddress2": values.contactAddress2,
-            "contactCity": values.contactCity,
-            "contactPostal": values.contactPostal,
-            "mailingAddress1": values.mailingAddress1,
-            "mailingAddress2": values.mailingAddress2,
-            "mailingCity": values.mailingCity,
-            "mailingPostal": values.mailingPostal,
+            'Title': `${values.applicationId} - ${values.operatingName}`,
+            'applicationID': `${values.applicationId}`,// check the others consistency
+            'operatingName': `${values.operatingName}`,
+            'legalName': `${values.legalName}`,
+            'missionStatement': `${values.missionStatement}`,
+            'organizationWebsite': `${values.organizationWebsite}`,
+            'businessNumber': `${values.businessNumber}`,
+            'confirmOrganizationNonProfit': `${values.confirmOrganizationNonProfit}`,
+            'charityRegistrationNumber': `${values.charityRegistrationNumber}`,
+            'societyRegistrationID': `${values.societyRegistrationID}`,
+            'nonProfitClassification': `${values.nonProfitClassification}`,
+            'nonProfitSubClassification': `${values.nonProfitSubClassification}`,
+            'nonProfitSubClassificationOther': `${values.nonProfitSubClassificationOther}`,
+            'basedInBC': values.basedInBC,
+            'positionTitle': values.positionTitle,
+            'firstName': values.firstName,
+            'lastName': values.lastName,
+            'contactEmail': values.contactEmail,
+            'contactPhone': values.contactPhone,
+            'positionTitleAlternate': values.positionTitleAlternate,
+            'firstNameAlternate': values.firstNameAlternate,
+            'lastNameAlternate': values.lastNameAlternate,
+            'emailAlternate': values.emailAlternate,
+            'phoneAlternate': values.phoneAlternate,
+            'otherMailingAddress': values.otherMailingAddress,
+            'contactAddress1': values.contactAddress1,
+            'contactAddress2': values.contactAddress2,
+            'contactCity': values.contactCity,
+            'contactPostal': values.contactPostal,
+            'mailingAddress1': values.mailingAddress1,
+            'mailingAddress2': values.mailingAddress2,
+            'mailingCity': values.mailingCity,
+            'mailingPostal': values.mailingPostal,
             //step 2
-            "numberOfApplicants": values.numberOfApplicants,
-            "insuranceCoverage": values.insuranceCoverage,
-            "monitorCommit": values.monitorCommit,
-            "applicantType": values.applicantType,
-            "understandNotAvailableTo": values.understandNotAvailableTo,
-            "administerGrantUnderstanding": values.administerGrantUnderstanding,
+            'numberOfApplicants': parseInt(values.numberOfApplicants),
+            'insuranceCoverage': values.insuranceCoverage,
+            'monitorCommit': values.monitorCommit,
+            'applicantType': values.applicantType,
+            'understandNotAvailableTo': values.understandNotAvailableTo,
+            'administerGrantUnderstanding': values.administerGrantUnderstanding,
             //placementLength,
-            "workExperienceTakesPlaceElsewher": values.workExperienceTakesPlaceElsewhere,
-            "partneringBusinessName": values.partneringBusinessName,
-            "partneringBusinessActivities": values.partneringBusinessActivities,
+            'workExperienceTakesPlaceElsewher': values.workExperienceTakesPlaceElsewhere,
+            'partneringBusinessName': values.partneringBusinessName,
+            'partneringBusinessActivities': values.partneringBusinessActivities,
             //partneringBusinessAffiliation,
-            "partneringBusinessContactAddress": values.partneringBusinessContactAddress1,
-            "partneringBusinessContactAddress0": values.partneringBusinessContactAddress2,
-            "partneringBusinessContactCity": values.partneringBusinessContactCity,
-            "partneringBusinessContactPostal": values.partneringBusinessContactPostal,
-            "participantActivities": values.participantActivities,
-            "participantExperiences": values.participantExperiences,
-            "otherExperience": values.otherExperience,
-            "participantSkills": values.participantSkills,
-            "otherSkill": values.otherSkill,
-            "additionalBenefits": values.additionalBenefits,
+            'partneringBusinessContactAddress': values.partneringBusinessContactAddress1,
+            'partneringBusinessContactAddress0': values.partneringBusinessContactAddress2,
+            'partneringBusinessContactCity': values.partneringBusinessContactCity,
+            'partneringBusinessContactPostal': values.partneringBusinessContactPostal,
+            'participantActivities': values.participantActivities,
+            'participantExperiences': values.participantExperiences.toString(),
+            'otherExperience': values.otherExperience,
+            'participantSkills': values.participantSkills.toString(),
+            'otherSkill': values.otherSkill,
+            'additionalBenefits': values.additionalBenefits,
             //step 3
             //participantStipend,
-            "existingSupplierNumber": values.existingSupplierNumber,
-            "supplierNumber": values.supplierNumber,
-            "businessClassification": values.businessClassification,
-            "taxNumber": values.taxNumber,
-            "signatory1": values.signatory1,
-            "signatory2": values.signatory2,
-            "signingAuthorityConfirm": values.signingAuthorityConfirm,
-            "organizationConsent": values.organizationConsent,
+            'existingSupplierNumber': values.existingSupplierNumber == 'yes'? true : false,
+            'supplierNumber': values.supplierNumber,
+            'businessClassification': values.businessClassification,
+            'taxNumber': values.taxNumber,
+            'signatory1': values.signatory1,
+            'signatory2': values.signatory2,
+            'signingAuthorityConfirm': values.signingAuthorityConfirm,
+            'organizationConsent': values.organizationConsent,
+            'Intake': 'Intake4',
           }
         })
       }).then(async response => {

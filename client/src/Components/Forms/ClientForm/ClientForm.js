@@ -119,6 +119,7 @@ class ClientForm extends Component {
                                 clientAddress2: '',
                                 approximateHours: '',
                                 receivingAssistanceFromFirstNationOrTribalCouncil: '',
+                                clientConsent: false,
                                 /*
                                 livingOnReserveCommunity: '',
                                 receivingAssistanceFrom: '',
