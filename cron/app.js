@@ -12,7 +12,8 @@ var listDomain = process.env.LISTDOMAIN || process.env.OPENSHIFT_NODEJS_LISTDOMA
 var listParty = process.env.LISTPARTY || process.env.OPENSHIFT_NODEJS_LISTPARTY || ""
 var listADFS = process.env.LISTADFS || process.env.OPENSHIFT_NODEJS_LISTADFS || ""
 var testList = process.env.TESTLIST || process.env.OPENSHIFT_NODEJS_TESTLIST || ""
-
+var listURL = testList === "" ?  `/workbcGrantTest/_api/contextInfo` : `/workbcgrant/_api/contextInfo` 
+console.log(`${listWebURL}${listURL}`)
 app = express();
 
 var spr;
@@ -29,9 +30,9 @@ async function saveListClient(values) {
         //return true
         //console.log(response)
         headers = response
-        // UPDATE url depending on PROD:`/workbcgrant/_api/contextInfo` TEST: `/workbcGrantTest/_api/contextInfo`
+        
         return request.post({
-          url: listWebURL + `/workbcGrantTest/_api/contextInfo`,
+          url:  `${listWebURL}${listURL}`,
           headers: headers,
           json: true,
         })
@@ -85,7 +86,9 @@ async function saveListClient(values) {
         console.log('error in chain')
         if (err.statusCode !== 403) {
           console.log(err);
+          
         }
+        console.log(err.config)
         console.log(err.statusCode)
         /*
         if (err.statusCode == 403){
@@ -114,9 +117,8 @@ async function saveListForm(values, email, ca) {
         //return true
         //console.log(response)
         headers = response
-        // UPDATE url depending on PROD:`/workbcgrant/_api/contextInfo` TEST: `/workbcGrantTest/_api/contextInfo`
         return request.post({
-          url: listWebURL +  `/workbcGrantTest/_api/contextInfo`,
+          url: `${listWebURL}${listURL}`,
           headers: headers,
           json: true,
         })
@@ -240,7 +242,7 @@ async function saveListForm(values, email, ca) {
 }
 
 
-cron.schedule('*/1 * * * *', async function () {
+cron.schedule('*/3 * * * *', async function () {
   console.log('running a task every 3 minutes');
   //console.log('running a task every 10 seconds')
 
