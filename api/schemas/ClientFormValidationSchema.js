@@ -34,6 +34,7 @@ var ClientFormValidationSchema = yup.object().shape({
         .max(255, "Address too long"),
     clientConsent: yup.boolean()
         .oneOf([true], "You must agree before submitting."),
+    /*
     livingOnReserveCommunity: yup.string()
         .oneOf(["treaty","nonTreaty"],"Please select an accepted value."),
     receivingAssistanceFrom: yup.string()
@@ -42,6 +43,13 @@ var ClientFormValidationSchema = yup.object().shape({
         .max(250,"Organization Name too long."),
     ppmbDesignationOrganization: yup.string()
         .max(250,"Organization Name too long.")
+    */
+    approximateHours: yup.string()
+        .required("Please select approximate hours.")
+        .oneOf(["10hours", "20hours"], "Invalid value"),
+    receivingAssistanceFromFirstNationOrTribalCouncil: yup.string()
+        .required("Please select if you are currently receiving income assistance or disability assistance from a First Nation or Tribal Council.")
+        .oneOf(["yes", "no"], "Invalid value")
 })
 
 module.exports = ClientFormValidationSchema

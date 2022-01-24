@@ -176,7 +176,7 @@ clientAddress1 ${values.clientAddress1}
 clientAddress2 ${strings.orEmpty(values.clientAddress2)}
 clientConsent ${values.clientConsent}
         `
-        if (values._intake === "2" || values._intake === "3"){
+        if (values._intake === "2" || values._intake === "3" || values._intake === "4"){
             html += `
 livingOnReserveCommunity ${strings.orEmpty(values.livingOnReserveCommunity)}
 receivingAssistanceFrom ${strings.orEmpty(values.receivingAssistanceFrom)}

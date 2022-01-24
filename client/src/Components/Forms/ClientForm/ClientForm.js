@@ -8,7 +8,7 @@ import { feedBackClassName, feedBackInvalid } from '../Shared/ValidationMessages
 import { generateAlert } from '../Shared/Alert'
 import { DatePickerField } from '../Shared/DatePickerField'
 import { FORM_URL } from '../../../constants/form'
-import IndigenousForm from './IndigenousForm'
+//import IndigenousForm from './IndigenousForm'
 
 class ClientForm extends Component {
     constructor() {
@@ -16,6 +16,7 @@ class ClientForm extends Component {
         this.state = {
             _csrf: '',
             _intake: '',
+            _date: new Date().toDateString(),
             hasError: false,
         }
     }
@@ -36,12 +37,14 @@ class ClientForm extends Component {
                     })
                 }
             )
-        if (this.props.match.path === "/participantForm/2/:id?"){
-            this.setState({"_intake":"2"})
-        } else if (this.props.match.path === "/participantForm/3/:id?"){
-            this.setState({"_intake":"3"})
-        } else if (this.props.match.path === "/clientForm/:id?"){
-            this.setState({"_intake":"1"})
+        if (this.props.match.path === "/participantForm/4/:id?") {
+            this.setState({ "_intake": "4" })
+        } else if (this.props.match.path === "/participantForm/2/:id?") {
+            this.setState({ "_intake": "2" })
+        } else if (this.props.match.path === "/participantForm/3/:id?") {
+            this.setState({ "_intake": "3" })
+        } else if (this.props.match.path === "/clientForm/:id?") {
+            this.setState({ "_intake": "1" })
         }
     }
 
@@ -102,6 +105,8 @@ class ClientForm extends Component {
                             initialValues={{
                                 _csrf: this.state._csrf,
                                 _intake: this.state._intake,
+                                _savedToSP: false,
+                                _date: this.state._date,
                                 applicationId: (typeof this.props.match.params.id !== 'undefined') ? this.props.match.params.id : '',
                                 applicationIdM: '',
                                 organizationNameM: '',
@@ -112,11 +117,16 @@ class ClientForm extends Component {
                                 clientEmail: '',
                                 clientAddress1: '',
                                 clientAddress2: '',
+                                approximateHours: '',
+                                receivingAssistanceFromFirstNationOrTribalCouncil: '',
+                                clientConsent: false,
+                                /*
                                 livingOnReserveCommunity: '',
                                 receivingAssistanceFrom: '',
                                 pwdDesignationOrganization: '',
                                 ppmbDesignationOrganization: '',
                                 clientConsent: false,
+                                */
                             }}
                             enableReinitialize={true}
                             validationSchema={ClientFormValidationSchema}
@@ -136,7 +146,7 @@ class ClientForm extends Component {
                                             if (resp.err) {
                                                 setErrors(resp.err)
                                                 setSubmitting(false)
-                                            } else if(resp.emailErr){
+                                            } else if (resp.emailErr) {
                                                 setSubmitting(false)
                                                 this.setState({
                                                     hasError: true
@@ -158,6 +168,7 @@ class ClientForm extends Component {
                                         <h2 id="forms">Participant Information</h2>
                                     </div>
                                     <ClientConsent />
+                                    {console.log(values)}
                                     {this.handleApplicationId(values.applicationId, values.noOrgId, errors, touched)}
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
@@ -203,8 +214,54 @@ class ClientForm extends Component {
                                         <Field className={`form-control ${feedBackClassName(errors, touched, "clientAddress2")}`} id="clientAddress2" name="clientAddress2" />
                                         {feedBackInvalid(errors, touched, "clientAddress2")}
                                     </div>
-                                    <hr></hr>
-                                    <IndigenousForm errors={errors} touched={touched} intake={values._intake}/>
+                                    {values._intake >= 2 &&
+                                        <>
+                                            <div className="form-group">
+                                                <label className="col-form-label control-label" htmlFor="approximateHours">Approximately how many hours per week will you participate in work experience?<span style={{ color: "red" }}>*</span></label>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "approximateHours")}`}
+                                                        type="radio"
+                                                        name="approximateHours"
+                                                        value="10hours"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="approximateHours10">Approximately 10 hours per week</label>
+                                                </div>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "approximateHours")}`}
+                                                        type="radio"
+                                                        name="approximateHours"
+                                                        value="20hours"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="approximateHours20">Approximately 20 hours per week</label>
+                                                    {feedBackInvalid(errors, touched, "approximateHours")}
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="col-form-label control-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncil">Are you currently receiving income assistance or disability assistance from a First Nation or Tribal Council?<span style={{ color: "red" }}>*</span></label>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
+                                                        type="radio"
+                                                        name="receivingAssistanceFromFirstNationOrTribalCouncil"
+                                                        value="yes"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilYes">Yes</label>
+                                                </div>
+                                                <div className="form-check">
+                                                    <Field
+                                                        className={`form-check-input ${feedBackClassName(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}`}
+                                                        type="radio"
+                                                        name="receivingAssistanceFromFirstNationOrTribalCouncil"
+                                                        value="no"
+                                                    />
+                                                    <label className="form-check-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncilNo">No</label>
+                                                    {feedBackInvalid(errors, touched, "receivingAssistanceFromFirstNationOrTribalCouncil")}
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
                                     <hr></hr>
                                     <div className="form-group">
                                         <h2>For All Participants</h2>
@@ -219,7 +276,7 @@ class ClientForm extends Component {
                                             <Field type="checkbox" className={`form-check-input ${feedBackClassName(errors, touched, "clientConsent")}`} id="clientConsent"
                                                 name="clientConsent" />
                                             <label className="form-check-label control-label" htmlFor="clientConsent"><span style={{ color: "red" }}>*</span>
-                                             I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that the effect of doing so is the same as if I were to manually sign a physical copy of this form.
+                                                I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that the effect of doing so is the same as if I were to manually sign a physical copy of this form.
                                             </label>
                                             {feedBackInvalid(errors, touched, "clientConsent")}
                                         </div>
@@ -234,7 +291,7 @@ class ClientForm extends Component {
                                             isSubmitting ?
                                                 <div>
                                                     <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                                                       Submitting...
+                                                    Submitting...
                                                 </div>
                                                 :
                                                 "Submit"
@@ -242,7 +299,7 @@ class ClientForm extends Component {
                                         }
                                     </button>
                                 </Form>
-                                
+
                             )}
 
 

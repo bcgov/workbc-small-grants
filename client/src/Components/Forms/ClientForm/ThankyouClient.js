@@ -56,7 +56,6 @@ class ThankyouClient extends Component {
                         <p><b>Address2:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress2}</p>
                         <p><b>Consent:</b> {this.props.location.state !== undefined && this.props.location.state.clientConsent.toString()}</p>
                         
-                        {this.indigenousInformation}
                         {this.appIdOrOrgName}  
                         <hr />
                     </div>
