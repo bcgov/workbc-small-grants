@@ -51,7 +51,7 @@ module.exports = {
             `Applicant eligibility confirmation:  ${values.applicantType}`,
             `Understanding on participant ineligibility: ${values.understandNotAvailableTo}`,
             `Grant administration understanding: ${values.administerGrantUnderstanding}`,
-            `Placement length confirmation:  ${values.placementLength}`,
+            //`Placement length confirmation:  ${values.placementLength}`,
             `Work Opportunity:`,  
             `${values.participantActivities}`,
             `What will organization provide:  ${values.participantExperiences}`,
@@ -72,7 +72,7 @@ module.exports = {
             */
             `Additional Benefits: `,
             `${strings.orEmpty(values.additionalBenefits)}`,
-            `Stipend confirmation:  ${values.participantStipend}`,
+            //`Stipend confirmation:  ${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
             `Supplier Number:${strings.orEmpty(values.supplierNumber)}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
@@ -94,6 +94,8 @@ module.exports = {
             `<b>Email:</b> ${values.clientEmail}`,
             `<b>Address1:</b> ${values.clientAddress1}`,
             `<b>Address2:</b> ${strings.orEmpty(values.clientAddress2)}`,
+            `<p><b>Approximate Hours:</b> ${values.approximateHours}</p>`,
+            `<p><b>Receiving Assistance From First Nation Or Tribal Council:</b> ${values.receivingAssistanceFromFirstNationOrTribalCouncil}</p>`,
             `<b>Consent:</b> ${values.clientConsent}`,
         ]
         if (values.noOrgId){
@@ -101,6 +103,7 @@ module.exports = {
         } else {
             data.push(`<b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}`)
         }
+        /*
         if (values._intake === "2") {
             data.push(
                 `<h5>Indigenous Participants</h5>`,
@@ -110,6 +113,7 @@ module.exports = {
                 `<b>If PPMB Designation, Organization:</b> ${strings.orEmpty(values.ppmbDesignationOrganization)}`
             )
         }
+        */
         return data
 
     },
