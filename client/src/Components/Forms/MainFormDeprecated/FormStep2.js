@@ -151,7 +151,7 @@ class FormStep2 extends Component {
                             htmlFor="insuranceCoverage"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
+                        I have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work"  target="_blank" rel="noopener noreferrer">
                                 WorkSafe BC insurance coverage</a>  to meet the needs of the placement.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "insuranceCoverage")}
