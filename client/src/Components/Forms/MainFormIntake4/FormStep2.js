@@ -134,6 +134,11 @@ class FormStep2 extends Component {
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </Field>
                     <p>Participants must meet all <a href="https://www.workbc.ca/getmedia/da44cdbc-c0d0-4171-b6f1-e63670214810/Eligibility-Criteria-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">eligibility requirements</a>.  Eligibility will be verified by the Ministry.</p>
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfApplicants")}
@@ -146,7 +151,7 @@ class FormStep2 extends Component {
                             htmlFor="insuranceCoverage"
                         >
                             <span style={{ color: "red" }}>*</span>
-                        I have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work">
+                        I have adequate <a href="https://www.worksafebc.com/en/insurance/need-coverage#%3A%7E%3Atext%3DWorkSafeBC%20insurance%20provides%20protection%20for%2Can%20occupational%20disease%20at%20work" target="_blank" rel="noopener noreferrer">
                                 WorkSafe BC insurance coverage</a>  to meet the needs of the placement.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "insuranceCoverage")}
