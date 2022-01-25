@@ -40,7 +40,7 @@ module.exports = {
         })
         .then(async db => {
         // add our values to db (they are always new)
-            return db.collection("Client").find({savedToSP: false})
+            return db.collection("Client").find({_savedToSP: false})
                 //console.log(err)
                 //console.log(doc)
         }).then(async doc =>{
@@ -56,7 +56,7 @@ module.exports = {
         })
         .then(async db => {
         // add our values to db (they are always new)
-            return db.collection("Organization").find({savedToSP: false})
+            return db.collection("Organization").find({_savedToSP: false})
                 //console.log(err)
                 //console.log(doc)
         }).then(doc =>{
@@ -78,7 +78,7 @@ module.exports = {
                 },
                 { 
                     $set : {
-                    savedToSP: true
+                    _savedToSP: true
                     }
                 },
                 {
