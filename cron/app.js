@@ -257,7 +257,7 @@ cron.schedule('*/3 * * * *', async function () {
   await getClientNotSP()
     .then(async cursor => {
       var results = await cursor.toArray()
-      console.log("Have Employee not saved to reporting")
+      console.log("Participant Form")
       console.log(results.length)
       for (const data of results) {
         clean(data)
@@ -287,7 +287,7 @@ cron.schedule('*/3 * * * *', async function () {
   await getFormNotSP()
     .then(async cursor => {
       var results = await cursor.toArray()
-      console.log("Need employee not saved to reporting")
+      console.log("Organization Form")
       console.log(results.length)
       for (const data of results) {
         clean(data)
