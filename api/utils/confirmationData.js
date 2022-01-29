@@ -10,7 +10,7 @@ module.exports = {
             `If you have additional questions or require assistance, please review the application guidelines <a href="https://www.workbc.ca/getmedia/b73c6c7b-40ec-4c10-ae94-13775d76abbc/Application-Guide-Work-Experience-Opportunities-Grant.aspx" target="_blank" rel="noopener noreferrer">here</a>, or contact <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>`,
             `<hr />`,
             `The following information was received:`,
-            `Application ID:  ${values._id}`,
+            `Application ID:  2022-${values._id}`,
             `Operating Name:  ${values.operatingName}`,
             `Legal Name:  ${values.legalName}`,
             `Mission Statement:  ${values.missionStatement}`,

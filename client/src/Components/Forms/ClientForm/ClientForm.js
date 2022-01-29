@@ -50,7 +50,8 @@ class ClientForm extends Component {
 
 
     handleApplicationId(id, hasId, errors, touched) {
-        if (id === "" || id.length !== 10) {
+        console.log(id.length)
+        if (id === "" || (id.length !== 10 && id.length !== 15)) {
             //show non id handler
             return (
                 <div>
@@ -77,7 +78,7 @@ class ClientForm extends Component {
                             <div className="form-group">
                                 <label className="col-form-label control-label" htmlFor="applicationIdM">Application ID <span
                                     style={{ color: "red" }}>*</span></label>
-                                <small className="text-muted" id="clientAddress1"> Please provide the 10 character ID.</small>
+                                <small className="text-muted" id="clientAddress1"> Please provide the 10 or 15 character ID.</small>
                                 <Field className={`form-control ${feedBackClassName(errors, touched, "applicationIdM")}`} id="applicationIdM" name="applicationIdM" />
                                 {feedBackInvalid(errors, touched, "applicationIdM")}
                             </div>
@@ -119,6 +120,7 @@ class ClientForm extends Component {
                                 clientAddress2: '',
                                 approximateHours: '',
                                 receivingAssistanceFromFirstNationOrTribalCouncil: '',
+                                estimatedStartDate: '',
                                 clientConsent: false,
                                 /*
                                 livingOnReserveCommunity: '',
@@ -237,6 +239,16 @@ class ClientForm extends Component {
                                                     <label className="form-check-label" htmlFor="approximateHours20">Approximately 20 hours per week</label>
                                                     {feedBackInvalid(errors, touched, "approximateHours")}
                                                 </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="col-form-label control-label" htmlFor="estimatedStartDate">Estimated start date of your work experience <span
+                                                    style={{ color: "red" }}>*  </span></label>
+                                                <small className="text-muted" id="estimatedStartDate">  Approximate</small>
+                                                <DatePickerField
+                                                    name="estimatedStartDate"
+                                                    className={`form-control ${feedBackClassName(errors, touched, "clientDOB")}`}
+                                                />
+                                                {feedBackInvalid(errors, touched, "estimatedStartDate")}
                                             </div>
                                             <div className="form-group">
                                                 <label className="col-form-label control-label" htmlFor="receivingAssistanceFromFirstNationOrTribalCouncil">Are you currently receiving income assistance or disability assistance from a First Nation or Tribal Council?<span style={{ color: "red" }}>*</span></label>

@@ -10,7 +10,7 @@ class ThankyouOrg extends Component {
                     <div className="col-md-12">
                         <button className="btn btn-success d-print-none float-right" onClick={() => window.print()}>Print Confirmation</button><br /><br />
                         <h1>Thank you, your information has been received.</h1>
-                        <h3>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</h3>
+                        <h3>Application ID: 2022-{this.props.location.state !== undefined && this.props.location.state._id}</h3>
                         <p>
                         Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.
                         </p>
@@ -23,7 +23,7 @@ class ThankyouOrg extends Component {
                             <div className="card-body">
                                 <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/participantForm/4/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/4/${applicationId}`}</a></p>
+                                <p><a href={`${window.location.origin}/participantForm/4/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/4/2022-${applicationId}`}</a></p>
                                 <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>
