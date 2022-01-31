@@ -59,7 +59,7 @@ async function saveListClient(values) {
             "__metadata": {
               "type": t
             },
-            'Title': `${values.clientName} - ${values.applicationIdM}`,
+            'Title': `${values.clientName} - ${values.applicationId}`,
             'Intake': `Intake${values._intake}`,
             'selfSubmitID': values.applicationIdM,
             'linkedID':  typeof values.applicationId !== 'undefined' ? values.applicationId:'',
@@ -147,7 +147,7 @@ async function saveListForm(values, email, ca) {
             "__metadata": {
               "type": t
             },
-            'Title': `${values.applicationId} - ${values.operatingName}`,
+            'Title': `2022-${values.applicationId} - ${values.operatingName}`,
             'applicationID': `2022-${values.applicationId}`,// check the others consistency
             'operatingName': `${values.operatingName}`,
             'legalName': `${values.legalName}`,

@@ -21,9 +21,9 @@ class ThankyouOrg extends Component {
                         <h4>Please provide your participants the following instructions:</h4>
                         <div className="card border-dark">
                             <div className="card-body">
-                                <p>Application ID: {this.props.location.state !== undefined && this.props.location.state._id}</p>
+                                <p>Application ID: 2022-{this.props.location.state !== undefined && this.props.location.state._id}</p>
                                 <p>Please visit the following URL in order to provide your consent to the Ministry.</p>
-                                <p><a href={`${window.location.origin}/participantForm/4/${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/4/2022-${applicationId}`}</a></p>
+                                <p><a href={`${window.location.origin}/participantForm/4/2022-${applicationId}`} target="_blank" rel="noopener noreferrer">{`${window.location.origin}/participantForm/4/2022-${applicationId}`}</a></p>
                                 <p>If you prefer a PDF version of the form, one can be found <a href="/pdf/ParticipantConsentForm.pdf" target="_blank">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.</p>
                             </div>
                         </div>

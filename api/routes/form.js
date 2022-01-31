@@ -54,7 +54,7 @@ async function sendEmails(values) {
           subject: "Application Confirmation - " + values._id, // Subject line
           html: generateHTMLEmail("Thank you, your information has been received.",
             [
-              `<b>Application ID: ${values._id}</b>`,
+              `<b>Application ID: 2022-${values._id}</b>`,
               `Your application for the Work Experience Opportunities Grant has been successfully submitted. A confirmation email has been sent to the email addresses included on the form, which includes a copy of the application details, and the application ID reference number.`,
               `<b>Here are your required next steps:</b>`,
               `Your participants' application form will be reviewed by the ministry on a rolling basis. Participants need to be verified before work can commence. Participant applications should be submitted as soon as possible to get this process started. September 12, 2022 is the deadline for submitting your participant application forms.`,
@@ -63,9 +63,9 @@ async function sendEmails(values) {
               `<b>Please provide your participants the following instructions:</b>`
             ],
             [
-              `Application ID: ${values._id}`,
+              `Application ID: 2022-${values._id}`,
               `Please visit the following URL in order to provide your consent to the Ministry.`,
-              `<a href="${clientURL}/participantForm/3/${values._id}">${clientURL}/participantForm/3/${values._id}</a>`,
+              `<a href="${clientURL}/participantForm/4/2022-${values._id}">${clientURL}/participantForm/4/2022-${values._id}</a>`,
               `If you prefer a PDF version of the form, one can be found <a href="${clientURL}/pdf/ParticipantConsentForm.pdf">here</a>. Once complete please email it to <a href="mailto:WorkExperienceGrants@gov.bc.ca">WorkExperienceGrants@gov.bc.ca</a>.`,
             ],
             getOrgSubmitted(values)
