@@ -4,6 +4,7 @@ const spauth = require('node-sp-auth')
 const request = require('request-promise')
 var {getClientNotSP, getFormNotSP, updateSavedToSP} = require('./mongo')
 var clean = require('./clean')
+const Strings = require('../api/utils/strings')
 
 var listWebURL = process.env.LISTWEBURL || process.env.OPENSHIFT_NODEJS_LISTWEBURL || ""
 var listUser = process.env.LISTUSER || process.env.OPENSHIFT_NODEJS_LISTUSER || ""
@@ -59,7 +60,7 @@ async function saveListClient(values) {
             "__metadata": {
               "type": t
             },
-            'Title': `${values.clientName} - ${values.applicationId}`,
+            'Title': `${values.clientName} - ${Strings.orEmpty(values.applicationId)}${Strings.orEmpty(values.applicationIdM)}`,
             'Intake': `Intake${values._intake}`,
             'selfSubmitID': values.applicationIdM,
             'linkedID':  typeof values.applicationId !== 'undefined' ? values.applicationId:'',
@@ -79,7 +80,11 @@ async function saveListClient(values) {
       }).then(async response => {
         //item was created
         //console.log(response)
-        return true
+        return {
+          itemCreated: true,
+          itemID: response.value[0].ItemId
+        }
+        //return true
       })
       .catch(err => {
         //there was an error in the chan
@@ -147,8 +152,8 @@ async function saveListForm(values, email, ca) {
             "__metadata": {
               "type": t
             },
-            'Title': `2022-${values.applicationId} - ${values.operatingName}`,
-            'applicationID': `2022-${values.applicationId}`,// check the others consistency
+            'Title': `2022-${values._id} - ${values.operatingName}`,
+            'applicationID': `2022-${values._id}`,// check the others consistency
             'operatingName': `${values.operatingName}`,
             'legalName': `${values.legalName}`,
             'missionStatement': `${values.missionStatement}`,
@@ -217,7 +222,12 @@ async function saveListForm(values, email, ca) {
         })
       }).then(async response => {
         //item was created
-        return true
+        console.log(response)
+        return {
+          itemCreated: true,
+          itemID: response.value[0].ItemId
+        }
+        //return true
       })
       .catch(err => {
         //there was an error in the chan
@@ -268,9 +278,9 @@ cron.schedule('*/3 * * * *', async function () {
             console.log("saved")
             console.log(saved)
             // save values to mongo db
-            if (saved) {
+            if (saved.itemCreated) {
               try {
-                updateSavedToSP("Client", data._id);
+                updateSavedToSP("Client", data._id, saved.itemID);
               }
               catch (error) {
                 console.log(error);
@@ -298,9 +308,9 @@ cron.schedule('*/3 * * * *', async function () {
             console.log("saved")
             console.log(saved)
             // save values to mongo db
-            if (saved) {
+            if (saved.itemCreated) {
               try {
-                updateSavedToSP("Organization", data._id);
+                updateSavedToSP("Organization", data._id, saved.itemID);
               }
               catch (error) {
                 console.log(error);

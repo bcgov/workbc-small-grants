@@ -63,7 +63,7 @@ module.exports = {
             return doc
         })          
     },
-    updateSavedToSP: async function(collection,_id){
+    updateSavedToSP: async function(collection,_id, _spID){
         return await connection
         .then(mClient => {
             // get a handle on the db
@@ -78,7 +78,8 @@ module.exports = {
                 },
                 { 
                     $set : {
-                    _savedToSP: true
+                    _savedToSP: true,
+                    _spID: _spID
                     }
                 },
                 {
