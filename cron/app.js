@@ -4,7 +4,7 @@ const spauth = require('node-sp-auth')
 const request = require('request-promise')
 var {getClientNotSP, getFormNotSP, updateSavedToSP} = require('./mongo')
 var clean = require('./clean')
-const Strings = require('../api/utils/strings')
+var Strings = require('./strings')
 
 var listWebURL = process.env.LISTWEBURL || process.env.OPENSHIFT_NODEJS_LISTWEBURL || ""
 var listUser = process.env.LISTUSER || process.env.OPENSHIFT_NODEJS_LISTUSER || ""
