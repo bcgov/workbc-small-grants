@@ -245,6 +245,7 @@ class ClientForm extends Component {
                                                     style={{ color: "red" }}>*  </span></label>
                                                 <small className="text-muted" id="estimatedStartDate">  Approximate</small>
                                                 <DatePickerField
+                                                    maxDate={null}
                                                     name="estimatedStartDate"
                                                     className={`form-control ${feedBackClassName(errors, touched, "clientDOB")}`}
                                                 />

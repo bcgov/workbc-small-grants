@@ -8,6 +8,7 @@ export const DatePickerField = ({ ...props }) => {
   return (
     <DatePicker
       {...field}
+      maxDate={new Date()}
       {...props}
       selected={(field.value && new Date(field.value)) || null}
       onChange={val => {
@@ -16,7 +17,7 @@ export const DatePickerField = ({ ...props }) => {
       showMonthDropdown
       showYearDropdown
       dropdownMode="select"
-      maxDate={new Date()}
+      
     />
   );
 };
@@ -26,6 +27,7 @@ export const MonthPickerField = ({ ...props }) => {
   const [field] = useField(props);
   return (
     <DatePicker
+      maxDate={new Date()}
       {...field}
       {...props}
       selected={(field.value && new Date(field.value)) || null}
@@ -33,7 +35,7 @@ export const MonthPickerField = ({ ...props }) => {
         setFieldValue(field.name, val);
       }}
       dateFormat="MM/yyyy"
-      maxDate={new Date()}
+      
       minDate={new Date("2020/11/01")}
       showMonthYearPicker
     />
