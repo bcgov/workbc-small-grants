@@ -95,6 +95,7 @@ module.exports = {
             `<b>Address1:</b> ${values.clientAddress1}`,
             `<b>Address2:</b> ${strings.orEmpty(values.clientAddress2)}`,
             `<p><b>Approximate Hours:</b> ${values.approximateHours}</p>`,
+            `<p><b>Estimated Start Date:</b> ${values.estimatedStartDate.getDate()}/${values.estimatedStartDate.getMonth()+1}/${values.estimatedStartDate.getFullYear()}</p>`,
             `<p><b>Receiving Assistance From First Nation Or Tribal Council:</b> ${values.receivingAssistanceFromFirstNationOrTribalCouncil}</p>`,
             `<b>Consent:</b> ${values.clientConsent}`,
         ]
