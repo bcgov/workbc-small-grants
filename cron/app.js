@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const express = require('express')
 const spauth = require('node-sp-auth')
 const request = require('request-promise')
-var {getClientNotSP, getFormNotSP, updateSavedToSP} = require('./mongo')
+var { getClientNotSP, getFormNotSP, updateSavedToSP, findFormByApplicationID } = require('./mongo')
 var clean = require('./clean')
 var Strings = require('./strings')
 
@@ -13,7 +13,7 @@ var listDomain = process.env.LISTDOMAIN || process.env.OPENSHIFT_NODEJS_LISTDOMA
 var listParty = process.env.LISTPARTY || process.env.OPENSHIFT_NODEJS_LISTPARTY || ""
 var listADFS = process.env.LISTADFS || process.env.OPENSHIFT_NODEJS_LISTADFS || ""
 var testList = process.env.TESTLIST || process.env.OPENSHIFT_NODEJS_TESTLIST || ""
-var listURL = testList === "" ?  `/workbcGrantTest/_api/contextInfo` : `/workbcgrant/_api/contextInfo` 
+var listURL = testList === "" ? `/workbcGrantTest/_api/contextInfo` : `/workbcgrant/_api/contextInfo`
 console.log(`${listWebURL}${listURL}`)
 app = express();
 
@@ -31,9 +31,9 @@ async function saveListClient(values) {
         //return true
         //console.log(response)
         headers = response
-        
+
         return request.post({
-          url:  `${listWebURL}${listURL}`,
+          url: `${listWebURL}${listURL}`,
           headers: headers,
           json: true,
         })
@@ -51,7 +51,7 @@ async function saveListClient(values) {
           var l = listWebURL + `workbcgrant/_api/web/lists/getByTitle('ClientSubmissions')/items`
           var t = `SP.Data.ClientSubmissionsListItem`
         }
-       
+
         return request.post({
           url: l,
           headers: headers,
@@ -63,7 +63,7 @@ async function saveListClient(values) {
             'Title': `${values.clientName} - ${Strings.orEmpty(values.applicationId)}${Strings.orEmpty(values.applicationIdM)}`,
             'Intake': `Intake${values._intake}`,
             'selfSubmitID': values.applicationIdM,
-            'linkedID':  typeof values.applicationId !== 'undefined' ? values.applicationId:'',
+            'linkedID': typeof values.applicationId !== 'undefined' ? values.applicationId : '',
             'selfSubmitOrganization': values.organizationNameM,
             'firstName': values.clientName,
             'lastName': values.clientLastName,
@@ -72,8 +72,8 @@ async function saveListClient(values) {
             'address1': values.clientAddress1,
             'address2': values.clientAddress2,
             'consent': values.clientConsent,
-            'approximateHours':values.approximateHours,
-            'estimatedStartDate':values.estimatedStartDate,
+            'approximateHours': values.approximateHours,
+            'estimatedStartDate': values.estimatedStartDate,
             'receivingAssistanceFromFirstNati': values.receivingAssistanceFromFirstNationOrTribalCouncil,
           }
         })
@@ -93,7 +93,7 @@ async function saveListClient(values) {
         console.log('error in chain')
         if (err.statusCode !== 403) {
           console.log(err);
-          
+
         }
         console.log(err.config)
         console.log(err.statusCode)
@@ -210,7 +210,7 @@ async function saveListForm(values, email, ca) {
             'additionalBenefits': values.additionalBenefits,
             //step 3
             //participantStipend,
-            'existingSupplierNumber': values.existingSupplierNumber == 'yes'? true : false,
+            'existingSupplierNumber': values.existingSupplierNumber == 'yes' ? true : false,
             'supplierNumber': values.supplierNumber,
             'businessClassification': values.businessClassification,
             'taxNumber': values.taxNumber,
@@ -258,14 +258,46 @@ cron.schedule('*/3 * * * *', async function () {
   console.log('running a task every 3 minutes');
   //console.log('running a task every 10 seconds')
 
-    spr = spauth.getAuth(listWebURL, {
-      username: listUser,
-      password: listPass,
-      domain: listDomain,
-      relyingParty: listParty,
-      adfsUrl: listADFS
+  spr = spauth.getAuth(listWebURL, {
+    username: listUser,
+    password: listPass,
+    domain: listDomain,
+    relyingParty: listParty,
+    adfsUrl: listADFS
   })
-  
+
+  await getFormNotSP()
+    .then(async cursor => {
+      var results = await cursor.toArray()
+      console.log("Organization Form")
+      console.log(results.length)
+      for (const data of results) {
+        //await findFormByApplicationID(`${Strings.orEmpty(data.applicationId)}${Strings.orEmpty(data.applicationIdM)}`)
+        clean(data)
+        console.log(data)
+        
+        await saveListForm(data)
+          .then(function (saved) {
+            console.log("saved")
+            console.log(saved)
+            // save values to mongo db
+            if (saved.itemCreated) {
+              try {
+                updateSavedToSP("Organization", data._id, saved.itemID);
+              }
+              catch (error) {
+                console.log(error);
+              }
+            }
+          })
+          .catch(function (e) {
+            console.log("error")
+            console.log(e)
+          })
+
+      }
+    })
+
   await getClientNotSP()
     .then(async cursor => {
       var results = await cursor.toArray()
@@ -296,35 +328,7 @@ cron.schedule('*/3 * * * *', async function () {
       }
     })
 
-  await getFormNotSP()
-    .then(async cursor => {
-      var results = await cursor.toArray()
-      console.log("Organization Form")
-      console.log(results.length)
-      for (const data of results) {
-        clean(data)
-        console.log(data)
-        await saveListForm(data)
-          .then(function (saved) {
-            console.log("saved")
-            console.log(saved)
-            // save values to mongo db
-            if (saved.itemCreated) {
-              try {
-                updateSavedToSP("Organization", data._id, saved.itemID);
-              }
-              catch (error) {
-                console.log(error);
-              }
-            }
-          })
-          .catch(function (e) {
-            console.log("error")
-            console.log(e)
-          })
 
-      }
-    })
 });
 
 app.listen(5000);

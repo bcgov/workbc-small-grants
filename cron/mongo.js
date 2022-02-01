@@ -63,6 +63,22 @@ module.exports = {
             return doc
         })          
     },
+    findFormByApplicationID: async function (appID) {
+        return await connection
+        .then(mClient => {
+            // get a handle on the db
+            return mClient.db();
+            //return db
+        })
+        .then(async db => {
+        // add our values to db (they are always new)
+            return db.collection("Organization").find({_id: appID})
+                //console.log(err)
+                //console.log(doc)
+        }).then(doc =>{
+            return doc
+        })          
+    },
     updateSavedToSP: async function(collection,_id, _spID){
         return await connection
         .then(mClient => {
