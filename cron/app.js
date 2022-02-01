@@ -83,7 +83,7 @@ async function saveListClient(values) {
         console.log(response)
         return {
           itemCreated: true,
-          itemID: d.__metadata.ID
+          itemID: response.d.__metadata.ID
         }
         //return true
       })
@@ -226,7 +226,7 @@ async function saveListForm(values, email, ca) {
         console.log(response)
         return {
           itemCreated: true,
-          itemID: d.__metadata.ID
+          itemID: response.d.__metadata.ID
         }
         //return true
       })
