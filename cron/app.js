@@ -80,9 +80,10 @@ async function saveListClient(values) {
       }).then(async response => {
         //item was created
         //console.log(response)
+        console.log(response)
         return {
           itemCreated: true,
-          itemID: response.value[0].ItemId
+          itemID: d.__metadata.ID
         }
         //return true
       })
@@ -225,7 +226,7 @@ async function saveListForm(values, email, ca) {
         console.log(response)
         return {
           itemCreated: true,
-          itemID: response.value[0].ItemId
+          itemID: d.__metadata.ID
         }
         //return true
       })
