@@ -96,6 +96,23 @@ class ClientForm extends Component {
         }
     }
 
+    showErrors(errors, submitCount) {
+        if (submitCount > 0) {
+            return (
+                <div>
+                    <p>Please correct the following errors:</p>
+                    <ul>
+                        {Object.values(errors).map((error, i) => (
+                            <li key={i}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -161,7 +178,7 @@ class ClientForm extends Component {
                                     )
                             }}
                         >
-                            {({ values, errors, touched, isSubmitting, setFieldValue }) => (
+                            {({ values, errors, touched, isSubmitting, setFieldValue, submitCount }) => (
                                 <Form>
                                     {this.state.hasError && (
                                         generateAlert("alert-danger", "An error has occurred, please refresh the page. If the error persists, please try again later.")
@@ -246,6 +263,7 @@ class ClientForm extends Component {
                                                 <small className="text-muted" id="estimatedStartDate">  Approximate</small>
                                                 <DatePickerField
                                                     maxDate={null}
+                                                    minDate={new Date()}
                                                     name="estimatedStartDate"
                                                     className={`form-control ${feedBackClassName(errors, touched, "clientDOB")}`}
                                                 />
@@ -276,6 +294,9 @@ class ClientForm extends Component {
                                         </>
                                     }
                                     <hr></hr>
+                                    <div className="form-group">
+                                        {this.showErrors(errors, submitCount)}
+                                    </div>
                                     <div className="form-group">
                                         <h2>For All Participants</h2>
                                         <p>By clicking on the “submit” icon below, you:</p>

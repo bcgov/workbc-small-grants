@@ -49,7 +49,7 @@ export const ClientFormValidationSchema = yup.object().shape({
         .required("Please select approximate hours.")
         .oneOf(["10hours", "20hours"], "Invalid value"),
     estimatedStartDate: yup.date()
-        .min(new Date())
+        .min(new Date(), "You cannot choose a start date in the past")
         .required("Please enter your estimated start date of your work experience."),    
     receivingAssistanceFromFirstNationOrTribalCouncil: yup.string()
         .required("Please select if you are currently receiving income assistance or disability assistance from a First Nation or Tribal Council.")
