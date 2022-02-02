@@ -105,7 +105,7 @@ var MainFormValidationSchema = yup.object().shape({
         .max(100, "City name too long")
         .required("Please enter city"),
     contactPostal: yup.string()
-        .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/, "Please enter a valid Postal Code")
+        .matches(/^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d$/, "Please enter a valid Postal Code")
         .required("Please enter a postal code."),
     mailingAddress1: yup.string()
         .max(255, "Address too long, please use address line 2.")
