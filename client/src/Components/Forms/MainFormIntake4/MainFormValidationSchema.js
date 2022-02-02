@@ -121,7 +121,7 @@ export const MainFormValidationSchema = yup.object().shape({
             then: yup.string().required("Please enter city")
         }),    
     mailingPostal: yup.string()
-        .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,"Please enter a valid Postal Code")
+        .matches(/^[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d$/, "Please enter a valid Postal Code")
         .when("otherMailingAddress", {
             is: true,
             then: yup.string().required("Please enter a postal code.")
