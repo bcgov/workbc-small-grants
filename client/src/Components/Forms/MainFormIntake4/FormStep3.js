@@ -138,7 +138,7 @@ class FormStep3 extends Component {
                             htmlFor="signingAuthorityConfirm"
                         >
                             <span style={{ color: "red" }}>*</span>
-                            I certify that the 2 individuals above are signing authority for the organization.
+                            I certify that the individual(s) above have signing authority for the organization.
                         </label>
                         {feedBackInvalid(this.props.errors, this.props.touched, "signingAuthorityConfirm")}
                     </div>
