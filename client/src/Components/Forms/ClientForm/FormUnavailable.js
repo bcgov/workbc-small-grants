@@ -6,10 +6,8 @@ function FormUnavailable() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="alert alert-primary" role="alert">
-                        <p><b>Participant Form Currently Unavailable.</b></p>
-                        <p>Thank you for your interest in submitting participant information for the Work Experience Opportunities Grant. The participant form is undergoing a quick update and is currently unavailable. Please check back shortly and we apologize about any inconvenience this may have caused.</p>
-                        <hr />
-                        <p className="mb-0">If you have questions, please contact the ministry at <a href="mailto:workexperiencegrants@gov.bc.ca">workexperiencegrants@gov.bc.ca</a></p>
+                        <p>Thank you for your interest in the Work Experience Opportunities Grant Program. This Participant Information link is no longer valid.</p>
+                        <p>If you are a participant of the Work Experience Opportunities Grant Program that launched on February 2nd, 2022, please contact the organization who is supporting your Work Experience Placement for an updated link.</p>
                     </div>
                 </div>
             </div>
