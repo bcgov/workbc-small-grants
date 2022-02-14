@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const express = require('express')
 const spauth = require('node-sp-auth')
 const request = require('request-promise')
-var { getClientNotSP, getFormNotSP, updateSavedToSP, findFormByApplicationID } = require('./mongo')
+var { getClientNotSP, getFormNotSP, updateSavedToSP, findFormByApplicationID, checkForPreviousOrganizationApplications, checkForDuplicateClients, updatePotentialDuplicate } = require('./mongo')
 var clean = require('./clean')
 var Strings = require('./strings')
 
@@ -15,6 +15,7 @@ var listADFS = process.env.LISTADFS || process.env.OPENSHIFT_NODEJS_LISTADFS || 
 var testList = process.env.TESTLIST || process.env.OPENSHIFT_NODEJS_TESTLIST || ""
 var listURL = testList === "" ? `/workbcGrantTest/_api/contextInfo` : `/workbcgrant/_api/contextInfo`
 console.log(`${listWebURL}${listURL}`)
+
 app = express();
 
 var spr;
@@ -22,6 +23,9 @@ var spr;
 async function saveListClient(values) {
   try {
     var headers;
+    var results;
+    var duplicates = 5;
+    var DuplicateString = "";
     return await spr
       .then(async data => {
         headers = data.headers;
@@ -38,6 +42,29 @@ async function saveListClient(values) {
           json: true,
         })
       }).then(async response => {
+        results = await checkForDuplicateClients(values.clientLastName, values.clientDOB)
+        if (results != undefined) {
+          if (results.length < 5) {
+            duplicates = results.length;
+          }
+          
+          results = results.slice(1, duplicates)
+          for (let i = 0; i < duplicates - 1; i++) {
+            if(results[i]._id != values.applicationId){
+              DuplicateString += results[i]._id + "\n";
+            }
+          }
+        }
+        try {
+          if(DuplicateString !== "undefined"){
+            updatePotentialDuplicate("Client", values.applicationId, DuplicateString);
+          }else{
+            updatePotentialDuplicate("Client", values.applicationId, "");
+          }
+        }
+        catch (error) {
+          console.log(error);
+        }
         var digest = response.d.GetContextWebInformation.FormDigestValue
         return digest
       }).then(async response => {
@@ -75,6 +102,7 @@ async function saveListClient(values) {
             'approximateHours': values.approximateHours,
             'estimatedStartDate': values.estimatedStartDate,
             'receivingAssistanceFromFirstNati': values.receivingAssistanceFromFirstNationOrTribalCouncil,
+            'potentialDuplicate':DuplicateString !== "undefined" ? DuplicateString : "",
           }
         })
       }).then(async response => {
@@ -115,6 +143,7 @@ async function saveListClient(values) {
 async function saveListForm(values, email, ca) {
   try {
     var headers;
+    var duplicates = false;
     return await spr
       .then(async data => {
         headers = data.headers;
@@ -130,6 +159,13 @@ async function saveListForm(values, email, ca) {
           json: true,
         })
       }).then(async response => {
+        duplicates = await checkForPreviousOrganizationApplications(values.businessNumber)
+        try {
+          updatePotentialDuplicate("Organization", values._id, duplicates);
+        }
+        catch (error) {
+          console.log(error);
+        }
         var digest = response.d.GetContextWebInformation.FormDigestValue
         return digest
       }).then(async response => {
@@ -218,6 +254,7 @@ async function saveListForm(values, email, ca) {
             'signatory2': values.signatory2,
             'signingAuthorityConfirm': values.signingAuthorityConfirm,
             'organizationConsent': values.organizationConsent,
+            'potentialDuplicate': duplicates,
             'Intake': 'Intake4',
           }
         })

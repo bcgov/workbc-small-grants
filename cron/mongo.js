@@ -79,6 +79,107 @@ module.exports = {
             return doc
         })          
     },
+    checkForPreviousOrganizationApplications: async function (businessNum) {
+        return await connection
+        .then(mClient => {
+            // get a handle on the db
+            return mClient.db();
+            //return db
+        })
+        .then(async db => {
+        // add our values to db (they are always new)
+            return db.collection("Organization").aggregate([
+                {$match: {businessNumber:businessNum}},
+                {$group: {_id: "$_id" }}]).toArray()
+            }).then(async doc =>{
+                if(doc.length > 1){
+                    return true
+                }else{
+                    return false
+                }
+            })    
+    },
+    checkForDuplicateClients: async function (lastName, DOB) {
+        var regex = new RegExp(lastName, "i");
+        console.log(regex);
+        return await connection
+        .then(mClient => {
+            // get a handle on the db
+            return mClient.db();
+            //return db
+        })
+        .then(async db => {
+        // add our values to db (they are always new)
+            return db.collection("Client").aggregate([
+                {$match: {clientLastName:regex,clientDOB:DOB}},
+                {$group: {_id: "$applicationId" }}]).toArray()
+                //console.log(err)
+                //console.log(doc)
+        }).then(async doc =>{
+            return doc
+        })          
+    },
+    updatePotentialDuplicate:async function(collection, _id, duplicate){
+
+        if(collection ==="Organization"){
+            return await connection
+            .then(mClient => {
+                // get a handle on the db
+                return mClient.db();
+                //return db
+            })
+            .then(async db => {
+            // add our values to db (they are always new)
+                return db.collection(collection).updateOne(
+                    {
+                        _id: _id
+                    },
+                    { 
+                        $set : {
+                        potentialDuplicate: duplicate,
+                        }
+                    },
+                    {
+                        upsert: false
+                    }
+
+                )
+                    //console.log(err)
+                    //console.log(doc)
+            }).then(result =>{
+                return result
+            }) 
+        }
+    else{
+        return await connection
+        .then(mClient => {
+            // get a handle on the db
+            return mClient.db();
+            //return db
+        })
+        .then(async db => {
+        // add our values to db (they are always new)
+            return db.collection(collection).updateOne(
+                {
+                    applicationId: _id
+                },
+                { 
+                    $set : {
+                    potentialDuplicate: duplicate,
+                    }
+                },
+                {
+                    upsert: false
+                }
+
+            )
+                //console.log(err)
+                //console.log(doc)
+        }).then(result =>{
+            return result
+        }) 
+    }
+    },
     updateSavedToSP: async function(collection,_id, _spID){
         return await connection
         .then(mClient => {
