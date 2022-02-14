@@ -54,7 +54,6 @@ class ThankyouClient extends Component {
                         <p><b>Email:</b> {this.props.location.state !== undefined && this.props.location.state.clientEmail}</p>
                         <p><b>Address1:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress1}</p>
                         <p><b>Address2:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress2}</p>
-                        <p><b>Address2:</b> {this.props.location.state !== undefined && this.props.location.state.clientAddress2}</p>
                         <p><b>Approximate Hours:</b> {this.props.location.state !== undefined && this.props.location.state.approximateHours}</p>
                         <p><b>Estimated Start Date:</b> {this.props.location.state !== undefined && this.props.location.state.estimatedStartDate.getDate()}/{this.props.location.state.estimatedStartDate.getMonth()+1}/{this.props.location.state.estimatedStartDate.getFullYear()}</p>
                         <p><b>Receiving Assistance From First Nation Or Tribal Council:</b> {this.props.location.state !== undefined && this.props.location.state.receivingAssistanceFromFirstNationOrTribalCouncil}</p>
