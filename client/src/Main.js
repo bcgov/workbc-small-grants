@@ -21,7 +21,7 @@ function Main() {
         <main role="main">
             <Router>
                 <Switch>
-                    <Route path="/form" component={MainForm2} />
+                    {/*<Route path="/form" component={MainForm2} />/*}
                     {/*<Route path="/formIntake2" component={MainForm2} />*/}
                     {/*<Route path="/intakeForm/0t2lzfoxkijzq8gfnftg7ap0eh6gmkswn4m0" component={MainForm} />*/}
                     <Route strict  path="/clientForm/:id?" component={FormUnavailable} />
