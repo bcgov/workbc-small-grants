@@ -48,6 +48,32 @@ var ReportValidationSchema = yup.object().shape({
         value => (value + "").match(/^\d/))
         .typeError("Must be a whole number")
         .required('Please enter the number of participants.'),
+    participantsNotAbleToComplete: yup.array().of(
+        yup.object({
+            weeksCompleted: yup.string()
+                .oneOf([
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "11"
+                    ], "Please enter the number of weeks completed by the participant.")
+                .required("Please enter the number of weeks completed by the participant."),
+            newParticipantFound: yup.string()
+                .oneOf([
+                    "yes",
+                    "no"
+                ], "Please indicate if a new participant was found.")
+                .required("Please indicate if a new participant was found."),
+            explanation: yup.string().required("Please provide an explanation for this participant").nullable()
+        })
+    ),
     fundingStipendAmount: yup.number().test(
         'is-decimal',
         'invalid decimal',
