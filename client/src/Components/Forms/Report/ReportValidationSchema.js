@@ -32,6 +32,12 @@ export const ReportValidationSchema = yup.object().shape({
             is: (value) => value === "other",
             then: yup.string().max(500, "Text too long.").required("Please provide explanation of the other recruitment source.")
         }),
+    participantsNumber: yup.number().test(
+        'is-integer',
+        'invalid number',
+        value => (value + "").match(/^\d/))
+        .typeError("Must be a whole number")
+        .required('Please enter the number of participants.'),
     participantsHoursPerWeek: yup.number().test(
         'is-decimal',
         'invalid decimal',
@@ -44,40 +50,12 @@ export const ReportValidationSchema = yup.object().shape({
             "no"
         ], "Please select a valid option.")
         .required("Please select if all participants who began a work experience placement completed it"),
-    participantsNotAbleToComplete: yup.string()
-        .when("participantsAllCompletedPlacement", {
-            is: (value) => value === "no",
-            then: yup.string()
-                .oneOf([
-                    "0",
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7",
-                    "8",
-                    "9",
-                    "10",
-                ], "Please select a valid field.")
-                .required("How many participants were not able to complete their placements?")
-        }),
-    participantsAbleToFindNew: yup.string()
-        .when("participantsAllCompletedPlacement", {
-            is: (value) => value === "no",
-            then: yup.string()
-                .oneOf([
-                    "yes",
-                    "no"
-                ], "Please select a valid option.")
-                .required("Were you able to find new participants to complete the remainder of the placement?")
-        }),
-    participantsAbleToFindNewNoExplain: yup.string()
-        .when("participantsAbleToFindNew", {
-            is: (value) => value === "no",
-            then: yup.string().max(500, "Text too long.").required("Please provide explanation of why you were not able to find new participants.")
-        }),
+    numberOfParticipantsNotAbleToComplete: yup.number().test(
+        'is-integer',
+        'invalid number',
+        value => (value + "").match(/^\d/))
+        .typeError("Must be a whole number")
+        .required('Please enter the number of participants.'),
     fundingStipendAmount: yup.number().test(
         'is-decimal',
         'invalid decimal',
@@ -88,14 +66,8 @@ export const ReportValidationSchema = yup.object().shape({
         'is-decimal',
         'invalid decimal',
         value => (value + "").match(/^\d*.{1}\d*$/))
-        .typeError("Participant supports must be a decimal number")
-        .required('Please enter your participants supports.'),
-    fundingAdministrationOperationalExpense: yup.number().test(
-        'is-decimal',
-        'invalid decimal',
-        value => (value + "").match(/^\d*.{1}\d*$/))
-        .typeError("Administration/Operation expenses must be a decimal number")
-        .required('Please enter your participants administration/operational expenses.'),
+        .typeError("Participant supports and operation expenses must be a decimal number")
+        .required('Please enter your participants supports and operational expenses.'),
     fundingAdditional: yup.string()
         .oneOf([
             "yes",
