@@ -183,7 +183,7 @@ class ReportForm extends Component {
                                 participantsNumber: '',
                                 participantsHoursPerWeek: '',
                                 participantsAllCompletedPlacement: '',
-                                numberOfParticipantsNotAbleToComplete: 0,
+                                numberOfParticipantsNotAbleToComplete: null,
                                 participantsNotAbleToComplete: [],
                                 participantsAbleToFindNew: '',
                                 participantsAbleToFindNewNoExplain: '',

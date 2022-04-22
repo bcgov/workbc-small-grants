@@ -42,12 +42,18 @@ var ReportValidationSchema = yup.object().shape({
             "no"
         ], "Please select a valid option.")
         .required("Please select if all participants who began a work experience placement completed it"),
-    numberOfParticipantsNotAbleToComplete: yup.number().test(
-        'is-integer',
-        'invalid number',
-        value => (value + "").match(/^\d/))
-        .typeError("Must be a whole number")
-        .required('Please enter the number of participants.'),
+    numberOfParticipantsNotAbleToComplete: yup.number()
+        .when(['participantsAllCompletedPlacement'], {
+            is: (participantsAllCompletedPlacement) => (participantsAllCompletedPlacement === "no"),
+            then: yup.number()
+                .test(
+                    'is-integer',
+                    'Please select the number of participants not able to complete a placement',
+                    value => (value + "").match(/^\d/))
+                .typeError("Must be a whole number")
+                .required('Please select the number of participants not able to complete a placement.'),
+            otherwise: yup.number().nullable(true)
+        }),
     participantsNotAbleToComplete: yup.array().of(
         yup.object({
             weeksCompleted: yup.string()
