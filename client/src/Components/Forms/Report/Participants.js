@@ -20,6 +20,14 @@ class ParticipantsForm extends Component{
                             className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "numberOfParticipantsNotAbleToComplete")}`}
                             id="numberOfParticipantsNotAbleToComplete"
                             name="numberOfParticipantsNotAbleToComplete"
+                            onChange={e => {
+                                this.props.handleChange(e)
+                                let arr = [];
+                                for (i=0; i<e.target.value; i++){
+                                    arr.push({weeksCompleted: ""})
+                                }
+                                this.props.setFieldValue("participantsNotAbleToComplete", arr)
+                            }}
                         >
                             <option value="">Please select</option>
                             <option value="1">1</option>
@@ -69,8 +77,13 @@ class ParticipantsForm extends Component{
                                                 <option value="10">10</option>
                                                 <option value="11">11</option>
                                             </Field>
+                                            <ErrorMessage
+                                                name={`participantsNotAbleToComplete[${index}].weeksCompleted`}
+                                                className="field-error">
+                                                { msg => <div style={{ color: 'red', weight: 'bold' }}>{msg}</div> }
+                                            </ErrorMessage>
                                             {
-                                                this.props.values.participantsNotAbleToComplete[index]?.weeksCompleted < 9 &&
+                                                this.props.values.participantsNotAbleToComplete[index]?.weeksCompleted !== "" && this.props.values.participantsNotAbleToComplete[index]?.weeksCompleted < 9 &&
                                                 <div className="form-group">
                                                     <label className="col-form-label control-label" htmlFor="participantsAbleToFindNew">
                                                         Were you able to find a new participant to complete the remainder of this placement? 
@@ -98,6 +111,11 @@ class ParticipantsForm extends Component{
                                                         />
                                                         <label className="form-check-label" htmlFor="no">No</label>
                                                     </div>
+                                                    <ErrorMessage
+                                                        name={`participantsNotAbleToComplete[${index}].newParticipantFound`}
+                                                        className="field-error">
+                                                        { msg => <div style={{ color: 'red', weight: 'bold' }}>{msg}</div> }
+                                                    </ErrorMessage>
                                                 </div>
                                             }
                                             {
@@ -114,6 +132,11 @@ class ParticipantsForm extends Component{
                                                         id={`participantsNotAbleToComplete[${index}].explanation`} 
                                                         name={`participantsNotAbleToComplete[${index}].explanation`} 
                                                     />
+                                                    <ErrorMessage
+                                                        name={`participantsNotAbleToComplete[${index}].explanation`}
+                                                        className="field-error">
+                                                        { msg => <div style={{ color: 'red', weight: 'bold' }}>{msg}</div> }
+                                                    </ErrorMessage>
                                                 </div>
                                             }
                                         </div>
