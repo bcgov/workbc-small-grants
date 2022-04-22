@@ -142,9 +142,21 @@ class ReportForm extends Component {
                     <p>Please correct the following errors:</p>
                     <p><b>To modify the form, use the Previous button at the bottom of the form. Using the Browser Back button will not retain the form information.</b></p>
                     <ul>
-                        {Object.values(errors).map((error, i) => (
-                            <li key={i}>{error}</li>
-                        ))}
+                        {Object.values(errors).map((error, i) => {
+                            if (Array.isArray(error)){
+                                return error.map((e, i) => { 
+                                    return e && (
+                                        <div>
+                                            {e.weeksCompleted && <li key={`weeksCompleted${i}`}>{e.weeksCompleted}</li>}
+                                            {e.newParticipantFound && <li key={`newParticipantFound${i}`}>{e.newParticipantFound}</li>}
+                                            {e.explanation && <li key={`explanation${i}`}>{e.explanation}</li>}
+                                        </div>
+                                    )
+                                })
+                            }
+                            return (<li key={i}>{error}</li>)
+                        }
+                        )}
                     </ul>
                 </div>
             )
@@ -168,17 +180,19 @@ class ReportForm extends Component {
                                 applicationIdM: '',
                                 recruitmentParticipantsSource: [],
                                 recruitmentOtherSourceExplain: '',
+                                participantsNumber: '',
                                 participantsHoursPerWeek: '',
                                 participantsAllCompletedPlacement: '',
-                                participantsNotAbleToComplete: '',
+                                numberOfParticipantsNotAbleToComplete: 0,
+                                participantsNotAbleToComplete: [],
                                 participantsAbleToFindNew: '',
                                 participantsAbleToFindNewNoExplain: '',
                                 fundingStipendAmount: '',
                                 fundingSupportsAmount: '',
-                                fundingAdministrationOperationalExpense: '',
                                 fundingAdditional: '',
                                 fundingAdditionalAmount: '0',
                                 fundingAdditionalUse: '',
+                                recipientCertified: false,
                                 placementDetailsChange: '',
                                 placementDetailsChangeExplanation: '',
                                 placementSupportsProvided: [],
@@ -195,6 +209,7 @@ class ReportForm extends Component {
                                 narrativeOrganizationBenefit: '',
                                 narrativeCommunityBenefit: '',
                                 narrativeImproveAboutProgram: '',
+                                recipientDisclosureConsent: false,
                                 followUpWillingToHavePhoneConversation: '',
                                 followUpContactName: '',
                                 followUpContactPhone: '',
@@ -218,6 +233,7 @@ class ReportForm extends Component {
                             enableReinitialize={true}
                             validationSchema={ReportValidationSchema}
                             onSubmit={(values, { resetForm, setErrors, setStatus, setSubmitting }) => {
+                                console.log(values);
                                 fetch(FORM_URL.reportForm, {
                                     method: "POST",
                                     credentials: 'include',

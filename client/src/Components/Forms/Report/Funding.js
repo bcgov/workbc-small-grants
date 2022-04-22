@@ -37,23 +37,17 @@ class FundingForm extends Component {
                     <p>Of the total grant funding received, what amount was allocated to:</p>
                 </div>
                 <div className="form-row">
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-6">
                         <label className="col-form-label control-label" htmlFor="fundingStipendAmount">Participant stipend <span
                             style={{ color: "red" }}>*</span></label>
                         <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "fundingStipendAmount")}`} id="fundingStipendAmount" name="fundingStipendAmount" />
                         {feedBackInvalid(this.props.errors, this.props.touched, "fundingStipendAmount")}
                     </div>
-                    <div className="form-group col-md-4">
-                        <label className="col-form-label control-label" htmlFor="fundingSupportsAmount">Participants supports <span
+                    <div className="form-group col-6">
+                        <label className="col-form-label control-label" htmlFor="fundingSupportsAmount">Participants supports and Administration/Operational expenses <span
                             style={{ color: "red" }}>*</span></label>
                         <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "fundingSupportsAmount")}`} id="fundingSupportsAmount" name="fundingSupportsAmount" />
                         {feedBackInvalid(this.props.errors, this.props.touched, "fundingSupportsAmount")}
-                    </div>
-                    <div className="form-group col-md-4">
-                        <label className="col-form-label control-label" htmlFor="fundingAdministrationOperationalExpense">Administration/Operational expenses <span
-                            style={{ color: "red" }}>*</span></label>
-                        <Field className={`form-control ${feedBackClassName(this.props.errors, this.props.touched, "fundingAdministrationOperationalExpense")}`} id="fundingAdministrationOperationalExpense" name="fundingAdministrationOperationalExpense" />
-                        {feedBackInvalid(this.props.errors, this.props.touched, "fundingAdministrationOperationalExpense")}
                     </div>
                 </div>
                 <div className="form-group">
@@ -89,6 +83,19 @@ class FundingForm extends Component {
                     </div>
                 </div>
                 {this.extraFunding}
+                <div className="form-group">
+                    <div className="form-check">
+                    <Field
+                        className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "recipientCertified")}`}
+                        type="checkbox"
+                        name="recipientCertified"
+                    />
+                    <label className="col-form-label control-label" htmlFor="recipientCertified">
+                        <input type="text"/>
+                        &nbsp; certify that all participants received a stipend of a minimum of $300 per week, and the hours of participation did not result in any participant receiving compensation below minimum wage.  
+                    </label>
+                    </div>
+                </div>
             </div>
         )
     }
