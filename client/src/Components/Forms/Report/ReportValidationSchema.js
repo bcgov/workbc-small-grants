@@ -34,13 +34,13 @@ export const ReportValidationSchema = yup.object().shape({
         }),
     participantsNumber: yup.number().test(
         'is-integer',
-        'invalid number',
+        'Please enter a valid number of participants',
         value => (value + "").match(/^\d/))
-        .typeError("Must be a whole number")
+        .typeError("Participants must be a whole number")
         .required('Please enter the number of participants.'),
     participantsHoursPerWeek: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for hours per week',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Must be a decimal number")
         .required('Please enter your participants hours per week.'),
@@ -90,13 +90,13 @@ export const ReportValidationSchema = yup.object().shape({
     ),
     fundingStipendAmount: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for stipend amount',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Participant stipend must be a decimal number")
         .required('Please enter your participants stipend.'),
     fundingSupportsAmount: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for funding and administrative support amount',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Participant supports and operation expenses must be a decimal number")
         .required('Please enter your participants supports and operational expenses.'),

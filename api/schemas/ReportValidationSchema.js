@@ -30,9 +30,15 @@ var ReportValidationSchema = yup.object().shape({
             is: (value) => value === "other",
             then: yup.string().max(500, "Text too long.").required("Please provide explanation of the other recruitment source.")
         }),
+    participantsNumber: yup.number().test(
+        'is-integer',
+        'Please enter a valid number of participants',
+        value => (value + "").match(/^\d/))
+        .typeError("Participants must be a whole number")
+        .required('Please enter the number of participants.'),
     participantsHoursPerWeek: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for hours per week',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Must be a decimal number")
         .required('Please enter your participants hours per week.'),
@@ -82,13 +88,13 @@ var ReportValidationSchema = yup.object().shape({
     ),
     fundingStipendAmount: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for stipend amount',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Participant stipend must be a decimal number")
         .required('Please enter your participants stipend.'),
     fundingSupportsAmount: yup.number().test(
         'is-decimal',
-        'invalid decimal',
+        'Please enter a valid decimal for funding and administrative support amount',
         value => (value + "").match(/^\d*.{1}\d*$/))
         .typeError("Participant supports and operation expenses must be a decimal number")
         .required('Please enter your participants supports and operational expenses.'),
@@ -102,8 +108,7 @@ var ReportValidationSchema = yup.object().shape({
         .when("fundingAdditional", {
             is: (value) => value === "yes",
             then:
-                yup.number()
-                    .test(
+                yup.number().test(
                     'is-decimal',
                     'invalid decimal',
                     value => (value + "").match(/^\d*.{1}\d*$/))
