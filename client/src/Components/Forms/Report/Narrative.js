@@ -62,17 +62,23 @@ class NarrativeForm extends Component{
                     <small>{this.props.values.narrativeCommunityBenefit.length}/5000</small>
                     {feedBackInvalid(this.props.errors, this.props.touched, "narrativeCommunityBenefit")}
                 </div>
-                <div className="form-group">
-                    <div className="form-check">
-                    <Field
-                        className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "recipientDisclosureConsent")}`}
-                        type="checkbox"
-                        name="recipientDisclosureConsent"
-                    />
-                    <label className="col-form-label control-label" htmlFor="recipientDisclosureConsent">
-                        <input type="text"/>
-                        &nbsp; hereby consents to the Ministry of Social Development and Poverty Reduction disclosing to the general public inside or outside of Canada, for the purpose of publicizing or promoting WEOG, any information related to my participation in WEOG.
-                    </label>
+                <div className="form-row mb-3">
+                    <div className="ml-4">
+                        <Field
+                            className={`form-check-input ${feedBackClassName(this.props.errors, this.props.touched, "recipientDisclosureConsent")}`}
+                            type="checkbox"
+                            name="recipientDisclosureConsent"
+                        />
+                    </div>
+                    <div className="ml-5">
+                        <div>
+                            <Field
+                                className={`${feedBackClassName(this.props.errors, this.props.touched, "recipientDisclosureConsentName")}`}
+                                type="text"
+                                name="recipientDisclosureConsentName"
+                            />
+                            &nbsp; hereby consents to the Ministry of Social Development and Poverty Reduction disclosing to the general public inside or outside of Canada, for the purpose of publicizing or promoting WEOG, any information related to my participation in WEOG.
+                        </div>
                     </div>
                 </div>
             </div>

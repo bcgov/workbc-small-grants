@@ -264,8 +264,9 @@ class ParticipantsOutcomesForm extends Component {
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsHiredDifferentRole")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsFoundEmploymentElsewhere">Participants found employment elsewhere<span
-                        style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsFoundEmploymentElsewhere">
+                        Participants found employment elsewhere
+                    </label>
                 </div>
                 <div className="form-group mx-auto">
                         <div className="form-check form-check-inline">
@@ -600,8 +601,9 @@ class ParticipantsOutcomesForm extends Component {
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsCurrentOrg")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg">Participants will receive employment-related services and supports through another organization<span
-                        style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg">
+                        Participants will receive employment-related services and supports through another organization
+                    </label>
                 </div>
                 <div className="form-group mx-auto">
                         <div className="form-check form-check-inline">
