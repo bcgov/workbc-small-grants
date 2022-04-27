@@ -78,12 +78,20 @@ var ReportValidationSchema = yup.object().shape({
                     ], "Please enter the number of weeks completed by the participant.")
                 .required("Please enter the number of weeks completed by the participant."),
             newParticipantFound: yup.string()
-                .oneOf([
-                    "yes",
-                    "no"
-                ], "Please indicate if a new participant was found.")
-                .required("Please indicate if a new participant was found."),
-            explanation: yup.string().required("Please provide an explanation for this participant").nullable()
+                .when(['weeksCompleted'], {
+                    is: (weeksCompleted) => (typeof weeksCompleted !== "undefined" && weeksCompleted < 9),
+                    then: yup.string().oneOf([
+                        "yes",
+                        "no"
+                    ], "Please indicate if a new participant was found."),
+                    otherwise: yup.string().nullable(true)
+                }),
+            explanation: yup.string()
+                .when(['weeksCompleted'], {
+                    is: (weeksCompleted) => (typeof weeksCompleted !== "undefined" && weeksCompleted < 9),
+                    then: yup.string().required("Please provide an explanation for this participant"),
+                    otherwise: yup.string().nullable(true)
+                }),
         })
     ),
     fundingStipendAmount: yup.number().test(
@@ -186,21 +194,6 @@ var ReportValidationSchema = yup.object().shape({
             "10",
         ], "Please select a valid field.")
         .required("Participants were hired by my organization into a new/different role"),
-    numberOfParticipantsFoundEmploymentElsewhere: yup.string()
-        .oneOf([
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-        ], "Please select a valid field.")
-        .required("Participants found employment elsewhere"),
     numberOfParticipantsConnectedToWorkBC: yup.string()
         .oneOf([
             "0",
@@ -231,21 +224,6 @@ var ReportValidationSchema = yup.object().shape({
             "10",
         ], "Please select a valid field.")
         .required("Participants will continue to receive employment-related services and supports from my organization"),
-    numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg: yup.string()
-        .oneOf([
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-        ], "Please select a valid field.")
-        .required("Participants will receive employment-related services and supports through another organization"),
     numberOfParticipantsOther: yup.string()
         .oneOf([
             "0",
