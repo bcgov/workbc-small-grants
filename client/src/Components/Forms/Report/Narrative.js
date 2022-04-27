@@ -76,6 +76,7 @@ class NarrativeForm extends Component{
                                 className={`${feedBackClassName(this.props.errors, this.props.touched, "recipientDisclosureConsentName")}`}
                                 type="text"
                                 name="recipientDisclosureConsentName"
+                                placeholder="Organization Name"
                             />
                             &nbsp; hereby consents to the Ministry of Social Development and Poverty Reduction disclosing to the general public inside or outside of Canada, for the purpose of publicizing or promoting WEOG, any information related to my participation in WEOG.
                         </div>

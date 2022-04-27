@@ -97,6 +97,7 @@ class FundingForm extends Component {
                                 className={`${feedBackClassName(this.props.errors, this.props.touched, "recipientCertifiedName")}`}
                                 type="text"
                                 name="recipientCertifiedName"
+                                placeholder="Organization Name"
                             />
                             &nbsp; certify that all participants received a stipend of a minimum of $300 per week, and the hours of participation did not result in any participant receiving compensation below minimum wage.  
                         </div>
