@@ -714,8 +714,7 @@ class ParticipantsOutcomesForm extends Component {
                     {feedBackInvalid(this.props.errors, this.props.touched, "numberOfParticipantsWillContinueEmploymentServicesAndSupportsOtherOrg")}
                 </div>
                 <div className="form-group">
-                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsOther">Other<span
-                        style={{ color: "red" }}>*</span></label>
+                    <label className="col-form-label control-label" htmlFor="numberOfParticipantsOther">Other</label>
                 </div>
                 <div className="form-group mx-auto">
                         <div className="form-check form-check-inline">

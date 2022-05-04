@@ -224,21 +224,6 @@ var ReportValidationSchema = yup.object().shape({
             "10",
         ], "Please select a valid field.")
         .required("Participants will continue to receive employment-related services and supports from my organization"),
-    numberOfParticipantsOther: yup.string()
-        .oneOf([
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-        ], "Please select a valid field.")
-        .required("Other participant outcomes"),
     numberOfParticipantsOtherDescribe: yup.string()
         .when("numberOfParticipantsOther", {
             is: (value) => (value !== "0" && value !== ""),
