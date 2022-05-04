@@ -224,11 +224,6 @@ var ReportValidationSchema = yup.object().shape({
             "10",
         ], "Please select a valid field.")
         .required("Participants will continue to receive employment-related services and supports from my organization"),
-    numberOfParticipantsOtherDescribe: yup.string()
-        .when("numberOfParticipantsOther", {
-            is: (value) => (value !== "0" && value !== ""),
-            then: yup.string().max(500, "Text too long.").required("Please explain other participant outcomes.")
-        }),
     narrativeParticipantSuccessStories: yup.string()
         .max(5000),
     narrativeOrganizationBenefit: yup.string()
