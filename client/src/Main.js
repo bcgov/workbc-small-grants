@@ -15,6 +15,7 @@ import FormUnavailable from './Components/Forms/ClientForm/FormUnavailable'
 import ReportForm from './Components/Forms/Report/ReportForm'
 import ThankYouReport from './Components/Forms/Report/ThankYouReport'
 import MainForm2 from './Components/Forms/MainFormIntake4/MainForm2'
+import ReportFormUnavailable from './Components/Forms/Report/FormUnavailable'
 
 function Main() {
     return (
@@ -28,7 +29,7 @@ function Main() {
                     <Route strict  path="/participantForm/2/:id?" component={FormUnavailable} />
                     <Route strict  path="/participantForm/3/:id?" component={FormUnavailable} />
                     <Route strict  path="/participantForm/4/:id?" component={ClientForm} />
-                    <Route strict  path="/report/:id?" component={ReportForm} />
+                    <Route strict  path="/report/:id?" component={ReportFormUnavailable} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
                     <Route path="/thankyouReport" component={ThankYouReport} />
