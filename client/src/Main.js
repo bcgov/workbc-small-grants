@@ -29,7 +29,9 @@ function Main() {
                     <Route strict  path="/participantForm/2/:id?" component={FormUnavailable} />
                     <Route strict  path="/participantForm/3/:id?" component={FormUnavailable} />
                     <Route strict  path="/participantForm/4/:id?" component={ClientForm} />
-                    <Route strict  path="/report/:id?" component={ReportFormUnavailable} />
+                    <Route strict  path="/report/pm49ccq3c3" component={ReportForm} />
+                    <Route strict  path="/report/7pu8kv5ca9" component={ReportForm} />
+                    <Route strict  path="/report/:id" component={ReportFormUnavailable} />
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
                     <Route path="/thankyouReport" component={ThankYouReport} />
