@@ -16,6 +16,7 @@ import ReportForm from './Components/Forms/Report/ReportForm'
 import ThankYouReport from './Components/Forms/Report/ThankYouReport'
 import MainForm2 from './Components/Forms/MainFormIntake4/MainForm2'
 import ReportFormUnavailable from './Components/Forms/Report/FormUnavailable'
+import Report2022 from './Components/Forms/Report/Report2022'
 
 function Main() {
     return (
@@ -33,6 +34,7 @@ function Main() {
                     <Route path="/thankyouOrg" component={ThankyouOrg} />
                     <Route path="/thankyouCl" component={ThankyouClient} />
                     <Route path="/thankyouReport" component={ThankYouReport} />
+                    <Route path="/report2022/:id?" component={Report2022}  />
                     {/*
                     <Route path="/surveyOrg/1" component={SurveyOrg} />
                     <Route path="/surveyParticipant/1" component={SurveyParticipant} />
