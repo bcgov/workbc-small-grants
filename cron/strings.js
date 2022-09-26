@@ -1,8 +1,7 @@
-
-const Strings = {};
+const Strings = {}
 
 Strings.orEmpty = function (entity) {
-  return entity || "";
-};
+    return entity || ""
+}
 
-module.exports = Strings;
+module.exports = Strings

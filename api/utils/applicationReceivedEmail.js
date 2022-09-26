@@ -1,10 +1,8 @@
-var strings = require("./strings")
+const strings = require("./strings")
 
 module.exports = {
-
-    generateNotification: function (values) {
-
-        var html = /*html*/`
+    generateNotification(values) {
+        const html = /* html */ `
         <h2>A grant application has been received - ${values._id}</h2>
         <p><b>applicationID:</b>  ${values._id}</p>
         <p><b>operatingName:</b>  ${values.operatingName}</p>
@@ -72,8 +70,8 @@ module.exports = {
         return html
     },
 
-    generateListNotification: function(values) {
-        var html = `
+    generateListNotification(values) {
+        const html = `
 applicationID ${values._id}
 operatingName ${values.operatingName}
 legalName ${values.legalName}
@@ -136,11 +134,11 @@ partneringBusinessContactAddress2 ${strings.orEmpty(values.partneringBusinessCon
 partneringBusinessContactCity ${strings.orEmpty(values.partneringBusinessContactCity)}
 partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessContactPostal)}  
 `
-        return html;
+        return html
     },
 
-    generateClientNotification: function (values){
-        var html = /*html*/`
+    generateClientNotification(values) {
+        const html = /* html */ `
             <h2>A client grant application has been received</h2>
             <p><b>applicationId:</b> ${strings.orEmpty(values.applicationId)}</p>
             <p><b>applicationId (manual):</b> ${strings.orEmpty(values.applicationIdM)}</p>
@@ -148,7 +146,7 @@ partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessConta
             <p><b>noOrgId:</b> ${values.noOrgId}</p>
             <p><b>clientName:</b> ${values.clientName}</p>
             <p><b>clientLastName:</b> ${values.clientLastName}</p>
-            <p><b>clientDOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}</p>
+            <p><b>clientDOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth() + 1}/${values.clientDOB.getFullYear()}</p>
             <p><b>clientEmail:</b> ${values.clientEmail}</p>
             <p><b>clientAddress1:</b> ${values.clientAddress1}</p>
             <p><b>clientAddress2:</b> ${strings.orEmpty(values.clientAddress2)}</p>
@@ -159,24 +157,24 @@ partneringBusinessContactPostal ${strings.orEmpty(values.partneringBusinessConta
             <p><b>ppmbDesignationOrganization:</b> ${strings.orEmpty(values.ppmbDesignationOrganization)}</p>
         `
 
-        return html       
+        return html
     },
 
-    generateClientListNotification: function(values){
-        var html = `
+    generateClientListNotification(values) {
+        let html = `
 applicationId ${strings.orEmpty(values.applicationId)}
 applicationIdM ${strings.orEmpty(values.applicationIdM)}
 organizationNameM ${strings.orEmpty(values.organizationNameM)}
 noOrgId ${values.noOrgId}
 clientName ${values.clientName}
 clientLastName ${values.clientLastName}
-clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}
+clientDOB ${values.clientDOB.getDate()}/${values.clientDOB.getMonth() + 1}/${values.clientDOB.getFullYear()}
 clientEmail ${values.clientEmail}
 clientAddress1 ${values.clientAddress1}
 clientAddress2 ${strings.orEmpty(values.clientAddress2)}
 clientConsent ${values.clientConsent}
         `
-        if (values._intake === "2" || values._intake === "3" || values._intake === "4"){
+        if (values._intake === "2" || values._intake === "3" || values._intake === "4") {
             html += `
 livingOnReserveCommunity ${strings.orEmpty(values.livingOnReserveCommunity)}
 receivingAssistanceFrom ${strings.orEmpty(values.receivingAssistanceFrom)}
@@ -187,8 +185,8 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
         return html
     },
 
-    generateSurveyOrgNotification: function(values){
-        var html = /*html*/`
+    generateSurveyOrgNotification(values) {
+        const html = /* html */ `
             <h2>An organization survey response has been received</h2>
             <p><b>easeOfApplicationCompletion: </b> ${values.easeOfApplicationCompletion}</p>
             <p><b>speedApplicationProcessed: </b> ${values.speedApplicationProcessed}</p>
@@ -209,13 +207,31 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
         return html
     },
 
-    generateSurveyOrgListNotification: function(values){
-        var html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)} speedApplicationProcessed ${strings.orEmpty(values.speedApplicationProcessed)} experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)} participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)} hiredPeopleWithBarriersBefore ${strings.orEmpty(values.hiredPeopleWithBarriersBefore)} hirePeopleWithBarriersFuture ${strings.orEmpty(values.hirePeopleWithBarriersFuture)} experienceWithWorkParticipantsComments ${strings.orEmpty(values.experienceWithWorkParticipantsComments)} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)} likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfProgramComments ${strings.orEmpty(values.bestPartOfProgramComments)} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} surveyUID ${strings.orEmpty(values._uid)} intake ${strings.orEmpty(values._intake)}`
+    generateSurveyOrgListNotification(values) {
+        const html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(
+            values.easeOfApplicationCompletion
+        )} speedApplicationProcessed ${strings.orEmpty(values.speedApplicationProcessed)} experienceOnlineApplicationComments ${strings.orEmpty(
+            values.experienceOnlineApplicationComments
+        )} participantContributionValuable ${strings.orEmpty(values.participantContributionValuable)} hiredPeopleWithBarriersBefore ${strings.orEmpty(
+            values.hiredPeopleWithBarriersBefore
+        )} hirePeopleWithBarriersFuture ${strings.orEmpty(
+            values.hirePeopleWithBarriersFuture
+        )} experienceWithWorkParticipantsComments ${strings.orEmpty(
+            values.experienceWithWorkParticipantsComments
+        )} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(
+            values.receivedOtherWorkBCServicesOrPrograms
+        )} likelyToParticipateInSimilarProgram ${strings.orEmpty(
+            values.likelyToParticipateInSimilarProgram
+        )} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfProgramComments ${strings.orEmpty(
+            values.bestPartOfProgramComments
+        )} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} surveyUID ${strings.orEmpty(
+            values._uid
+        )} intake ${strings.orEmpty(values._intake)}`
         return html
     },
 
-    generateSurveyParticipantNotification: function(values){
-        var html = /*html*/`
+    generateSurveyParticipantNotification(values) {
+        const html = /* html */ `
             <h2>A participant survey response has been received</h2>
             <p><b>easeOfApplicationCompletion: </b> ${values.easeOfApplicationCompletion}</p>
             <p><b>overallExperienceWithEmployer: </b> ${values.overallExperienceWithEmployer}</p>
@@ -228,9 +244,26 @@ ppmbDesignationOrganization ${strings.orEmpty(values.ppmbDesignationOrganization
         return html
     },
 
-    generateSurveyParticipantListNotification: function(values){
-        var html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(values.easeOfApplicationCompletion)} experienceOnlineApplicationComments ${strings.orEmpty(values.experienceOnlineApplicationComments)} overallExperienceWithOrganization ${strings.orEmpty(values.overallExperienceWithOrganization)} levelOfSupportsReceived ${strings.orEmpty(values.levelOfSupportsReceived)} increasedAbilityGettingAndKeepingJob ${strings.orEmpty(values.increasedAbilityGettingAndKeepingJob)} organizationAndExperienceComments ${strings.orEmpty(values.organizationAndExperienceComments)} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(values.receivedOtherWorkBCServicesOrPrograms)} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfTheProgramComments ${strings.orEmpty(values.bestPartOfTheProgramComments)} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} likelyToParticipateInSimilarProgram ${strings.orEmpty(values.likelyToParticipateInSimilarProgram)} hasStartedWorkExperience ${strings.orEmpty(values.hasStartedWorkExperience)} workExperienceStartDate ${strings.orEmpty(values.workExperienceStartDate)} surveyUID ${strings.orEmpty(values._uid)} intake ${strings.orEmpty(values._intake)}`
+    generateSurveyParticipantListNotification(values) {
+        const html = `applicationID ${values._id} easeOfApplicationCompletion ${strings.orEmpty(
+            values.easeOfApplicationCompletion
+        )} experienceOnlineApplicationComments ${strings.orEmpty(
+            values.experienceOnlineApplicationComments
+        )} overallExperienceWithOrganization ${strings.orEmpty(values.overallExperienceWithOrganization)} levelOfSupportsReceived ${strings.orEmpty(
+            values.levelOfSupportsReceived
+        )} increasedAbilityGettingAndKeepingJob ${strings.orEmpty(
+            values.increasedAbilityGettingAndKeepingJob
+        )} organizationAndExperienceComments ${strings.orEmpty(
+            values.organizationAndExperienceComments
+        )} receivedOtherWorkBCServicesOrPrograms ${strings.orEmpty(
+            values.receivedOtherWorkBCServicesOrPrograms
+        )} likelyToRecommendGrant ${strings.orEmpty(values.likelyToRecommendGrant)} bestPartOfTheProgramComments ${strings.orEmpty(
+            values.bestPartOfTheProgramComments
+        )} experienceBetterComments ${strings.orEmpty(values.experienceBetterComments)} likelyToParticipateInSimilarProgram ${strings.orEmpty(
+            values.likelyToParticipateInSimilarProgram
+        )} hasStartedWorkExperience ${strings.orEmpty(values.hasStartedWorkExperience)} workExperienceStartDate ${strings.orEmpty(
+            values.workExperienceStartDate
+        )} surveyUID ${strings.orEmpty(values._uid)} intake ${strings.orEmpty(values._intake)}`
         return html
     }
-
 }

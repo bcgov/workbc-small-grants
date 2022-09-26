@@ -1,39 +1,31 @@
-var express = require('express');
-var router = express.Router();
-const yup = require('yup')
-const yupPhone = require('yup-phone')
+const express = require("express")
+const nodemailer = require("nodemailer")
+const csrf = require("csurf")
+const SurveyParticipantValidationSchema = require("../schemas/SurveyParticipantValidationSchema")
+const notification = require("../utils/applicationReceivedEmail")
+const clean = require("../utils/clean")
 
-var { check, validationResult, matchedData } = require('express-validator')
-var nodemailer = require("nodemailer");
-var csrf = require('csurf');
-var csrfProtection = csrf({ cookie: true });
+const router = express.Router()
+const csrfProtection = csrf({ cookie: true })
 
-var SurveyParticipantValidationSchema = require('../schemas/SurveyParticipantValidationSchema.js')
-var generateHTMLEmail = require('../utils/htmlEmail')
-var notification = require('../utils/applicationReceivedEmail');
-var clean = require('../utils/clean')
-//const { getSurveyOrgSubmitted } = require('../utils/confirmationData');
-
-var surveyParticipantConfirmationEmail = process.env.SURVEYPARTICIPANT_CONFIRMATION_EMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_EMAIL || "";
-var surveyParticipantConfirmationBCC = process.env.SURVEYPARTICIPANT_CONFIRMATION_BCC || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_CONFIRMATION_BCC || "";
-var surveyParticipantListEmail = process.env.SURVEYPARTICIPANT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_LISTEMAIL || "";
-var surveyParticipantNotifyEmail = process.env.SURVEYPARTICIPANT_NOTIFYEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_NOTIFYEMAIL || "";
+const surveyParticipantListEmail = process.env.SURVEYPARTICIPANT_LISTEMAIL || process.env.OPENSHIFT_NODEJS_SURVEYPARTICIPANT_LISTEMAIL || ""
 
 async function sendEmails(values) {
-  try {
-    let transporter = nodemailer.createTransport({
-      host: "apps.smtp.gov.bc.ca",
-      port: 25,
-      secure: false,
-      tls: {
-        rejectUnauthorized: false
-      } // true for 465, false for other ports
-    });
-    return await transporter.verify()
-      .then(function (r) {
-        console.log(r)
-        console.log("Transporter connected.")
-        /*
+    try {
+        const transporter = nodemailer.createTransport({
+            host: "apps.smtp.gov.bc.ca",
+            port: 25,
+            secure: false,
+            tls: {
+                rejectUnauthorized: false
+            } // true for 465, false for other ports
+        })
+        return await transporter
+            .verify()
+            .then((r) => {
+                console.log(r)
+                console.log("Transporter connected.")
+                /*
         var cEmail;
         if (clientConfirmationEmail === ""){
           cEmail = values.clientEmail
@@ -61,13 +53,13 @@ async function sendEmails(values) {
             getClientSubmitted(values)) // html body
         };
         */
-        let message2 = {
-          from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
-          to: surveyParticipantListEmail,// list of receivers
-          subject: "A participant survey response has been received", // Subject line
-          html: notification.generateSurveyParticipantListNotification(values) // html body
-        };
-        /*
+                const message2 = {
+                    from: "Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>", // sender address
+                    to: surveyParticipantListEmail, // list of receivers
+                    subject: "A participant survey response has been received", // Subject line
+                    html: notification.generateSurveyParticipantListNotification(values) // html body
+                }
+                /*
         let message3 = {
           from: 'Work Experience Opportunities Grant Program <donotreply@gov.bc.ca>', // sender address
           to: surveyParticipantNotifyEmail,// list of receivers
@@ -93,72 +85,68 @@ async function sendEmails(values) {
           }
         });
          */
-        info = transporter.sendMail(message2, (error, info) => {
-          if (error) {
-            return "An error occurred while submitting the form, please try again. If the error persists please try again later.";
-          } else {
-            console.log("Message sent: %s", info.messageId);
-            return "success"
-          }
-        });
-        return true
-      }).catch(function (e) {
-        console.log(e)
-        console.log("Error connecting to transporter")
-        return false
-      })
-  } catch (error) {
-    console.log(error)
-  }
+                transporter.sendMail(message2, (error, info) => {
+                    if (error) {
+                        return "An error occurred while submitting the form, please try again. If the error persists please try again later."
+                    }
+                    console.log("Message sent: %s", info.messageId)
+                    return "success"
+                })
+                return true
+            })
+            .catch((e) => {
+                console.log(e)
+                console.log("Error connecting to transporter")
+                return false
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-
-router.get('/', csrfProtection, (req, res) => {
-  var token = req.csrfToken()
-  res.cookie('XSRF-TOKEN', token)
-  res.send({
-    csrfToken: token
-  });
-
+router.get("/", csrfProtection, (req, res) => {
+    const token = req.csrfToken()
+    res.cookie("XSRF-TOKEN", token)
+    res.send({
+        csrfToken: token
+    })
 })
 
-router.post('/', csrfProtection, async (req, res) => {
-  //clean the body
-  clean(req.body);
-  console.log(req.body)
-  SurveyParticipantValidationSchema.validate(req.body, { abortEarly: false })
-    .then(async function (value) {
-      try {
-        await sendEmails(value)
-          .then(function (sent) {
-            if (sent){
-              res.send({
-                ok: "ok"
-              })
-            } else if (!sent) {
-              res.send({
-                emailErr: "emailErr"
-              })
+router.post("/", csrfProtection, async (req, res) => {
+    // clean the body
+    clean(req.body)
+    console.log(req.body)
+    SurveyParticipantValidationSchema.validate(req.body, { abortEarly: false })
+        .then(async (value) => {
+            try {
+                await sendEmails(value)
+                    .then((sent) => {
+                        if (sent) {
+                            res.send({
+                                ok: "ok"
+                            })
+                        } else if (!sent) {
+                            res.send({
+                                emailErr: "emailErr"
+                            })
+                        }
+                    })
+                    .catch((e) => {
+                        console.log(e)
+                    })
+            } catch (error) {
+                console.log(error)
             }
-          }).catch(function (e) {
-            console.log(e)
-          })
-      } catch (error) {
-        console.log(error)
-      }
-      return
-    })
-    .catch(function (errors) {
-      var err = {}
-      errors.inner.forEach(e => {
-        err[e.path] = e.message
-      })
-      res.send({
-        err
-      })
-      return
-    })
+        })
+        .catch((errors) => {
+            const err = {}
+            errors.inner.forEach((e) => {
+                err[e.path] = e.message
+            })
+            res.send({
+                err
+            })
+        })
 })
 
-
-module.exports = router;
+module.exports = router

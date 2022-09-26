@@ -1,28 +1,16 @@
+const { MongoClient } = require("mongodb")
 
-const MongoClient = require('mongodb').MongoClient;
-
-let uri;
-if (!process.env.MONGO_USERNAME  || !process.env.MONGO_PASSWORD){
-    uri = `mongodb://${process.env.MONGO_CONNECTION_URI || 'localhost'}/${process.env.MONGO_DB_NAME || 'test'}`;
+let uri
+if (!process.env.MONGO_USERNAME || !process.env.MONGO_PASSWORD) {
+    uri = `mongodb://${process.env.MONGO_CONNECTION_URI || "localhost"}/${process.env.MONGO_DB_NAME || "test"}`
 } else {
-    uri = `mongodb://${process.env.MONGO_USERNAME || "superuser"}:${process.env.MONGO_PASSWORD || "password"}@${process.env.MONGO_CONNECTION_URI || 'localhost'}/${process.env.MONGO_DB_NAME || 'test'}`;
+    uri = `mongodb://${process.env.MONGO_USERNAME || "superuser"}:${process.env.MONGO_PASSWORD || "password"}@${
+        process.env.MONGO_CONNECTION_URI || "localhost"
+    }/${process.env.MONGO_DB_NAME || "test"}`
 }
 
-const client = new MongoClient(uri, { useUnifiedTopology: true });
-var connection = client.connect()
-
-// Private function to get a working client
-function getClient() {
-    // i.e: 'mongodb://superuser:password@localhost/test'
-    // don't have to do it this way to connect locally 
-    // docs @ http://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html
-
-    
-    let client = new MongoClient(uri, { useUnifiedTopology: true });
-    return client;
-}
-
-
+const client = new MongoClient(uri, { useUnifiedTopology: true })
+const connection = client.connect()
 
 module.exports = {
     /*
@@ -31,212 +19,219 @@ module.exports = {
         return await client.connect()
     },
     */
-    getClientNotSP: async function () {
+    async getClientNotSP() {
         try {
             return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection("Client").find({_savedToSP: false})
-                    //console.log(err)
-                    //console.log(doc)
-            }).then(async doc =>{
-                return doc
-            })    
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(
+                    async (db) =>
+                        // add our values to db (they are always new)
+                        db.collection("Client").find({ _savedToSP: false })
+                    // console.log(err)
+                    // console.log(doc)
+                )
+                .then(async (doc) => doc)
         } catch (err) {
             console.log(err)
         }
     },
-    getFormNotSP: async function () {
+    async getFormNotSP() {
         try {
             return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection("Organization").find({_savedToSP: false})
-                    //console.log(err)
-                    //console.log(doc)
-            }).then(doc =>{
-                return doc
-            })       
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(
+                    async (db) =>
+                        // add our values to db (they are always new)
+                        db.collection("Organization").find({ _savedToSP: false })
+                    // console.log(err)
+                    // console.log(doc)
+                )
+                .then((doc) => doc)
         } catch (err) {
             console.log(err)
-        }   
+        }
     },
-    findFormByApplicationID: async function (appID) {
+    async findFormByApplicationID(appID) {
         try {
             return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection("Organization").find({_id: appID})
-                    //console.log(err)
-                    //console.log(doc)
-            }).then(doc =>{
-                return doc
-            })    
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(
+                    async (db) =>
+                        // add our values to db (they are always new)
+                        db.collection("Organization").find({ _id: appID })
+                    // console.log(err)
+                    // console.log(doc)
+                )
+                .then((doc) => doc)
         } catch (err) {
             console.log(err)
-        }      
+        }
     },
-    checkForPreviousOrganizationApplications: async function (businessNum) {
+    async checkForPreviousOrganizationApplications(businessNum) {
         try {
             return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection("Organization").aggregate([
-                    {$match: {businessNumber:businessNum}},
-                    {$group: {_id: "$_id" }}]).toArray()
-                }).then(async doc =>{
-                    if(doc.length > 1){
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(async (db) =>
+                    // add our values to db (they are always new)
+                    db
+                        .collection("Organization")
+                        .aggregate([{ $match: { businessNumber: businessNum } }, { $group: { _id: "$_id" } }])
+                        .toArray()
+                )
+                .then(async (doc) => {
+                    if (doc.length > 1) {
                         return true
-                    }else{
-                        return false
                     }
-                })    
+                    return false
+                })
         } catch (err) {
             console.log(err)
         }
     },
-    checkForDuplicateClients: async function (lastName, DOB) {
+    async checkForDuplicateClients(lastName, DOB) {
         try {
-            var regex = new RegExp(lastName, "i");
-            console.log(regex);
+            const regex = new RegExp(lastName, "i")
+            console.log(regex)
             return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection("Client").aggregate([
-                    {$match: {clientLastName:regex,clientDOB:DOB}},
-                    {$group: {_id: "$applicationId" }}]).toArray()
-                    //console.log(err)
-                    //console.log(doc)
-            }).then(async doc =>{
-                return doc
-            })         
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(
+                    async (db) =>
+                        // add our values to db (they are always new)
+                        db
+                            .collection("Client")
+                            .aggregate([{ $match: { clientLastName: regex, clientDOB: DOB } }, { $group: { _id: "$applicationId" } }])
+                            .toArray()
+                    // console.log(err)
+                    // console.log(doc)
+                )
+                .then(async (doc) => doc)
         } catch (err) {
             console.log(err)
-        } 
+        }
     },
-    updatePotentialDuplicate:async function(collection, _id, duplicate){
+    async updatePotentialDuplicate(collection, _id, duplicate) {
         try {
-            if(collection ==="Organization"){
+            if (collection === "Organization") {
                 return await connection
-                .then(mClient => {
-                    // get a handle on the db
-                    return mClient.db();
-                    //return db
-                })
-                .then(async db => {
-                // add our values to db (they are always new)
-                    return db.collection(collection).updateOne(
-                        {
-                            _id: _id
-                        },
-                        { 
-                            $set : {
-                            potentialDuplicate: duplicate,
-                            }
-                        },
-                        {
-                            upsert: false
-                        }
-
+                    .then(
+                        (mClient) =>
+                            // get a handle on the db
+                            mClient.db()
+                        // return db
                     )
-                        //console.log(err)
-                        //console.log(doc)
-                }).then(result =>{
-                    return result
-                }) 
+                    .then(
+                        async (db) =>
+                            // add our values to db (they are always new)
+                            db.collection(collection).updateOne(
+                                {
+                                    _id
+                                },
+                                {
+                                    $set: {
+                                        potentialDuplicate: duplicate
+                                    }
+                                },
+                                {
+                                    upsert: false
+                                }
+                            )
+                        // console.log(err)
+                        // console.log(doc)
+                    )
+                    .then((result) => result)
             }
-            else{
-                return await connection
-                .then(mClient => {
+        } catch (err) {
+            console.log(err)
+        }
+
+        // eslint-disable-next-line no-return-await
+        return await connection
+            .then(
+                (mClient) =>
                     // get a handle on the db
-                    return mClient.db();
-                    //return db
-                })
-                .then(async db => {
-                // add our values to db (they are always new)
-                    return db.collection(collection).updateOne(
+                    mClient.db()
+                // return db
+            )
+            .then(
+                async (db) =>
+                    // add our values to db (they are always new)
+                    db.collection(collection).updateOne(
                         {
                             applicationId: _id
                         },
-                        { 
-                            $set : {
-                            potentialDuplicate: duplicate,
+                        {
+                            $set: {
+                                potentialDuplicate: duplicate
                             }
                         },
                         {
                             upsert: false
                         }
-
                     )
-                        //console.log(err)
-                        //console.log(doc)
-                }).then(result =>{
-                    return result
-                }) 
-            }
+                // console.log(err)
+                // console.log(doc)
+            )
+            .then((result) => result)
+    },
+    async updateSavedToSP(collection, _id, _spID) {
+        try {
+            return await connection
+                .then(
+                    (mClient) =>
+                        // get a handle on the db
+                        mClient.db()
+                    // return db
+                )
+                .then(
+                    async (db) =>
+                        // add our values to db (they are always new)
+                        db.collection(collection).updateOne(
+                            {
+                                _id
+                            },
+                            {
+                                $set: {
+                                    _savedToSP: true,
+                                    _spID
+                                }
+                            },
+                            {
+                                upsert: false
+                            }
+                        )
+                    // console.log(err)
+                    // console.log(doc)
+                )
+                .then((result) => result)
         } catch (err) {
             console.log(err)
         }
-    },
-    updateSavedToSP: async function(collection,_id, _spID){
-        try {
-            return await connection
-            .then(mClient => {
-                // get a handle on the db
-                return mClient.db();
-                //return db
-            })
-            .then(async db => {
-            // add our values to db (they are always new)
-                return db.collection(collection).updateOne(
-                    {
-                        _id: _id
-                    },
-                    { 
-                        $set : {
-                        _savedToSP: true,
-                        _spID: _spID
-                        }
-                    },
-                    {
-                        upsert: false
-                    }
-
-                )
-                    //console.log(err)
-                    //console.log(doc)
-            }).then(result =>{
-                return result
-            })   
-        } catch (err) {
-            console.log(err)
-        }  
-    },
+    }
     /*
     printValues: function(collection) {
         const client = new MongoClient(uri, { useUnifiedTopology: true });
@@ -251,4 +246,4 @@ module.exports = {
         });
     }
     */
-};
+}

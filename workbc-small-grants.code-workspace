@@ -1,0 +1,30 @@
+{
+    "extensions": {
+        "recommendations": [
+            "christian-kohler.path-intellisense",
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "orta.vscode-jest",
+            "vscode-icons-team.vscode-icons"
+        ]
+    },
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "[javascript][javascriptreact][json][jsonc]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true,
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true,
+        "editor.rulers": [150],
+        "javascript.format.semicolons": "remove",
+        "javascript.preferences.quoteStyle": "double"
+    }
+}

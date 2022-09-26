@@ -1,8 +1,8 @@
-var strings = require("./strings")
+const strings = require("./strings")
 
 module.exports = {
-    getOrgSubmitted(values){
-        var data = [
+    getOrgSubmitted(values) {
+        const data = [
             `<b>When can I expect notification?</b>`,
             `Applications may take approximately four weeks for processing. The Ministry will contact your organization once the application has been processed, or if further information is required. We will do our best to provide notification on decisions as quickly as possible; although, response times may vary throughout the intake period as applicant volumes fluctuate.`,
             `<b>Still have questions?</b>`,
@@ -51,11 +51,11 @@ module.exports = {
             `Applicant eligibility confirmation:  ${values.applicantType}`,
             `Understanding on participant ineligibility: ${values.understandNotAvailableTo}`,
             `Grant administration understanding: ${values.administerGrantUnderstanding}`,
-            //`Placement length confirmation:  ${values.placementLength}`,
-            `Work Opportunity:`,  
+            // `Placement length confirmation:  ${values.placementLength}`,
+            `Work Opportunity:`,
             `${values.participantActivities}`,
             `What will organization provide:  ${values.participantExperiences}`,
-            `Other Experience:`, 
+            `Other Experience:`,
             `${strings.orEmpty(values.otherExperience)}`,
             `Work experience taking place at partnering business? ${values.workExperienceTakesPlaceElsewhere}`,
             `<h5>Partnering business information (only if work experience is taking place at partnering business.)</h5>`,
@@ -72,34 +72,35 @@ module.exports = {
             */
             `Additional Benefits: `,
             `${strings.orEmpty(values.additionalBenefits)}`,
-            //`Stipend confirmation:  ${values.participantStipend}`,
+            // `Stipend confirmation:  ${values.participantStipend}`,
             `Has Existing Supplier Number:  ${values.existingSupplierNumber}`,
             `Supplier Number:${strings.orEmpty(values.supplierNumber)}`,
             `Business Classification: ${strings.orEmpty(values.businessClassification)}`,
-            //`Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
+            // `Tax Number:  ${strings.orEmpty(values.taxNumber)}`,
             `Signatory 1:  ${values.signatory1}`,
             `Signatory 2:  ${values.signatory2}`,
             `Certify Signatories:  ${values.signingAuthorityConfirm}`,
             `Consent:  ${values.organizationConsent}`,
-            `<hr />`,
+            `<hr />`
         ]
         return data
-
     },
-    getClientSubmitted(values){
-        var data=[
+    getClientSubmitted(values) {
+        const data = [
             `<b>Name:</b> ${values.clientName}`,
             `<b>Last Name:</b> ${values.clientLastName}`,
-            `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth()+1}/${values.clientDOB.getFullYear()}`,
+            `<b>DOB (DD/MM/YYYY):</b> ${values.clientDOB.getDate()}/${values.clientDOB.getMonth() + 1}/${values.clientDOB.getFullYear()}`,
             `<b>Email:</b> ${values.clientEmail}`,
             `<b>Address1:</b> ${values.clientAddress1}`,
             `<b>Address2:</b> ${strings.orEmpty(values.clientAddress2)}`,
             `<p><b>Approximate Hours:</b> ${values.approximateHours}</p>`,
-            `<p><b>Estimated Start Date:</b> ${values.estimatedStartDate.getDate()}/${values.estimatedStartDate.getMonth()+1}/${values.estimatedStartDate.getFullYear()}</p>`,
+            `<p><b>Estimated Start Date:</b> ${values.estimatedStartDate.getDate()}/${
+                values.estimatedStartDate.getMonth() + 1
+            }/${values.estimatedStartDate.getFullYear()}</p>`,
             `<p><b>Receiving Assistance From First Nation Or Tribal Council:</b> ${values.receivingAssistanceFromFirstNationOrTribalCouncil}</p>`,
-            `<b>Consent:</b> ${values.clientConsent}`,
+            `<b>Consent:</b> ${values.clientConsent}`
         ]
-        if (values.noOrgId){
+        if (values.noOrgId) {
             data.push(`<b>Organization Name:</b> ${strings.orEmpty(values.organizationNameM)}`)
         } else {
             data.push(`<b>Application Id:</b> ${strings.orEmpty(values.applicationId)}${strings.orEmpty(values.applicationIdM)}`)
@@ -115,19 +116,6 @@ module.exports = {
             )
         }
         */
-        return data
-
-    },
-    getSurveyOrgSubmitted(values){
-        var data = [
-
-        ]
-        return data
-    },
-    getSurveyParticipantSubmitted(values){
-        var data = [
-
-        ]
         return data
     }
 }

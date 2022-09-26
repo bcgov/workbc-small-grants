@@ -1,0 +1,185 @@
+import { Form, Formik } from "formik"
+import { customAlphabet } from "nanoid"
+import qs from "qs"
+import React, { Component } from "react"
+import { withRouter } from "react-router-dom"
+import { FORM_URL } from "../../../constants/form"
+import { generateAlert } from "../Shared/Alert"
+import ProgressTracker from "./ProgressTracker"
+import SurveyOrgStep1 from "./SurveyOrgStep1"
+import SurveyOrgStep2 from "./SurveyOrgStep2"
+import SurveyOrgStep3 from "./SurveyOrgStep3"
+import SurveyOrgStep4 from "./SurveyOrgStep4"
+import { SurveyOrgValidationSchema } from "./SurveyOrgValidationSchema"
+
+class SurveyOrg extends Component {
+    constructor() {
+        super()
+        const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 5)
+        this.state = {
+            currentStep: 1,
+            _csrf: "",
+            _id: nanoid(),
+            _intake: "",
+            hasError: false,
+            invalidLink: false
+        }
+        this._next = this._next.bind(this)
+        this._prev = this._prev.bind(this)
+    }
+
+    componentDidMount() {
+        fetch(FORM_URL.surveyOrg, {
+            credentials: "include"
+        })
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    // console.log(result)
+                    this.setState({
+                        _csrf: result.csrfToken
+                    })
+                },
+                () => {
+                    // console.log(error)
+                    this.setState({
+                        hasError: true
+                    })
+                }
+            )
+        const uid = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).uid || ""
+        if (uid === "") {
+            this.setState({ invalidLink: true })
+        }
+        this.setState({ _uid: uid })
+        if (this.props.match.path === "/surveyOrg/2") {
+            this.setState({ _intake: "2" })
+        } else if (this.props.match.path === "/surveyOrg/3") {
+            this.setState({ _intake: "3" })
+        }
+    }
+
+    get previousButton() {
+        const { currentStep } = this.state
+        if (currentStep !== 1) {
+            return (
+                <button className="btn btn-secondary" type="button" onClick={this._prev}>
+                    Previous
+                </button>
+            )
+        }
+        return null
+    }
+
+    get nextButton() {
+        const { currentStep } = this.state
+
+        if (currentStep < 4 && !this.state.invalidLink) {
+            return (
+                <button className="btn btn-primary float-right" type="button" onClick={this._next}>
+                    Next
+                </button>
+            )
+        }
+        return null
+    }
+
+    _next() {
+        this.setState((prevState) => ({
+            currentStep: prevState.currentStep >= 3 ? 4 : prevState.currentStep + 1
+        }))
+    }
+
+    _prev() {
+        this.setState((prevState) => ({
+            currentStep: prevState.currentStep <= 1 ? 1 : prevState.currentStep - 1
+        }))
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <ProgressTracker currentStep={this.state.currentStep} />
+                        {this.state.hasError &&
+                            generateAlert(
+                                "alert-danger",
+                                "An error has occurred, please refresh the page. If the error persists, please try again later."
+                            )}
+                        {this.state.invalidLink &&
+                            generateAlert("alert-danger", "Invalid link, please use the link that was sent to you through email.")}
+                        <Formik
+                            initialValues={{
+                                _csrf: this.state._csrf,
+                                _id: this.state._id,
+                                _uid: this.state._uid,
+                                _intake: this.state._intake,
+                                // step 1
+                                easeOfApplicationCompletion: "",
+                                speedApplicationProcessed: "",
+                                experienceOnlineApplicationComments: "",
+                                // step 2
+                                participantContributionValuable: "",
+                                // participantNumber: '',
+                                hiredPeopleWithBarriersBefore: "",
+                                hirePeopleWithBarriersFuture: "",
+                                experienceWithWorkParticipantsComments: "",
+                                // difficultyHiringPeopleWithBarriersComment: '',
+                                // step 3
+                                receivedOtherWorkBCServicesOrPrograms: "",
+                                likelyToParticipateInSimilarProgram: "",
+                                likelyToRecommendGrant: "",
+                                // step 4
+                                bestPartOfProgramComments: "",
+                                experienceBetterComments: ""
+                            }}
+                            enableReinitialize
+                            validationSchema={SurveyOrgValidationSchema}
+                            onSubmit={(values, { setErrors, setSubmitting }) => {
+                                fetch(FORM_URL.surveyOrg, {
+                                    method: "POST",
+                                    credentials: "include",
+                                    headers: {
+                                        Accept: "application/json",
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(values)
+                                })
+                                    .then((res) => res.json())
+                                    .then((resp) => {
+                                        if (resp.err) {
+                                            setErrors(resp.err)
+                                            setSubmitting(false)
+                                        } else if (resp.emailErr) {
+                                            setSubmitting(false)
+                                            this.setState({
+                                                hasError: true
+                                            })
+                                        } else if (resp.ok) {
+                                            setSubmitting(false)
+                                            this.props.history.push("/thankYouSurveyOrg", values)
+                                        }
+                                    })
+                            }}
+                        >
+                            {(props) => (
+                                <Form>
+                                    <SurveyOrgStep1 currentStep={this.state.currentStep} {...props} />
+                                    <SurveyOrgStep2 currentStep={this.state.currentStep} {...props} />
+                                    <SurveyOrgStep3 currentStep={this.state.currentStep} {...props} />
+                                    <SurveyOrgStep4 currentStep={this.state.currentStep} {...props} />
+
+                                    {this.previousButton}
+                                    {this.nextButton}
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default withRouter(SurveyOrg)
